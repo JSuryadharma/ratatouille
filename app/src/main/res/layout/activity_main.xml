@@ -3,91 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/login_backgroundr"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".MainActivity">
-
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/ratatouille_logor" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/round_edittext">
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_person" />
-
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/userTextbox"
-            android:hint="Enter username"
-            android:background="@android:color/transparent"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/round_edittext">
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_lock"/>
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/passTextbox"
-            android:hint="Enter password"
-            android:background="@android:color/transparent"/>
-    </LinearLayout>
-
-    <Button
-            android:padding="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:text="Sign In"
-            android:fontFamily="@font/berlinsans"
-            android:textSize="20dp"
-            android:textColor="@android:color/white"
-            android:hapticFeedbackEnabled="true"
-            android:id="@+id/signinButton"
-            android:background="@drawable/button_background"/>
-
-    <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="330dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:background="@android:color/transparent">
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="Don't have an account?"
-            android:textSize="10dp"
-            android:background="@drawable/button_background"/>
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="Sign in with"
-            android:textSize="10dp"
-            android:layout_marginLeft="55dp"
-            android:background="@drawable/button_background"/>
-
-    </LinearLayout>
 
 </LinearLayout>
