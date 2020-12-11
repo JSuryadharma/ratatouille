@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <LinearLayout
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:background="@drawable/login_backgroundr"
+        android:background="@color/purple_500"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center"
-        tools:context=".MainActivity">
+        android:gravity="center">
 
         <ImageView
             android:layout_width="150dp"
@@ -62,42 +54,48 @@
                 android:background="@android:color/transparent"/>
         </LinearLayout>
 
-        <Button
-            android:padding="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:text="Sign In"
-            android:fontFamily="@font/berlinsans"
-            android:textSize="20dp"
-            android:textColor="@android:color/white"
-            android:hapticFeedbackEnabled="true"
-            android:id="@+id/signinButton"
-            android:background="@drawable/button_background"/>
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:id="@+id/loginButton"
+            android:background="@drawable/round_button"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="55dp"
+                android:layout_height="30dp"
+                android:text="Login"
+                android:textSize="10pt"
+                android:fontFamily="@font/berlinsans"
+                android:textColor="@android:color/white"/>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_height="wrap_content"
             android:layout_width="330dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="40dp"
             android:background="@android:color/transparent">
-            <Button
+            <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="Don't have an account?"
                 android:textSize="10dp"
-                android:background="@drawable/button_background"/>
-            <Button
+                android:textColor="@android:color/white"
+                android:background="@android:color/transparent"
+                android:id="@+id/dhaLabel"/>
+            <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="Sign in with"
                 android:textSize="10dp"
-                android:layout_marginLeft="55dp"
-                android:background="@drawable/button_background"/>
+                android:layout_marginLeft="160dp"
+                android:textColor="@android:color/white"
+                android:background="@android:color/transparent"
+                android:id="@+id/signInWithLabel"/>
 
         </LinearLayout>
 
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
 

@@ -3,6 +3,12 @@ package com.example.ratatouille.models;
 import android.database.Cursor;
 import android.util.Log;
 
+import com.example.ratatouille.db.DatabaseHelper;
+import com.example.ratatouille.db.DatabaseVars;
+import com.google.firebase.database.Exclude;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import static android.content.ContentValues.TAG;
@@ -12,6 +18,10 @@ public class Users {
 
     private UUID user_id;
     private String email, username, name, phone, address, last_login;
+
+    public Users(){
+
+    }
 
     public Users(UUID user_id, String email, String username, String name, String phone, String address, String last_login) {
         this.user_id = user_id;
