@@ -3,8 +3,6 @@ package com.example.ratatouille.models;
 import android.database.Cursor;
 import android.util.Log;
 
-import com.example.ratatouille.connector.ConnectorVars;
-
 import java.util.UUID;
 
 import static android.content.ContentValues.TAG;
@@ -81,34 +79,4 @@ public class Users {
         this.last_login = last_login;
     }
 
-    public static Users UserLogin(String username, String password) {
-        String query = String.format("SELECT * FROM %s WHERE %s = '%s' AND %s = '%s'",
-                USERS_TABLE, USERNAME, username, PASSWORD, password);
-
-        ConnectorVars.db = ConnectorVars.dbh.getReadableDatabase();
-        Cursor c = ConnectorVars.db.rawQuery(query, null);
-
-        try {
-            if(c.moveToFirst()){
-                Users u = new Users(
-                        UUID.fromString(c.getString(c.getColumnIndex(USER_ID))),
-                        c.getString(c.getColumnIndex(EMAIL)),
-                        c.getString(c.getColumnIndex(USERNAME)),
-                        c.getString(c.getColumnIndex(NAME)),
-                        c.getString(c.getColumnIndex(PHONE)),
-                        c.getString(c.getColumnIndex(ADDRESS)),
-                        c.getString(c.getColumnIndex(LASTLOGIN))
-                );
-                return u;
-            }
-        }catch (Exception e) {
-            Log.d(TAG, e.getMessage());
-        } finally {
-            if (c != null && !c.isClosed()) {
-                c.close();
-            }
-        }
-
-        return null;
-    }
 }
