@@ -1,11 +1,24 @@
 package com.example.ratatouille.models;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
+import com.example.ratatouille.Utils.Utils;
 import com.example.ratatouille.db.DatabaseHelper;
 import com.example.ratatouille.db.DatabaseVars;
+import com.example.ratatouille.vars.VariablesUsed;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.SuccessContinuation;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,10 +32,6 @@ public class Users {
     private UUID user_id;
     private String email, username, name, phone, address, last_login;
 
-    public Users(){
-
-    }
-
     public Users(UUID user_id, String email, String username, String name, String phone, String address, String last_login) {
         this.user_id = user_id;
         this.email = email;
@@ -31,6 +40,35 @@ public class Users {
         this.phone = phone;
         this.address = address;
         this.last_login = last_login;
+    }
+
+    public static void save(String username, String email, String password, String name, String phone, String address){
+        FirebaseAuth dAuth = DatabaseHelper.getDbAuth();
+
+        dAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    FirebaseUser user = dAuth.getCurrentUser();
+
+                    DatabaseVars.UsersTable dbVars = new DatabaseVars.UsersTable();
+                    DatabaseReference dbRef = DatabaseHelper.getDb().getReference().child(dbVars.USERS_TABLE).child(user.getUid());
+
+                    dbRef.child(dbVars.USERNAME).setValue(username);
+                    dbRef.child(dbVars.EMAIL).setValue(email);
+                    dbRef.child(dbVars.NAME).setValue(name);
+                    dbRef.child(dbVars.PHONE).setValue(phone);
+                    dbRef.child(dbVars.ADDRESS).setValue(address);
+
+                    user.sendEmailVerification();
+
+                    Log.w(TAG, "Sign Up has been completed! Please check your email to Log In!");
+
+                } else {
+                    Log.w(TAG, "Failed to save user data!");
+                }
+            }
+        });
     }
 
     public UUID getUser_id() {

@@ -7,6 +7,8 @@ import android.graphics.drawable.Icon;
 
 import com.example.ratatouille.MainActivity;
 import com.example.ratatouille.R;
+import com.example.ratatouille.db.DatabaseHelper;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class Utils {
     public static Boolean validateInput(String input) {
@@ -15,6 +17,7 @@ public class Utils {
         }
         return true; //valid
     }
+
     public static Boolean validateEmail(String input){
         if(validateInput(input) == false || input.length() < 5){
             return false;
@@ -30,26 +33,49 @@ public class Utils {
     }
 
     public static Boolean validatePassword(String input){
-//        if(validateInput(input) == false || input.length() < 5 || input.length() > 15){
-//            return false;
-//        }
-//        for(int i=0; i<input.length(); i++){
-//            if(!Character.isAlphabetic(input.indexOf(i)) && !Character.isDigit(input.indexOf(i))){
-//                return false;
-//            }
-//        }
+        System.out.println("Masuk satu");
+        if(validateInput(input) == false || input.length() < 6 || input.length() > 15){ // password minim 6 karakter.. ketentuan Firebase..
+            return false;
+        }
+        System.out.println("Masuk dua");
+
+        char charInput[] = input.toCharArray();
+
+        for(int i=0; i<input.length(); i++){
+            if(!Character.isAlphabetic(charInput[i]) && !Character.isDigit(charInput[i])){
+                return false;
+            }
+        }
         return true; //valid
     }
 
     public static Boolean validateUsername(String input){
-//        if(validateInput(input) == false || input.length() < 5 || input.length() > 20){
-//            return false;
-//        }
-//        for(int i=0; i<input.length(); i++){
-//            if(!Character.isAlphabetic(input.indexOf(i)) && !Character.isDigit(input.indexOf(i))){
-//                return false;
-//            }
-//        }
+        if(validateInput(input) == false || input.length() < 5 || input.length() > 20){
+            return false;
+        }
+
+        char charInput[] = input.toCharArray();
+
+        for(int i=0; i<input.length(); i++){
+            if(!Character.isAlphabetic(charInput[i]) && !Character.isDigit(charInput[i])){
+                return false;
+            }
+        }
+        return true; //valid
+    }
+
+    public static Boolean validatePhone(String input){
+        if(validateInput(input) == false || input.length() < 11 || input.length() > 12){ // bisa 62 bisa 0
+            return false;
+        }
+
+        char charInput[] = input.toCharArray();
+
+        for(int i=0; i<input.length(); i++){
+            if(!Character.isDigit(charInput[i])){
+                return false;
+            }
+        }
         return true; //valid
     }
 

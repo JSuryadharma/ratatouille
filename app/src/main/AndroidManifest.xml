@@ -17,6 +17,7 @@
         </activity>
         <activity android:name=".SplashScreen"></activity>
         <activity android:name=".views.loginScreen"></activity>
+        <activity android:name=".views.signupScreen"></activity>
     </application>
 
 </manifest>

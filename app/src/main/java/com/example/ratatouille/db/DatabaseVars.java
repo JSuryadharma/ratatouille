@@ -2,7 +2,7 @@ package com.example.ratatouille.db;
 
 public class DatabaseVars {
 
-    public static final String DB_NAME = "ratatouille_database.db";
+//    public static final String DB_NAME = "ratatouille_database.db";
 
     public static final class UsersTable {
         public static final String USERS_TABLE = "Users";
