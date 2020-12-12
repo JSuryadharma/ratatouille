@@ -50,7 +50,7 @@ public class UserController {
                                 Utils.showAlertMessage(context, "Please Verify Account", "To continue, please check verification link on your email account!");
                             }
                         } else {
-                            Utils.showAlertMessage(context, "User not found!","Please try again, or contact our Customer Service for help.");
+                            Utils.showAlertMessage(context, "Incorrect Credentials","Please try again, or contact our Customer Service for help.");
                         }
                     }
                 });

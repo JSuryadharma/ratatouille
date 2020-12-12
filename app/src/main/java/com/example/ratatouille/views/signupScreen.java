@@ -44,7 +44,7 @@ public class signupScreen extends AppCompatActivity {
 
         signUpButton = findViewById(R.id.su_signUpButton);
         backButton = findViewById(R.id.su_backButton);
-        showButton = findViewById(R.id.su_backButton);
+        showButton = findViewById(R.id.su_showButton);
 
         showButton.setOnClickListener(new View.OnClickListener(){
             @Override
