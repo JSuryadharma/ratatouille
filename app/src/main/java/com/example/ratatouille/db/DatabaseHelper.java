@@ -13,7 +13,7 @@ public class DatabaseHelper {
 
     static FirebaseDatabase db = FirebaseDatabase.getInstance();
     static FirebaseAuth dbAuth = FirebaseAuth.getInstance();
-    static GoogleSignInClient gsc;
+    static GoogleSignInClient gsc = null;
 
     public static FirebaseDatabase getDb() {
         return db;
