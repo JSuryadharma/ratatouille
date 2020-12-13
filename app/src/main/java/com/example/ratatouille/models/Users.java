@@ -1,31 +1,21 @@
 package com.example.ratatouille.models;
 
-import android.content.Context;
-import android.database.Cursor;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.example.ratatouille.Utils.Utils;
 import com.example.ratatouille.db.DatabaseHelper;
 import com.example.ratatouille.db.DatabaseVars;
-import com.example.ratatouille.vars.VariablesUsed;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.SuccessContinuation;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.Exclude;
-import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 import static android.content.ContentValues.TAG;
-import static com.example.ratatouille.db.DatabaseVars.UsersTable.*;
 
 public class Users {
 

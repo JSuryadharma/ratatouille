@@ -82,30 +82,32 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_height="wrap_content"
-            android:layout_width="330dp"
-            android:layout_marginTop="40dp"
-            android:background="@android:color/transparent">
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="Don't have an account?"
-                android:textSize="10dp"
-                android:textColor="@android:color/white"
-                android:background="@android:color/transparent"
-                android:id="@+id/li_dhaButton"/>
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="Sign in with"
-                android:textSize="10dp"
-                android:layout_marginLeft="160dp"
-                android:textColor="@android:color/white"
-                android:background="@android:color/transparent"
-                android:id="@+id/li_signInWithButton"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@android:color/transparent">
 
-        </LinearLayout>
+        <TextView
+            android:id="@+id/li_dhaButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="Don't have an account?"
+            android:textColor="@android:color/white"
+            android:textSize="10dp" />
+
+        <TextView
+            android:id="@+id/li_signInWithButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="140dp"
+            android:background="@android:color/transparent"
+            android:text="Sign In with Google"
+            android:textColor="@android:color/white"
+            android:textSize="10dp" />
+
+    </LinearLayout>
 
 </LinearLayout>
 

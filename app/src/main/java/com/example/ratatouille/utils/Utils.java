@@ -1,14 +1,9 @@
-package com.example.ratatouille.Utils;
+package com.example.ratatouille.utils;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.Icon;
 
-import com.example.ratatouille.MainActivity;
 import com.example.ratatouille.R;
-import com.example.ratatouille.db.DatabaseHelper;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class Utils {
     public static Boolean validateInput(String input) {
@@ -33,7 +28,6 @@ public class Utils {
     }
 
     public static Boolean validatePassword(String input){
-        System.out.println("Masuk satu");
         if(validateInput(input) == false || input.length() < 6 || input.length() > 15){ // password minim 6 karakter.. ketentuan Firebase..
             return false;
         }

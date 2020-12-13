@@ -4,6 +4,8 @@ public class DatabaseVars {
 
 //    public static final String DB_NAME = "ratatouille_database.db";
 
+    public static final int RC_SIGN_IN = 111;
+
     public static final class UsersTable {
         public static final String USERS_TABLE = "Users";
         public static final String USER_ID = "UserID";

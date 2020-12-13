@@ -3,7 +3,6 @@ package com.example.ratatouille.views;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -15,11 +14,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ratatouille.R;
-import com.example.ratatouille.Utils.Utils;
+import com.example.ratatouille.utils.Utils;
 import com.example.ratatouille.controllers.UserController;
-import com.example.ratatouille.db.DatabaseHelper;
-import com.example.ratatouille.vars.VariablesUsed;
-import com.google.firebase.auth.FirebaseUser;
 
 public class signupScreen extends AppCompatActivity {
     TextView usernameField, emailField, nameField, passwordField, phoneField, addressField;
