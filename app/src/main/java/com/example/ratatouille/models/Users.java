@@ -13,16 +13,16 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 
+import java.sql.Timestamp;
 import java.util.UUID;
 
 import static android.content.ContentValues.TAG;
 
 public class Users {
 
-    private UUID user_id;
-    private String email, username, name, phone, address, last_login;
+    private String user_id, email, username, name, phone, address, last_login;
 
-    public Users(UUID user_id, String email, String username, String name, String phone, String address, String last_login) {
+    public Users(String user_id, String email, String username, String name, String phone, String address, String last_login) {
         this.user_id = user_id;
         this.email = email;
         this.username = username;
@@ -49,6 +49,7 @@ public class Users {
                     dbRef.child(dbVars.NAME).setValue(name);
                     dbRef.child(dbVars.PHONE).setValue(phone);
                     dbRef.child(dbVars.ADDRESS).setValue(address);
+                    dbRef.child(dbVars.LASTLOGIN).setValue(new Timestamp(System.currentTimeMillis()));
 
                     user.sendEmailVerification();
 
@@ -61,11 +62,11 @@ public class Users {
         });
     }
 
-    public UUID getUser_id() {
+    public String getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(UUID user_id) {
+    public void setUser_id(String user_id) {
         this.user_id = user_id;
     }
 

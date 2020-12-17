@@ -15,8 +15,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.ratatouille.R;
 import com.example.ratatouille.db.DatabaseHelper;
 import com.example.ratatouille.db.DatabaseVars;
+import com.example.ratatouille.models.Users;
 import com.example.ratatouille.utils.Utils;
 import com.example.ratatouille.controllers.UserController;
+import com.example.ratatouille.utils.callbackHelper;
+import com.example.ratatouille.vars.VariablesUsed;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInApi;
@@ -29,6 +32,13 @@ public class loginScreen extends AppCompatActivity {
     TextView showButton;
     LinearLayout btSignIn;
     TextView dhaButton, loginWithButton;
+
+    callbackHelper cb = new callbackHelper() {
+        @Override
+        public void onUserLoadCallback(Users u) {
+            startMainMenu();
+        }
+    };
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -66,7 +76,7 @@ public class loginScreen extends AppCompatActivity {
                 String passwordInput = passTextbox.getText().toString();
 
                 if(Utils.validateEmail(emailInput) && Utils.validatePassword(passwordInput)) {
-                    UserController.UserLogin(loginScreen.this, emailInput, passwordInput);
+                    UserController.UserLogin(cb, loginScreen.this, emailInput, passwordInput);
                 }
                 else {
                     if(!Utils.validateEmail(userTextbox.getText().toString())) {
@@ -108,11 +118,16 @@ public class loginScreen extends AppCompatActivity {
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
-                UserController.firebaseAuthWithGoogle(loginScreen.this, account.getIdToken());
+                UserController.firebaseAuthWithGoogle(cb, loginScreen.this, account.getIdToken());
             } catch (ApiException e) {
                 Utils.showAlertMessage(loginScreen.this, "Login with Google Failed","Please try again later, or contact our Customer Service for help.");
             }
         }
     }
 
+    public void startMainMenu() {
+        Intent mainMenuIntent = new Intent(loginScreen.this, customerView.class);
+        startActivity(mainMenuIntent);
+        finish();
+    }
 }

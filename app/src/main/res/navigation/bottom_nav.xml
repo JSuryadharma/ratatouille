@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav"
+    app:startDestination="@id/viewProfileFragment">
+
+    <fragment
+        android:id="@+id/viewProfileFragment"
+        android:name="com.example.ratatouille.views.ViewProfileFragment"
+        android:label="fragment_view_profile"
+        tools:layout="@layout/fragment_view_profile" />
+</navigation>

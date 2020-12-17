@@ -31,7 +31,6 @@ public class Utils {
         if(validateInput(input) == false || input.length() < 6 || input.length() > 15){ // password minim 6 karakter.. ketentuan Firebase..
             return false;
         }
-        System.out.println("Masuk dua");
 
         char charInput[] = input.toCharArray();
 
