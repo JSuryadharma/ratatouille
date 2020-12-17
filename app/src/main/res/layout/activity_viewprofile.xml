@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="30dp"
+        android:background="@drawable/vp_background"
+        android:id="@+id/vp_relativeContainerProfile">
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Profile"
+            android:textSize="40dp"
+            android:textColor="@android:color/white"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/vp_profileLabel"/>
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Edit"
+            android:textSize="25dp"
+            android:textAlignment="textEnd"
+            android:textColor="@android:color/white"
+            android:layout_alignParentRight="true"
+            android:layout_alignBaseline="@id/vp_profileLabel"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/round_card"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:layout_below="@id/vp_profileLabel">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_baseline_account_circle_24"
+                android:id="@+id/vp_imageProfile"
+                android:layout_centerVertical="true"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_toRightOf="@id/vp_imageProfile"
+                android:layout_centerVertical="true">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="default_name"
+                    android:textSize="20dp"
+                    android:textColor="@android:color/black"
+                    android:layout_marginLeft="10dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="default@gmail.com"
+                    android:paddingTop="5dp"
+                    android:layout_marginLeft="10dp"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/vp_relativeContainerProfile"
+        android:layout_margin="20dp"
+        android:background="@drawable/round_card">
+
+    </ScrollView>
+</RelativeLayout>
