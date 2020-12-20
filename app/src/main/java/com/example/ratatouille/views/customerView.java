@@ -41,7 +41,6 @@ public class customerView extends AppCompatActivity {
                     if (item.getItemId() == R.id.nav_profile) {
                         selectedFragment = new ViewProfileFragment();
                     }
-//                    else if ()
 
                     if(selectedFragment != null) {
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();

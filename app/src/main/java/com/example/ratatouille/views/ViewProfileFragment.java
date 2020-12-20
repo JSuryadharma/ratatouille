@@ -1,14 +1,28 @@
 package com.example.ratatouille.views;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ratatouille.R;
+import com.example.ratatouille.controllers.UserController;
+import com.example.ratatouille.vars.VariablesUsed;
+
+import java.io.InputStream;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,6 +35,16 @@ public class ViewProfileFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final int PICK_IMAGE = 1;
+    ImageView imageProfile;
+    TextView phoneNumberText;
+    TextView addressText;
+    TextView yourVouchersText;
+    TextView contactSupport;
+    TextView settings;
+    TextView termsOfUse;
+    TextView privacyPolicy;
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -62,5 +86,100 @@ public class ViewProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_view_profile, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        imageProfile = getView().findViewById(R.id.vp_imageProfile);
+        phoneNumberText = getView().findViewById(R.id.vp_phoneNumberText);
+        addressText = getView().findViewById(R.id.vp_addressText);
+        yourVouchersText = getView().findViewById(R.id.vp_yourVouchersText);
+        contactSupport = getView().findViewById(R.id.vp_contactSupport);
+        settings = getView().findViewById(R.id.vp_settings);
+        termsOfUse = getView().findViewById(R.id.vp_settings);
+        privacyPolicy = getView().findViewById(R.id.vp_privacyPolicy);
+
+        imageProfile.setImageBitmap();
+        phoneNumberText.setText(VariablesUsed.currentUser.getPhone());
+        addressText.setText(VariablesUsed.currentUser.getAddress());
+//        yourVouchersText.setText();
+
+        imageProfile.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setType("images/");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+            }
+        });
+
+        contactSupport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//              chat rooms
+            }
+        });
+
+        settings.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+//              nanti ditambahin
+            }
+        });
+
+        termsOfUse.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                TextView tosText = getView().findViewById(R.id.tos_text);
+                vpTermsofService.generateTerms();
+                tosText.setText(vpTermsofService.getTerms());
+
+                LayoutInflater inflater = LayoutInflater.from(getContext());
+                View promptsView = inflater.inflate(R.layout.dialog_termsofservice,null);
+
+                AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+                alert.setView(promptsView);
+
+                alert.setCancelable(false);
+                alert.setPositiveButton("I Agree", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                alert.show();
+            }
+        });
+
+        privacyPolicy.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        String imagePath;
+        if(requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK){
+            if (data == null){
+                Toast.makeText(getActivity(), "Data Failed to Store!", Toast.LENGTH_LONG).show();
+                return;
+            }
+            imagePath = data.getData().getPath();
+            Toast.makeText(getActivity(), "Data stored successfully!", Toast.LENGTH_LONG).show();
+            UserController.uploadProfilePicture(imagePath);
+        } else {
+            Toast.makeText(getActivity(), "You haven't selected any image!", Toast.LENGTH_LONG).show();
+        }
     }
 }

@@ -3,6 +3,8 @@ package com.example.ratatouille.controllers;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -16,6 +18,7 @@ import com.example.ratatouille.vars.VariablesUsed;
 import com.example.ratatouille.views.customerView;
 import com.example.ratatouille.views.loginScreen;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
@@ -26,7 +29,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.UUID;
 
@@ -123,5 +130,31 @@ public class UserController {
                         }
                     }
                 });
+    }
+
+    public static Uri uploadProfilePicture(String path){
+        Uri file = Uri.fromFile(new File(path));
+        StorageReference stRef = DatabaseHelper.getStorage().getReference().child("images/Users/" + VariablesUsed.currentUser.getUser_id());
+
+        stRef.putFile(file);
+    }
+
+    public static Bitmap downloadProfilePicture(){
+        Bitmap imageFile;
+        try {
+            File localFile = File.createTempFile(VariablesUsed.loggedUser.getUid(), "jpg");
+            StorageReference stRef = DatabaseHelper.getStorage().getReference().child("images/Users/");
+
+            stRef.getFile(localFile)
+            .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+//                    belum selesai
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

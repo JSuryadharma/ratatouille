@@ -62,6 +62,15 @@ public class Users {
         });
     }
 
+    public static void updateProfile(String username, String email, String password, String name, String phone, String address){
+        DatabaseReference dbRef = DatabaseHelper.getDb().getReference().child(DatabaseVars.UsersTable.USERS_TABLE);
+        dbRef.child(DatabaseVars.UsersTable.USERNAME).setValue(username);
+        dbRef.child(DatabaseVars.UsersTable.PASSWORD).setValue(password);
+        dbRef.child(DatabaseVars.UsersTable.NAME).setValue(name);
+        dbRef.child(DatabaseVars.UsersTable.PHONE).setValue(phone);
+        dbRef.child(DatabaseVars.UsersTable.ADDRESS).setValue(address);
+    }
+
     public String getUser_id() {
         return user_id;
     }

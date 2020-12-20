@@ -8,11 +8,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
 
 public class DatabaseHelper {
 
     static FirebaseDatabase db = FirebaseDatabase.getInstance();
     static FirebaseAuth dbAuth = FirebaseAuth.getInstance();
+    static FirebaseStorage storage = FirebaseStorage.getInstance();
     static GoogleSignInClient gsc = null;
 
     public static FirebaseDatabase getDb() {
@@ -20,6 +22,8 @@ public class DatabaseHelper {
     }
 
     public static FirebaseAuth getDbAuth() { return dbAuth; }
+
+    public static FirebaseStorage getStorage() { return storage; }
 
     public static GoogleSignInClient getGsc(Context context) {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
