@@ -100,7 +100,8 @@ public class ViewProfileFragment extends Fragment {
         termsOfUse = getView().findViewById(R.id.vp_settings);
         privacyPolicy = getView().findViewById(R.id.vp_privacyPolicy);
 
-        imageProfile.setImageBitmap();
+//        TODO: imageProfile update..
+//        imageProfile.setImageBitmap();
         phoneNumberText.setText(VariablesUsed.currentUser.getPhone());
         addressText.setText(VariablesUsed.currentUser.getAddress());
 //        yourVouchersText.setText();
