@@ -52,6 +52,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="default_name"
+                    android:id="@+id/vp_username"
                     android:textSize="20dp"
                     android:textColor="@android:color/black"
                     android:layout_marginLeft="10dp"/>
@@ -59,6 +60,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="default@gmail.com"
+                    android:id="@+id/vp_email"
                     android:paddingTop="5dp"
                     android:layout_marginLeft="10dp"/>
             </LinearLayout>

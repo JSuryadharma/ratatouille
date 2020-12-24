@@ -32,7 +32,7 @@ public class Users {
         this.last_login = last_login;
     }
 
-    public static void save(String username, String email, String password, String name, String phone, String address){
+    public static void save(String username, String email, String password, String name, String phone, String address){ // this save method is an exception, due to the multithreading system of Firebase, we need to static this..
         FirebaseAuth dAuth = DatabaseHelper.getDbAuth();
 
         dAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -49,7 +49,7 @@ public class Users {
                     dbRef.child(dbVars.NAME).setValue(name);
                     dbRef.child(dbVars.PHONE).setValue(phone);
                     dbRef.child(dbVars.ADDRESS).setValue(address);
-                    dbRef.child(dbVars.LASTLOGIN).setValue(new Timestamp(System.currentTimeMillis()));
+                    dbRef.child(dbVars.LASTLOGIN).setValue(new Timestamp(System.currentTimeMillis()).toString());
 
                     user.sendEmailVerification();
 

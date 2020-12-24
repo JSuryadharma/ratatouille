@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +22,8 @@ import android.widget.Toast;
 import com.example.ratatouille.R;
 import com.example.ratatouille.controllers.UserController;
 import com.example.ratatouille.vars.VariablesUsed;
+
+import org.w3c.dom.Text;
 
 import java.io.InputStream;
 
@@ -37,6 +40,8 @@ public class ViewProfileFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private static final int PICK_IMAGE = 1;
     ImageView imageProfile;
+    TextView usernameText;
+    TextView emailText;
     TextView phoneNumberText;
     TextView addressText;
     TextView yourVouchersText;
@@ -92,6 +97,8 @@ public class ViewProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         imageProfile = getView().findViewById(R.id.vp_imageProfile);
+        usernameText = getView().findViewById(R.id.vp_username);
+        emailText = getView().findViewById(R.id.vp_email);
         phoneNumberText = getView().findViewById(R.id.vp_phoneNumberText);
         addressText = getView().findViewById(R.id.vp_addressText);
         yourVouchersText = getView().findViewById(R.id.vp_yourVouchersText);
@@ -102,6 +109,8 @@ public class ViewProfileFragment extends Fragment {
 
 //        TODO: imageProfile update..
 //        imageProfile.setImageBitmap();
+        usernameText.setText(VariablesUsed.currentUser.getUsername());
+        emailText.setText(VariablesUsed.currentUser.getEmail());
         phoneNumberText.setText(VariablesUsed.currentUser.getPhone());
         addressText.setText(VariablesUsed.currentUser.getAddress());
 //        yourVouchersText.setText();
@@ -136,12 +145,16 @@ public class ViewProfileFragment extends Fragment {
 
             @Override
             public void onClick(View view) {
-                TextView tosText = getView().findViewById(R.id.tos_text);
                 vpTermsofService.generateTerms();
-                tosText.setText(vpTermsofService.getTerms());
 
                 LayoutInflater inflater = LayoutInflater.from(getContext());
                 View promptsView = inflater.inflate(R.layout.dialog_termsofservice,null);
+
+                promptsView.setScaleX(600);
+                promptsView.setScaleY(600);
+
+                TextView tosText = promptsView.findViewById(R.id.tos_text);
+                tosText.setText(vpTermsofService.getTerms());
 
                 AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
                 alert.setView(promptsView);

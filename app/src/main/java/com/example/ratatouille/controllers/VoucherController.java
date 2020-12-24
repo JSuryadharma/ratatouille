@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 public class VoucherController {
 
-    public static Vouchers getVoucher(String voucherId){
-
-    }
-    public static ArrayList<Vouchers> getAll() {
-
-    }
+//    public static Vouchers getVoucher(String voucherId){
+//
+//    }
+//    public static ArrayList<Vouchers> getAll() {
+//
+//    }
 }

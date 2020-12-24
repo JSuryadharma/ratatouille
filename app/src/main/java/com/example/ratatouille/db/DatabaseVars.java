@@ -18,4 +18,17 @@ public class DatabaseVars {
         public static final String LASTLOGIN = "LastLogin";
     }
 
+    public static final class UserVoucherTable {
+        public static final String USERVOUCHER_TABLE = "UserVoucher";
+        public static final String USER_ID = "UserID";
+        public static final String VoucherID = "VoucherID";
+    }
+
+    public static final class VouchersTable {
+        public static final String VOUCHER_TABLE = "Vouchers";
+        public static final String VOUCHER_ID = "VoucherID";
+        public static final String VOUCHER_NAME = "VoucherName";
+        public static final String VOUCHER_DISC = "VoucherDisc";
+    }
+
 }

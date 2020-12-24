@@ -48,38 +48,38 @@ public class UserController {
                             VariablesUsed.loggedUser = dbAuth.getCurrentUser();
                             if(VariablesUsed.loggedUser.isEmailVerified()) {
                                 Utils.showSuccessMessage(context, "Success Logged In", "Welcome, " + VariablesUsed.loggedUser.getEmail() + " !");
+
+                                //success logged in, filling the userdatas via database..
+                                DatabaseVars.UsersTable dbVars = new DatabaseVars.UsersTable();
+                                DatabaseReference dbRef = DatabaseHelper.getDb().getReference().child(dbVars.USERS_TABLE).child(VariablesUsed.loggedUser.getUid());
+
+                                dbRef.addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        Users currentUser = new Users(
+                                                VariablesUsed.loggedUser.getUid(),
+                                                VariablesUsed.loggedUser.getEmail(),
+                                                snapshot.child(dbVars.USERNAME).getValue().toString(),
+                                                snapshot.child(dbVars.NAME).getValue().toString(),
+                                                snapshot.child(dbVars.PHONE).getValue().toString(),
+                                                snapshot.child(dbVars.ADDRESS).getValue().toString(),
+                                                snapshot.child(dbVars.LASTLOGIN).getValue().toString()
+                                        );
+                                        VariablesUsed.currentUser = currentUser; // update the current logged in user..
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+                                        Log.w(TAG, "User Data retrieval failed!");
+                                    }
+                                });
+                                // then, call the next intent / screen..
+                                cb.onUserLoadCallback(VariablesUsed.currentUser);
                             } else {
                                 Utils.showAlertMessage(context, "Please Verify Account", "To continue, please check verification link on your email account!");
                             }
                         } else {
                             Utils.showAlertMessage(context, "Incorrect Credentials","Please try again, or contact our Customer Service for help.");
-                        }
-
-                        if(VariablesUsed.loggedUser != null) {
-                            DatabaseVars.UsersTable dbVars = new DatabaseVars.UsersTable();
-                            DatabaseReference dbRef = DatabaseHelper.getDb().getReference().child(dbVars.USERS_TABLE).child(VariablesUsed.loggedUser.getUid());
-
-                            dbRef.addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    Users currentUser = new Users(
-                                            VariablesUsed.loggedUser.getUid(),
-                                            snapshot.child(dbVars.EMAIL).getValue().toString(),
-                                            snapshot.child(dbVars.USERNAME).getValue().toString(),
-                                            snapshot.child(dbVars.NAME).getValue().toString(),
-                                            snapshot.child(dbVars.PHONE).getValue().toString(),
-                                            snapshot.child(dbVars.ADDRESS).getValue().toString(),
-                                            snapshot.child(dbVars.LASTLOGIN).getValue().toString()
-                                    );
-                                    VariablesUsed.currentUser = currentUser; // update the current logged in user..
-                                    cb.onUserLoadCallback(currentUser);
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-                                    Log.w(TAG, "User Data retrieval failed!");
-                                }
-                            });
                         }
                     }
                 });
@@ -111,10 +111,10 @@ public class UserController {
                             VariablesUsed.currentUser = new Users(
                                     VariablesUsed.loggedUser.getUid(),
                                     VariablesUsed.loggedUser.getEmail(),
-                                    VariablesUsed.loggedUser.getDisplayName(),
+                                    VariablesUsed.loggedUser.getDisplayName(), //username, disamakan dengan name
                                     VariablesUsed.loggedUser.getDisplayName(),
                                     VariablesUsed.loggedUser.getPhoneNumber(),
-                                    null,
+                                    null, // address
                                     new Timestamp(System.currentTimeMillis()).toString()
                             );
 
