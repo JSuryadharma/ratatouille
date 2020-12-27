@@ -13,15 +13,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/introduction1" />
+        app:srcCompat="@drawable/introduction2" />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
-        android:text="Discover Restaurants"
-        android:textAlignment="center"
+        android:text="Rate Restaurants"
         android:textColor="#000000"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +34,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="40dp"
-        android:text="Wondering about where to eat? Don't worry, we've got you covered. Here in Ratatouille, you can discover so many hidden gems, so many restaurants you wish you had visited sooner."
+        android:text="Your review matters. Rate the implementation of health protocols in every restaurant you visit, and we listen!"
         android:textAlignment="center"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="@+id/textView3"
@@ -50,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="75dp"
         android:max="3"
-        android:progress="1"
+        android:progress="2"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
