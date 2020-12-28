@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@android:color/white"
+        android:paddingHorizontal="10dp"
+        android:paddingTop="15dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_backbutton"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Back"
+                android:fontFamily="@font/berlinsans"
+                android:textSize="20dp"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Verify Your Phone Number"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:paddingTop="40dp"
+        android:paddingHorizontal="50dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter your OTP code here"
+        android:textSize="17dp"
+        android:textColor="@android:color/black"
+        android:paddingHorizontal="50dp"
+        android:paddingTop="10dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="30dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/searchbox_background"
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:paddingBottom="20dp"
+                android:text="X"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="20dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/searchbox_background"
+            android:orientation="horizontal"
+            android:paddingStart="30dp">
+
+            <EditText
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:paddingBottom="20dp"
+                android:text="X"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="20dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/searchbox_background"
+            android:orientation="horizontal"
+            android:paddingStart="30dp">
+
+            <EditText
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:paddingBottom="20dp"
+                android:text="X"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="20dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/searchbox_background"
+            android:orientation="horizontal"
+            android:paddingStart="30dp">
+
+            <EditText
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:paddingBottom="20dp"
+                android:text="X"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="20dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/button_background">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Verify Now"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+
+</LinearLayout>
