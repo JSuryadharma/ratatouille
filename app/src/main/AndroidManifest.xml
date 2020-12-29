@@ -4,21 +4,26 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ratatouille_logor"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ratatouille">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SplashScreen"></activity>
-        <activity android:name=".views.loginScreen"></activity>
-        <activity android:name=".views.signupScreen"></activity>
-        <activity android:name=".views.customerView"></activity>
+        <activity android:name=".SplashScreen"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".views.loginScreen"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".views.signupScreen"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".views.customerView"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

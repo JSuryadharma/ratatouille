@@ -9,8 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:gravity="right|top"
-        android:ignoreGravity="false"
+        android:gravity="right"
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent">
 

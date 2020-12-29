@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -15,21 +16,28 @@ import com.example.ratatouille.models.Users;
 import com.example.ratatouille.utils.callbackHelper;
 import com.example.ratatouille.vars.VariablesUsed;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.sql.Timestamp;
 
 import static android.content.ContentValues.TAG;
@@ -47,9 +55,8 @@ public class UserController {
                         if (task.isSuccessful()) {
                             VariablesUsed.loggedUser = dbAuth.getCurrentUser();
                             if(VariablesUsed.loggedUser.isEmailVerified()) {
-                                Utils.showSuccessMessage(context, "Success Logged In", "Welcome, " + VariablesUsed.loggedUser.getEmail() + " !");
-
                                 //success logged in, filling the userdatas via database..
+
                                 DatabaseVars.UsersTable dbVars = new DatabaseVars.UsersTable();
                                 DatabaseReference dbRef = DatabaseHelper.getDb().getReference().child(dbVars.USERS_TABLE).child(VariablesUsed.loggedUser.getUid());
 
@@ -66,6 +73,7 @@ public class UserController {
                                                 snapshot.child(dbVars.LASTLOGIN).getValue().toString()
                                         );
                                         VariablesUsed.currentUser = currentUser; // update the current logged in user..
+                                        Toast.makeText(context, "Welcome back!" + VariablesUsed.currentUser.getUsername(), Toast.LENGTH_LONG);
                                     }
 
                                     @Override
@@ -127,30 +135,62 @@ public class UserController {
                 });
     }
 
-    public static void uploadProfilePicture(String path){
-        Uri file = Uri.fromFile(new File(path));
-        StorageReference stRef = DatabaseHelper.getStorage().getReference().child("images/Users/" + VariablesUsed.currentUser.getUser_id());
+    public static void uploadProfilePicture(Context context, Bitmap bitmap){
 
-        stRef.putFile(file);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+
+        StorageReference storageRef = DatabaseHelper.getStorage().getReference()
+                .child("profileImages")
+                .child(VariablesUsed.loggedUser.getUid() + ".jpeg");
+
+        storageRef.putBytes(baos.toByteArray())
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        getDownloadUrl(context, storageRef);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e(TAG, "onFailure:", e.getCause());
+                    }
+                });
     }
 
-//    public static Bitmap downloadProfilePicture(){
-//        Bitmap imageFile;
-//        try {
-//            File localFile = File.createTempFile(VariablesUsed.loggedUser.getUid(), "jpg");
-//            StorageReference stRef = DatabaseHelper.getStorage().getReference().child("images/Users/");
-//
-//            stRef.getFile(localFile)
-//            .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-//                @Override
-//                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-//                    TODO: belum selesai
-//                }
-//            });
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return imageFile;
-//
-//    }
+    public static void getDownloadUrl(Context context, StorageReference reference){
+        reference.getDownloadUrl()
+                .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Log.d(TAG, "onSuccess: " + uri);
+                        setUserProfileUrl(context, uri);
+                    }
+                });
+    }
+
+    public static void setUserProfileUrl(Context context,Uri uri){
+        FirebaseUser user = VariablesUsed.loggedUser;
+
+        UserProfileChangeRequest request = new UserProfileChangeRequest.Builder()
+                .setPhotoUri(uri)
+                .build();
+
+        user.updateProfile(request)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(context, "Profile Image Updated Successfully!", Toast.LENGTH_LONG).show();
+                        Log.d(TAG, "onSuccess: Profile Picture has been Updated!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(context, "Profile Image Failed to Update!", Toast.LENGTH_LONG).show();
+                        Log.e(TAG, "onFailure: ", e.getCause());
+                    }
+                });
+    }
 }

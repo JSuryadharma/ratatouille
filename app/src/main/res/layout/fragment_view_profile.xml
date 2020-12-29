@@ -24,6 +24,7 @@
             android:textSize="25dp"
             android:textAlignment="textEnd"
             android:textColor="@android:color/white"
+            android:id="@+id/vp_editButton"
             android:layout_alignParentRight="true"
             android:layout_alignBaseline="@id/vp_profileLabel"/>
 
@@ -84,7 +85,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:id="@+id/vp_phoneNumber">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -113,14 +115,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@android:color/darker_gray"
-                android:layout_below="@id/vp_phoneNumberText"
+                android:layout_below="@id/vp_phoneNumber"
                 android:layout_marginTop="5dp"/>
 
             <!-- This is for Address Container-->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:id="@+id/vp_address">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -149,7 +152,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@android:color/darker_gray"
-                android:layout_below="@id/vp_phoneNumberText"
+                android:layout_below="@id/vp_address"
                 android:layout_marginTop="5dp"/>
 
             <!-- This is for Your Vouchers Container-->
@@ -157,7 +160,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:id="@+id/vp_yourVouchers">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -186,7 +190,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@android:color/darker_gray"
-                android:layout_below="@id/vp_phoneNumberText"
+                android:layout_below="@id/vp_yourVouchers"
                 android:layout_marginTop="5dp"/>
 
             <!-- DIVIDER-->
@@ -197,14 +201,14 @@
                 android:orientation="horizontal"
                 android:paddingLeft="30dp"
                 android:paddingRight="10dp"
-                android:paddingVertical="15dp">
+                android:paddingVertical="15dp"
+                android:id="@+id/vp_contactSupport">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Contact Support"
                     android:textSize="20dp"
-                    android:textColor="@android:color/black"
-                    android:id="@+id/vp_contactSupport"/>
+                    android:textColor="@android:color/black"/>
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
@@ -220,7 +224,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@android:color/darker_gray"
-                android:layout_below="@id/vp_phoneNumberText"
+                android:layout_below="@id/vp_contactSupport"
                 android:layout_marginTop="5dp"/>
 
 
@@ -231,14 +235,14 @@
                 android:orientation="horizontal"
                 android:paddingLeft="30dp"
                 android:paddingRight="10dp"
-                android:paddingVertical="15dp">
+                android:paddingVertical="15dp"
+                android:id="@+id/vp_settings">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Settings"
                     android:textSize="20dp"
-                    android:textColor="@android:color/black"
-                    android:id="@+id/vp_settings"/>
+                    android:textColor="@android:color/black"/>
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
@@ -254,7 +258,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@android:color/darker_gray"
-                android:layout_below="@id/vp_phoneNumberText"
+                android:layout_below="@id/vp_settings"
                 android:layout_marginTop="5dp"/>
 
             <!-- This is for Terms of Use Container-->
@@ -263,14 +267,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:paddingLeft="30dp"
-                android:paddingVertical="15dp">
+                android:paddingVertical="15dp"
+                android:id="@+id/vp_termsOfUse">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Terms of Use"
                     android:textSize="20dp"
-                    android:textColor="@android:color/black"
-                    android:id="@+id/vp_termsOfUse"/>
+                    android:textColor="@android:color/black"/>
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
@@ -286,7 +290,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@android:color/darker_gray"
-                android:layout_below="@id/vp_phoneNumberText"
+                android:layout_below="@id/vp_termsOfUse"
                 android:layout_marginTop="5dp"/>
 
             <!-- This is for Privacy Policy Container-->
@@ -295,14 +299,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:paddingLeft="30dp"
-                android:paddingVertical="15dp">
+                android:paddingVertical="15dp"
+                android:id="@+id/vp_privacyPolicy">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Privacy Policy"
                     android:textSize="20dp"
-                    android:textColor="@android:color/black"
-                    android:id="@+id/vp_privacyPolicy"/>
+                    android:textColor="@android:color/black" />
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
@@ -318,7 +322,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@android:color/darker_gray"
-                android:layout_below="@id/vp_phoneNumberText"
+                android:layout_below="@id/vp_privacyPolicy"
                 android:layout_marginTop="5dp"/>
         </LinearLayout>
 

@@ -2,6 +2,7 @@ package com.example.ratatouille.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.ratatouille.R;
+import com.example.ratatouille.utils.Utils;
+import com.example.ratatouille.vars.VariablesUsed;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationMenu;
 import com.google.android.material.bottomnavigation.BottomNavigationPresenter;
@@ -50,6 +53,5 @@ public class customerView extends AppCompatActivity {
                 }
             }
         );
-
     }
 }

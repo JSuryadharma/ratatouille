@@ -73,18 +73,22 @@ public class Utils {
     }
 
     public static void showSuccessMessage(Context context, String title, String message){
-        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
+        AlertDialog alert = alertBuilder.create();
         alert.setIcon(R.drawable.verified_logo);
         alert.setTitle(title);
         alert.setMessage(message);
         alert.show();
+        alert.dismiss();
     }
 
-    public static void showAlertMessage(Context context, String title, String message){
-        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+    public static void showAlertMessage(Context context, String title, String message) {
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
+        AlertDialog alert = alertBuilder.create();
         alert.setIcon(R.drawable.ic_warning);
         alert.setTitle(title);
         alert.setMessage(message);
         alert.show();
+        alert.dismiss();
     }
 }

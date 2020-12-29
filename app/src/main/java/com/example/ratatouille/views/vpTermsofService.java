@@ -8,6 +8,7 @@ public class vpTermsofService {
     }
 
     public static String getTerms(){
+        generateTerms();
         return terms;
     }
 
