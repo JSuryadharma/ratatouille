@@ -71,7 +71,6 @@ public class loginScreen extends AppCompatActivity {
         btSignIn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                System.out.println(userTextbox.getText().toString());
                 String emailInput = userTextbox.getText().toString();
                 String passwordInput = passTextbox.getText().toString();
 
