@@ -135,7 +135,7 @@ public class ViewProfileFragment extends Fragment {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE); // mungkin kalau nanti akhir2 bisa diganti jadi select pictures from library..
                 if(intent.resolveActivity(getActivity().getPackageManager()) != null){
                     startActivityForResult(intent, TAKE_IMAGE_CODE);
                 }
