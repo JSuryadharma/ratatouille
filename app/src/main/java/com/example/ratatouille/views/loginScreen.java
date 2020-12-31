@@ -1,5 +1,6 @@
 package com.example.ratatouille.views;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -35,8 +36,8 @@ public class loginScreen extends AppCompatActivity {
 
     callbackHelper cb = new callbackHelper() {
         @Override
-        public void onUserLoadCallback(Users u) {
-            startMainMenu();
+        public void onUserLoadCallback(Context context, Users u) {
+            startMainMenu(context);
         }
     };
 
@@ -124,9 +125,8 @@ public class loginScreen extends AppCompatActivity {
         }
     }
 
-    public void startMainMenu() {
-        Intent mainMenuIntent = new Intent(loginScreen.this, customerView.class);
+    public void startMainMenu(Context context) {
+        Intent mainMenuIntent = new Intent(context, customerView.class);
         startActivity(mainMenuIntent);
-        finish();
     }
 }

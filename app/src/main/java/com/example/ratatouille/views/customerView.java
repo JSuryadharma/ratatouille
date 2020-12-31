@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,6 +33,8 @@ public class customerView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer);
         getSupportActionBar().hide();
+
+        Toast.makeText(customerView.this, "Welcome back!" + VariablesUsed.currentUser.getUsername(), Toast.LENGTH_LONG);
 
         bottomNavigationView = findViewById(R.id.bottom_nav);
 

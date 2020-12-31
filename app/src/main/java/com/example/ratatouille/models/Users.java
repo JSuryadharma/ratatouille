@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.example.ratatouille.db.DatabaseHelper;
 import com.example.ratatouille.db.DatabaseVars;
+import com.example.ratatouille.vars.VariablesUsed;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -20,11 +21,14 @@ import static android.content.ContentValues.TAG;
 
 public class Users {
 
-    private String user_id, email, username, name, phone, address, last_login;
+    private String email, username, name, phone, address, last_login;
 
-    public Users(String user_id, String email, String username, String name, String phone, String address, String last_login) {
-        this.user_id = user_id;
-        this.email = email;
+    public Users(){
+        //let this to be blank, for data retrival..
+        // Default constructor required for calls to DataSnapshot.getValue(User.class)
+    }
+
+    public Users(String username, String name, String phone, String address, String last_login) {
         this.username = username;
         this.name = name;
         this.phone = phone;
@@ -32,7 +36,7 @@ public class Users {
         this.last_login = last_login;
     }
 
-    public static void save(String username, String email, String password, String name, String phone, String address){ // this save method is an exception, due to the multithreading system of Firebase, we need to static this..
+    public static void save(Users newUser, String email, String password){ // this save method is an exception, due to the multithreading system of Firebase, we need to static this..
         FirebaseAuth dAuth = DatabaseHelper.getDbAuth();
 
         dAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -42,49 +46,19 @@ public class Users {
                     FirebaseUser user = dAuth.getCurrentUser();
 
                     DatabaseVars.UsersTable dbVars = new DatabaseVars.UsersTable();
-                    DatabaseReference dbRef = DatabaseHelper.getDb().getReference().child(dbVars.USERS_TABLE).child(user.getUid());
+                    DatabaseReference dbRef = DatabaseHelper.getDb().getReference(dbVars.USERS_TABLE).child(user.getUid());
 
-                    dbRef.child(dbVars.USERNAME).setValue(username);
-                    dbRef.child(dbVars.EMAIL).setValue(email);
-                    dbRef.child(dbVars.NAME).setValue(name);
-                    dbRef.child(dbVars.PHONE).setValue(phone);
-                    dbRef.child(dbVars.ADDRESS).setValue(address);
-                    dbRef.child(dbVars.LASTLOGIN).setValue(new Timestamp(System.currentTimeMillis()).toString());
+                    dbRef.setValue(newUser);
 
                     user.sendEmailVerification();
 
-                    Log.w(TAG, "Sign Up has been completed! Please check your email to Log In!");
+                    Log.w(TAG, "Data For User : Registration / Update has been completed! Please check your email to Log In!");
 
                 } else {
-                    Log.w(TAG, "Failed to save user data!");
+                    Log.w(TAG, "Data For User : Failed to save user data!");
                 }
             }
         });
-    }
-
-    public static void updateProfile(String username, String email, String password, String name, String phone, String address){
-        DatabaseReference dbRef = DatabaseHelper.getDb().getReference().child(DatabaseVars.UsersTable.USERS_TABLE);
-        dbRef.child(DatabaseVars.UsersTable.USERNAME).setValue(username);
-        dbRef.child(DatabaseVars.UsersTable.PASSWORD).setValue(password);
-        dbRef.child(DatabaseVars.UsersTable.NAME).setValue(name);
-        dbRef.child(DatabaseVars.UsersTable.PHONE).setValue(phone);
-        dbRef.child(DatabaseVars.UsersTable.ADDRESS).setValue(address);
-    }
-
-    public String getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getUsername() {
@@ -126,5 +100,4 @@ public class Users {
     public void setLast_login(String last_login) {
         this.last_login = last_login;
     }
-
 }

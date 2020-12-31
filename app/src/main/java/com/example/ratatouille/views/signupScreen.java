@@ -66,7 +66,7 @@ public class signupScreen extends AppCompatActivity {
                 String addressInput = addressField.getText().toString();
 
                 if (Utils.validateEmail(emailInput) && Utils.validateUsername(usernameInput) && Utils.validatePassword(passwordInput) && Utils.validatePhone(phoneInput)) {
-                    UserController.UserSignup(signupScreen.this, usernameInput, emailInput, passwordInput, nameInput, phoneInput, addressInput);
+                    UserController.UserSignup(signupScreen.this, emailInput, usernameInput, passwordInput, nameInput, phoneInput, addressInput);
 
                     Intent loginIntent = new Intent(signupScreen.this, loginScreen.class);
 

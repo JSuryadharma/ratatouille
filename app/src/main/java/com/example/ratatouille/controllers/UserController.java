@@ -39,6 +39,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.sql.Timestamp;
+import java.util.UUID;
 
 import static android.content.ContentValues.TAG;
 
@@ -55,25 +56,23 @@ public class UserController {
                         if (task.isSuccessful()) {
                             VariablesUsed.loggedUser = dbAuth.getCurrentUser();
                             if(VariablesUsed.loggedUser.isEmailVerified()) {
+
                                 //success logged in, filling the userdatas via database..
 
                                 DatabaseVars.UsersTable dbVars = new DatabaseVars.UsersTable();
-                                DatabaseReference dbRef = DatabaseHelper.getDb().getReference().child(dbVars.USERS_TABLE).child(VariablesUsed.loggedUser.getUid());
+                                DatabaseReference dbRef = DatabaseHelper.getDb().getReference(dbVars.USERS_TABLE).child(VariablesUsed.loggedUser.getUid());
 
-                                dbRef.addValueEventListener(new ValueEventListener() {
+                                dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        Users currentUser = new Users(
-                                                VariablesUsed.loggedUser.getUid(),
-                                                VariablesUsed.loggedUser.getEmail(),
-                                                snapshot.child(dbVars.USERNAME).getValue().toString(),
-                                                snapshot.child(dbVars.NAME).getValue().toString(),
-                                                snapshot.child(dbVars.PHONE).getValue().toString(),
-                                                snapshot.child(dbVars.ADDRESS).getValue().toString(),
-                                                snapshot.child(dbVars.LASTLOGIN).getValue().toString()
-                                        );
+                                        Users currentUser = snapshot.getValue(Users.class);
+
                                         VariablesUsed.currentUser = currentUser; // update the current logged in user..
-                                        Toast.makeText(context, "Welcome back!" + VariablesUsed.currentUser.getUsername(), Toast.LENGTH_LONG);
+
+                                        UserController.updateLastLogin();
+
+                                        // then, call the next intent / screen..
+                                        cb.onUserLoadCallback(context, VariablesUsed.currentUser);
                                     }
 
                                     @Override
@@ -81,8 +80,7 @@ public class UserController {
                                         Log.w(TAG, "User Data retrieval failed!");
                                     }
                                 });
-                                // then, call the next intent / screen..
-                                cb.onUserLoadCallback(VariablesUsed.currentUser);
+
                             } else {
                                 Utils.showAlertMessage(context, "Please Verify Account", "To continue, please check verification link on your email account!");
                             }
@@ -93,8 +91,9 @@ public class UserController {
                 });
     }
 
-    public static void UserSignup(Context context, String username, String email, String password, String name, String phone, String address){
-        Users.save(username, email, password, name, phone, address);
+    public static void UserSignup(Context context, String email, String username, String password, String name, String phone, String address){
+        Users newUser = new Users(username, name, phone, address, new Timestamp(System.currentTimeMillis()).toString());
+        Users.save(newUser, email, password);
     }
 
     public static void firebaseAuthWithGoogle(callbackHelper cb, Context context, String idToken) {
@@ -110,29 +109,43 @@ public class UserController {
                             DatabaseVars.UsersTable dbVars = new DatabaseVars.UsersTable();
                             DatabaseReference dbRef = DatabaseHelper.getDb().getReference().child(dbVars.USERS_TABLE).child(VariablesUsed.loggedUser.getUid());
 
-                            dbRef.child(dbVars.USERNAME).setValue(VariablesUsed.loggedUser.getDisplayName());
-                            dbRef.child(dbVars.EMAIL).setValue(VariablesUsed.loggedUser.getEmail());
-                            dbRef.child(dbVars.NAME).setValue(VariablesUsed.loggedUser.getDisplayName());
-                            dbRef.child(dbVars.PHONE).setValue(VariablesUsed.loggedUser.getPhoneNumber());
-                            dbRef.child(dbVars.ADDRESS).setValue(null);
-
                             VariablesUsed.currentUser = new Users(
-                                    VariablesUsed.loggedUser.getUid(),
-                                    VariablesUsed.loggedUser.getEmail(),
-                                    VariablesUsed.loggedUser.getDisplayName(), //username, disamakan dengan name
+                                    VariablesUsed.loggedUser.getEmail().replace("@gmail.com", ""), //username, disamakan dengan name
                                     VariablesUsed.loggedUser.getDisplayName(),
                                     VariablesUsed.loggedUser.getPhoneNumber(),
                                     null, // address
                                     new Timestamp(System.currentTimeMillis()).toString()
                             );
 
-                            cb.onUserLoadCallback(VariablesUsed.currentUser);
+                            dbRef.setValue(VariablesUsed.currentUser);
+
+                            cb.onUserLoadCallback(context, VariablesUsed.currentUser);
                         }
                         else {
                             Utils.showAlertMessage(context, "Failed Login","Please try again, or contact our Customer Service for help.");
                         }
                     }
                 });
+    }
+
+    public static void updateLastLogin(){
+        VariablesUsed.currentUser.setLast_login(new Timestamp(System.currentTimeMillis()).toString());
+        DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.UsersTable.USERS_TABLE).child(VariablesUsed.loggedUser.getUid());
+        dbRef.child("last_login").setValue(VariablesUsed.currentUser.getLast_login());
+    }
+
+
+    public static void updateProfile(String username, String name, String phone, String address){
+        DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.UsersTable.USERS_TABLE).child(VariablesUsed.loggedUser.getUid());
+        Users updatedUser = new Users(username, name, phone, address, new Timestamp(System.currentTimeMillis()).toString());
+
+        dbRef.setValue(updatedUser);
+    }
+
+    public static void updatePassword(String password){
+        FirebaseUser currentUser = DatabaseHelper.getDbAuth().getCurrentUser();
+
+        currentUser.updatePassword(password);
     }
 
     public static void uploadProfilePicture(Context context, Bitmap bitmap){
@@ -170,7 +183,7 @@ public class UserController {
                 });
     }
 
-    public static void setUserProfileUrl(Context context,Uri uri){
+    public static void setUserProfileUrl(Context context, Uri uri){
         FirebaseUser user = VariablesUsed.loggedUser;
 
         UserProfileChangeRequest request = new UserProfileChangeRequest.Builder()

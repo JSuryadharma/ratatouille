@@ -122,14 +122,16 @@ public class ViewProfileFragment extends Fragment {
         privacyPolicy = getView().findViewById(R.id.vp_privacyPolicy);
 
         usernameText.setText(VariablesUsed.currentUser.getUsername());
-        emailText.setText(VariablesUsed.currentUser.getEmail());
+        emailText.setText(VariablesUsed.loggedUser.getEmail());
         phoneNumberText.setText(VariablesUsed.currentUser.getPhone());
         addressText.setText(VariablesUsed.currentUser.getAddress());
 
         //        ProfilePicture Initializations...
-        Glide.with(getView().getContext())
-                .load(VariablesUsed.loggedUser.getPhotoUrl())
-                .into(imageProfile);
+        if(VariablesUsed.loggedUser.getPhotoUrl() != null) {
+            Glide.with(getView().getContext())
+                    .load(VariablesUsed.loggedUser.getPhotoUrl())
+                    .into(imageProfile);
+        }
 
         imageProfile.setOnClickListener(new View.OnClickListener(){
 

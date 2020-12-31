@@ -79,7 +79,6 @@ public class Utils {
         alert.setTitle(title);
         alert.setMessage(message);
         alert.show();
-        alert.dismiss();
     }
 
     public static void showAlertMessage(Context context, String title, String message) {
@@ -89,6 +88,5 @@ public class Utils {
         alert.setTitle(title);
         alert.setMessage(message);
         alert.show();
-        alert.dismiss();
     }
 }
