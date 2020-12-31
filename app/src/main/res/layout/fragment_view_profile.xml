@@ -1,32 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:paddingHorizontal="20dp"
-        android:paddingTop="30dp"
-        android:background="@drawable/vp_background"
-        android:id="@+id/vp_relativeContainerProfile">
-        <TextView
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="Profile"
-            android:textSize="40dp"
-            android:textColor="@android:color/white"
-            android:layout_alignParentLeft="true"
-            android:id="@+id/vp_profileLabel"/>
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="Edit"
-            android:textSize="25dp"
-            android:textAlignment="textEnd"
-            android:textColor="@android:color/white"
-            android:id="@+id/vp_editButton"
-            android:layout_alignParentRight="true"
-            android:layout_alignBaseline="@id/vp_profileLabel"/>
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="30dp"
+            android:background="@drawable/vp_background"
+            android:id="@+id/vp_relativeContainerProfile">
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Profile"
+                android:textSize="40dp"
+                android:textColor="@android:color/white"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/vp_profileLabel"/>
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:textSize="25dp"
+                android:textAlignment="textEnd"
+                android:textColor="@android:color/white"
+                android:id="@+id/vp_editButton"
+                android:layout_alignParentRight="true"
+                android:layout_alignBaseline="@id/vp_profileLabel"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -36,50 +42,48 @@
             android:padding="10dp"
             android:layout_below="@id/vp_profileLabel">
 
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/ic_baseline_account"
-                android:id="@+id/vp_imageProfile"
-                android:layout_centerVertical="true"/>
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_baseline_account"
+                    android:id="@+id/vp_imageProfile"
+                    android:layout_centerVertical="true"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_toRightOf="@id/vp_imageProfile"
-                android:layout_centerVertical="true">
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="default_name"
-                    android:id="@+id/vp_username"
-                    android:textSize="20dp"
-                    android:textColor="@android:color/black"
-                    android:layout_marginLeft="10dp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="default@gmail.com"
-                    android:id="@+id/vp_email"
-                    android:paddingTop="5dp"
-                    android:layout_marginLeft="10dp"/>
-            </LinearLayout>
+                    android:orientation="vertical"
+                    android:layout_toRightOf="@id/vp_imageProfile"
+                    android:layout_centerVertical="true">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="default_name"
+                        android:id="@+id/vp_username"
+                        android:textSize="20dp"
+                        android:textColor="@android:color/black"
+                        android:layout_marginLeft="10dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="default@gmail.com"
+                        android:id="@+id/vp_email"
+                        android:paddingTop="5dp"
+                        android:layout_marginLeft="10dp"/>
+                </LinearLayout>
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
-    </RelativeLayout>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/vp_relativeContainerProfile"
-        android:layout_margin="20dp"
-        android:background="@drawable/round_card">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_below="@id/vp_relativeContainerProfile"
+            android:background="@drawable/round_card">
 
             <!-- This is for Phone Number Container-->
             <RelativeLayout
@@ -317,15 +321,6 @@
                     android:src="@drawable/ic_backbutton"
                     android:rotation="180"/>
             </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"
-                android:layout_below="@id/vp_privacyPolicy"
-                android:layout_marginTop="5dp"/>
         </LinearLayout>
-
-    </ScrollView>
-
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>
