@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.ratatouille.models.UserVoucher;
+import com.example.ratatouille.models.Vouchers;
 import com.example.ratatouille.utils.Utils;
 import com.example.ratatouille.db.DatabaseHelper;
 import com.example.ratatouille.db.DatabaseVars;
@@ -39,6 +41,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.UUID;
 
 import static android.content.ContentValues.TAG;
@@ -211,5 +214,18 @@ public class UserController {
                         Log.e(TAG, "onFailure: Profile Picture failed to update!", e.getCause());
                     }
                 });
+    }
+
+    public static void refreshUserVoucher(){
+        ArrayList<Vouchers> uvList = UserVoucher.getAllVoucherForAUser();
+        for(Vouchers curVoucher : uvList){
+            Vouchers voucher = Vouchers.get(curVoucher.getVoucherID());
+            if(voucher == null){
+                uvList.remove(voucher);
+                continue;
+            }
+            uvList.add(voucher);
+            VoucherController.assignVoucher(VariablesUsed.currentUser, curVoucher); // reupdate
+        }
     }
 }
