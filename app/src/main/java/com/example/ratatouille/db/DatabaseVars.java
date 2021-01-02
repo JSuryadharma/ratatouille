@@ -31,4 +31,39 @@ public class DatabaseVars {
 //        public static final String VOUCHER_DISC = "VoucherDisc";
     }
 
+    public static final class HelpTicketTable {
+        public static final String HELPTICKET_TABLE = "HelpTicket";
+    }
+
+    public static final class HelpTicketDetailsTable {
+        public static final String HELPTICKETDETAILS_TABLE = "HelpTicketDetails";
+    }
+
+    public static final class RestaurantTable {
+        public static final String RESTAURANT_TABLE = "Restaurant";
+    }
+
+    public static final class RestaurantTypes {
+        public static final String RESTAURANTTYPES_TABLE = "RestaurantTypes";
+    }
+
+    public static final class TypesTable {
+        public static final String TYPES_TABLE = "Types";
+    }
+
+    public static final class EmployeeTable {
+        public static final String EMPLOYEE_TABLE = "Employee";
+    }
+
+    public static final class MenuTable {
+        public static final String MENU_TABLE = "Menu";
+    }
+
+    public static final class ReviewTable {
+        public static final String REVIEW_TABLE = "Review";
+    }
+
+    public static final class ReservationRequestTable {
+        public static final String RESERVATIONREQUEST_TABLE = "ReservationRequest";
+    }
 }

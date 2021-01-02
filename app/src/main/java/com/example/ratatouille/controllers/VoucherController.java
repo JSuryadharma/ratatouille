@@ -27,20 +27,21 @@ public class VoucherController {
 
     private static Vouchers searchedVoucher = null;
 
-
     public static Vouchers searchVoucher(String voucherName){
         DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.VouchersTable.VOUCHER_TABLE);
-        Query searchQuery = dbRef.orderByChild("voucherName").equalTo(voucherName);
 
-        searchQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                searchedVoucher = snapshot.getValue(Vouchers.class);
+                if(snapshot.getValue().equals(voucherName)) {
+                    searchedVoucher = snapshot.getValue(Vouchers.class);
+                    Log.w(TAG, "onSuccess: Voucher Searched Successfully!");
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.w(TAG, "onFailure: Voucher Searched Failed!");
             }
         });
 
@@ -59,12 +60,12 @@ public class VoucherController {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 snapshot.getRef().removeValue();
-                Log.w(TAG, "Data Deletion is successful!");
+                Log.w(TAG, "Data Deletion successful!");
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.w(TAG, "Data Deletion is failed!");
+                Log.w(TAG, "Data Deletion failed!");
             }
         });
     }

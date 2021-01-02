@@ -79,6 +79,7 @@ public class ViewProfileFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment ViewProfileFragment.
      */
+
     // TODO: Rename and change types and number of parameters
     public static ViewProfileFragment newInstance(String param1, String param2) {
         ViewProfileFragment fragment = new ViewProfileFragment();

@@ -21,22 +21,26 @@ import static android.content.ContentValues.TAG;
 
 public class Users {
 
-    private String email, username, name, phone, address, last_login;
+    private String username, name, phone, address, last_login;
+    private Integer points;
+    private Integer numberOfLogins = 0;
 
     public Users(){
         //let this to be blank, for data retrival..
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public Users(String username, String name, String phone, String address, String last_login) {
+    public Users(String username, String name, String phone, String address, String last_login, Integer points, Integer numberOfLogins) {
         this.username = username;
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.last_login = last_login;
+        this.points = points;
+        this.numberOfLogins = numberOfLogins;
     }
 
-    public static void save(Users newUser, String email, String password){ // this save method is an exception, due to the multithreading system of Firebase, we need to static this..
+    public static void register(Users newUser, String email, String password){ // this register method is an exception, due to the multithreading system of Firebase, we need to static this..
         FirebaseAuth dAuth = DatabaseHelper.getDbAuth();
 
         dAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -59,6 +63,29 @@ public class Users {
                 }
             }
         });
+    }
+
+    public void save(){
+        DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.UsersTable.USERS_TABLE);
+        dbRef.child(VariablesUsed.loggedUser.getUid()).setValue(this);
+    }
+
+    public Users update(String username, String name, String phone, String address, String last_login, Integer points){
+        this.username = username;
+        this.name = name;
+        this.phone = phone;
+        this.address = address;
+        this.last_login = last_login;
+        this.points = points;
+
+        save();
+
+        return this;
+    }
+
+    public static void delete(String userID){
+        DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.UsersTable.USERS_TABLE);
+        dbRef.child(userID).removeValue();
     }
 
     public String getUsername() {
@@ -99,5 +126,21 @@ public class Users {
 
     public void setLast_login(String last_login) {
         this.last_login = last_login;
+    }
+
+    public Integer getPoints() {
+        return points;
+    }
+
+    public Integer getNumberOfLogins() {
+        return numberOfLogins;
+    }
+
+    public void setPoints(Integer points) {
+        this.points = points;
+    }
+
+    public void setNumberOfLogins(Integer numberOfLogins) {
+        this.numberOfLogins = numberOfLogins;
     }
 }

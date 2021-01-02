@@ -16,9 +16,11 @@ import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
 
+// assumed that Details CANNOT BE UPDATED!
+
 public class UserVoucher {
 
-    public static Vouchers selectedVoucher = null;
+    private static Vouchers selectedVoucher = null;
 
     public static void save(Users user, Vouchers voucher){ //assigning a user to a voucher.. (Header-to-Details Relation)
         DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.UserVoucherTable.USERVOUCHER_TABLE).child(VariablesUsed.loggedUser.getUid());
@@ -26,12 +28,30 @@ public class UserVoucher {
         dbRef.child(voucher.getVoucherID()).setValue(voucher); //memasukkan voucher ke dalam UserVoucher table
     }
 
-    public static Vouchers getVoucherForAUser(String voucherId){
+    public static void delete(String userID, String voucherID){
+        DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.UserVoucherTable.USERVOUCHER_TABLE);
+        dbRef.child(userID).child(voucherID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot != null){
+                    snapshot.getRef().removeValue();
+                    Log.w(TAG, "OnSuccess: User data deleted!");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "OnFailure: User data failed to be deleted!");
+            }
+        });
+    }
+
+    public static Vouchers getVoucherForAUser(String voucherID){
         DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.UserVoucherTable.USERVOUCHER_TABLE).child(VariablesUsed.loggedUser.getUid());
 
         selectedVoucher = null; // null the voucher selections first
 
-        dbRef.child(voucherId).addListenerForSingleValueEvent(new ValueEventListener() {
+        dbRef.child(voucherID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 selectedVoucher = snapshot.getValue(Vouchers.class);

@@ -69,7 +69,11 @@ public class UserController {
 
                                         VariablesUsed.currentUser = currentUser; // update the current logged in user..
 
-                                        UserController.updateLastLogin();
+                                        updateLastLogin();
+
+                                        VariablesUsed.currentUser.save(); // save the update to User Datas.
+
+                                        VariablesUsed.currentUser.setNumberOfLogins(VariablesUsed.currentUser.getNumberOfLogins() + 1);
 
                                         // then, call the next intent / screen..
                                         cb.onUserLoadCallback(context, VariablesUsed.currentUser);
@@ -92,8 +96,8 @@ public class UserController {
     }
 
     public static void UserSignup(Context context, String email, String username, String password, String name, String phone, String address){
-        Users newUser = new Users(username, name, phone, address, new Timestamp(System.currentTimeMillis()).toString());
-        Users.save(newUser, email, password);
+        Users newUser = new Users(username, name, phone, address, new Timestamp(System.currentTimeMillis()).toString(), 0, 0);
+        Users.register(newUser, email, password);
     }
 
     public static void firebaseAuthWithGoogle(callbackHelper cb, Context context, String idToken) {
@@ -104,17 +108,19 @@ public class UserController {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            VariablesUsed.loggedUser= DatabaseHelper.getDbAuth().getCurrentUser();
+                            VariablesUsed.loggedUser = DatabaseHelper.getDbAuth().getCurrentUser();
 
                             DatabaseVars.UsersTable dbVars = new DatabaseVars.UsersTable();
-                            DatabaseReference dbRef = DatabaseHelper.getDb().getReference().child(dbVars.USERS_TABLE).child(VariablesUsed.loggedUser.getUid());
+                            DatabaseReference dbRef = DatabaseHelper.getDb().getReference(dbVars.USERS_TABLE).child(VariablesUsed.loggedUser.getUid());
 
                             VariablesUsed.currentUser = new Users(
                                     VariablesUsed.loggedUser.getEmail().replace("@gmail.com", ""), //username, disamakan dengan name
                                     VariablesUsed.loggedUser.getDisplayName(),
                                     VariablesUsed.loggedUser.getPhoneNumber(),
                                     null, // address
-                                    new Timestamp(System.currentTimeMillis()).toString()
+                                    new Timestamp(System.currentTimeMillis()).toString(),
+                                    0,
+                                    0
                             );
 
                             dbRef.setValue(VariablesUsed.currentUser);
@@ -135,11 +141,10 @@ public class UserController {
     }
 
 
-    public static void updateProfile(String username, String name, String phone, String address){
-        DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.UsersTable.USERS_TABLE).child(VariablesUsed.loggedUser.getUid());
-        Users updatedUser = new Users(username, name, phone, address, new Timestamp(System.currentTimeMillis()).toString());
+    public static Users updateProfile(String username, String name, String phone, String address, Integer points){
+        Users currentUser = VariablesUsed.currentUser.update(username, name, phone, address, VariablesUsed.currentUser.getLast_login(), points);
 
-        dbRef.setValue(updatedUser);
+        return currentUser;
     }
 
     public static void updatePassword(String password){
@@ -162,12 +167,13 @@ public class UserController {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         getDownloadUrl(context, storageRef);
+                        Log.w(TAG, "onSuccess: Bitmap to ByteArray");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.e(TAG, "onFailure:", e.getCause());
+                        Log.e(TAG, "onFailure: Bitmap to ByteArray", e.getCause());
                     }
                 });
     }
@@ -177,7 +183,7 @@ public class UserController {
                 .addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-                        Log.d(TAG, "onSuccess: " + uri);
+                        Log.d(TAG, "onSuccess: get Download URL for Profile Picture" + uri);
                         setUserProfileUrl(context, uri);
                     }
                 });
@@ -202,7 +208,7 @@ public class UserController {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(context, "Profile Image Failed to Update!", Toast.LENGTH_LONG).show();
-                        Log.e(TAG, "onFailure: ", e.getCause());
+                        Log.e(TAG, "onFailure: Profile Picture failed to update!", e.getCause());
                     }
                 });
     }
