@@ -37,7 +37,11 @@ public class loginScreen extends AppCompatActivity {
     callbackHelper cb = new callbackHelper() {
         @Override
         public void onUserLoadCallback(Context context, Users u) {
-            startMainMenu(context);
+            if(u.getNumberOfLogins() > 1) {
+                startMainMenu(context);
+            } else {
+                startIntroPage(context);
+            }
         }
     };
 
@@ -45,7 +49,6 @@ public class loginScreen extends AppCompatActivity {
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        getSupportActionBar().hide();
 
         userTextbox = findViewById(R.id.li_userTextbox);
         passTextbox = findViewById(R.id.li_passTextbox);
@@ -128,5 +131,10 @@ public class loginScreen extends AppCompatActivity {
     public void startMainMenu(Context context) {
         Intent mainMenuIntent = new Intent(context, customerView.class);
         startActivity(mainMenuIntent);
+    }
+
+    public void startIntroPage(Context context){
+        Intent introIntent = new Intent(context, introductionView.class);
+        startActivity(introIntent);
     }
 }

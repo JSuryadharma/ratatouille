@@ -12,7 +12,7 @@
             android:id="@+id/vp_relativeContainerProfile"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="@drawable/pink_background"
+            android:background="#ffb6c1"
             android:paddingHorizontal="20dp"
             android:paddingTop="30dp">
 
@@ -73,7 +73,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:paddingTop="5dp"
-                        android:text="default@gmail.com" />
+                        android:text="default@gmail.com"
+                        android:textColor="@android:color/darker_gray" />
                 </LinearLayout>
 
             </RelativeLayout>
@@ -105,7 +106,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="081xxxxxxxx"
+                    android:text="loading phone number.."
+                    android:textColor="@android:color/darker_gray"
                     android:layout_below="@id/vp_phoneNumberLabel"
                     android:id="@+id/vp_phoneNumberText"/>
                 <ImageView
@@ -143,6 +145,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Jl. xxx xxx xxx"
+                    android:textColor="@android:color/darker_gray"
                     android:layout_below="@id/vp_addressLabel"
                     android:id="@+id/vp_addressText"/>
                 <ImageView
@@ -180,7 +183,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="You Have (x) Vouchers"
+                    android:textColor="@android:color/darker_gray"
+                    android:text="loading vouchers.."
                     android:layout_below="@id/vp_yourVouchersLabel"
                     android:id="@+id/vp_yourVouchersText"/>
                 <ImageView

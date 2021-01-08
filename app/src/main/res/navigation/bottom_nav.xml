@@ -17,7 +17,7 @@
         tools:layout="@layout/fragment_customer_home" />
     <fragment
         android:id="@+id/customerFavourite"
-        android:name="com.example.ratatouille.customerFavourite"
+        android:name="com.example.ratatouille.views.customerFavourite"
         android:label="fragment_customer_favourite"
         tools:layout="@layout/fragment_customer_favourite" />
 </navigation>

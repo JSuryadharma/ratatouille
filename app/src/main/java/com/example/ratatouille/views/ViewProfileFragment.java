@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.ratatouille.R;
 import com.example.ratatouille.controllers.UserController;
+import com.example.ratatouille.controllers.VoucherController;
 import com.example.ratatouille.models.Users;
 import com.example.ratatouille.vars.VariablesUsed;
 
@@ -126,6 +127,7 @@ public class ViewProfileFragment extends Fragment {
         emailText.setText(VariablesUsed.loggedUser.getEmail());
         phoneNumberText.setText(VariablesUsed.currentUser.getPhone());
         addressText.setText(VariablesUsed.currentUser.getAddress());
+        yourVouchersText.setText("Currently, You have " + VoucherController.getAllUserVoucher().size() + " vouchers.");
 
         //        ProfilePicture Initializations...
         if(VariablesUsed.loggedUser.getPhotoUrl() != null) {

@@ -1,4 +1,4 @@
-package com.example.ratatouille;
+package com.example.ratatouille.views;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.ratatouille.R;
 
 /**
  * A simple {@link Fragment} subclass.

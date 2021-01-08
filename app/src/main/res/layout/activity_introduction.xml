@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Introduction"
+        android:textSize="45dp"
+        android:fontFamily="@font/berlinsans"
+        android:layout_above="@id/intro_viewPager"
+        android:layout_centerHorizontal="true"/>
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/intro_viewPager"
+        android:layout_centerInParent="true"/>
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/intro_viewPager"
+        android:max="3"
+        android:progress="0" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/round_button"
+        android:layout_below="@id/seekBar"
+        android:layout_marginTop="15dp"
+        android:id="@+id/introButton">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Got it!"
+            android:textSize="25dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginVertical="5dp"
+            android:fontFamily="@font/berlinsans" />
+    </LinearLayout>
+</RelativeLayout>

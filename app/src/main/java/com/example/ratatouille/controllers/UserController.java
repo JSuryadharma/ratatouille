@@ -74,9 +74,9 @@ public class UserController {
 
                                         updateLastLogin();
 
-                                        VariablesUsed.currentUser.save(); // save the update to User Datas.
-
                                         VariablesUsed.currentUser.setNumberOfLogins(VariablesUsed.currentUser.getNumberOfLogins() + 1);
+
+                                        VariablesUsed.currentUser.save(); // save the update to User Datas.
 
                                         // then, call the next intent / screen..
                                         cb.onUserLoadCallback(context, VariablesUsed.currentUser);
