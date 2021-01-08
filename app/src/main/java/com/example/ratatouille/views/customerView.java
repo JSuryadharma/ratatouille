@@ -16,6 +16,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.ratatouille.R;
+import com.example.ratatouille.customerFavourite;
 import com.example.ratatouille.utils.Utils;
 import com.example.ratatouille.vars.VariablesUsed;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
@@ -42,10 +43,18 @@ public class customerView extends AppCompatActivity {
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    Fragment selectedFragment = null;
+                    Fragment selectedFragment = new customerHomeFragment();
 
                     if (item.getItemId() == R.id.nav_profile) {
                         selectedFragment = new ViewProfileFragment();
+                    }
+
+                    if (item.getItemId() == R.id.nav_home) {
+                        selectedFragment = new customerHomeFragment();
+                    }
+
+                    if (item.getItemId() == R.id.nav_favourites) {
+                        selectedFragment = new customerFavourite();
                     }
 
                     if(selectedFragment != null) {

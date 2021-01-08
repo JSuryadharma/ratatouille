@@ -3,11 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_nav"
-    app:startDestination="@id/viewProfileFragment">
+    app:startDestination="@id/customerHome">
 
     <fragment
         android:id="@+id/viewProfileFragment"
         android:name="com.example.ratatouille.views.ViewProfileFragment"
         android:label="fragment_view_profile"
         tools:layout="@layout/fragment_view_profile" />
+    <fragment
+        android:id="@+id/customerHome"
+        android:name="com.example.ratatouille.views.customerHomeFragment"
+        android:label="fragment_customer_home"
+        tools:layout="@layout/fragment_customer_home" />
+    <fragment
+        android:id="@+id/customerFavourite"
+        android:name="com.example.ratatouille.customerFavourite"
+        android:label="fragment_customer_favourite"
+        tools:layout="@layout/fragment_customer_favourite" />
 </navigation>
