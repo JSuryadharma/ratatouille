@@ -16,12 +16,16 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class customerView extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
-    Fragment fragmentProfile;
+    Fragment selectedFragment;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer);
+
+        // Set the default view in fragment
+        selectedFragment = new customerHomeFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
 
         Toast.makeText(customerView.this, "Welcome back!" + VariablesUsed.currentUser.getUsername(), Toast.LENGTH_LONG);
 
@@ -31,7 +35,6 @@ public class customerView extends AppCompatActivity {
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    Fragment selectedFragment = new customerHomeFragment();
 
                     if (item.getItemId() == R.id.nav_profile) {
                         selectedFragment = new ViewProfileFragment();
