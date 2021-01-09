@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@android:color/holo_blue_light">
+    android:background="@drawable/signup_background">
 
     <TextView
         android:layout_width="wrap_content"
@@ -19,8 +19,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/textedit_background">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -30,7 +29,8 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Username"/>
+                android:text="Username"
+                android:textColor="@color/white"/>
 
             <EditText
                 android:id="@+id/su_username"
@@ -49,7 +49,8 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Email"/>
+                android:text="Email"
+                android:textColor="@color/white"/>
 
             <EditText
                 android:id="@+id/su_email"
@@ -68,7 +69,8 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Name"/>
+                android:text="Name"
+                android:textColor="@color/white"/>
 
             <EditText
                 android:id="@+id/su_name"
@@ -87,7 +89,8 @@
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Password"/>
+            android:text="Password"
+            android:textColor="@color/white"/>
 
         <EditText
             android:id="@+id/su_password"
@@ -102,7 +105,7 @@
             android:layout_marginLeft="5dp"
             android:text="Show"
             android:id="@+id/su_showButton"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textAlignment="center"/>
     </LinearLayout>
 
@@ -114,7 +117,8 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Phone"/>
+                android:text="Phone"
+                android:textColor="@color/white"/>
 
             <EditText
                 android:id="@+id/su_phone"
@@ -134,7 +138,8 @@
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Address"/>
+            android:text="Address"
+            android:textColor="@color/white"/>
 
         <EditText
             android:id="@+id/su_address"
@@ -159,7 +164,8 @@
             android:textSize="15dp"
             android:fontFamily="sans-serif"
             android:layout_marginRight="20dp"
-            android:id="@+id/su_backButton"/>
+            android:id="@+id/su_backButton"
+            android:textColor="@color/white"/>
 
         <LinearLayout
             android:layout_width="180dp"

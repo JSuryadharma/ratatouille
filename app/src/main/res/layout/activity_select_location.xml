@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".select_location"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="40dp"
+        android:background="#F8F8F8"
+        android:id="@+id/home_container">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_backbutton"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Back"
+                android:fontFamily="@font/berlinsans"
+                android:textSize="20dp"
+                android:textColor="#ABD2DE"
+                android:layout_gravity="center_vertical"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/searchbox_background"
+            android:orientation="horizontal"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="5dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_baseline_search" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@android:color/transparent"
+                android:text="Enter your location"
+                android:textSize="17dp"
+                android:textColor="@android:color/darker_gray"
+                android:paddingHorizontal="5dp"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="3pt"
+            android:src="@drawable/location_button" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Use current location"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginStart="10dp"
+            android:textColor="#ABD2DE"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="10dp"
+        android:text="Choose Your City"
+        android:textSize="17dp"
+        android:textColor="#262628"
+        android:paddingHorizontal="5dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/searchbox_background"
+        android:orientation="horizontal"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@android:color/transparent"
+            android:text="Ambon"
+            android:textSize="17dp"
+            android:textColor="#000000"
+            android:paddingHorizontal="5dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/searchbox_background"
+        android:orientation="horizontal"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@android:color/transparent"
+            android:text="Balikpapan"
+            android:textSize="17dp"
+            android:textColor="#000000"
+            android:paddingHorizontal="5dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/searchbox_background"
+        android:orientation="horizontal"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@android:color/transparent"
+            android:text="Banda Aceh"
+            android:textSize="17dp"
+            android:textColor="#000000"
+            android:paddingHorizontal="5dp"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
