@@ -14,7 +14,7 @@
             android:layout_height="198dp"
             android:paddingHorizontal="20dp"
             android:paddingTop="40dp"
-            android:background="#ffb6c1"
+            android:background="#DDB6C6"
             android:id="@+id/home_container">
 
             <TextView
@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:background="@android:color/darker_gray"
+                android:background="#F8F8F8"
                 android:orientation="horizontal"
                 android:paddingHorizontal="15dp"
                 android:paddingVertical="5dp"

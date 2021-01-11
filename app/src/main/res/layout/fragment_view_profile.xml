@@ -12,7 +12,7 @@
             android:id="@+id/vp_relativeContainerProfile"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="#ffb6c1"
+            android:background="#DDB6C6"
             android:paddingHorizontal="20dp"
             android:paddingTop="30dp">
 

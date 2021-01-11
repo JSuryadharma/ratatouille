@@ -10,8 +10,17 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign Up"
+        android:text="Create Account"
         android:textSize="45dp"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/berlinsans"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hi, kindly fill in the form to proceed shopping"
+        android:textSize="12dp"
         android:textColor="@android:color/white"
         android:fontFamily="@font/berlinsans"
         android:layout_marginBottom="10dp"/>
@@ -170,14 +179,14 @@
         <LinearLayout
             android:layout_width="180dp"
             android:layout_height="60dp"
-            android:background="@drawable/round_button"
+            android:background="@drawable/button_background"
             android:gravity="center"
             android:id="@+id/su_signUpButton">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sign Up"
-                android:textSize="25dp"
+                android:text="Create Account"
+                android:textSize="20dp"
                 android:textColor="@android:color/white"
                 android:fontFamily="@font/berlinsans"/>
         </LinearLayout>
