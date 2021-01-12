@@ -2,6 +2,7 @@ package com.example.ratatouille.views;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,13 +22,14 @@ public class customerView extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_customer);
 
         // Set the default view in fragment
         selectedFragment = new customerHomeFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
 
-        Toast.makeText(customerView.this, "Welcome back!" + VariablesUsed.currentUser.getUsername(), Toast.LENGTH_LONG);
+        Toast.makeText(getBaseContext(), "Welcome back!" + VariablesUsed.currentUser.getUsername(), Toast.LENGTH_LONG).show();
 
         bottomNavigationView = findViewById(R.id.bottom_nav);
 

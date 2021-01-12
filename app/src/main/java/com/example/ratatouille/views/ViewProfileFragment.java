@@ -57,6 +57,9 @@ public class ViewProfileFragment extends Fragment {
     TextView phoneNumberText;
     TextView addressText;
     TextView yourVouchersText;
+    RelativeLayout phoneNumberArea;
+    RelativeLayout addressArea;
+    RelativeLayout yourVoucherArea;
     RelativeLayout contactSupport;
     RelativeLayout settings;
     RelativeLayout termsOfUse;
@@ -122,6 +125,9 @@ public class ViewProfileFragment extends Fragment {
         settings = getView().findViewById(R.id.vp_settings);
         termsOfUse = getView().findViewById(R.id.vp_termsOfUse);
         privacyPolicy = getView().findViewById(R.id.vp_privacyPolicy);
+        phoneNumberArea = view.findViewById(R.id.vp_phoneNumber);
+        addressArea = view.findViewById(R.id.vp_address);
+        yourVoucherArea = view.findViewById(R.id.vp_yourVouchers);
 
         usernameText.setText(VariablesUsed.currentUser.getUsername());
         emailText.setText(VariablesUsed.loggedUser.getEmail());
@@ -135,6 +141,40 @@ public class ViewProfileFragment extends Fragment {
                     .load(VariablesUsed.loggedUser.getPhotoUrl())
                     .into(imageProfile);
         }
+
+        phoneNumberArea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment editSpecific = new EditSpecificFragment("Phone Number");
+
+                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, editSpecific).commit();
+            }
+        });
+
+        addressArea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment editSpecific = new EditSpecificFragment("Address");
+
+                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, editSpecific).commit();
+            }
+        });
+
+        yourVoucherArea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment editFragment = new EditProfileFragment();
+
+                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, editFragment).commit();
+            }
+        });
 
         imageProfile.setOnClickListener(new View.OnClickListener(){
 

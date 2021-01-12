@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     android:orientation="vertical">
 
     <LinearLayout
@@ -18,14 +19,15 @@
             android:layout_marginTop="50dp">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:src="@drawable/ic_backbutton"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Back"
+                android:textColor="@android:color/darker_gray"
                 android:fontFamily="@font/berlinsans"
                 android:textSize="20dp"
                 android:layout_gravity="center_vertical"/>
@@ -83,8 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:background="@drawable/searchbox_background"
-            android:orientation="horizontal"
-            android:paddingStart="30dp">
+            android:orientation="horizontal">
 
             <EditText
                 android:layout_width="50dp"
@@ -102,8 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:background="@drawable/searchbox_background"
-            android:orientation="horizontal"
-            android:paddingStart="30dp">
+            android:orientation="horizontal">
 
             <EditText
                 android:layout_width="50dp"
@@ -121,8 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:background="@drawable/searchbox_background"
-            android:orientation="horizontal"
-            android:paddingStart="30dp">
+            android:orientation="horizontal">
 
             <EditText
                 android:layout_width="50dp"

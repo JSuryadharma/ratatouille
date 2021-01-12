@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +28,7 @@ public class signupScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedStateInstance) {
         super.onCreate(savedStateInstance);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_signup);
 
         usernameField = findViewById(R.id.su_username);
@@ -66,6 +69,8 @@ public class signupScreen extends AppCompatActivity {
 
                 if (Utils.validateEmail(emailInput) && Utils.validateUsername(usernameInput) && Utils.validatePassword(passwordInput) && Utils.validatePhone(phoneInput)) {
                     UserController.UserSignup(signupScreen.this, emailInput, usernameInput, passwordInput, nameInput, phoneInput, addressInput);
+
+                    Toast.makeText(getBaseContext(), "Account Created Successfully!", Toast.LENGTH_LONG).show();
 
                     Intent loginIntent = new Intent(signupScreen.this, loginScreen.class);
 

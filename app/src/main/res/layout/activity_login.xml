@@ -15,18 +15,20 @@
             android:text="Welcome back"
             android:textColor="@android:color/white"
             android:textSize="40dp"
-            android:layout_gravity=""/>
+            android:layout_gravity="center_horizontal"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sign in to continue"
             android:textColor="@android:color/white"
+            android:layout_gravity="center_horizontal"
             android:textSize="20dp"/>
 
 
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:layout_gravity="center_horizontal"
             android:src="@drawable/ratatouille_logor" />
 
         <LinearLayout
@@ -113,12 +115,12 @@
             android:textSize="10dp" />
 
         <TextView
-            android:id="@+id/li_signInWithButton"
+            android:id="@+id/li_forgotPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="140dp"
             android:background="@android:color/transparent"
-            android:text="Sign In with Google"
+            android:text="Forgot Password"
             android:textColor="@android:color/white"
             android:textSize="10dp" />
 

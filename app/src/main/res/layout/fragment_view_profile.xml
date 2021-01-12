@@ -6,7 +6,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
 
         <RelativeLayout
             android:id="@+id/vp_relativeContainerProfile"
@@ -14,7 +15,7 @@
             android:layout_height="200dp"
             android:background="#DDB6C6"
             android:paddingHorizontal="20dp"
-            android:paddingTop="30dp">
+            android:paddingTop="20dp">
 
             <TextView
                 android:id="@+id/vp_profileLabel"
@@ -27,7 +28,7 @@
 
             <TextView
                 android:id="@+id/vp_editButton"
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/vp_profileLabel"
                 android:layout_alignParentRight="true"
@@ -111,14 +112,13 @@
                     android:layout_below="@id/vp_phoneNumberLabel"
                     android:id="@+id/vp_phoneNumberText"/>
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_marginRight="10dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:alpha="0.7"
-                    android:src="@drawable/ic_backbutton"
-                    android:rotation="180"/>
+                    android:src="@drawable/ic_next_arrow"/>
             </RelativeLayout>
 
             <View
@@ -149,14 +149,13 @@
                     android:layout_below="@id/vp_addressLabel"
                     android:id="@+id/vp_addressText"/>
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_marginRight="10dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:alpha="0.7"
-                    android:src="@drawable/ic_backbutton"
-                    android:rotation="180"/>
+                    android:src="@drawable/ic_next_arrow"/>
             </RelativeLayout>
 
             <View
@@ -188,14 +187,13 @@
                     android:layout_below="@id/vp_yourVouchersLabel"
                     android:id="@+id/vp_yourVouchersText"/>
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_marginRight="10dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:alpha="0.7"
-                    android:src="@drawable/ic_backbutton"
-                    android:rotation="180"/>
+                    android:src="@drawable/ic_next_arrow"/>
             </RelativeLayout>
 
             <View
@@ -222,14 +220,13 @@
                     android:textSize="20dp"
                     android:textColor="@android:color/black"/>
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_marginRight="10dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:alpha="0.7"
-                    android:src="@drawable/ic_backbutton"
-                    android:rotation="180"/>
+                    android:src="@drawable/ic_next_arrow"/>
             </RelativeLayout>
 
             <View
@@ -256,14 +253,13 @@
                     android:textSize="20dp"
                     android:textColor="@android:color/black"/>
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_marginRight="10dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:alpha="0.7"
-                    android:src="@drawable/ic_backbutton"
-                    android:rotation="180"/>
+                    android:src="@drawable/ic_next_arrow"/>
             </RelativeLayout>
 
             <View
@@ -288,14 +284,13 @@
                     android:textSize="20dp"
                     android:textColor="@android:color/black"/>
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_marginRight="10dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:alpha="0.7"
-                    android:src="@drawable/ic_backbutton"
-                    android:rotation="180"/>
+                    android:src="@drawable/ic_next_arrow"/>
             </RelativeLayout>
 
             <View
@@ -320,14 +315,13 @@
                     android:textSize="20dp"
                     android:textColor="@android:color/black" />
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_marginRight="10dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:alpha="0.7"
-                    android:src="@drawable/ic_backbutton"
-                    android:rotation="180"/>
+                    android:src="@drawable/ic_next_arrow"/>
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>

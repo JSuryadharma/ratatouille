@@ -3,15 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black">
+    android:background="@android:color/white">
     <TextView
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:text="Introduction"
         android:textSize="45dp"
         android:fontFamily="@font/berlinsans"
+        android:textColor="@android:color/darker_gray"
         android:layout_above="@id/intro_viewPager"
         android:layout_centerHorizontal="true"/>
+
     <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"
         android:layout_height="450dp"
@@ -22,8 +24,9 @@
     <SeekBar
         android:id="@+id/seekBar"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:background="@drawable/round_card"
         android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/intro_viewPager"

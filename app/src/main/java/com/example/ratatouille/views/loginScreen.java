@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -32,7 +33,7 @@ public class loginScreen extends AppCompatActivity {
     EditText userTextbox, passTextbox;
     TextView showButton;
     LinearLayout btSignIn;
-    TextView dhaButton, loginWithButton;
+    TextView dhaButton, forgotPassword;
 
     callbackHelper cb = new callbackHelper() {
         @Override
@@ -48,6 +49,7 @@ public class loginScreen extends AppCompatActivity {
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
 
         userTextbox = findViewById(R.id.li_userTextbox);
@@ -55,7 +57,7 @@ public class loginScreen extends AppCompatActivity {
         btSignIn = findViewById(R.id.li_loginButton);
         showButton = findViewById(R.id.li_showButton);
         dhaButton = findViewById(R.id.li_dhaButton);
-        loginWithButton = findViewById(R.id.li_signInWithButton);
+        forgotPassword = findViewById(R.id.li_forgotPassword);
 
         passTextbox.setTransformationMethod(PasswordTransformationMethod.getInstance()); // set model password pertama (hidden)..
 
@@ -100,11 +102,11 @@ public class loginScreen extends AppCompatActivity {
             }
         });
 
-        loginWithButton.setOnClickListener(new View.OnClickListener(){
+        forgotPassword.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent googleSignInIntent = DatabaseHelper.getGsc(loginScreen.this).getSignInIntent();
-                startActivityForResult(googleSignInIntent, DatabaseVars.RC_SIGN_IN);
+                Intent forgotIntent = new Intent(loginScreen.this, forgotPasswordActivity.class);
+                startActivity(forgotIntent);
             }
         });
 
