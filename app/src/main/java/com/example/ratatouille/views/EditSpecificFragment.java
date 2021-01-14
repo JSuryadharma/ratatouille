@@ -84,7 +84,7 @@ public class EditSpecificFragment extends Fragment {
                     if(Utils.validatePhone(toBeInput.getText().toString())){
                         UserController.updateProfile(VariablesUsed.currentUser.getUsername(), VariablesUsed.currentUser.getName(), toBeInput.getText().toString(), VariablesUsed.currentUser.getAddress(), VariablesUsed.currentUser.getPoints());
                         final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                        Utils.showAlertMessage(getView().getContext(), "Profile Updated", "Reloading the new data!");
+                        Utils.showDialogMessage(R.drawable.verified_logo, getView().getContext(), "Profile Updated", "Reloading the new data!");
                         ft.detach(EditSpecificFragment.this);
                         ft.attach(EditSpecificFragment.this);
                         ft.commit();
@@ -96,7 +96,7 @@ public class EditSpecificFragment extends Fragment {
                     if(Utils.validateInput(toBeInput.getText().toString())){
                         UserController.updateProfile(VariablesUsed.currentUser.getUsername(), VariablesUsed.currentUser.getName(),  VariablesUsed.currentUser.getPhone(), toBeInput.getText().toString(), VariablesUsed.currentUser.getPoints());
                         final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                        Utils.showSuccessMessage(getView().getContext(), "Profile Updated", "Reloading the new data!");
+                        Utils.showDialogMessage(R.drawable.verified_logo, getView().getContext(), "Profile Updated", "Reloading the new data!");
                         ft.detach(EditSpecificFragment.this);
                         ft.attach(EditSpecificFragment.this);
                         ft.commit();

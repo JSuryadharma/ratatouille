@@ -1,11 +1,13 @@
 package com.example.ratatouille.models;
 
+import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import com.example.ratatouille.db.DatabaseHelper;
 import com.example.ratatouille.db.DatabaseVars;
+import com.example.ratatouille.utils.callbackHelper;
 import com.example.ratatouille.vars.VariablesUsed;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -67,7 +69,7 @@ public class UserVoucher {
         return selectedVoucher;
     }
 
-    public static ArrayList<Vouchers> getAllVoucherForAUser(){
+    public static ArrayList<Vouchers> getAllVoucherForAUser(Context context, callbackHelper cb){
         DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.UserVoucherTable.USERVOUCHER_TABLE).child(VariablesUsed.loggedUser.getUid());
 
         ArrayList<Vouchers> voucherList = new ArrayList<Vouchers>();
@@ -81,6 +83,8 @@ public class UserVoucher {
                     voucherList.add(voucher);
                 }
                 Log.e(TAG, "onSuccess: Voucher Datas has been Retrieved!");
+
+                cb.onUserLoadCallback(context, VariablesUsed.currentUser);
             }
 
             @Override

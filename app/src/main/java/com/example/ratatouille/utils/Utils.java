@@ -1,7 +1,13 @@
 package com.example.ratatouille.utils;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.view.View;
+import android.view.Window;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.ratatouille.R;
 
@@ -72,21 +78,53 @@ public class Utils {
         return true; //valid
     }
 
-    public static void showSuccessMessage(Context context, String title, String message){
-        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
-        AlertDialog alert = alertBuilder.create();
-        alert.setIcon(R.drawable.verified_logo);
-        alert.setTitle(title);
-        alert.setMessage(message);
-        alert.show();
+    public static void showDialogMessage(Integer resId, Context context, String title, String message){
+        Dialog showDialog = new Dialog(context);
+        showDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        showDialog.setContentView(R.layout.dialog_view);
+
+        TextView titleDialog = showDialog.findViewById(R.id.dialog_title);
+        TextView textDialog = showDialog.findViewById(R.id.dialog_information);
+        ImageView logoDialog = showDialog.findViewById(R.id.dialog_logo);
+        LinearLayout buttonDialog = showDialog.findViewById(R.id.dialog_button);
+
+        titleDialog.setText(title);
+        textDialog.setText(message);
+        logoDialog.setImageResource(resId);
+
+        buttonDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialog.dismiss();
+            }
+        });
+
+        showDialog.show();
     }
 
-    public static void showAlertMessage(Context context, String title, String message) {
-        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
-        AlertDialog alert = alertBuilder.create();
-        alert.setIcon(R.drawable.ic_warning);
-        alert.setTitle(title);
-        alert.setMessage(message);
-        alert.show();
+    public static Boolean matchString(String string1, String string2){
+        String[] stringlist1 = string1.split(" ");
+        String[] stringlist2 = string2.split(" ");
+        Integer counter = 0;
+
+        for(int i=0; i<stringlist1.length; i++){
+            for(int k=0; k<stringlist2.length; k++){
+                if(stringlist1[i].equals(stringlist2[k])){
+                    counter++;
+                    break;
+                }
+            }
+            Integer compare = 0;
+            if(stringlist1.length > stringlist2.length){
+                compare = stringlist1.length - stringlist2.length;
+            } else {
+                compare = stringlist2.length - stringlist1.length;
+            }
+
+            if(counter >= compare-1){
+                return true;
+            }
+        }
+        return false;
     }
 }

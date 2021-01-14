@@ -161,12 +161,12 @@ public class EditProfileFragment extends Fragment {
                     UserController.updateProfile(inputUsername.getText().toString(), inputName.getText().toString(), inputPhoneNumber.getText().toString(), inputAddress.getText().toString(), VariablesUsed.currentUser.getPoints());
                     // Reload current fragment
                     final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                    Utils.showSuccessMessage(getView().getContext(), "Profile Updated", "Reloading the new data!");
+                    Utils.showDialogMessage(R.drawable.verified_logo, getView().getContext(), "Profile Updated", "Reloading the new data!");
                     ft.detach(EditProfileFragment.this);
                     ft.attach(EditProfileFragment.this);
                     ft.commit();
                 } else {
-                    Utils.showAlertMessage(getView().getContext(), "Credentials are not valid!", "Please fill in the indicated textfield correctly!");
+                    Utils.showDialogMessage(R.drawable.ic_warning, getView().getContext(), "Credentials are not valid!", "Please fill in the indicated textfield correctly!");
                 }
             }
         });

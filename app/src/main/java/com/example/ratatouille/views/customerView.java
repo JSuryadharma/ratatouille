@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.ratatouille.R;
+import com.example.ratatouille.utils.Utils;
 import com.example.ratatouille.vars.VariablesUsed;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -29,7 +30,9 @@ public class customerView extends AppCompatActivity {
         selectedFragment = new customerHomeFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
 
-        Toast.makeText(getBaseContext(), "Welcome back!" + VariablesUsed.currentUser.getUsername(), Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Welcome back, " + VariablesUsed.currentUser.getName() + " !", Toast.LENGTH_LONG).show();
+
+        Utils.showDialogMessage(R.drawable.verified_logo, this, "Success Log In", "Welcome back! " + VariablesUsed.currentUser.getName());
 
         bottomNavigationView = findViewById(R.id.bottom_nav);
 
@@ -59,4 +62,6 @@ public class customerView extends AppCompatActivity {
             }
         );
     }
+
+
 }

@@ -1,11 +1,13 @@
 package com.example.ratatouille.models;
 
+import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import com.example.ratatouille.db.DatabaseHelper;
 import com.example.ratatouille.db.DatabaseVars;
+import com.example.ratatouille.utils.callbackHelper;
 import com.example.ratatouille.vars.VariablesUsed;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,6 +23,7 @@ public class Vouchers {
     private String voucherID;
     private String voucherName;
     private Integer voucherDisc;
+    private Integer price;
 
     private static Vouchers selectedValues = null;
 
@@ -29,16 +32,17 @@ public class Vouchers {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public Vouchers(String voucherID, String voucherName, Integer voucherDisc){
+    public Vouchers(String voucherID, String voucherName, Integer voucherDisc, Integer price){
         this.voucherID = voucherID;
         this.voucherName = voucherName;
         this.voucherDisc = voucherDisc;
+        this.price = price;
     }
 
     public void save(){ // save datas to vouchers table..
         DatabaseReference dbRef = DatabaseHelper.getDb().getReference().child(DatabaseVars.VouchersTable.VOUCHER_TABLE).child(getVoucherID());
 
-        dbRef.child(this.voucherID).setValue(this);
+        dbRef.setValue(this);
     }
 
     public void update(String voucherName, Integer voucherDisc){
@@ -72,7 +76,7 @@ public class Vouchers {
         return selectedValues;
     }
 
-    public static ArrayList<Vouchers> getAll(){
+    public static ArrayList<Vouchers> getAll(Context context, callbackHelper cb){
         DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.VouchersTable.VOUCHER_TABLE);
 
         ArrayList<Vouchers> voucherList = new ArrayList<>();
@@ -84,7 +88,9 @@ public class Vouchers {
                     Vouchers curVoucher = eachData.getValue(Vouchers.class);
                     voucherList.add(curVoucher);
                 }
-                Log.w(TAG, "onSuccess: All Vouchers successfully retrieved!");
+                Log.w(TAG, "onSuccess: All Vouchers successfully retrieved! voucherList Size: " + voucherList.size());
+
+                cb.onUserLoadCallback(context, VariablesUsed.currentUser);
             }
 
             @Override
@@ -101,4 +107,8 @@ public class Vouchers {
     public String getVoucherName() { return voucherName; }
 
     public Integer getVoucherDisc() { return voucherDisc; }
+
+    public Integer getPrice() {
+        return price;
+    }
 }

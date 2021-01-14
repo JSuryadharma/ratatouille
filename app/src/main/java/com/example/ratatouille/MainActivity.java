@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
 
+import com.example.ratatouille.controllers.VoucherController;
 import com.example.ratatouille.db.DatabaseHelper;
 import com.example.ratatouille.db.DatabaseVars;
 import com.example.ratatouille.models.Users;
+import com.example.ratatouille.models.Vouchers;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

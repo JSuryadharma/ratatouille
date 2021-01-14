@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.ratatouille.R;
 import com.example.ratatouille.models.UserVoucher;
 import com.example.ratatouille.models.Vouchers;
 import com.example.ratatouille.utils.Utils;
@@ -89,10 +90,10 @@ public class UserController {
                                 });
 
                             } else {
-                                Utils.showAlertMessage(context, "Please Verify Account", "To continue, please check verification link on your email account!");
+                                Utils.showDialogMessage(R.drawable.ic_warning, context, "Please Verify Account", "To continue, please check verification link on your email account!");
                             }
                         } else {
-                            Utils.showAlertMessage(context, "Incorrect Credentials","Please try again, or contact our Customer Service for help.");
+                            Utils.showDialogMessage(R.drawable.ic_warning, context, "Incorrect Credentials","Please try again, or contact our Customer Service for help.");
                         }
                     }
                 });
@@ -131,7 +132,7 @@ public class UserController {
                             cb.onUserLoadCallback(context, VariablesUsed.currentUser);
                         }
                         else {
-                            Utils.showAlertMessage(context, "Failed Login","Please try again, or contact our Customer Service for help.");
+                            Utils.showDialogMessage(R.drawable.ic_warning, context, "Failed Login","Please try again, or contact our Customer Service for help.");
                         }
                     }
                 });
@@ -216,8 +217,8 @@ public class UserController {
                 });
     }
 
-    public static void refreshUserVoucher(){
-        ArrayList<Vouchers> uvList = UserVoucher.getAllVoucherForAUser();
+    public static void refreshUserVoucher(Context context, callbackHelper cb){
+        ArrayList<Vouchers> uvList = UserVoucher.getAllVoucherForAUser(context, cb);
         for(Vouchers curVoucher : uvList){
             Vouchers voucher = Vouchers.get(curVoucher.getVoucherID());
             if(voucher == null){

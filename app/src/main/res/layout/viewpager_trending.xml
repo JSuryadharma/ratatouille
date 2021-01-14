@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="95dp"
             android:src="@drawable/ratatouille_logor"
-            android:background="@color/white"
+            android:background="@android:color/darker_gray"
             android:id="@+id/trendingImage"/>
 
         <LinearLayout

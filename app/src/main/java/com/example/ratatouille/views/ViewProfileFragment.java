@@ -2,6 +2,7 @@ package com.example.ratatouille.views;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.provider.MediaStore;
 import android.util.Log;
@@ -29,11 +31,15 @@ import com.example.ratatouille.R;
 import com.example.ratatouille.controllers.UserController;
 import com.example.ratatouille.controllers.VoucherController;
 import com.example.ratatouille.models.Users;
+import com.example.ratatouille.models.Vouchers;
+import com.example.ratatouille.utils.Utils;
+import com.example.ratatouille.utils.callbackHelper;
 import com.example.ratatouille.vars.VariablesUsed;
 
 import org.w3c.dom.Text;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
@@ -64,7 +70,18 @@ public class ViewProfileFragment extends Fragment {
     RelativeLayout settings;
     RelativeLayout termsOfUse;
     RelativeLayout privacyPolicy;
+    ArrayList<Vouchers> voucherList;
     Integer TAKE_IMAGE_CODE = 1001;
+
+    callbackHelper cb = new callbackHelper() {
+        @Override
+        public void onUserLoadCallback(Context context, Users u) {
+            yourVouchersText.setText("Currently, You have " + voucherList.size() + " vouchers.");
+            FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+            ft.detach(ViewProfileFragment.this);
+            ft.attach(ViewProfileFragment.this);
+        }
+    };
 
 
     // TODO: Rename and change types of parameters
@@ -133,7 +150,7 @@ public class ViewProfileFragment extends Fragment {
         emailText.setText(VariablesUsed.loggedUser.getEmail());
         phoneNumberText.setText(VariablesUsed.currentUser.getPhone());
         addressText.setText(VariablesUsed.currentUser.getAddress());
-        yourVouchersText.setText("Currently, You have " + VoucherController.getAllUserVoucher().size() + " vouchers.");
+        voucherList = VoucherController.getAllUserVoucher(getView().getContext(), cb);
 
         //        ProfilePicture Initializations...
         if(VariablesUsed.loggedUser.getPhotoUrl() != null) {
@@ -163,7 +180,9 @@ public class ViewProfileFragment extends Fragment {
         yourVoucherArea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Fragment voucherFragment = new voucherFragment();
 
+                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, voucherFragment).commit();
             }
         });
 
@@ -190,7 +209,8 @@ public class ViewProfileFragment extends Fragment {
         contactSupport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//              chat rooms
+                Fragment faqFragment = new faqFragment();
+                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, faqFragment).commit();
             }
         });
 
@@ -198,7 +218,7 @@ public class ViewProfileFragment extends Fragment {
 
             @Override
             public void onClick(View view) {
-//              nanti ditambahin
+                Toast.makeText(getView().getContext(), "Settings are not available. Please wait until next version.", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -208,23 +228,7 @@ public class ViewProfileFragment extends Fragment {
             public void onClick(View view) {
                 vpTermsofService.generateTerms();
 
-                LayoutInflater inflater = LayoutInflater.from(getContext());
-                View promptsView = inflater.inflate(R.layout.dialog_termsofservice,null);
-
-                TextView tosText = promptsView.findViewById(R.id.tos_text);
-                tosText.setText(vpTermsofService.getTerms());
-
-                AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
-                alert.setView(promptsView);
-
-                alert.setCancelable(false);
-                alert.setPositiveButton("I Agree", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                });
-                alert.show();
+                Utils.showDialogMessage(R.drawable.ic_warning, getView().getContext(), "Term of Service", vpTermsofService.getTerms());
             }
         });
 
@@ -232,7 +236,7 @@ public class ViewProfileFragment extends Fragment {
 
             @Override
             public void onClick(View view) {
-//                TODO: Buat Privacy Policy untuk aplikasi
+                Toast.makeText(getView().getContext(), "Still in Alpha Version. Privacy Policies will be available to users.", Toast.LENGTH_LONG).show();
             }
         });
 

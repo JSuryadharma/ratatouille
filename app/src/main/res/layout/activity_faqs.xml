@@ -16,10 +16,10 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/faq_backbutton">
 
             <ImageView
-                android:id="@+id/faq_backbutton"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/ic_backbutton" />
@@ -62,7 +62,7 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_baseline_search" />
+                android:src="@drawable/ic_baseline_search_24" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -87,12 +87,17 @@
         android:textColor="@android:color/black"
         android:layout_marginTop="25dp"/>
 
-    <ExpandableListView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:background="@drawable/round_card"
-        android:id="@+id/faq_list"
-        android:layout_margin="10dp"/>
+        android:layout_margin="10dp">
+        <ExpandableListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/faq_list"
+            android:layout_margin="10dp"/>
+    </androidx.core.widget.NestedScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -112,7 +117,8 @@
             android:layout_height="wrap_content"
             android:text="Send us a message instead."
             android:textColor="@android:color/black"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:id="@+id/faq_helpTicket"/>
 
 
     </LinearLayout>

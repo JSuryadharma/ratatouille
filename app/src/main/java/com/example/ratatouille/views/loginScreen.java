@@ -125,7 +125,7 @@ public class loginScreen extends AppCompatActivity {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 UserController.firebaseAuthWithGoogle(cb, loginScreen.this, account.getIdToken());
             } catch (ApiException e) {
-                Utils.showAlertMessage(loginScreen.this, "Login with Google Failed","Please try again later, or contact our Customer Service for help.");
+                Utils.showDialogMessage(R.drawable.ic_warning, loginScreen.this, "Login with Google Failed","Please try again later, or contact our Customer Service for help.");
             }
         }
     }

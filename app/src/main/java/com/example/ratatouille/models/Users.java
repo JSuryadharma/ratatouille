@@ -22,7 +22,7 @@ import static android.content.ContentValues.TAG;
 public class Users {
 
     private String username, name, phone, address, last_login;
-    private Integer points;
+    private Integer points = 0;
     private Integer numberOfLogins = 0;
 
     public Users(){
