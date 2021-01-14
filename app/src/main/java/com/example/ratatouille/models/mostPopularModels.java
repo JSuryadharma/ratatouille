@@ -10,10 +10,10 @@ public class mostPopularModels {
     private String title;
     private String type;
     private Float rate;
-    private Calendar openHour;
+    private String openHour;
     private String imageUrl;
 
-    public mostPopularModels(String title, String type, Float rate, Calendar openHour, String imageUrl) {
+    public mostPopularModels(String title, String type, Float rate, String openHour, String imageUrl) {
         this.layoutModel = R.id.trending_viewPager; // only 1 layout model needed.
         this.title = title;
         this.type = type;
@@ -38,7 +38,7 @@ public class mostPopularModels {
         return rate;
     }
 
-    public Calendar getOpenHour() {
+    public String getOpenHour() {
         return openHour;
     }
 

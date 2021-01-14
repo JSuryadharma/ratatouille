@@ -11,5 +11,7 @@ public class VariablesUsed { //currently active global variables..
     public static Restaurant currentRestaurant = null;
     public static Vouchers currentVoucher = null;
     public static String currentLocation = null;
+    public static String API_KEY = "559a657e19a9ac2859c445071363cb01";
+    public static String API_BASE_URL = "https://developers.zomato.com/api/v2.1/";
 //    public static Employee currentEmployee = null;
 }

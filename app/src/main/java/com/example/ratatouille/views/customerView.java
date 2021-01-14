@@ -30,7 +30,7 @@ public class customerView extends AppCompatActivity {
         selectedFragment = new customerHomeFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
 
-        Toast.makeText(getBaseContext(), "Welcome back, " + VariablesUsed.currentUser.getName() + " !", Toast.LENGTH_LONG).show();
+//        Toast.makeText(getBaseContext(), "Welcome back, " + VariablesUsed.currentUser.getName() + " !", Toast.LENGTH_LONG).show();
 
         Utils.showDialogMessage(R.drawable.verified_logo, this, "Success Log In", "Welcome back! " + VariablesUsed.currentUser.getName());
 

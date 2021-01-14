@@ -41,15 +41,7 @@ public class mostPopularAdapter extends RecyclerView.Adapter<mostPopularAdapter.
         holder.title.setText(selectedItem.getTitle());
         holder.types.setText(selectedItem.getType());
         holder.ratingBar.setRating(selectedItem.getRate());
-        String hours = String.valueOf(selectedItem.getOpenHour().get(Calendar.HOUR));
-        String minutes = String.valueOf(selectedItem.getOpenHour().get(Calendar.MINUTE));
-        if(selectedItem.getOpenHour().get(Calendar.HOUR) < 10){
-            hours = "0" + hours;
-        }
-        if(selectedItem.getOpenHour().get(Calendar.MINUTE) < 10){
-            minutes = "0" + minutes;
-        }
-        holder.openHour.setText("Opens at " + hours + "." + minutes);
+        holder.openHour.setText(selectedItem.getOpenHour());
         Glide.with(holder.itemView).load(selectedItem.getImageUrl()).into(holder.mostPopularImage);
     }
 
@@ -68,6 +60,7 @@ public class mostPopularAdapter extends RecyclerView.Adapter<mostPopularAdapter.
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.mostPopularTitle);
+            title.setSelected(true);
             types = itemView.findViewById(R.id.mostPopularTypes);
             ratingBar = itemView.findViewById(R.id.mostPopularRatingBar);
             openHour = itemView.findViewById(R.id.mostPopularOpenHour);

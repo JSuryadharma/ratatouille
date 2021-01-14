@@ -1,5 +1,7 @@
 package com.example.ratatouille.views;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.ratatouille.R;
 import com.example.ratatouille.models.mostPopularModels;
@@ -36,6 +39,8 @@ public class customerHomeFragment extends Fragment {
     RecyclerView mostPopular_recyclerView;
     com.example.ratatouille.utils.mostPopularAdapter mostPopularAdapter;
     ImageView nextArrow;
+    TextView searchBox;
+    Context context;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -90,6 +95,21 @@ public class customerHomeFragment extends Fragment {
 
         trendingView = getView().findViewById(R.id.trending_viewPager);
         nextArrow = getView().findViewById(R.id.home_nextArrow);
+        searchBox = getView().findViewById(R.id.searchBox);
+        context = this.getContext();
+
+        searchBox.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (!b) {
+                    Intent intent = new Intent(context, Search.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("q", searchBox.getText().toString());
+                    intent.putExtras(bundle);
+                    context.startActivity(intent);
+                }
+            }
+        });
 
         // Replace this with API
         ArrayList<trendingModels> trendingList = new ArrayList<>();
@@ -126,19 +146,19 @@ public class customerHomeFragment extends Fragment {
         mostPopular_recyclerView = getView().findViewById(R.id.mostPopular_recyclerview);
         mostPopular_recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        ArrayList<mostPopularModels> mostPopularList = new ArrayList<>();
-        Calendar myCal = Calendar.getInstance();
-
-        //Replace this with API
-        myCal.set(Calendar.HOUR, 10);
-        myCal.set(Calendar.MINUTE, 00);
-        mostPopularList.add(new mostPopularModels("Banana Leaf - Kemayoran", "Restaurant", (float) 4.5, myCal, "https://3.bp.blogspot.com/-O6iLBqFyGu8/VS9aTbm6tjI/AAAAAAAABj8/_1IZOyytYBs/s1600/Chicken_Satay_on_Banana_Leaf_Java__m.jpg"));
-
-        myCal.set(Calendar.HOUR, 8);
-        myCal.set(Calendar.MINUTE, 00);
-        mostPopularList.add(new mostPopularModels("McDonald's - Sudirman", "Fast Food, Burgers", (float) 5, myCal, "https://i1.wp.com/www.eatthis.com/wp-content/uploads/2020/07/mcdonalds-1.jpg?resize=640%2C360&ssl=1"));
-        mostPopularAdapter = new mostPopularAdapter(this.getContext(), mostPopularList);
-        mostPopular_recyclerView.setAdapter(mostPopularAdapter);
+//        ArrayList<mostPopularModels> mostPopularList = new ArrayList<>();
+//        Calendar myCal = Calendar.getInstance();
+//
+//        //Replace this with API
+//        myCal.set(Calendar.HOUR, 10);
+//        myCal.set(Calendar.MINUTE, 00);
+//        mostPopularList.add(new mostPopularModels("Banana Leaf - Kemayoran", "Restaurant", (float) 4.5, myCal, "https://3.bp.blogspot.com/-O6iLBqFyGu8/VS9aTbm6tjI/AAAAAAAABj8/_1IZOyytYBs/s1600/Chicken_Satay_on_Banana_Leaf_Java__m.jpg"));
+//
+//        myCal.set(Calendar.HOUR, 8);
+//        myCal.set(Calendar.MINUTE, 00);
+//        mostPopularList.add(new mostPopularModels("McDonald's - Sudirman", "Fast Food, Burgers", (float) 5, myCal, "https://i1.wp.com/www.eatthis.com/wp-content/uploads/2020/07/mcdonalds-1.jpg?resize=640%2C360&ssl=1"));
+//        mostPopularAdapter = new mostPopularAdapter(this.getContext(), mostPopularList);
+//        mostPopular_recyclerView.setAdapter(mostPopularAdapter);
 
     }
 }
