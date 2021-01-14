@@ -42,6 +42,14 @@ public class faqFragment extends Fragment {
         faq_list = view.findViewById(R.id.faq_list);
         helpTicket = view.findViewById(R.id.faq_helpTicket);
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment backFragment = new ViewProfileFragment();
+                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, backFragment).commit();
+            }
+        });
+
         //Initialize the FAQ List
         faq_group = faqGenerator.generateGroups();
         ArrayList<String> faq_content = faqGenerator.generateChild();
