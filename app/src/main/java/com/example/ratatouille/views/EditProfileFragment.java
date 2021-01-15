@@ -1,6 +1,8 @@
 package com.example.ratatouille.views;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
@@ -14,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
 import com.example.ratatouille.R;
@@ -22,6 +25,7 @@ import com.example.ratatouille.utils.Utils;
 import com.example.ratatouille.vars.VariablesUsed;
 
 public class EditProfileFragment extends Fragment {
+    SwipeRefreshLayout pullToRefresh;
     ImageView backButton;
     ImageView profileImage;
     TextView profileUsername;
@@ -52,6 +56,7 @@ public class EditProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        pullToRefresh = view.findViewById(R.id.ep_pulltorefresh);
         profileUsername = view.findViewById(R.id.ep_username);
         profileEmail = view.findViewById(R.id.ep_email);
         inputUsername = view.findViewById(R.id.ep_usernameInput);
@@ -70,23 +75,29 @@ public class EditProfileFragment extends Fragment {
                     .into(profileImage);
         }
 
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                reload();
+                MediaPlayer player = MediaPlayer.create(getView().getContext(), R.raw.personleave);
+                player.start();
+                pullToRefresh.setRefreshing(false);
+            }
+        });
+
         inputPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        reload();
 
-        profileUsername.setText(VariablesUsed.currentUser.getUsername());
-        profileEmail.setText(VariablesUsed.loggedUser.getEmail());
-
-        inputUsername.setText(VariablesUsed.currentUser.getUsername());
-        inputEmail.setText(VariablesUsed.loggedUser.getEmail());
-        inputPassword.setText("********");
-        inputPhoneNumber.setText(VariablesUsed.currentUser.getPhone());
-        inputAddress.setText(VariablesUsed.currentUser.getAddress());
-        inputName.setText(VariablesUsed.currentUser.getName());
+        backButton.setColorFilter(Color.WHITE);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                backButton.setColorFilter(Color.DKGRAY);
                 ViewProfileFragment backPage = new ViewProfileFragment();
-                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, backPage).commit();
+                MediaPlayer player = MediaPlayer.create(getView().getContext(), R.raw.personleave);
+                player.start();
+                getParentFragmentManager().beginTransaction().setCustomAnimations(R.anim.fadein, R.anim.fade_out).replace(R.id.fragment_container, backPage).commit();
             }
         });
         inputUsername.setOnClickListener(new View.OnClickListener(){
@@ -126,9 +137,12 @@ public class EditProfileFragment extends Fragment {
             }
         });
 
+        saveButton.setTextColor(Color.WHITE);
+
         saveButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                saveButton.setTextColor(Color.DKGRAY);
                 Boolean falseChecker = false;
 
                 if(Utils.validateUsername(inputUsername.getText().toString())){
@@ -161,14 +175,27 @@ public class EditProfileFragment extends Fragment {
                     UserController.updateProfile(inputUsername.getText().toString(), inputName.getText().toString(), inputPhoneNumber.getText().toString(), inputAddress.getText().toString(), VariablesUsed.currentUser.getPoints());
                     // Reload current fragment
                     final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+                    MediaPlayer player = MediaPlayer.create(getView().getContext(), R.raw.open);
+                    player.start();
                     Utils.showDialogMessage(R.drawable.verified_logo, getView().getContext(), "Profile Updated", "Reloading the new data!");
-                    ft.detach(EditProfileFragment.this);
-                    ft.attach(EditProfileFragment.this);
-                    ft.commit();
                 } else {
+                    MediaPlayer player = MediaPlayer.create(getView().getContext(), R.raw.personleave);
+                    player.start();
                     Utils.showDialogMessage(R.drawable.ic_warning, getView().getContext(), "Credentials are not valid!", "Please fill in the indicated textfield correctly!");
                 }
             }
         });
+    }
+
+    public void reload(){
+        profileUsername.setText(VariablesUsed.currentUser.getUsername());
+        profileEmail.setText(VariablesUsed.loggedUser.getEmail());
+
+        inputUsername.setText(VariablesUsed.currentUser.getUsername());
+        inputEmail.setText(VariablesUsed.loggedUser.getEmail());
+        inputPassword.setText("********");
+        inputPhoneNumber.setText(VariablesUsed.currentUser.getPhone());
+        inputAddress.setText(VariablesUsed.currentUser.getAddress());
+        inputName.setText(VariablesUsed.currentUser.getName());
     }
 }

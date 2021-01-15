@@ -30,7 +30,8 @@
                 android:textColor="@android:color/darker_gray"
                 android:fontFamily="@font/berlinsans"
                 android:textSize="20dp"
-                android:layout_gravity="center_vertical"/>
+                android:layout_gravity="center_vertical"
+                android:id="@+id/otp_backButton_text"/>
         </LinearLayout>
 
     </LinearLayout>

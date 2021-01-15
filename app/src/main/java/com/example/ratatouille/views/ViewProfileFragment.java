@@ -7,13 +7,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.Image;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -56,30 +59,29 @@ public class ViewProfileFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static final int PICK_IMAGE = 1;
-    ImageView imageProfile;
-    TextView editButton;
-    TextView usernameText;
-    TextView emailText;
-    TextView phoneNumberText;
-    TextView addressText;
-    TextView yourVouchersText;
-    RelativeLayout phoneNumberArea;
-    RelativeLayout addressArea;
-    RelativeLayout yourVoucherArea;
-    RelativeLayout contactSupport;
-    RelativeLayout settings;
-    RelativeLayout termsOfUse;
-    RelativeLayout privacyPolicy;
-    ArrayList<Vouchers> voucherList;
-    Integer TAKE_IMAGE_CODE = 1001;
+    private SwipeRefreshLayout pulltorefresh;
+    private ImageView imageProfile;
+    private TextView editButton;
+    private TextView usernameText;
+    private TextView emailText;
+    private TextView phoneNumberText;
+    private TextView addressText;
+    private TextView yourVouchersText;
+    private RelativeLayout phoneNumberArea;
+    private RelativeLayout addressArea;
+    private RelativeLayout yourVoucherArea;
+    private RelativeLayout contactSupport;
+    private RelativeLayout settings;
+    private RelativeLayout termsOfUse;
+    private RelativeLayout privacyPolicy;
+    private ArrayList<Vouchers> voucherList;
+    private Integer TAKE_IMAGE_CODE = 1001;
+    private static Handler handler;
 
     callbackHelper cb = new callbackHelper() {
         @Override
         public void onUserLoadCallback(Context context, Users u) {
             yourVouchersText.setText("Currently, You have " + voucherList.size() + " vouchers.");
-            FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-            ft.detach(ViewProfileFragment.this);
-            ft.attach(ViewProfileFragment.this);
         }
     };
 
@@ -130,7 +132,7 @@ public class ViewProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        pulltorefresh = getView().findViewById(R.id.vp_pulltorefresh);
         imageProfile = getView().findViewById(R.id.vp_imageProfile);
         editButton = getView().findViewById(R.id.vp_editButton);
         usernameText = getView().findViewById(R.id.vp_username);
@@ -145,12 +147,9 @@ public class ViewProfileFragment extends Fragment {
         phoneNumberArea = view.findViewById(R.id.vp_phoneNumber);
         addressArea = view.findViewById(R.id.vp_address);
         yourVoucherArea = view.findViewById(R.id.vp_yourVouchers);
-
-        usernameText.setText(VariablesUsed.currentUser.getUsername());
-        emailText.setText(VariablesUsed.loggedUser.getEmail());
-        phoneNumberText.setText(VariablesUsed.currentUser.getPhone());
-        addressText.setText(VariablesUsed.currentUser.getAddress());
         voucherList = VoucherController.getAllUserVoucher(getView().getContext(), cb);
+
+        reload();
 
         //        ProfilePicture Initializations...
         if(VariablesUsed.loggedUser.getPhotoUrl() != null) {
@@ -159,12 +158,22 @@ public class ViewProfileFragment extends Fragment {
                     .into(imageProfile);
         }
 
+        pulltorefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                reload();
+                MediaPlayer player = MediaPlayer.create(getView().getContext(), R.raw.open);
+                player.start();
+                pulltorefresh.setRefreshing(false);
+            }
+        });
+
         phoneNumberArea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Fragment editSpecific = new EditSpecificFragment("Phone Number");
 
-                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, editSpecific).commit();
+                getParentFragmentManager().beginTransaction().setCustomAnimations(R.anim.fadein, R.anim.fade_out).replace(R.id.fragment_container, editSpecific).commit();
             }
         });
 
@@ -173,7 +182,7 @@ public class ViewProfileFragment extends Fragment {
             public void onClick(View v) {
                 Fragment editSpecific = new EditSpecificFragment("Address");
 
-                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, editSpecific).commit();
+                getParentFragmentManager().beginTransaction().setCustomAnimations(R.anim.fadein, R.anim.fade_out).replace(R.id.fragment_container, editSpecific).commit();
             }
         });
 
@@ -182,7 +191,7 @@ public class ViewProfileFragment extends Fragment {
             public void onClick(View v) {
                 Fragment voucherFragment = new voucherFragment();
 
-                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, voucherFragment).commit();
+                getParentFragmentManager().beginTransaction().setCustomAnimations(R.anim.fadein, R.anim.fadeout).replace(R.id.fragment_container, voucherFragment).commit();
             }
         });
 
@@ -191,7 +200,7 @@ public class ViewProfileFragment extends Fragment {
             public void onClick(View v) {
                 Fragment editFragment = new EditProfileFragment();
 
-                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, editFragment).commit();
+                getParentFragmentManager().beginTransaction().setCustomAnimations(R.anim.fadein, R.anim.fadeout).replace(R.id.fragment_container, editFragment).commit();
             }
         });
 
@@ -210,7 +219,7 @@ public class ViewProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Fragment faqFragment = new faqFragment();
-                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, faqFragment).commit();
+                getParentFragmentManager().beginTransaction().setCustomAnimations(R.anim.fadein, R.anim.fadeout).replace(R.id.fragment_container, faqFragment).commit();
             }
         });
 
@@ -240,6 +249,28 @@ public class ViewProfileFragment extends Fragment {
             }
         });
 
+        autoRefresh(30000);
+    }
+
+    public void autoRefresh(int millis) {
+        if(handler == null) {
+            handler = new Handler();
+
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    reload();
+                }
+            };
+            handler.postDelayed(runnable, millis);
+        }
+    }
+
+    public void reload(){
+        usernameText.setText(VariablesUsed.currentUser.getUsername());
+        emailText.setText(VariablesUsed.loggedUser.getEmail());
+        phoneNumberText.setText(VariablesUsed.currentUser.getPhone());
+        addressText.setText(VariablesUsed.currentUser.getAddress());
     }
 
     @Override
@@ -253,7 +284,7 @@ public class ViewProfileFragment extends Fragment {
                     UserController.uploadProfilePicture(getContext(), bitmap);
                     break;
                 case RESULT_CANCELED:
-                    Toast.makeText(getContext(), "Image Selection Has Been Cancelled!", Toast.LENGTH_LONG);
+                    Toast.makeText(getView().getContext(), "Image Selection Has Been Cancelled!", Toast.LENGTH_LONG).show();
             }
         }
     }

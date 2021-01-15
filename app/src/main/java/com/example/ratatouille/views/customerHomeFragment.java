@@ -2,6 +2,7 @@ package com.example.ratatouille.views;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -33,14 +35,15 @@ import java.util.Calendar;
  * create an instance of this fragment.
  */
 public class customerHomeFragment extends Fragment {
-
-    PagerAdapter trendingAdapter;
-    ViewPager trendingView;
-    RecyclerView mostPopular_recyclerView;
-    com.example.ratatouille.utils.mostPopularAdapter mostPopularAdapter;
-    ImageView nextArrow;
-    TextView searchBox;
-    Context context;
+    private SwipeRefreshLayout pullToRefresh;
+    private PagerAdapter trendingAdapter;
+    private ViewPager trendingView;
+    private RecyclerView mostPopular_recyclerView;
+    private com.example.ratatouille.utils.mostPopularAdapter mostPopularAdapter;
+    private ImageView nextArrow;
+    private TextView searchBox;
+    private Context context;
+    private ArrayList<trendingModels> trendingList;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -92,33 +95,39 @@ public class customerHomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        pullToRefresh = getView().findViewById(R.id.home_pulltorefresh);
         trendingView = getView().findViewById(R.id.trending_viewPager);
         nextArrow = getView().findViewById(R.id.home_nextArrow);
         searchBox = getView().findViewById(R.id.searchBox);
         context = this.getContext();
+        trendingList = new ArrayList<>();
 
-        searchBox.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        //Setting Trending Adapter
+        reload();
+
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onFocusChange(View view, boolean b) {
-                if (!b) {
-                    Intent intent = new Intent(context, Search.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("q", searchBox.getText().toString());
-                    intent.putExtras(bundle);
-                    context.startActivity(intent);
-                }
+            public void onRefresh() {
+                reload();
+                MediaPlayer player = MediaPlayer.create(getView().getContext(), R.raw.open);
+                player.start();
+                pullToRefresh.setRefreshing(false);
             }
         });
 
-        // Replace this with API
-        ArrayList<trendingModels> trendingList = new ArrayList<>();
-        trendingList.add(new trendingModels("Starbucks - Alam Sutera", "Cafe, Coffee", (float) 4.5, 60000, "https://cdn.vox-cdn.com/thumbor/z2Oc0Qtvm3Iu1WoHOgohXbX1Ncc=/0x0:5860x4008/1200x800/filters:focal(3075x2118:4011x3054)/cdn.vox-cdn.com/uploads/chorus_image/image/66490225/shutterstock_1410002591.0.jpg"));
-        trendingList.add(new trendingModels("Burger King - Grand Indonesia", "Fast Food", (float) 3.4, 45600, "https://miro.medium.com/max/1200/1*pIJH1mPega8583Y3NuPaLg.jpeg"));
-        trendingList.add(new trendingModels("Din Tai Fung - Pacific Place", "Chinese Food, Family", (float) 4, 130000, "https://media-cdn.tripadvisor.com/media/photo-s/19/b9/5f/18/din.jpg"));
 
-        trendingAdapter = new trendingAdapter(this.getContext(), trendingList);
-        trendingView.setAdapter(trendingAdapter);
+//        searchBox.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View view, boolean b) {
+//                if (!b) {
+//                    Intent intent = new Intent(context, Search.class);
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString("q", searchBox.getText().toString());
+//                    intent.putExtras(bundle);
+//                    context.startActivity(intent);
+//                }
+//            }
+//        });
 
         trendingView.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -157,8 +166,26 @@ public class customerHomeFragment extends Fragment {
 //        myCal.set(Calendar.HOUR, 8);
 //        myCal.set(Calendar.MINUTE, 00);
 //        mostPopularList.add(new mostPopularModels("McDonald's - Sudirman", "Fast Food, Burgers", (float) 5, myCal, "https://i1.wp.com/www.eatthis.com/wp-content/uploads/2020/07/mcdonalds-1.jpg?resize=640%2C360&ssl=1"));
-//        mostPopularAdapter = new mostPopularAdapter(this.getContext(), mostPopularList);
-//        mostPopular_recyclerView.setAdapter(mostPopularAdapter);
 
+    }
+
+    private void loadTrending() {
+        // Replace this with API
+        trendingList = new ArrayList<>();
+        trendingList.add(new trendingModels("Starbucks - Alam Sutera", "Cafe, Coffee", (float) 4.5, 60000, "https://cdn.vox-cdn.com/thumbor/z2Oc0Qtvm3Iu1WoHOgohXbX1Ncc=/0x0:5860x4008/1200x800/filters:focal(3075x2118:4011x3054)/cdn.vox-cdn.com/uploads/chorus_image/image/66490225/shutterstock_1410002591.0.jpg"));
+        trendingList.add(new trendingModels("Burger King - Grand Indonesia", "Fast Food", (float) 3.4, 45600, "https://miro.medium.com/max/1200/1*pIJH1mPega8583Y3NuPaLg.jpeg"));
+        trendingList.add(new trendingModels("Din Tai Fung - Pacific Place", "Chinese Food, Family", (float) 4, 130000, "https://media-cdn.tripadvisor.com/media/photo-s/19/b9/5f/18/din.jpg"));
+        trendingAdapter = new trendingAdapter(this.getContext(), trendingList);
+        trendingView.setAdapter(trendingAdapter);
+    }
+
+    private void loadMostPopularList() {
+        //        mostPopularAdapter = new mostPopularAdapter(this.getContext(), mostPopularList);
+        //        mostPopular_recyclerView.setAdapter(mostPopularAdapter);
+    }
+
+    public void reload() {
+        loadTrending();
+        loadMostPopularList();
     }
 }

@@ -12,8 +12,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.ratatouille.MainActivity;
 import com.example.ratatouille.R;
 import com.example.ratatouille.utils.introductionAdapter;
+
+import static maes.tech.intentanim.CustomIntent.customType;
 
 public class introductionView extends AppCompatActivity {
 
@@ -28,6 +31,7 @@ public class introductionView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_introduction);
+        customType(introductionView.this, "fadein-to-fadeout");
 
         //Initiate viewPager
         intro_viewPager = findViewById(R.id.intro_viewPager);
@@ -53,10 +57,11 @@ public class introductionView extends AppCompatActivity {
         });
 
         introButton = findViewById(R.id.introButton);
-
+        introButton.setBackgroundResource(R.drawable.round_button);
         introButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                introButton.setBackgroundResource(R.drawable.pressed_round_button);
                 Intent customerIntent = new Intent(introductionView.this, customerView.class);
                 startActivity(customerIntent);
                 finish();

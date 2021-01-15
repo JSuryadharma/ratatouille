@@ -1,6 +1,8 @@
 package com.example.ratatouille.views;
 
+import android.graphics.Color;
 import android.media.Image;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,14 +23,14 @@ import com.example.ratatouille.utils.Utils;
 import com.example.ratatouille.vars.VariablesUsed;
 
 public class EditSpecificFragment extends Fragment {
-    String mode;
-    ImageView backButton;
-    ImageView profileImage;
-    TextView profileUsername;
-    TextView profileEmail;
-    TextView toBeLabel;
-    EditText toBeInput;
-    TextView saveButton;
+    private String mode;
+    private ImageView backButton;
+    private ImageView profileImage;
+    private TextView profileUsername;
+    private TextView profileEmail;
+    private TextView toBeLabel;
+    private EditText toBeInput;
+    private TextView saveButton;
 
     public EditSpecificFragment(String mode){
         this.mode = mode;
@@ -52,17 +54,25 @@ public class EditSpecificFragment extends Fragment {
         saveButton = view.findViewById(R.id.esp_saveButton);
         profileImage = view.findViewById(R.id.esp_imageProfile);
 
+        profileUsername.setText(VariablesUsed.currentUser.getUsername());
+        profileEmail.setText(VariablesUsed.loggedUser.getEmail());
+
         if(VariablesUsed.loggedUser.getPhotoUrl() != null) {
             Glide.with(getView().getContext())
                     .load(VariablesUsed.loggedUser.getPhotoUrl())
                     .into(profileImage);
         }
 
+        backButton.setColorFilter(Color.WHITE);
+
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                backButton.setColorFilter(Color.DKGRAY);
                 ViewProfileFragment backPage = new ViewProfileFragment();
-                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, backPage).commit();
+                MediaPlayer player = MediaPlayer.create(getView().getContext(), R.raw.personleave);
+                player.start();
+                getParentFragmentManager().beginTransaction().setCustomAnimations(R.anim.fadein, R.anim.fade_out).replace(R.id.fragment_container, backPage).commit();
             }
         });
 
@@ -77,17 +87,15 @@ public class EditSpecificFragment extends Fragment {
                 break;
         }
 
+        saveButton.setTextColor(Color.WHITE);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                saveButton.setTextColor(Color.DKGRAY);
                 if(mode.equals("Phone Number")){
                     if(Utils.validatePhone(toBeInput.getText().toString())){
                         UserController.updateProfile(VariablesUsed.currentUser.getUsername(), VariablesUsed.currentUser.getName(), toBeInput.getText().toString(), VariablesUsed.currentUser.getAddress(), VariablesUsed.currentUser.getPoints());
-                        final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
                         Utils.showDialogMessage(R.drawable.verified_logo, getView().getContext(), "Profile Updated", "Reloading the new data!");
-                        ft.detach(EditSpecificFragment.this);
-                        ft.attach(EditSpecificFragment.this);
-                        ft.commit();
                     } else {
                         toBeInput.setError("Invalid Phone Input!");
                     }
@@ -95,11 +103,7 @@ public class EditSpecificFragment extends Fragment {
                 if(mode.equals("Address")){
                     if(Utils.validateInput(toBeInput.getText().toString())){
                         UserController.updateProfile(VariablesUsed.currentUser.getUsername(), VariablesUsed.currentUser.getName(),  VariablesUsed.currentUser.getPhone(), toBeInput.getText().toString(), VariablesUsed.currentUser.getPoints());
-                        final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
                         Utils.showDialogMessage(R.drawable.verified_logo, getView().getContext(), "Profile Updated", "Reloading the new data!");
-                        ft.detach(EditSpecificFragment.this);
-                        ft.attach(EditSpecificFragment.this);
-                        ft.commit();
                     } else {
                         toBeInput.setError("Invalid Address Input!");
                     }

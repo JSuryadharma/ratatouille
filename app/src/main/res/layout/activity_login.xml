@@ -37,7 +37,9 @@
             android:padding="10dp"
             android:gravity="center"
             android:layout_marginTop="10dp"
-            android:background="@drawable/round_edittext">
+            android:background="@drawable/round_edittext"
+            android:focusable="false"
+            android:focusableInTouchMode="true">
 
             <ImageView
                 android:layout_width="50dp"
@@ -59,7 +61,9 @@
             android:padding="10dp"
             android:gravity="center"
             android:layout_marginTop="10dp"
-            android:background="@drawable/round_edittext">
+            android:background="@drawable/round_edittext"
+            android:focusable="false"
+            android:focusableInTouchMode="true">
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"

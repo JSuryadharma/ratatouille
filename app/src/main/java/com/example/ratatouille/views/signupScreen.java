@@ -3,6 +3,7 @@ package com.example.ratatouille.views;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -15,9 +16,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.ratatouille.MainActivity;
 import com.example.ratatouille.R;
 import com.example.ratatouille.utils.Utils;
 import com.example.ratatouille.controllers.UserController;
+
+import static maes.tech.intentanim.CustomIntent.customType;
 
 public class signupScreen extends AppCompatActivity {
     TextView usernameField, emailField, nameField, passwordField, phoneField, addressField;
@@ -30,6 +34,7 @@ public class signupScreen extends AppCompatActivity {
         super.onCreate(savedStateInstance);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_signup);
+        customType(signupScreen.this, "fadein-to-fadeout");
 
         usernameField = findViewById(R.id.su_username);
         emailField = findViewById(R.id.su_email);
@@ -43,6 +48,8 @@ public class signupScreen extends AppCompatActivity {
         signUpButton = findViewById(R.id.su_signUpButton);
         backButton = findViewById(R.id.su_backButton);
         showButton = findViewById(R.id.su_showButton);
+
+        signUpButton.setBackgroundResource(R.drawable.round_button);
 
         showButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -60,6 +67,7 @@ public class signupScreen extends AppCompatActivity {
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                signUpButton.setBackgroundResource(R.drawable.pressed_round_button);
                 String usernameInput = usernameField.getText().toString();
                 String emailInput = emailField.getText().toString();
                 String nameInput = nameField.getText().toString();
@@ -104,10 +112,15 @@ public class signupScreen extends AppCompatActivity {
             }
         });
 
+        backButton.setTextColor(Color.WHITE);
+
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                backButton.setTextColor(Color.GRAY);
                 Intent loginIntent = new Intent(signupScreen.this, loginScreen.class);
+                MediaPlayer player = MediaPlayer.create(signupScreen.this, R.raw.personleave);
+                player.start();
                 startActivity(loginIntent);
             }
         });

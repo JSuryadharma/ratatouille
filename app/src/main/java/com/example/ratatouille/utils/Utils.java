@@ -3,6 +3,7 @@ package com.example.ratatouille.utils;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -92,9 +93,13 @@ public class Utils {
         textDialog.setText(message);
         logoDialog.setImageResource(resId);
 
+        buttonDialog.setBackgroundResource(R.drawable.round_button);
         buttonDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                buttonDialog.setBackgroundResource(R.drawable.pressed_round_button);
+                MediaPlayer play = MediaPlayer.create(context, R.raw.open);
+                play.start();
                 showDialog.dismiss();
             }
         });

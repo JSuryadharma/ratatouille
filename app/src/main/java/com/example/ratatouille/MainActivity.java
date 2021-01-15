@@ -20,6 +20,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import static maes.tech.intentanim.CustomIntent.customType;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+        customType(MainActivity.this, "fadein-to-fadeout");
 
         Intent startAppUI = new Intent(MainActivity.this, SplashScreen.class);
         startActivity(startAppUI);

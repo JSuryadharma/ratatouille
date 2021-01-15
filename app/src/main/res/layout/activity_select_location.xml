@@ -32,7 +32,8 @@
                 android:fontFamily="@font/berlinsans"
                 android:textSize="20dp"
                 android:textColor="#ABD2DE"
-                android:layout_gravity="center_vertical"/>
+                android:layout_gravity="center_vertical"
+                android:id="@+id/location_backButton_text"/>
 
         </LinearLayout>
 

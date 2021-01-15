@@ -3,6 +3,7 @@ package com.example.ratatouille.controllers;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
@@ -18,6 +19,7 @@ import com.example.ratatouille.db.DatabaseVars;
 import com.example.ratatouille.models.Users;
 import com.example.ratatouille.utils.callbackHelper;
 import com.example.ratatouille.vars.VariablesUsed;
+import com.example.ratatouille.views.loginScreen;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -79,6 +81,9 @@ public class UserController {
 
                                         VariablesUsed.currentUser.save(); // save the update to User Datas.
 
+                                        MediaPlayer player = MediaPlayer.create(context, R.raw.open);
+                                        player.start();
+
                                         // then, call the next intent / screen..
                                         cb.onUserLoadCallback(context, VariablesUsed.currentUser);
                                     }
@@ -90,9 +95,13 @@ public class UserController {
                                 });
 
                             } else {
+                                MediaPlayer player = MediaPlayer.create(context, R.raw.personleave);
+                                player.start();
                                 Utils.showDialogMessage(R.drawable.ic_warning, context, "Please Verify Account", "To continue, please check verification link on your email account!");
                             }
                         } else {
+                            MediaPlayer player = MediaPlayer.create(context, R.raw.personleave);
+                            player.start();
                             Utils.showDialogMessage(R.drawable.ic_warning, context, "Incorrect Credentials","Please try again, or contact our Customer Service for help.");
                         }
                     }

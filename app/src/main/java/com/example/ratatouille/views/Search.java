@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -32,6 +34,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import static maes.tech.intentanim.CustomIntent.customType;
+
 public class Search extends AppCompatActivity {
 
     RecyclerView searched_recyclerview;
@@ -39,11 +43,13 @@ public class Search extends AppCompatActivity {
     TextView searchedBox;
     Context context;
     LinearLayout backButton;
+    TextView backButton_text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        customType(Search.this, "fadein-to-fadeout");
         context = this;
 
         String searched = null;
@@ -57,6 +63,7 @@ public class Search extends AppCompatActivity {
         searchedBox = findViewById(R.id.searched_box);
         searchedBox.setText(searched);
         backButton = findViewById(R.id.search_backButton);
+        backButton_text = findViewById(R.id.search_backButton_text);
 
         searchedBox.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -67,9 +74,15 @@ public class Search extends AppCompatActivity {
             }
         });
 
+        backButton_text.setTextColor(Color.WHITE);
+
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                backButton_text.setTextColor(Color.DKGRAY);
+                Fragment backFragment = new ViewProfileFragment();
+                MediaPlayer player = MediaPlayer.create(context, R.raw.personleave);
+                player.start();
                 backToMainMenu(context);
             }
         });

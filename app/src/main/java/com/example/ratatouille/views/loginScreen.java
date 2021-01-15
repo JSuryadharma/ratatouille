@@ -3,6 +3,7 @@ package com.example.ratatouille.views;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.ratatouille.MainActivity;
 import com.example.ratatouille.R;
 import com.example.ratatouille.db.DatabaseHelper;
 import com.example.ratatouille.db.DatabaseVars;
@@ -28,6 +30,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInApi;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+
+import static maes.tech.intentanim.CustomIntent.customType;
 
 public class loginScreen extends AppCompatActivity {
     EditText userTextbox, passTextbox;
@@ -51,6 +55,7 @@ public class loginScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
+        customType(loginScreen.this, "fadein-to-fadeout");
 
         userTextbox = findViewById(R.id.li_userTextbox);
         passTextbox = findViewById(R.id.li_passTextbox);
@@ -58,6 +63,10 @@ public class loginScreen extends AppCompatActivity {
         showButton = findViewById(R.id.li_showButton);
         dhaButton = findViewById(R.id.li_dhaButton);
         forgotPassword = findViewById(R.id.li_forgotPassword);
+
+        btSignIn.setBackgroundResource(R.drawable.round_button);
+        dhaButton.setTextColor(Color.WHITE);
+        forgotPassword.setTextColor(Color.WHITE);
 
         passTextbox.setTransformationMethod(PasswordTransformationMethod.getInstance()); // set model password pertama (hidden)..
 
@@ -77,6 +86,7 @@ public class loginScreen extends AppCompatActivity {
         btSignIn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                btSignIn.setBackgroundResource(R.drawable.pressed_round_button);
                 String emailInput = userTextbox.getText().toString();
                 String passwordInput = passTextbox.getText().toString();
 
@@ -97,6 +107,9 @@ public class loginScreen extends AppCompatActivity {
         dhaButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                dhaButton.setTextColor(Color.BLUE);
+                MediaPlayer player = MediaPlayer.create(loginScreen.this, R.raw.open);
+                player.start();
                 Intent signUpIntent = new Intent(loginScreen.this, signupScreen.class);
                 startActivity(signUpIntent);
             }
@@ -105,6 +118,9 @@ public class loginScreen extends AppCompatActivity {
         forgotPassword.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                forgotPassword.setTextColor(Color.BLUE);
+                MediaPlayer player = MediaPlayer.create(loginScreen.this, R.raw.open);
+                player.start();
                 Intent forgotIntent = new Intent(loginScreen.this, forgotPasswordActivity.class);
                 startActivity(forgotIntent);
             }

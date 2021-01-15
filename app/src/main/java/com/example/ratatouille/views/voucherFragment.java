@@ -1,7 +1,10 @@
 package com.example.ratatouille.views;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -19,6 +22,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -33,24 +37,29 @@ import com.example.ratatouille.utils.voucherAdapter;
 import com.example.ratatouille.utils.voucherRecyclerAdapter;
 import com.example.ratatouille.vars.VariablesUsed;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.UUID;
 
 public class voucherFragment extends Fragment {
-    LinearLayout backButton;
-    TextView header;
-    TextView points;
-    EditText searchBox;
-    TextView nothingToShow;
-    ViewPager voucher_viewPager;
-    PagerAdapter voucheradapter;
-    ImageView nextArrow;
-    TextView noVoucher;
-    RecyclerView voucher_recyclerView;
-    TextView refreshButton;
-    com.example.ratatouille.utils.voucherRecyclerAdapter voucherrecycleradapter;
-    ArrayList<Vouchers> myVoucher;
-    ArrayList<Vouchers> voucherStore;
+    private SwipeRefreshLayout pullToRefresh;
+    private LinearLayout backButton;
+    private TextView backButton_text;
+    private TextView header;
+    private TextView points;
+    private EditText searchBox;
+    private TextView nothingToShow;
+    private ViewPager voucher_viewPager;
+    private PagerAdapter voucheradapter;
+    private ImageView nextArrow;
+    private TextView noVoucher;
+    private RecyclerView voucher_recyclerView;
+    private TextView refreshButton;
+    private com.example.ratatouille.utils.voucherRecyclerAdapter voucherrecycleradapter;
+    private ArrayList<Vouchers> myVoucher;
+    private ArrayList<Vouchers> voucherStore;
+    private static Handler handler = null;
 
     callbackHelper cb = new callbackHelper() {
         @Override
@@ -73,7 +82,9 @@ public class voucherFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        pullToRefresh = view.findViewById(R.id.voucher_pulltorefresh);
         backButton = view.findViewById(R.id.voucher_backButton);
+        backButton_text = view.findViewById(R.id.voucher_backButton_text);
         header= view.findViewById(R.id.voucher_header);
         points = view.findViewById(R.id.voucher_header_points);
         searchBox = view.findViewById(R.id.voucher_searchBox);
@@ -82,32 +93,58 @@ public class voucherFragment extends Fragment {
         noVoucher = view.findViewById(R.id.voucher_noVoucher);
         voucher_recyclerView = view.findViewById(R.id.voucher_recylerView);
         nextArrow = view.findViewById(R.id.voucher_nextArrow);
-        refreshButton = view.findViewById(R.id.voucher_refreshButton);
+
         myVoucher = VoucherController.getAllUserVoucher(getView().getContext(), cb);
         voucherStore = VoucherController.getAllVouchers(getView().getContext(), cb);
+
+        voucher_viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if(position == myVoucher.size() - 1){
+                    nextArrow.setVisibility(View.INVISIBLE);
+                    System.out.println(position);
+                } else {
+                    nextArrow.setVisibility(View.VISIBLE);
+                    System.out.println(position);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        //Refresh Listener
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                reload();
+                MediaPlayer player = MediaPlayer.create(getView().getContext(), R.raw.open);
+                player.start();
+                pullToRefresh.setRefreshing(false);
+            }
+        });
+
+        backButton_text.setTextColor(Color.WHITE);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                backButton_text.setTextColor(Color.DKGRAY);
                 Fragment backFragment = new ViewProfileFragment();
-                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, backFragment).commit();
-            }
-        });
-
-        header.setText(VariablesUsed.currentUser.getName() + ",");
-        points.setText(VariablesUsed.currentUser.getPoints().toString());
-
-        refreshButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction fm = getParentFragmentManager().beginTransaction();
-                fm.detach(voucherFragment.this);
-                fm.attach(voucherFragment.this);
+                MediaPlayer player = MediaPlayer.create(getView().getContext(), R.raw.personleave);
+                player.start();
+                getParentFragmentManager().beginTransaction().setCustomAnimations(R.anim.fadein, R.anim.fadeout).replace(R.id.fragment_container, backFragment).commit();
             }
         });
 
         // For searching new voucher (in-store)
-
         searchBox.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -137,10 +174,6 @@ public class voucherFragment extends Fragment {
                     }
                     showSearchVoucherResults(voucherResults);
                 }
-                //Refresh the fragment..
-                FragmentTransaction fm = getParentFragmentManager().beginTransaction();
-                fm.detach(voucherFragment.this);
-                fm.attach(voucherFragment.this);
             }
         });
 
@@ -151,38 +184,63 @@ public class voucherFragment extends Fragment {
             }
         });
 
+        reload();
+
+        //set the refresh content handler
+        refreshContent(30000);
+
+    }
+
+    public void refreshContent(int millis) {
+        if(handler == null) {
+            final Handler handler = new Handler();
+
+            final Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    //Dont interrupt searching process..
+                    if(searchBox.getText().toString().equals("")) {
+                        reload();
+                    }
+                }
+            };
+
+            // Update every x milliseconds
+            handler.postDelayed(runnable, millis);
+        }
+    }
+
+    public void reload() {
+        header.setText(VariablesUsed.currentUser.getName() + ",");
+        points.setText(VariablesUsed.currentUser.getPoints().toString());
+        myVoucher = VoucherController.getAllUserVoucher(getView().getContext(), cb);
+        voucherStore = VoucherController.getAllVouchers(getView().getContext(), cb);
     }
 
     public void showVoucherStoreResults(){
         if (voucherStore.size() > 0) {
             nothingToShow.setVisibility(View.GONE);
+            // Setting the Voucher Store View Pager
             voucheradapter = new voucherAdapter(getView().getContext(), voucherStore);
             voucher_viewPager.setAdapter(voucheradapter);
         } else {
             nothingToShow.setVisibility(View.VISIBLE);
+            nextArrow.setVisibility(View.GONE);
             voucher_viewPager.setVisibility(View.GONE);
         }
-        //Refresh the fragment..
-        FragmentTransaction fm = getParentFragmentManager().beginTransaction();
-        fm.detach(voucherFragment.this);
-        fm.attach(voucherFragment.this);
     }
 
     public void showMyVoucherResults() {
         if(myVoucher.size() > 0){
             noVoucher.setVisibility(View.GONE);
+            // Setting the Voucher Recycler View
             voucherrecycleradapter = new voucherRecyclerAdapter(getView().getContext(), myVoucher);
             voucher_recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
             voucher_recyclerView.setAdapter(voucherrecycleradapter);
         } else {
             noVoucher.setVisibility(View.VISIBLE);
-            nextArrow.setVisibility(View.GONE);
             voucher_recyclerView.setVisibility(View.GONE);
         }
-        //Refresh the fragment..
-        FragmentTransaction fm = getParentFragmentManager().beginTransaction();
-        fm.detach(voucherFragment.this);
-        fm.attach(voucherFragment.this);
     }
 
     public void showSearchVoucherResults(ArrayList<Vouchers> voucherResults){
@@ -217,10 +275,5 @@ public class voucherFragment extends Fragment {
             nothingToShow.setVisibility(View.VISIBLE);
             voucher_viewPager.setVisibility(View.GONE);
         }
-
-        //Refresh the fragment..
-        FragmentTransaction fm = getParentFragmentManager().beginTransaction();
-        fm.detach(voucherFragment.this);
-        fm.attach(voucherFragment.this);
     }
 }

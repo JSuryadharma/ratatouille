@@ -1,329 +1,335 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:id="@+id/vp_pulltorefresh">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/white">
+        android:layout_height="match_parent">
 
         <RelativeLayout
-            android:id="@+id/vp_relativeContainerProfile"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="#DDB6C6"
-            android:paddingHorizontal="20dp"
-            android:paddingTop="20dp">
-
-            <TextView
-                android:id="@+id/vp_profileLabel"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:text="Profile"
-                android:textColor="@android:color/white"
-                android:textSize="40dp" />
-
-            <TextView
-                android:id="@+id/vp_editButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/vp_profileLabel"
-                android:layout_alignParentRight="true"
-                android:text="Edit"
-                android:textAlignment="textEnd"
-                android:textColor="@android:color/white"
-                android:textSize="25dp" />
+            android:layout_height="match_parent"
+            android:background="@android:color/white">
 
             <RelativeLayout
+                android:id="@+id/vp_relativeContainerProfile"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_below="@id/vp_profileLabel"
-                android:layout_marginTop="9dp"
-                android:background="@drawable/round_card"
-                android:padding="10dp">
+                android:layout_height="200dp"
+                android:background="#DDB6C6"
+                android:paddingHorizontal="20dp"
+                android:paddingTop="20dp">
 
-                <ImageView
-                    android:id="@+id/vp_imageProfile"
-                    android:layout_width="100dp"
+                <TextView
+                    android:id="@+id/vp_profileLabel"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="Profile"
+                    android:textColor="@android:color/white"
+                    android:textSize="40dp" />
+
+                <TextView
+                    android:id="@+id/vp_editButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@id/vp_profileLabel"
+                    android:layout_alignParentRight="true"
+                    android:text="Edit"
+                    android:textAlignment="textEnd"
+                    android:textColor="@android:color/white"
+                    android:textSize="25dp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_baseline_account" />
+                    android:layout_below="@id/vp_profileLabel"
+                    android:layout_marginTop="9dp"
+                    android:background="@drawable/round_card"
+                    android:padding="10dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/vp_imageProfile"
-                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/vp_imageProfile"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_baseline_account" />
 
-                    <TextView
-                        android:id="@+id/vp_username"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="default_name"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/vp_imageProfile"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/vp_username"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="default_name"
+                            android:textColor="@android:color/black"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/vp_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:paddingTop="5dp"
+                            android:text="default@gmail.com"
+                            android:textColor="@android:color/darker_gray" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_below="@id/vp_relativeContainerProfile"
+                android:background="@drawable/round_card">
+
+                <!-- This is for Phone Number Container-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:id="@+id/vp_phoneNumber">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Phone Number"
+                        android:textSize="20dp"
                         android:textColor="@android:color/black"
-                        android:textSize="20dp" />
-
+                        android:id="@+id/vp_phoneNumberLabel"/>
                     <TextView
-                        android:id="@+id/vp_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:paddingTop="5dp"
-                        android:text="default@gmail.com"
-                        android:textColor="@android:color/darker_gray" />
-                </LinearLayout>
+                        android:text="loading phone number.."
+                        android:textColor="@android:color/darker_gray"
+                        android:layout_below="@id/vp_phoneNumberLabel"
+                        android:id="@+id/vp_phoneNumberText"/>
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:alpha="0.7"
+                        android:src="@drawable/ic_next_arrow"/>
+                </RelativeLayout>
 
-            </RelativeLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"
+                    android:layout_below="@id/vp_phoneNumber"
+                    android:layout_marginTop="5dp"/>
 
+                <!-- This is for Address Container-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:id="@+id/vp_address">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Address"
+                        android:textSize="20dp"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/vp_addressLabel"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Jl. xxx xxx xxx"
+                        android:textColor="@android:color/darker_gray"
+                        android:layout_below="@id/vp_addressLabel"
+                        android:id="@+id/vp_addressText"/>
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:alpha="0.7"
+                        android:src="@drawable/ic_next_arrow"/>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"
+                    android:layout_below="@id/vp_address"
+                    android:layout_marginTop="5dp"/>
+
+                <!-- This is for Your Vouchers Container-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp"
+                    android:id="@+id/vp_yourVouchers">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Your Vouchers"
+                        android:textSize="20dp"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/vp_yourVouchersLabel"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/darker_gray"
+                        android:text="loading vouchers.."
+                        android:layout_below="@id/vp_yourVouchersLabel"
+                        android:id="@+id/vp_yourVouchersText"/>
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:alpha="0.7"
+                        android:src="@drawable/ic_next_arrow"/>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"
+                    android:layout_below="@id/vp_yourVouchers"
+                    android:layout_marginTop="5dp"/>
+
+                <!-- DIVIDER-->
+                <!-- This is for Contact Support Container-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="10dp"
+                    android:paddingVertical="15dp"
+                    android:id="@+id/vp_contactSupport">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Contact Support"
+                        android:textSize="20dp"
+                        android:textColor="@android:color/black"/>
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:alpha="0.7"
+                        android:src="@drawable/ic_next_arrow"/>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"
+                    android:layout_below="@id/vp_contactSupport"
+                    android:layout_marginTop="5dp"/>
+
+
+                <!-- This is for Settings Container-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="10dp"
+                    android:paddingVertical="15dp"
+                    android:id="@+id/vp_settings">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Settings"
+                        android:textSize="20dp"
+                        android:textColor="@android:color/black"/>
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:alpha="0.7"
+                        android:src="@drawable/ic_next_arrow"/>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"
+                    android:layout_below="@id/vp_settings"
+                    android:layout_marginTop="5dp"/>
+
+                <!-- This is for Terms of Use Container-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="30dp"
+                    android:paddingVertical="15dp"
+                    android:id="@+id/vp_termsOfUse">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Terms of Use"
+                        android:textSize="20dp"
+                        android:textColor="@android:color/black"/>
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:alpha="0.7"
+                        android:src="@drawable/ic_next_arrow"/>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"
+                    android:layout_below="@id/vp_termsOfUse"
+                    android:layout_marginTop="5dp"/>
+
+                <!-- This is for Privacy Policy Container-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="30dp"
+                    android:paddingVertical="15dp"
+                    android:id="@+id/vp_privacyPolicy">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Privacy Policy"
+                        android:textSize="20dp"
+                        android:textColor="@android:color/black" />
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:alpha="0.7"
+                        android:src="@drawable/ic_next_arrow"/>
+                </RelativeLayout>
+            </LinearLayout>
         </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_below="@id/vp_relativeContainerProfile"
-            android:background="@drawable/round_card">
-
-            <!-- This is for Phone Number Container-->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:id="@+id/vp_phoneNumber">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Phone Number"
-                    android:textSize="20dp"
-                    android:textColor="@android:color/black"
-                    android:id="@+id/vp_phoneNumberLabel"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="loading phone number.."
-                    android:textColor="@android:color/darker_gray"
-                    android:layout_below="@id/vp_phoneNumberLabel"
-                    android:id="@+id/vp_phoneNumberText"/>
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:alpha="0.7"
-                    android:src="@drawable/ic_next_arrow"/>
-            </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"
-                android:layout_below="@id/vp_phoneNumber"
-                android:layout_marginTop="5dp"/>
-
-            <!-- This is for Address Container-->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:id="@+id/vp_address">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Address"
-                    android:textSize="20dp"
-                    android:textColor="@android:color/black"
-                    android:id="@+id/vp_addressLabel"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Jl. xxx xxx xxx"
-                    android:textColor="@android:color/darker_gray"
-                    android:layout_below="@id/vp_addressLabel"
-                    android:id="@+id/vp_addressText"/>
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:alpha="0.7"
-                    android:src="@drawable/ic_next_arrow"/>
-            </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"
-                android:layout_below="@id/vp_address"
-                android:layout_marginTop="5dp"/>
-
-            <!-- This is for Your Vouchers Container-->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="10dp"
-                android:id="@+id/vp_yourVouchers">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Your Vouchers"
-                    android:textSize="20dp"
-                    android:textColor="@android:color/black"
-                    android:id="@+id/vp_yourVouchersLabel"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/darker_gray"
-                    android:text="loading vouchers.."
-                    android:layout_below="@id/vp_yourVouchersLabel"
-                    android:id="@+id/vp_yourVouchersText"/>
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:alpha="0.7"
-                    android:src="@drawable/ic_next_arrow"/>
-            </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"
-                android:layout_below="@id/vp_yourVouchers"
-                android:layout_marginTop="5dp"/>
-
-            <!-- DIVIDER-->
-            <!-- This is for Contact Support Container-->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="30dp"
-                android:paddingRight="10dp"
-                android:paddingVertical="15dp"
-                android:id="@+id/vp_contactSupport">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Contact Support"
-                    android:textSize="20dp"
-                    android:textColor="@android:color/black"/>
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:alpha="0.7"
-                    android:src="@drawable/ic_next_arrow"/>
-            </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"
-                android:layout_below="@id/vp_contactSupport"
-                android:layout_marginTop="5dp"/>
-
-
-            <!-- This is for Settings Container-->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="30dp"
-                android:paddingRight="10dp"
-                android:paddingVertical="15dp"
-                android:id="@+id/vp_settings">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Settings"
-                    android:textSize="20dp"
-                    android:textColor="@android:color/black"/>
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:alpha="0.7"
-                    android:src="@drawable/ic_next_arrow"/>
-            </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"
-                android:layout_below="@id/vp_settings"
-                android:layout_marginTop="5dp"/>
-
-            <!-- This is for Terms of Use Container-->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="30dp"
-                android:paddingVertical="15dp"
-                android:id="@+id/vp_termsOfUse">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Terms of Use"
-                    android:textSize="20dp"
-                    android:textColor="@android:color/black"/>
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:alpha="0.7"
-                    android:src="@drawable/ic_next_arrow"/>
-            </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"
-                android:layout_below="@id/vp_termsOfUse"
-                android:layout_marginTop="5dp"/>
-
-            <!-- This is for Privacy Policy Container-->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="30dp"
-                android:paddingVertical="15dp"
-                android:id="@+id/vp_privacyPolicy">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Privacy Policy"
-                    android:textSize="20dp"
-                    android:textColor="@android:color/black" />
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:alpha="0.7"
-                    android:src="@drawable/ic_next_arrow"/>
-            </RelativeLayout>
-        </LinearLayout>
-    </RelativeLayout>
-</ScrollView>
+    </ScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
