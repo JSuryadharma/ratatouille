@@ -1,11 +1,13 @@
 package com.example.ratatouille.models;
 
+import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import com.example.ratatouille.db.DatabaseHelper;
 import com.example.ratatouille.db.DatabaseVars;
+import com.example.ratatouille.utils.callbackHelper;
 import com.example.ratatouille.vars.VariablesUsed;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -47,6 +49,32 @@ public class HelpTicket {
     public static void delete(String ticketID){
         DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.HelpTicketTable.HELPTICKET_TABLE);
         dbRef.child(ticketID).removeValue();
+    }
+
+    public static ArrayList<HelpTicket> getForAUser(Context context, callbackHelper cb, String userID){
+        DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.HelpTicketTable.HELPTICKET_TABLE);
+
+        ArrayList<HelpTicket> ticketListForAUser = new ArrayList<>();
+
+        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot ds : snapshot.getChildren()){
+                    if(ds.child("customerID").getValue().toString().equals(userID)){
+                        ticketListForAUser.add(ds.getValue(HelpTicket.class));
+                    }
+                }
+                Log.w(TAG, "onSuccess: All HelpTicket successfully retrieved!");
+                cb.onUserLoadCallback(context, VariablesUsed.currentUser);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "onFailure: All HelpTicket failed to retrieve!");
+            }
+        });
+
+        return ticketListForAUser;
     }
 
     public static HelpTicket get(String ticketID){

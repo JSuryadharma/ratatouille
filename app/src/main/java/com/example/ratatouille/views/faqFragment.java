@@ -81,8 +81,10 @@ public class faqFragment extends Fragment {
         helpTicket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    // TODO: HELPTICKET DESIGN LAYOUT
-//                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, ).commit();
+                Fragment helpTicketStartFragment = new helpTicketStartFragment();
+                MediaPlayer player = MediaPlayer.create(getView().getContext(), R.raw.open);
+                player.start();
+                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, helpTicketStartFragment).commit();
             }
         });
     }

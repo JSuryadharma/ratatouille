@@ -60,6 +60,7 @@ public class voucherFragment extends Fragment {
     private ArrayList<Vouchers> myVoucher;
     private ArrayList<Vouchers> voucherStore;
     private static Handler handler = null;
+    private static Runnable runnable = null;
 
     callbackHelper cb = new callbackHelper() {
         @Override
@@ -141,6 +142,7 @@ public class voucherFragment extends Fragment {
                 MediaPlayer player = MediaPlayer.create(getView().getContext(), R.raw.personleave);
                 player.start();
                 getParentFragmentManager().beginTransaction().setCustomAnimations(R.anim.fadein, R.anim.fadeout).replace(R.id.fragment_container, backFragment).commit();
+                handler.removeCallbacks(runnable);
             }
         });
 
@@ -188,15 +190,15 @@ public class voucherFragment extends Fragment {
         reload();
 
         //set the refresh content handler
-        refreshContent(30000);
+        refreshContent(60000);
 
     }
 
     public void refreshContent(int millis) {
         if(handler == null) {
-            final Handler handler = new Handler();
+            handler = new Handler();
 
-            final Runnable runnable = new Runnable() {
+            runnable = new Runnable() {
                 @Override
                 public void run() {
                     //Dont interrupt searching process..

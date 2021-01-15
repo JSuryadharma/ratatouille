@@ -47,6 +47,7 @@
                 android:layout_height="35dp"
                 android:alpha="0.7"
                 android:background="@drawable/registerbox_background"
+                android:textColor="@color/black"
                 android:inputType="text" />
         </LinearLayout>
 
@@ -67,6 +68,7 @@
                 android:layout_height="35dp"
                 android:alpha="0.7"
                 android:background="@drawable/registerbox_background"
+                android:textColor="@color/black"
                 android:inputType="text" />
         </LinearLayout>
 
@@ -87,6 +89,7 @@
                 android:layout_height="35dp"
                 android:alpha="0.7"
                 android:background="@drawable/registerbox_background"
+                android:textColor="@color/black"
                 android:inputType="text" />
     </LinearLayout>
 
@@ -107,6 +110,7 @@
             android:layout_height="35dp"
             android:alpha="0.7"
             android:background="@drawable/registerbox_background"
+            android:textColor="@color/black"
             android:inputType="text" />
         <TextView
             android:layout_width="40dp"
@@ -134,6 +138,7 @@
                 android:layout_width="200dp"
                 android:layout_height="35dp"
                 android:alpha="0.7"
+                android:textColor="@color/black"
                 android:background="@drawable/registerbox_background"
                 android:inputType="text" />
         </LinearLayout>
@@ -156,6 +161,7 @@
             android:layout_height="150dp"
             android:alpha="0.7"
             android:background="@drawable/registerbox_background"
+            android:textColor="@color/black"
             android:inputType="textMultiLine" />
     </LinearLayout>
 

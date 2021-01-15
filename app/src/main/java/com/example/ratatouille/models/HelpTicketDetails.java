@@ -1,11 +1,14 @@
 package com.example.ratatouille.models;
 
+import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import com.example.ratatouille.db.DatabaseHelper;
 import com.example.ratatouille.db.DatabaseVars;
+import com.example.ratatouille.utils.callbackHelper;
+import com.example.ratatouille.vars.VariablesUsed;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -70,7 +73,7 @@ public class HelpTicketDetails {
         return selectedValues;
     }
 
-    public static ArrayList<HelpTicketDetails> getAll(String ticketID){
+    public static ArrayList<HelpTicketDetails> getAll(Context context, callbackHelper cb, String ticketID){
         DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.HelpTicketDetailsTable.HELPTICKETDETAILS_TABLE);
 
         ArrayList<HelpTicketDetails> detailList = new ArrayList<>();
@@ -85,6 +88,7 @@ public class HelpTicketDetails {
                     }
                 }
                 Log.w(TAG, "onSuccess: All HelpTicketDetails successfully retrieved!");
+                cb.onUserLoadCallback(context, VariablesUsed.currentUser);
             }
 
             @Override

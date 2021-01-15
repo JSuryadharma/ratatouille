@@ -68,8 +68,8 @@
                         android:background="@android:color/transparent"
                         android:paddingHorizontal="5dp"
                         android:hint="Search..."
-                        android:singleLine="true"
                         android:textColor="@android:color/white"
+                        android:inputType="text"
                         android:textSize="17dp"/>
                 </LinearLayout>
 

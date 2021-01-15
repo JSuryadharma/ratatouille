@@ -50,7 +50,7 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/li_userTextbox"
-                android:hint="User name"
+                android:hint="Email"
                 android:inputType="text"
                 android:background="@android:color/transparent"/>
         </LinearLayout>

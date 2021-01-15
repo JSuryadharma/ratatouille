@@ -70,7 +70,7 @@ public class voucherAdapter extends PagerAdapter {
                     VoucherController.buyVoucher(vouchers.get(position).getPrice());
                     Utils.showDialogMessage(R.drawable.verified_logo, context, "Success Message", "Voucher successfully added\n to your account.");
                 } else {
-                    Utils.showDialogMessage(R.drawable.verified_logo, context, "Failure Message", "Failed to add : Not enough points.");
+                    Utils.showDialogMessage(R.drawable.ic_warning, context, "Failure Message", "Failed to add : Not enough points.");
                 }
             }
         });

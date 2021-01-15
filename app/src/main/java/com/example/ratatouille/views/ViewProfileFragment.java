@@ -76,7 +76,8 @@ public class ViewProfileFragment extends Fragment {
     private RelativeLayout privacyPolicy;
     private ArrayList<Vouchers> voucherList;
     private Integer TAKE_IMAGE_CODE = 1001;
-    private static Handler handler;
+    private static Handler handler = null;
+    private static Runnable runnable = null;
 
     callbackHelper cb = new callbackHelper() {
         @Override
@@ -174,6 +175,7 @@ public class ViewProfileFragment extends Fragment {
                 Fragment editSpecific = new EditSpecificFragment("Phone Number");
 
                 getParentFragmentManager().beginTransaction().setCustomAnimations(R.anim.fadein, R.anim.fade_out).replace(R.id.fragment_container, editSpecific).commit();
+                handler.removeCallbacks(runnable);
             }
         });
 
@@ -183,6 +185,7 @@ public class ViewProfileFragment extends Fragment {
                 Fragment editSpecific = new EditSpecificFragment("Address");
 
                 getParentFragmentManager().beginTransaction().setCustomAnimations(R.anim.fadein, R.anim.fade_out).replace(R.id.fragment_container, editSpecific).commit();
+                handler.removeCallbacks(runnable);
             }
         });
 
@@ -192,6 +195,7 @@ public class ViewProfileFragment extends Fragment {
                 Fragment voucherFragment = new voucherFragment();
 
                 getParentFragmentManager().beginTransaction().setCustomAnimations(R.anim.fadein, R.anim.fadeout).replace(R.id.fragment_container, voucherFragment).commit();
+                handler.removeCallbacks(runnable);
             }
         });
 
@@ -201,6 +205,7 @@ public class ViewProfileFragment extends Fragment {
                 Fragment editFragment = new EditProfileFragment();
 
                 getParentFragmentManager().beginTransaction().setCustomAnimations(R.anim.fadein, R.anim.fadeout).replace(R.id.fragment_container, editFragment).commit();
+                handler.removeCallbacks(runnable);
             }
         });
 
@@ -220,6 +225,7 @@ public class ViewProfileFragment extends Fragment {
             public void onClick(View view) {
                 Fragment faqFragment = new faqFragment();
                 getParentFragmentManager().beginTransaction().setCustomAnimations(R.anim.fadein, R.anim.fadeout).replace(R.id.fragment_container, faqFragment).commit();
+                handler.removeCallbacks(runnable);
             }
         });
 
@@ -249,14 +255,14 @@ public class ViewProfileFragment extends Fragment {
             }
         });
 
-        autoRefresh(30000);
+        autoRefresh(60000);
     }
 
     public void autoRefresh(int millis) {
         if(handler == null) {
             handler = new Handler();
 
-            Runnable runnable = new Runnable() {
+            runnable = new Runnable() {
                 @Override
                 public void run() {
                     reload();
