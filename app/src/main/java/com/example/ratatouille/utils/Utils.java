@@ -115,18 +115,14 @@ public class Utils {
         for(int i=0; i<stringlist1.length; i++){
             for(int k=0; k<stringlist2.length; k++){
                 if(stringlist1[i].equals(stringlist2[k])){
+                    System.out.println("Comparison: " + stringlist1[i] + " " + stringlist2[k]);
                     counter++;
-                    break;
                 }
             }
             Integer compare = 0;
-            if(stringlist1.length > stringlist2.length){
-                compare = stringlist1.length - stringlist2.length;
-            } else {
-                compare = stringlist2.length - stringlist1.length;
-            }
+            compare = stringlist1.length - stringlist2.length;
 
-            if(counter >= compare-1){
+            if(counter >= compare/2){
                 return true;
             }
         }

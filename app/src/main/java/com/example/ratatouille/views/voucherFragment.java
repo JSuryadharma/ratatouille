@@ -163,12 +163,13 @@ public class voucherFragment extends Fragment {
                 }
                 if(searchBox.getText().toString().equals("")) {
                     //If SearchBox not used..
-                    showVoucherStoreResults();
+                    voucherStore = VoucherController.getAllVouchers(getView().getContext(), cb);
                 } else {
                     //If SearchBox is used..
                     ArrayList<Vouchers> voucherResults = new ArrayList<>();
                     for(int i=0; i < voucherStore.size(); i++){
                         if(Utils.matchString(voucherStore.get(i).getVoucherName(), searchBox.getText().toString())){
+                            System.out.println("print: " + voucherStore.get(i).getVoucherName());
                             voucherResults.add(voucherStore.get(i));
                         }
                     }
@@ -220,6 +221,7 @@ public class voucherFragment extends Fragment {
     public void showVoucherStoreResults(){
         if (voucherStore.size() > 0) {
             nothingToShow.setVisibility(View.GONE);
+            voucher_viewPager.setVisibility(View.VISIBLE);
             // Setting the Voucher Store View Pager
             voucheradapter = new voucherAdapter(getView().getContext(), voucherStore);
             voucher_viewPager.setAdapter(voucheradapter);
@@ -234,6 +236,7 @@ public class voucherFragment extends Fragment {
         if(myVoucher.size() > 0){
             noVoucher.setVisibility(View.GONE);
             // Setting the Voucher Recycler View
+            voucher_recyclerView.setVisibility(View.VISIBLE);
             voucherrecycleradapter = new voucherRecyclerAdapter(getView().getContext(), myVoucher);
             voucher_recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
             voucher_recyclerView.setAdapter(voucherrecycleradapter);
@@ -246,7 +249,8 @@ public class voucherFragment extends Fragment {
     public void showSearchVoucherResults(ArrayList<Vouchers> voucherResults){
         if (voucherResults.size() > 0) {
             nothingToShow.setVisibility(View.GONE);
-            nextArrow.setVisibility(View.GONE);
+            nextArrow.setVisibility(View.VISIBLE);
+            voucher_viewPager.setVisibility(View.VISIBLE);
             voucheradapter = new voucherAdapter(getView().getContext(), voucherResults);
             voucher_viewPager.setAdapter(voucheradapter);
             voucher_viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -273,6 +277,7 @@ public class voucherFragment extends Fragment {
             });
         } else {
             nothingToShow.setVisibility(View.VISIBLE);
+            nextArrow.setVisibility(View.GONE);
             voucher_viewPager.setVisibility(View.GONE);
         }
     }
