@@ -17,6 +17,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.ratatouille.R;
+import com.example.ratatouille.controllers.EmployeeController;
 import com.example.ratatouille.controllers.HelpTicketController;
 import com.example.ratatouille.models.HelpTicket;
 import com.example.ratatouille.models.HelpTicketDetails;
@@ -79,6 +80,8 @@ public class helpTicketStartFragment extends Fragment {
         ticketDetails = new ArrayList<>();
 
         helpTicketDetails.setLayoutManager(new LinearLayoutManager(getView().getContext()));
+
+        EmployeeController.createEmployee("Susana", "susan123", "085155154344", "Jalan Waru nomer 5");
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override

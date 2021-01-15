@@ -38,7 +38,7 @@ public class helpTicketDetailsAdapter extends RecyclerView.Adapter<helpTicketDet
         HelpTicketDetails details = helpTicketDetails.get(position);
         holder.helpTicketID.setText(details.getMessageID());
         holder.helpTicketMessage.setText(details.getMessage());
-        holder.helpTicketEmployeeReply.setText(EmployeeController.getAEmployee(details.getEmployeeID()).getEmployeeName());
+        holder.helpTicketEmployeeReply.setText(details.getEmployeeName());
     }
 
     @Override

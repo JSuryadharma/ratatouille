@@ -94,7 +94,8 @@
                     <androidx.viewpager.widget.ViewPager
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
-                        android:id="@+id/helpticket_start_viewPager"/>
+                        android:id="@+id/helpticket_start_viewPager"
+                        android:layout_margin="10dp"/>
                 </LinearLayout>
 
             </RelativeLayout>

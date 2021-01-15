@@ -29,8 +29,8 @@ public class HelpTicketController {
         return toBeAdded;
     }
 
-    public static HelpTicketDetails addDetails(String ticketID, String employeeID, String message) {
-        HelpTicketDetails toBeAdded = new HelpTicketDetails(UUID.randomUUID().toString(), ticketID, employeeID, message);
+    public static HelpTicketDetails addDetails(String ticketID, String employeeID, String employeeName, String message) {
+        HelpTicketDetails toBeAdded = new HelpTicketDetails(UUID.randomUUID().toString(), ticketID, employeeID, employeeName, message);
         toBeAdded.save();
         return toBeAdded;
     }

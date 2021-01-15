@@ -25,6 +25,7 @@ public class HelpTicketDetails {
     private String messageID;
     private String ticketID;
     private String employeeID;
+    private String employeeName;
     private String message;
 
     private static HelpTicketDetails selectedValues = null;
@@ -34,10 +35,11 @@ public class HelpTicketDetails {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public HelpTicketDetails(String messageID, String ticketID, String employeeID, String message) {
+    public HelpTicketDetails(String messageID, String ticketID, String employeeID, String employeeName, String message) {
         this.messageID = messageID;
         this.ticketID = ticketID;
         this.employeeID = employeeID;
+        this.employeeName = employeeName;
         this.message = message;
     }
 
@@ -82,7 +84,7 @@ public class HelpTicketDetails {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot eachData : snapshot.getChildren()){
-                    if(eachData.child("ticketID").equals(ticketID)) {
+                    if(eachData.child("ticketID").getValue().toString().equals(ticketID)) {
                         HelpTicketDetails curDetail = eachData.getValue(HelpTicketDetails.class);
                         detailList.add(curDetail);
                     }
@@ -116,4 +118,7 @@ public class HelpTicketDetails {
         return message;
     }
 
+    public String getEmployeeName() {
+        return employeeName;
+    }
 }
