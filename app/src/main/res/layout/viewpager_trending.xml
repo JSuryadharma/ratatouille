@@ -11,7 +11,8 @@
         android:layout_centerInParent="true"
         android:clickable="true"
         app:cardBackgroundColor="@android:color/transparent"
-        android:focusable="true">
+        android:focusable="true"
+        app:cardElevation="0dp">
 
         <ImageView
             android:layout_width="match_parent"

@@ -13,6 +13,7 @@
         android:background="@drawable/round_card"
         android:clickable="true"
         app:cardBackgroundColor="@android:color/transparent"
+        app:cardElevation="0dp"
         android:focusable="true">
 
         <ImageView

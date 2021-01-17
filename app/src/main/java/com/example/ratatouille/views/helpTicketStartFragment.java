@@ -143,6 +143,21 @@ public class helpTicketStartFragment extends Fragment {
     public void refreshList() {
         ticketListAdapter = new helpTicketListAdapter(this.getContext(), ticketDatas);
         helpTicketLists.setAdapter(ticketListAdapter);
+        helpTicketLists.setClipToPadding(false);
+        helpTicketLists.setPadding(120, 0, 120, 0);
+        helpTicketLists.setPageMargin(60);
+        helpTicketLists.setPageTransformer(false, new ViewPager.PageTransformer() {
+            @Override
+            public void transformPage(@NonNull View page, float position) {
+                if (helpTicketLists.getCurrentItem() == 0) {
+                    page.setTranslationX(-120);
+                } else if(helpTicketLists.getCurrentItem() == ticketListAdapter.getCount() - 1){
+                    page.setTranslationX(120);
+                } else {
+                    page.setTranslationX(0);
+                }
+            }
+        });
     }
 
     public void refreshDetails() {
