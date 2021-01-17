@@ -40,7 +40,10 @@
         android:background="@drawable/round_button"
         android:layout_below="@id/seekBar"
         android:layout_marginTop="15dp"
-        android:id="@+id/introButton">
+        android:id="@+id/introButton"
+        android:clickable="true"
+        android:elevation="15dp"
+        android:focusable="true">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -10,22 +10,26 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/white">
 
             <RelativeLayout
                 android:id="@+id/vp_relativeContainerProfile"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="#DDB6C6"
+                android:background="@drawable/vp_background"
                 android:paddingHorizontal="20dp"
-                android:paddingTop="30dp">
+                android:paddingTop="30dp"
+                android:elevation="30dp">
 
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/ic_backbutton"
-                    android:id="@+id/ep_backbutton" />
+                    android:id="@+id/ep_backbutton"
+                    android:clickable="true"
+                    android:focusable="true" />
 
                 <TextView
                     android:id="@+id/ep_profileLabel"
@@ -34,7 +38,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_marginStart="30dp"
                     android:text="Edit Profile"
-                    android:textColor="@android:color/white"
+                    android:textColor="@android:color/black"
                     android:textSize="40dp" />
 
                 <TextView
@@ -45,8 +49,10 @@
                     android:layout_alignParentRight="true"
                     android:text="Save"
                     android:textAlignment="textEnd"
-                    android:textColor="@android:color/white"
-                    android:textSize="25dp" />
+                    android:textColor="@android:color/black"
+                    android:textSize="25dp"
+                    android:clickable="true"
+                    android:focusable="true" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -54,14 +60,17 @@
                     android:layout_below="@id/ep_profileLabel"
                     android:layout_marginTop="9dp"
                     android:background="@drawable/round_card"
+                    android:elevation="30dp"
                     android:padding="10dp">
 
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/ep_imageProfile"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/ic_baseline_account"/>
+                        android:src="@drawable/ic_baseline_account"
+                        android:clickable="true"
+                        android:focusable="true" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -100,7 +109,8 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginHorizontal="20dp"
                 android:layout_below="@id/vp_relativeContainerProfile"
-                android:background="@drawable/round_card">
+                android:background="@drawable/round_card"
+                android:elevation="30dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"

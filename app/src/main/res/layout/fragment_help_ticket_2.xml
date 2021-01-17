@@ -8,8 +8,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:background="#DDB6C6"
+        android:layout_height="200dp"
+        android:background="@drawable/vp_background"
         android:paddingHorizontal="10dp"
         android:paddingTop="15dp">
 
@@ -17,7 +17,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:id="@+id/ht_backButton">
+            android:id="@+id/ht_backButton"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="20dp"
@@ -30,6 +32,7 @@
                 android:text="Back"
                 android:fontFamily="@font/berlinsans"
                 android:textSize="20dp"
+                android:textColor="@android:color/white"
                 android:layout_gravity="center_vertical"
                 android:id="@+id/ht_backButton_text"/>
         </LinearLayout>
@@ -79,7 +82,8 @@
                 android:alpha="0.7"
                 android:background="@drawable/searchbox_background"
                 android:inputType="text"
-                android:paddingHorizontal="5dp"/>
+                android:paddingHorizontal="5dp"
+                android:elevation="15dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -98,7 +102,8 @@
                 android:alpha="0.7"
                 android:background="@drawable/searchbox_background"
                 android:inputType="textLongMessage"
-                android:paddingHorizontal="5dp"/>
+                android:paddingHorizontal="5dp"
+                android:elevation="15dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -121,7 +126,8 @@
                 android:inputType="textMultiLine"
                 android:hint="(upload a screenshot here)"
                 android:textSize="12dp"
-                android:paddingHorizontal="5dp"/>
+                android:paddingHorizontal="5dp"
+                android:elevation="15dp"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -139,7 +145,10 @@
             android:layout_height="60dp"
             android:background="@drawable/button_background"
             android:gravity="center"
-            android:id="@+id/ht_sendButton">
+            android:id="@+id/ht_sendButton"
+            android:elevation="15dp"
+            android:clickable="true"
+            android:focusable="true">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

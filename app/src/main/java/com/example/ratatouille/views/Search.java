@@ -65,6 +65,13 @@ public class Search extends AppCompatActivity {
         backButton = findViewById(R.id.search_backButton);
         backButton_text = findViewById(R.id.search_backButton_text);
 
+        searchedBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchedBox.setText("");
+            }
+        });
+
         searchedBox.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {

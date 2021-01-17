@@ -133,20 +133,20 @@ public class helpTicketStartFragment extends Fragment {
     }
 
     public void reload() {
-        ticketDatas = HelpTicketController.getAllTicket(getView().getContext(), cb, VariablesUsed.loggedUser.getUid());
+        ticketDatas = HelpTicketController.getAllTicket(this.getContext(), cb, VariablesUsed.loggedUser.getUid());
         System.out.println("reload check: " + selectedticketID);
         if(!selectedticketID.equals("")){
-            ticketDetails = HelpTicketController.getTicketDetails(getView().getContext(), cb, selectedticketID);
+            ticketDetails = HelpTicketController.getTicketDetails(this.getContext(), cb, selectedticketID);
         }
     }
 
     public void refreshList() {
-        ticketListAdapter = new helpTicketListAdapter(getView().getContext(), ticketDatas);
+        ticketListAdapter = new helpTicketListAdapter(this.getContext(), ticketDatas);
         helpTicketLists.setAdapter(ticketListAdapter);
     }
 
     public void refreshDetails() {
-        ticketDetailsAdapter = new helpTicketDetailsAdapter(getView().getContext(), ticketDetails);
+        ticketDetailsAdapter = new helpTicketDetailsAdapter(this.getContext(), ticketDetails);
         helpTicketDetails.setAdapter(ticketDetailsAdapter);
     }
 }

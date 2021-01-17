@@ -8,8 +8,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:background="@android:color/white"
+        android:layout_height="200dp"
+        android:background="@drawable/vp_background"
         android:paddingHorizontal="10dp"
         android:paddingTop="15dp">
 

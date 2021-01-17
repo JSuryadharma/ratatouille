@@ -11,17 +11,92 @@
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/bottom_nav"></FrameLayout>
+        android:layout_height="match_parent"/>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_nav"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <RelativeLayout
+        android:layout_width="380dp"
+        android:layout_height="70dp"
+        android:background="@drawable/round_navbar"
+        android:elevation="50dp"
+        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:background="#ffb6c1"
-        app:itemIconTint="@drawable/tab_color"
-        app:itemTextColor="@drawable/tab_color"
-        app:menu="@menu/bottom_nav" />
+        android:layout_marginBottom="30dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50dp"
+            android:clickable="true"
+            android:focusable="true">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/figma_home"
+                android:id="@+id/navbar_home"
+                android:layout_centerInParent="true"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/navbar_home"
+                android:src="@drawable/figma_i"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:id="@+id/navbar_home_i"
+                android:visibility="invisible"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:clickable="true"
+            android:focusable="true">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/figma_user"
+                android:id="@+id/navbar_profile"
+                android:layout_centerInParent="true"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/navbar_profile"
+                android:src="@drawable/figma_i"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:id="@+id/navbar_profile_i"
+                android:visibility="invisible"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="50dp"
+            android:clickable="true"
+            android:focusable="true">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/figma_favourite"
+                android:id="@+id/navbar_favourite"
+                android:layout_centerInParent="true"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/navbar_favourite"
+                android:src="@drawable/figma_i"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:id="@+id/navbar_favourite_i"
+                android:visibility="invisible"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
 
 </RelativeLayout>

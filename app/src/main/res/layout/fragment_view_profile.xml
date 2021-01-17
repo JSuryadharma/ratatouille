@@ -12,15 +12,16 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/white">
+            android:background="@android:color/white"
+            android:paddingBottom="100dp">
 
             <RelativeLayout
                 android:id="@+id/vp_relativeContainerProfile"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="#DDB6C6"
+                android:background="@drawable/vp_background"
                 android:paddingHorizontal="20dp"
-                android:paddingTop="20dp">
+                android:paddingTop="30dp">
 
                 <TextView
                     android:id="@+id/vp_profileLabel"
@@ -28,8 +29,10 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:text="Profile"
-                    android:textColor="@android:color/white"
-                    android:textSize="40dp" />
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:textSize="40dp"
+                    android:elevation="15dp"/>
 
                 <TextView
                     android:id="@+id/vp_editButton"
@@ -39,23 +42,24 @@
                     android:layout_alignParentRight="true"
                     android:text="Edit"
                     android:textAlignment="textEnd"
-                    android:textColor="@android:color/white"
+                    android:textColor="@android:color/black"
                     android:textSize="25dp" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="110dp"
                     android:layout_below="@id/vp_profileLabel"
                     android:layout_marginTop="9dp"
                     android:background="@drawable/round_card"
+                    android:elevation="30dp"
                     android:padding="10dp">
 
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/vp_imageProfile"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/ic_baseline_account" />
+                        android:src="@drawable/ic_person" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -95,7 +99,8 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginBottom="20dp"
                 android:layout_below="@id/vp_relativeContainerProfile"
-                android:background="@drawable/round_card">
+                android:background="@drawable/round_card"
+                android:elevation="30dp">
 
                 <!-- This is for Phone Number Container-->
                 <RelativeLayout
@@ -129,7 +134,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="0.01dp"
                     android:background="@android:color/darker_gray"
                     android:layout_below="@id/vp_phoneNumber"
                     android:layout_marginTop="5dp"/>
@@ -166,10 +171,10 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="0.01dp"
                     android:background="@android:color/darker_gray"
                     android:layout_below="@id/vp_address"
-                    android:layout_marginTop="5dp"/>
+                    android:layout_marginTop="1dp"/>
 
                 <!-- This is for Your Vouchers Container-->
                 <RelativeLayout
@@ -204,7 +209,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="0.01dp"
                     android:background="@android:color/darker_gray"
                     android:layout_below="@id/vp_yourVouchers"
                     android:layout_marginTop="5dp"/>
@@ -237,7 +242,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="0.01dp"
                     android:background="@android:color/darker_gray"
                     android:layout_below="@id/vp_contactSupport"
                     android:layout_marginTop="5dp"/>
@@ -270,7 +275,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="0.01dp"
                     android:background="@android:color/darker_gray"
                     android:layout_below="@id/vp_settings"
                     android:layout_marginTop="5dp"/>
@@ -292,7 +297,7 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginRight="20dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:alpha="0.7"
@@ -301,7 +306,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="0.01dp"
                     android:background="@android:color/darker_gray"
                     android:layout_below="@id/vp_termsOfUse"
                     android:layout_marginTop="5dp"/>
@@ -323,7 +328,7 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginRight="20dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:alpha="0.7"

@@ -16,8 +16,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="198dp"
-                android:background="#DDB6C6"
+                android:layout_height="200dp"
+                android:background="@drawable/vp_background"
                 android:orientation="vertical"
                 android:paddingHorizontal="10dp"
                 android:paddingTop="15dp">
@@ -25,7 +25,8 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/faq_backbutton">
+                    android:id="@+id/faq_backbutton"
+                    android:clickable="true">
 
                     <ImageView
                         android:layout_width="40dp"
@@ -49,14 +50,16 @@
                     android:fontFamily="@font/berlinsans"
                     android:paddingTop="10dp"
                     android:text="Help"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:elevation="15dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/berlinsans"
                     android:text="My Account"
-                    android:textSize="40dp" />
+                    android:textSize="40dp"
+                    android:elevation="15dp"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -66,8 +69,10 @@
                     android:orientation="horizontal"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="2dp"
-                    android:focusable="false"
-                    android:focusableInTouchMode="true">
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:elevation="15dp"
+                    android:clickable="true">
 
                     <ImageView
                         android:layout_width="25dp"
@@ -96,16 +101,24 @@
                 android:fontFamily="@font/berlinsans"
                 android:textFontWeight="1000"
                 android:textColor="@android:color/black"
+                android:elevation="15dp"
                 android:layout_marginTop="25dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="600dp"
+                android:background="@drawable/round_card"
+                android:elevation="15dp"
+                android:layout_margin="15dp">
 
             <ExpandableListView
                 android:layout_width="match_parent"
                 android:layout_height="600dp"
                 android:id="@+id/faq_list"
-                android:background="@drawable/round_card"
                 android:padding="10dp"
-                android:layout_margin="10dp"
                 android:nestedScrollingEnabled="false"/>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

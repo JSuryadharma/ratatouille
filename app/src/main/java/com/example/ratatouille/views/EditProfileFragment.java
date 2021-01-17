@@ -24,19 +24,21 @@ import com.example.ratatouille.controllers.UserController;
 import com.example.ratatouille.utils.Utils;
 import com.example.ratatouille.vars.VariablesUsed;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class EditProfileFragment extends Fragment {
-    SwipeRefreshLayout pullToRefresh;
-    ImageView backButton;
-    ImageView profileImage;
-    TextView profileUsername;
-    TextView profileEmail;
-    TextView saveButton;
-    EditText inputUsername;
-    EditText inputPassword;
-    EditText inputEmail;
-    EditText inputPhoneNumber;
-    EditText inputAddress;
-    EditText inputName;
+    private SwipeRefreshLayout pullToRefresh;
+    private ImageView backButton;
+    private CircleImageView profileImage;
+    private TextView profileUsername;
+    private TextView profileEmail;
+    private TextView saveButton;
+    private EditText inputUsername;
+    private EditText inputPassword;
+    private EditText inputEmail;
+    private EditText inputPhoneNumber;
+    private EditText inputAddress;
+    private EditText inputName;
 
     public EditProfileFragment() {
 

@@ -15,21 +15,24 @@
             android:text="Welcome back"
             android:textColor="@android:color/white"
             android:textSize="40dp"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            android:elevation="15dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sign in to continue"
             android:textColor="@android:color/white"
             android:layout_gravity="center_horizontal"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            android:elevation="15dp"/>
 
 
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/ratatouille_logor" />
+            android:src="@drawable/ratatouille_logor"
+            android:elevation="15dp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -39,7 +42,9 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/round_edittext"
             android:focusable="false"
-            android:focusableInTouchMode="true">
+            android:focusableInTouchMode="true"
+            android:elevation="15dp"
+            android:clickable="true">
 
             <ImageView
                 android:layout_width="50dp"
@@ -63,7 +68,9 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/round_edittext"
             android:focusable="false"
-            android:focusableInTouchMode="true">
+            android:focusableInTouchMode="true"
+            android:elevation="15dp"
+            android:clickable="true">
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -91,7 +98,9 @@
             android:layout_marginTop="15dp"
             android:id="@+id/li_loginButton"
             android:background="@drawable/button_background"
-            android:gravity="center">
+            android:gravity="center"
+            android:elevation="15dp"
+            android:clickable="true">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -116,7 +125,8 @@
             android:background="@android:color/transparent"
             android:text="Don't have an account?"
             android:textColor="@android:color/white"
-            android:textSize="10dp" />
+            android:textSize="10dp"
+            android:clickable="true"/>
 
         <TextView
             android:id="@+id/li_forgotPassword"
@@ -126,7 +136,8 @@
             android:background="@android:color/transparent"
             android:text="Forgot Password"
             android:textColor="@android:color/white"
-            android:textSize="10dp" />
+            android:textSize="10dp"
+            android:clickable="true"/>
 
     </LinearLayout>
 

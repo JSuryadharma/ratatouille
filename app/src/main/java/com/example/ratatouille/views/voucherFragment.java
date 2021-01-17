@@ -52,10 +52,8 @@ public class voucherFragment extends Fragment {
     private TextView nothingToShow;
     private ViewPager voucher_viewPager;
     private PagerAdapter voucheradapter;
-    private ImageView nextArrow;
     private TextView noVoucher;
     private RecyclerView voucher_recyclerView;
-    private TextView refreshButton;
     private com.example.ratatouille.utils.voucherRecyclerAdapter voucherrecycleradapter;
     private ArrayList<Vouchers> myVoucher;
     private ArrayList<Vouchers> voucherStore;
@@ -93,33 +91,9 @@ public class voucherFragment extends Fragment {
         voucher_viewPager = view.findViewById(R.id.voucher_viewPager);
         noVoucher = view.findViewById(R.id.voucher_noVoucher);
         voucher_recyclerView = view.findViewById(R.id.voucher_recylerView);
-        nextArrow = view.findViewById(R.id.voucher_nextArrow);
 
         myVoucher = VoucherController.getAllUserVoucher(getView().getContext(), cb);
         voucherStore = VoucherController.getAllVouchers(getView().getContext(), cb);
-
-        voucher_viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                if(position == myVoucher.size() - 1){
-                    nextArrow.setVisibility(View.INVISIBLE);
-                    System.out.println(position);
-                } else {
-                    nextArrow.setVisibility(View.VISIBLE);
-                    System.out.println(position);
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
 
         //Refresh Listener
         pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -216,8 +190,8 @@ public class voucherFragment extends Fragment {
     public void reload() {
         header.setText(VariablesUsed.currentUser.getName() + ",");
         points.setText(VariablesUsed.currentUser.getPoints().toString());
-        myVoucher = VoucherController.getAllUserVoucher(getView().getContext(), cb);
-        voucherStore = VoucherController.getAllVouchers(getView().getContext(), cb);
+        myVoucher = VoucherController.getAllUserVoucher(this.getContext(), cb);
+        voucherStore = VoucherController.getAllVouchers(this.getContext(), cb);
     }
 
     public void showVoucherStoreResults(){
@@ -227,9 +201,23 @@ public class voucherFragment extends Fragment {
             // Setting the Voucher Store View Pager
             voucheradapter = new voucherAdapter(getView().getContext(), voucherStore);
             voucher_viewPager.setAdapter(voucheradapter);
+            voucher_viewPager.setClipToPadding(false);
+            voucher_viewPager.setPadding(120, 0, 120, 0);
+            voucher_viewPager.setPageMargin(60);
+            voucher_viewPager.setPageTransformer(false, new ViewPager.PageTransformer() {
+                @Override
+                public void transformPage(@NonNull View page, float position) {
+                    if (voucher_viewPager.getCurrentItem() == 0) {
+                        page.setTranslationX(-120);
+                    } else if(voucher_viewPager.getCurrentItem() == voucheradapter.getCount() - 1){
+                        page.setTranslationX(120);
+                    } else {
+                        page.setTranslationX(0);
+                    }
+                }
+            });
         } else {
             nothingToShow.setVisibility(View.VISIBLE);
-            nextArrow.setVisibility(View.GONE);
             voucher_viewPager.setVisibility(View.GONE);
         }
     }
@@ -251,35 +239,26 @@ public class voucherFragment extends Fragment {
     public void showSearchVoucherResults(ArrayList<Vouchers> voucherResults){
         if (voucherResults.size() > 0) {
             nothingToShow.setVisibility(View.GONE);
-            nextArrow.setVisibility(View.VISIBLE);
             voucher_viewPager.setVisibility(View.VISIBLE);
             voucheradapter = new voucherAdapter(getView().getContext(), voucherResults);
             voucher_viewPager.setAdapter(voucheradapter);
-            voucher_viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            voucher_viewPager.setClipToPadding(false);
+            voucher_viewPager.setPadding(120, 0, 120, 0);
+            voucher_viewPager.setPageMargin(60);
+            voucher_viewPager.setPageTransformer(false, new ViewPager.PageTransformer() {
                 @Override
-                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-                }
-
-                @Override
-                public void onPageSelected(int position) {
-                    if(position == voucherResults.size() - 1){
-                        nextArrow.setVisibility(View.INVISIBLE);
-                        System.out.println(position);
+                public void transformPage(@NonNull View page, float position) {
+                    if (voucher_viewPager.getCurrentItem() == 0) {
+                        page.setTranslationX(-120);
+                    } else if(voucher_viewPager.getCurrentItem() == voucheradapter.getCount() - 1){
+                        page.setTranslationX(120);
                     } else {
-                        nextArrow.setVisibility(View.VISIBLE);
-                        System.out.println(position);
+                        page.setTranslationX(0);
                     }
-                }
-
-                @Override
-                public void onPageScrollStateChanged(int state) {
-
                 }
             });
         } else {
             nothingToShow.setVisibility(View.VISIBLE);
-            nextArrow.setVisibility(View.GONE);
             voucher_viewPager.setVisibility(View.GONE);
         }
     }

@@ -40,10 +40,10 @@ public class customerHomeFragment extends Fragment {
     private ViewPager trendingView;
     private RecyclerView mostPopular_recyclerView;
     private com.example.ratatouille.utils.mostPopularAdapter mostPopularAdapter;
-    private ImageView nextArrow;
     private TextView searchBox;
     private Context context;
     private ArrayList<trendingModels> trendingList;
+    private ArrayList<mostPopularModels> mostPopularList;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -97,13 +97,9 @@ public class customerHomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         pullToRefresh = getView().findViewById(R.id.home_pulltorefresh);
         trendingView = getView().findViewById(R.id.trending_viewPager);
-        nextArrow = getView().findViewById(R.id.home_nextArrow);
         searchBox = getView().findViewById(R.id.searchBox);
         context = this.getContext();
         trendingList = new ArrayList<>();
-
-        //Setting Trending Adapter
-        reload();
 
         pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -116,57 +112,24 @@ public class customerHomeFragment extends Fragment {
         });
 
 
-//        searchBox.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View view, boolean b) {
-//                if (!b) {
-//                    Intent intent = new Intent(context, Search.class);
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString("q", searchBox.getText().toString());
-//                    intent.putExtras(bundle);
-//                    context.startActivity(intent);
-//                }
-//            }
-//        });
-
-        trendingView.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        searchBox.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                if(position == trendingList.size() - 1){
-                    nextArrow.setVisibility(View.INVISIBLE);
-                    System.out.println(position);
-                } else {
-                    nextArrow.setVisibility(View.VISIBLE);
-                    System.out.println(position);
+            public void onFocusChange(View view, boolean b) {
+                if (!b) {
+                    Intent intent = new Intent(context, Search.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("q", searchBox.getText().toString());
+                    intent.putExtras(bundle);
+                    context.startActivity(intent);
                 }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
             }
         });
 
         mostPopular_recyclerView = getView().findViewById(R.id.mostPopular_recyclerview);
         mostPopular_recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-//        ArrayList<mostPopularModels> mostPopularList = new ArrayList<>();
-//        Calendar myCal = Calendar.getInstance();
-//
-//        //Replace this with API
-//        myCal.set(Calendar.HOUR, 10);
-//        myCal.set(Calendar.MINUTE, 00);
-//        mostPopularList.add(new mostPopularModels("Banana Leaf - Kemayoran", "Restaurant", (float) 4.5, myCal, "https://3.bp.blogspot.com/-O6iLBqFyGu8/VS9aTbm6tjI/AAAAAAAABj8/_1IZOyytYBs/s1600/Chicken_Satay_on_Banana_Leaf_Java__m.jpg"));
-//
-//        myCal.set(Calendar.HOUR, 8);
-//        myCal.set(Calendar.MINUTE, 00);
-//        mostPopularList.add(new mostPopularModels("McDonald's - Sudirman", "Fast Food, Burgers", (float) 5, myCal, "https://i1.wp.com/www.eatthis.com/wp-content/uploads/2020/07/mcdonalds-1.jpg?resize=640%2C360&ssl=1"));
-
+        //Setting Trending Adapter
+        reload();
     }
 
     private void loadTrending() {
@@ -177,11 +140,38 @@ public class customerHomeFragment extends Fragment {
         trendingList.add(new trendingModels("Din Tai Fung - Pacific Place", "Chinese Food, Family", (float) 4, 130000, "https://media-cdn.tripadvisor.com/media/photo-s/19/b9/5f/18/din.jpg"));
         trendingAdapter = new trendingAdapter(this.getContext(), trendingList);
         trendingView.setAdapter(trendingAdapter);
+        trendingView.setClipToPadding(false);
+        trendingView.setPadding(120, 0, 120, 0);
+        trendingView.setPageMargin(60);
+        trendingView.setPageTransformer(false, new ViewPager.PageTransformer() {
+            @Override
+            public void transformPage(@NonNull View page, float position) {
+                if (trendingView.getCurrentItem() == 0) {
+                    page.setTranslationX(-120);
+                } else if(trendingView.getCurrentItem() == trendingAdapter.getCount() - 1){
+                    page.setTranslationX(120);
+                } else {
+                    page.setTranslationX(0);
+                }
+            }
+        });
     }
 
     private void loadMostPopularList() {
-        //        mostPopularAdapter = new mostPopularAdapter(this.getContext(), mostPopularList);
-        //        mostPopular_recyclerView.setAdapter(mostPopularAdapter);
+        ArrayList<mostPopularModels> mostPopularList = new ArrayList<>();
+        Calendar myCal = Calendar.getInstance();
+
+        //Replace this with API
+        myCal.set(Calendar.HOUR, 10);
+        myCal.set(Calendar.MINUTE, 00);
+        mostPopularList.add(new mostPopularModels("Banana Leaf - Kemayoran", "Restaurant", (float) 4.5, myCal.getTime().toString(), "https://3.bp.blogspot.com/-O6iLBqFyGu8/VS9aTbm6tjI/AAAAAAAABj8/_1IZOyytYBs/s1600/Chicken_Satay_on_Banana_Leaf_Java__m.jpg"));
+
+        myCal.set(Calendar.HOUR, 8);
+        myCal.set(Calendar.MINUTE, 00);
+        mostPopularList.add(new mostPopularModels("McDonald's - Sudirman", "Fast Food, Burgers", (float) 5, myCal.getTime().toString(), "https://i1.wp.com/www.eatthis.com/wp-content/uploads/2020/07/mcdonalds-1.jpg?resize=640%2C360&ssl=1"));
+
+        mostPopularAdapter = new mostPopularAdapter(this.getContext(), mostPopularList);
+                mostPopular_recyclerView.setAdapter(mostPopularAdapter);
     }
 
     public void reload() {

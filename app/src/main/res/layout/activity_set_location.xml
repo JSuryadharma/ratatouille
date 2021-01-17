@@ -47,7 +47,9 @@
             android:layout_marginTop="15dp"
             android:id="@+id/li_loginButton"
             android:background="@drawable/location_button_background"
-            android:gravity="center">
+            android:gravity="center"
+            android:elevation="15dp"
+            android:clickable="true">
 
             <ImageView
                 android:layout_width="wrap_content"

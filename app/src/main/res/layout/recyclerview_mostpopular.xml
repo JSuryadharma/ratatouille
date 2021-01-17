@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginHorizontal="15dp"
-    android:paddingVertical="15dp">
+    android:paddingVertical="15dp"
+    android:elevation="15dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:background="@drawable/round_card">
+        android:background="@drawable/round_card"
+        android:clickable="true"
+        app:cardBackgroundColor="@android:color/transparent"
+        android:focusable="true">
 
         <ImageView
             android:layout_width="match_parent"
@@ -23,12 +27,14 @@
             android:layout_height="55dp"
             android:layout_gravity="bottom"
             android:orientation="vertical"
-            android:padding="5dp">
+            android:padding="5dp"
+            android:background="@color/white">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Title"
                 android:textSize="15dp"
+                android:textColor="@color/black"
                 android:singleLine="true"
                 android:ellipsize="marquee"
                 android:marqueeRepeatLimit ="marquee_forever"
@@ -41,6 +47,7 @@
                 android:layout_height="wrap_content"
                 android:text="Types"
                 android:textSize="8dp"
+                android:textColor="@color/black"
                 android:id="@+id/mostPopularTypes"/>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -58,6 +65,7 @@
                     android:layout_height="wrap_content"
                     android:text="Opens at 1.00am"
                     android:textSize="12dp"
+                    android:textColor="@color/black"
                     android:gravity="right"
                     android:textStyle="italic"
                     android:id="@+id/mostPopularOpenHour"/>

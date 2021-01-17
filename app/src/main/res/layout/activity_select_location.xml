@@ -18,7 +18,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="30dp"
+            android:clickable="true">
 
             <ImageView
                 android:layout_width="20dp"
@@ -44,7 +45,8 @@
             android:background="@drawable/searchbox_background"
             android:orientation="horizontal"
             android:paddingHorizontal="15dp"
-            android:paddingVertical="5dp">
+            android:paddingVertical="5dp"
+            android:clickable="true">
 
             <ImageView
                 android:layout_width="25dp"

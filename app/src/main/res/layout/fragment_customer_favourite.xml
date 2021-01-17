@@ -13,8 +13,8 @@
         <RelativeLayout
             android:id="@+id/home_container"
             android:layout_width="match_parent"
-            android:layout_height="121dp"
-            android:background="#DDB6C6"
+            android:layout_height="200dp"
+            android:background="@drawable/vp_background"
             android:paddingHorizontal="20dp"
             android:paddingTop="40dp">
 
@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:text="Favourites"
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/black"
                 android:textSize="40dp"
                 android:textStyle="bold" />
 

@@ -22,10 +22,12 @@ import com.example.ratatouille.controllers.UserController;
 import com.example.ratatouille.utils.Utils;
 import com.example.ratatouille.vars.VariablesUsed;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class EditSpecificFragment extends Fragment {
     private String mode;
     private ImageView backButton;
-    private ImageView profileImage;
+    private CircleImageView profileImage;
     private TextView profileUsername;
     private TextView profileEmail;
     private TextView toBeLabel;

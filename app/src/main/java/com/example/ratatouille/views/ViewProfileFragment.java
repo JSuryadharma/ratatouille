@@ -44,6 +44,8 @@ import org.w3c.dom.Text;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
@@ -60,7 +62,7 @@ public class ViewProfileFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private static final int PICK_IMAGE = 1;
     private SwipeRefreshLayout pulltorefresh;
-    private ImageView imageProfile;
+    private CircleImageView imageProfile;
     private TextView editButton;
     private TextView usernameText;
     private TextView emailText;

@@ -16,8 +16,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="130dp"
-                android:background="#DDB6C6"
+                android:layout_height="200dp"
+                android:background="@drawable/vp_background"
                 android:paddingHorizontal="10dp"
                 android:paddingTop="15dp">
 
@@ -26,7 +26,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:id="@+id/helpticket_start_backButton"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:clickable="true"
+                    android:focusable="true">
 
                     <ImageView
                         android:layout_width="20dp"
@@ -39,6 +41,7 @@
                         android:text="Back"
                         android:fontFamily="@font/berlinsans"
                         android:textSize="20dp"
+                        android:textColor="@android:color/white"
                         android:layout_gravity="center_vertical"
                         android:id="@+id/ht_backButton_text"/>
                 </LinearLayout>
@@ -49,7 +52,9 @@
                     android:layout_centerInParent="true"
                     android:text="HelpTicket"
                     android:textSize="35dp"
-                    android:fontFamily="@font/berlinsans"/>
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/berlinsans"
+                    android:elevation="15dp"/>
 
             </RelativeLayout>
 
@@ -65,7 +70,8 @@
                     android:textSize="25dp"
                     android:textColor="@color/black"
                     android:fontFamily="@font/berlinsans"
-                    android:layout_marginTop="25dp"/>
+                    android:layout_marginTop="25dp"
+                    android:elevation="15dp"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -75,7 +81,10 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="40dp"
                     android:layout_marginTop="25dp"
-                    android:id="@+id/helpticket_start_addButton">
+                    android:id="@+id/helpticket_start_addButton"
+                    android:elevation="15dp"
+                    android:clickable="true"
+                    android:focusable="true">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -89,7 +98,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="75dp"
                     android:layout_marginHorizontal="10dp"
-                    android:background="@drawable/round_card">
+                    android:background="@drawable/round_card"
+                    android:elevation="15dp">
 
                     <androidx.viewpager.widget.ViewPager
                         android:layout_width="match_parent"
@@ -112,6 +122,7 @@
                     android:layout_centerHorizontal="true"
                     android:textSize="25dp"
                     android:textColor="@color/black"
+                    android:elevation="15dp"
                     android:fontFamily="@font/berlinsans"/>
 
                 <LinearLayout
@@ -119,7 +130,8 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/round_card"
                     android:layout_marginTop="45dp"
-                    android:layout_marginHorizontal="10dp">
+                    android:layout_marginHorizontal="10dp"
+                    android:elevation="15dp">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"

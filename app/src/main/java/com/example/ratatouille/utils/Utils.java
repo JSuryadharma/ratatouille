@@ -3,6 +3,8 @@ package com.example.ratatouille.utils;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.view.View;
 import android.view.Window;
@@ -83,6 +85,8 @@ public class Utils {
         Dialog showDialog = new Dialog(context);
         showDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         showDialog.setContentView(R.layout.dialog_view);
+
+        showDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         TextView titleDialog = showDialog.findViewById(R.id.dialog_title);
         TextView textDialog = showDialog.findViewById(R.id.dialog_information);

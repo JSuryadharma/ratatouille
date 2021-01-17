@@ -16,10 +16,10 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="198dp"
+                android:layout_height="200dp"
                 android:paddingHorizontal="20dp"
                 android:paddingTop="40dp"
-                android:background="#DDB6C6"
+                android:background="#DAD9E2"
                 android:id="@+id/home_container">
 
                 <TextView
@@ -28,7 +28,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:text="Browse"
-                    android:textColor="@android:color/white"
+                    android:textColor="@android:color/black"
                     android:textSize="40dp"
                     android:textStyle="bold"/>
 
@@ -39,9 +39,10 @@
                     android:layout_alignParentRight="true"
                     android:text="Set Locations"
                     android:textAlignment="textEnd"
-                    android:textColor="@android:color/white"
+                    android:textColor="@android:color/black"
                     android:id="@+id/home_setLocation"
-                    android:textSize="15dp"/>
+                    android:textSize="15dp"
+                    android:clickable="true"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -53,7 +54,9 @@
                     android:paddingVertical="5dp"
                     android:layout_below="@id/home_browselabel"
                     android:focusable="false"
-                    android:focusableInTouchMode="true">
+                    android:focusableInTouchMode="true"
+                    android:elevation="15dp"
+                    android:clickable="true">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -67,8 +70,8 @@
                         android:layout_height="35dp"
                         android:background="@android:color/transparent"
                         android:paddingHorizontal="5dp"
-                        android:hint="Search..."
-                        android:textColor="@android:color/white"
+                        android:text="Search..."
+                        android:textColor="@android:color/darker_gray"
                         android:inputType="text"
                         android:textSize="17dp"/>
                 </LinearLayout>
@@ -85,48 +88,56 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Trending this week"
-                    android:textSize="20dp"
+                    android:textSize="25dp"
                     android:textStyle="bold"
                     android:textColor="@android:color/black"
                     android:layout_marginTop="20dp"
-                    android:layout_marginHorizontal="20dp"/>
+                    android:layout_marginHorizontal="20dp"
+                    android:elevation="15dp"
+                    android:layout_marginBottom="10dp"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:background="@drawable/round_card"
+                    android:padding="15dp"
+                    android:elevation="15dp">
+
                     <androidx.viewpager.widget.ViewPager
                         android:layout_width="350dp"
                         android:layout_height="150dp"
-                        android:id="@+id/trending_viewPager"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginHorizontal="10dp"/>
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_next_arrow"
-                        android:id="@+id/home_nextArrow"/>
+                        android:id="@+id/trending_viewPager"/>
                 </LinearLayout>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Most Popular"
-                    android:textSize="20dp"
+                    android:textSize="25dp"
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:layout_marginTop="20dp"
-                    android:layout_marginHorizontal="20dp"/>
+                    android:layout_marginHorizontal="20dp"
+                    android:elevation="15dp"
+                    android:layout_marginBottom="10dp"/>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:paddingHorizontal="5dp"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingHorizontal="5dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="5dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:nestedScrollingEnabled="false"
-                    android:clipToPadding="false"
-                    android:id="@+id/mostPopular_recyclerview"/>
+                    android:background="@drawable/round_card"
+                    android:elevation="15dp"
+                    android:padding="15dp">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"
+                        android:clipToPadding="false"
+                        android:id="@+id/mostPopular_recyclerview"/>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 

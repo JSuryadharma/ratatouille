@@ -16,17 +16,18 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="230dp"
+                android:layout_height="200dp"
                 android:paddingHorizontal="20dp"
                 android:paddingTop="20dp"
-                android:background="#DDB6C6"
+                android:background="@drawable/vp_background"
                 android:id="@+id/home_container">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:id="@+id/voucher_backButton">
+                    android:id="@+id/voucher_backButton"
+                    android:clickable="true">
 
                     <ImageView
                         android:layout_width="20dp"
@@ -39,7 +40,7 @@
                         android:text="Back"
                         android:fontFamily="@font/berlinsans"
                         android:textSize="20dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:layout_gravity="center_vertical"
                         android:id="@+id/voucher_backButton_text"/>
 
@@ -51,41 +52,46 @@
                     android:text="Name"
                     android:textSize="20dp"
                     android:textStyle="bold"
-                    android:textColor="@android:color/white"
+                    android:textColor="@android:color/black"
                     android:id="@+id/voucher_header"
                     android:layout_below="@id/voucher_backButton"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginHorizontal="20dp"/>
+                    android:layout_marginTop="25dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:elevation="15dp"/>
 
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1234"
-                    android:textSize="30dp"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/white"
-                    android:layout_below="@id/voucher_header"
-                    android:id="@+id/voucher_header_points"
-                    android:layout_marginHorizontal="20dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="points"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/white"
-                    android:layout_below="@id/voucher_header_points"
-                    android:layout_marginHorizontal="20dp"/>
-
+                    android:orientation="horizontal"
+                    android:layout_below="@id/voucher_header">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1234"
+                        android:textSize="30dp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/voucher_header_points"
+                        android:layout_marginHorizontal="20dp"
+                        android:elevation="15dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="points"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:elevation="15dp"/>
+                </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="150dp"
+                    android:layout_marginTop="130dp"
                     android:background="@drawable/searchbox_background"
                     android:orientation="horizontal"
                     android:paddingHorizontal="15dp"
-                    android:paddingVertical="5dp">
+                    android:paddingVertical="5dp"
+                    android:elevation="15dp">
 
                     <ImageView
                         android:layout_width="26dp"
@@ -98,8 +104,8 @@
                         android:layout_height="35dp"
                         android:background="@android:color/transparent"
                         android:paddingHorizontal="5dp"
-                        android:hint="Search..."
-                        android:textColor="@android:color/white"
+                        android:text="Search..."
+                        android:textColor="@android:color/darker_gray"
                         android:id="@+id/voucher_searchBox"
                         android:textSize="17dp"
                         android:focusable="true"
@@ -137,20 +143,17 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:background="@drawable/round_card"
+                    android:elevation="15dp"
+                    android:padding="15dp">
 
                     <androidx.viewpager.widget.ViewPager
                         android:id="@+id/voucher_viewPager"
                         android:layout_width="350dp"
                         android:layout_height="150dp"
                         android:layout_marginHorizontal="10dp"
-                        android:layout_marginTop="10dp" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_next_arrow"
-                        android:id="@+id/voucher_nextArrow"/>
+                        android:layout_marginTop="10dp"/>
 
                 </LinearLayout>
                 <TextView
@@ -174,16 +177,20 @@
                     android:layout_gravity="center"
                     android:id="@+id/voucher_noVoucher"/>
 
-
-                <androidx.recyclerview.widget.RecyclerView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:id="@+id/voucher_recylerView"
-                    android:nestedScrollingEnabled="false"
-                    android:clipToPadding="false"/>
-
+                    android:background="@drawable/round_card"
+                    android:elevation="15dp"
+                    android:padding="15dp"
+                    android:layout_marginTop="10dp">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/voucher_recylerView"
+                        android:nestedScrollingEnabled="false"
+                        android:clipToPadding="false"/>
+                </LinearLayout>
             </LinearLayout>
 
             <TextView

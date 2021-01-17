@@ -13,15 +13,18 @@
         <RelativeLayout
             android:id="@+id/home_container"
             android:layout_width="match_parent"
-            android:layout_height="134dp"
-            android:background="#DDB6C6"
+            android:layout_height="200dp"
+            android:background="@drawable/vp_background"
             android:paddingHorizontal="20dp"
             android:paddingTop="30dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/search_backButton">
+                android:id="@+id/search_backButton"
+                android:clickable="true"
+                android:focusable="true"
+                android:elevation="15dp">
 
                 <ImageView
                     android:layout_width="20dp"
@@ -34,26 +37,36 @@
                     android:text="Back"
                     android:fontFamily="@font/berlinsans"
                     android:textSize="20dp"
-                    android:textColor="@color/white"
+                    android:textColor="@android:color/white"
                     android:id="@+id/search_backButton_text"
                     android:layout_gravity="center_vertical"/>
 
             </LinearLayout>
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Search"
+                android:textColor="@color/black"
+                android:textSize="40dp"
+                android:textStyle="bold"
+                android:layout_marginTop="35dp"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="110dp"
                 android:background="@drawable/searchbox_background"
                 android:orientation="horizontal"
                 android:paddingHorizontal="15dp"
-                android:paddingVertical="5dp">
+                android:paddingVertical="5dp"
+                android:elevation="15dp"
+                android:clickable="true"
+                android:focusable="true">
 
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_baseline_search_24" />
+                    android:src="@drawable/ic_baseline_search_24"/>
 
                 <EditText
                     android:id="@+id/searched_box"
@@ -62,9 +75,9 @@
                     android:background="@android:color/transparent"
                     android:inputType="text"
                     android:paddingHorizontal="5dp"
-                    android:hint="Search..."
+                    android:text="Search..."
                     android:singleLine="true"
-                    android:textColor="@android:color/white"
+                    android:textColor="@android:color/darker_gray"
                     android:textSize="17dp" />
             </LinearLayout>
 
