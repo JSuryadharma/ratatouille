@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.NoActionBar">
-        <activity android:name=".views.Search"></activity>
+        <activity android:name=".views.restaurantDetails"></activity>
+        <activity android:name=".views.Search" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">

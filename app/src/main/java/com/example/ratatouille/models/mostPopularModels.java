@@ -12,14 +12,16 @@ public class mostPopularModels {
     private Float rate;
     private String openHour;
     private String imageUrl;
+    private String restoId;
 
-    public mostPopularModels(String title, String type, Float rate, String openHour, String imageUrl) {
+    public mostPopularModels(String title, String type, Float rate, String openHour, String imageUrl, String restoId) {
         this.layoutModel = R.id.trending_viewPager; // only 1 layout model needed.
         this.title = title;
         this.type = type;
         this.rate = rate;
         this.openHour = openHour;
         this.imageUrl = imageUrl;
+        this.restoId = restoId;
     }
 
     public int getLayoutModel() {
@@ -44,5 +46,9 @@ public class mostPopularModels {
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public String getRestoId() {
+        return restoId;
     }
 }

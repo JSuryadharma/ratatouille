@@ -65,13 +65,6 @@ public class Search extends AppCompatActivity {
         backButton = findViewById(R.id.search_backButton);
         backButton_text = findViewById(R.id.search_backButton_text);
 
-        searchedBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                searchedBox.setText("");
-            }
-        });
-
         searchedBox.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
@@ -147,6 +140,7 @@ public class Search extends AppCompatActivity {
             JSONObject resto = null;
             resto = restaurants.getJSONObject(i).getJSONObject("restaurant");
 
+            String resto_id = resto.getString("id");
             String resto_name = resto.getString("name");
             String location = resto.getJSONObject("location").getString("locality");
             String type = resto.getString("cuisines");
@@ -154,8 +148,13 @@ public class Search extends AppCompatActivity {
             String photo_url = resto.getString("thumb");
             String jam_buka = resto.getString("timings");
 
+            if(photo_url.equals("")) {
+                System.out.println(photo_url);
+                photo_url = VariablesUsed.DEFAULT_PHOTO;
+            }
+
             mostPopularList.add(new mostPopularModels(resto_name + " - " + location,
-                    type, (float) rating, jam_buka, photo_url));
+                    type, (float) rating, jam_buka, photo_url, resto_id));
         }
 
         mostPopularAdapter = new mostPopularAdapter(this, mostPopularList);

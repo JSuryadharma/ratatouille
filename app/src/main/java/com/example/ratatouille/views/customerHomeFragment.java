@@ -162,13 +162,13 @@ public class customerHomeFragment extends Fragment {
         Calendar myCal = Calendar.getInstance();
 
         //Replace this with API
-        myCal.set(Calendar.HOUR, 10);
-        myCal.set(Calendar.MINUTE, 00);
-        mostPopularList.add(new mostPopularModels("Banana Leaf - Kemayoran", "Restaurant", (float) 4.5, myCal.getTime().toString(), "https://3.bp.blogspot.com/-O6iLBqFyGu8/VS9aTbm6tjI/AAAAAAAABj8/_1IZOyytYBs/s1600/Chicken_Satay_on_Banana_Leaf_Java__m.jpg"));
-
-        myCal.set(Calendar.HOUR, 8);
-        myCal.set(Calendar.MINUTE, 00);
-        mostPopularList.add(new mostPopularModels("McDonald's - Sudirman", "Fast Food, Burgers", (float) 5, myCal.getTime().toString(), "https://i1.wp.com/www.eatthis.com/wp-content/uploads/2020/07/mcdonalds-1.jpg?resize=640%2C360&ssl=1"));
+//        myCal.set(Calendar.HOUR, 10);
+//        myCal.set(Calendar.MINUTE, 00);
+//        mostPopularList.add(new mostPopularModels("Banana Leaf - Kemayoran", "Restaurant", (float) 4.5, myCal.getTime().toString(), "https://3.bp.blogspot.com/-O6iLBqFyGu8/VS9aTbm6tjI/AAAAAAAABj8/_1IZOyytYBs/s1600/Chicken_Satay_on_Banana_Leaf_Java__m.jpg"));
+//
+//        myCal.set(Calendar.HOUR, 8);
+//        myCal.set(Calendar.MINUTE, 00);
+//        mostPopularList.add(new mostPopularModels("McDonald's - Sudirman", "Fast Food, Burgers", (float) 5, myCal.getTime().toString(), "https://i1.wp.com/www.eatthis.com/wp-content/uploads/2020/07/mcdonalds-1.jpg?resize=640%2C360&ssl=1"));
 
         mostPopularAdapter = new mostPopularAdapter(this.getContext(), mostPopularList);
                 mostPopular_recyclerView.setAdapter(mostPopularAdapter);
