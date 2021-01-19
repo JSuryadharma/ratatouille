@@ -1,11 +1,13 @@
 package com.example.ratatouille.views;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -22,18 +24,22 @@ import com.example.ratatouille.controllers.HelpTicketController;
 import com.example.ratatouille.models.HelpTicket;
 import com.example.ratatouille.models.HelpTicketDetails;
 import com.example.ratatouille.models.Users;
+import com.example.ratatouille.utils.Utils;
 import com.example.ratatouille.utils.callbackHelper;
 import com.example.ratatouille.utils.helpTicketDetailsAdapter;
 import com.example.ratatouille.utils.helpTicketListAdapter;
 import com.example.ratatouille.vars.VariablesUsed;
 
 import java.util.ArrayList;
-import java.util.UUID;
+
+import static com.example.ratatouille.views.customerView.menubar_layout;
 
 public class helpTicketStartFragment extends Fragment {
     private SwipeRefreshLayout refresh;
     private LinearLayout backButton;
     private LinearLayout addButton;
+    private EditText editTextMessage;
+    private LinearLayout sendMessageButton;
     private ViewPager helpTicketLists;
     private RecyclerView helpTicketDetails;
     private ArrayList<HelpTicket> ticketDatas;
@@ -41,6 +47,7 @@ public class helpTicketStartFragment extends Fragment {
     private helpTicketListAdapter ticketListAdapter;
     private helpTicketDetailsAdapter ticketDetailsAdapter;
     public static String selectedticketID = "";
+    public static Integer selectedItem = -1;
     private static Handler handler = null;
     private static Runnable runnable = null;
 
@@ -74,10 +81,18 @@ public class helpTicketStartFragment extends Fragment {
         refresh = view.findViewById(R.id.helpticket_start_refresh);
         backButton = view.findViewById(R.id.helpticket_start_backButton);
         addButton = view.findViewById(R.id.helpticket_start_addButton);
+
+        menubar_layout.setVisibility(View.GONE);
+
+        sendMessageButton = view.findViewById(R.id.helpticket_start_sendButton);
+        editTextMessage = view.findViewById(R.id.helpticket_start_editText);
+
         helpTicketLists = view.findViewById(R.id.helpticket_start_viewPager);
         helpTicketDetails = view.findViewById(R.id.helpticket_start_recyclerView);
         ticketDatas = new ArrayList<>();
         ticketDetails = new ArrayList<>();
+
+        customerView.menubar_layout.setVisibility(View.GONE);
 
         helpTicketDetails.setLayoutManager(new LinearLayoutManager(getView().getContext()));
 
@@ -91,6 +106,7 @@ public class helpTicketStartFragment extends Fragment {
                         .setCustomAnimations(R.anim.fadein, R.anim.fadeout)
                         .replace(R.id.fragment_container, backFragment).commit();
                 handler.removeCallbacks(runnable);
+                menubar_layout.setVisibility(View.VISIBLE);
             }
         });
 
@@ -104,6 +120,32 @@ public class helpTicketStartFragment extends Fragment {
                         .setCustomAnimations(R.anim.fadein, R.anim.fadeout)
                         .replace(R.id.fragment_container, addTicketFragment).commit();
                 handler.removeCallbacks(runnable);
+            }
+        });
+
+        editTextMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editTextMessage.setText("");
+            }
+        });
+
+        sendMessageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(selectedticketID.equals("")){
+                    Utils.showDialogMessage(R.drawable.ic_warning, getView().getContext(), "Invalid Request", "Please choose your selection of Help Ticket!");
+                    return;
+                }
+                if(editTextMessage.getText() == null || editTextMessage.getText().toString().equals("")){
+                    Utils.showDialogMessage(R.drawable.ic_warning, getView().getContext(), "Invalid Message Input", "Please fill in your message text!");
+                    return;
+                }
+                HelpTicketController.addDetails(selectedticketID, VariablesUsed.loggedUser.getUid(), VariablesUsed.currentUser.getUsername(), editTextMessage.getText().toString());
+                MediaPlayer sendPlay = MediaPlayer.create(getView().getContext(), R.raw.send_message);
+                sendPlay.start();
+                editTextMessage.setText("");
+                reload();
             }
         });
 
@@ -137,6 +179,8 @@ public class helpTicketStartFragment extends Fragment {
         System.out.println("reload check: " + selectedticketID);
         if(!selectedticketID.equals("")){
             ticketDetails = HelpTicketController.getTicketDetails(this.getContext(), cb, selectedticketID);
+        } else {
+            refreshDetails();
         }
     }
 
@@ -161,7 +205,12 @@ public class helpTicketStartFragment extends Fragment {
     }
 
     public void refreshDetails() {
+        if(selectedticketID == null || selectedticketID.equals("")) {
+            ticketDetails = new ArrayList<>();
+            System.out.println("Masukkkkk");
+        }
         ticketDetailsAdapter = new helpTicketDetailsAdapter(this.getContext(), ticketDetails);
+
         helpTicketDetails.setAdapter(ticketDetailsAdapter);
     }
 }

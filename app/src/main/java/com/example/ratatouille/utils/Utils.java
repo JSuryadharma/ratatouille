@@ -115,21 +115,17 @@ public class Utils {
         String[] stringlist1 = string1.split(" ");
         String[] stringlist2 = string2.split(" ");
         Integer counter = 0;
+        Integer idx = 0;
 
-        for(int i=0; i<stringlist1.length; i++){
-            for(int k=0; k<stringlist2.length; k++){
-                if(stringlist1[i].equals(stringlist2[k])){
-                    System.out.println("Comparison: " + stringlist1[i] + " " + stringlist2[k]);
-                    counter++;
-                }
-            }
-            Integer compare = 0;
-            compare = stringlist1.length - stringlist2.length;
-
-            if(counter >= compare/2){
-                return true;
+        for(int k=0; k<stringlist2.length; k++) {
+            if (stringlist2[k].equals(stringlist1[idx])) {
+                System.out.println("Comparison: " + stringlist1[idx] + " " + stringlist2[k]);
+                counter++;
+                idx++;
+            } else {
+                return false;
             }
         }
-        return false;
+        return true;
     }
 }

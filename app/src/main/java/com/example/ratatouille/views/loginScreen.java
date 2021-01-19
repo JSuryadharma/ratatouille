@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -154,5 +155,11 @@ public class loginScreen extends AppCompatActivity {
     public void startIntroPage(Context context){
         Intent introIntent = new Intent(context, introductionView.class);
         startActivity(introIntent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Do Here what ever you want do on back press; Do nothing
+        Toast.makeText(getBaseContext(), "Please use the back button inside of the application.", Toast.LENGTH_LONG).show();
     }
 }

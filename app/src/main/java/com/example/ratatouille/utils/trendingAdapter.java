@@ -50,9 +50,9 @@ public class trendingAdapter extends PagerAdapter {
         ImageView trendingImage = currentView.findViewById(R.id.trendingImage);
 
         title.setText(selectedItem.getTitle());
-        types.setText(selectedItem.getType());
+        types.setText("Type: " + selectedItem.getType());
         rating.setRating(selectedItem.getRate());
-        price.setText(selectedItem.getPrice().toString());
+        price.setText("Rp. " + selectedItem.getPrice().toString());
 
         Glide.with(currentView).load(selectedItem.getImageUrl()).into(trendingImage);
 

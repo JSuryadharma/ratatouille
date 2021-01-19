@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.example.ratatouille.controllers.VoucherController;
 import com.example.ratatouille.db.DatabaseHelper;
@@ -65,4 +66,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        // Do Here what ever you want do on back press; Do nothing
+        Toast.makeText(getBaseContext(), "Please use the back button inside of the application.", Toast.LENGTH_LONG);
+    }
 }

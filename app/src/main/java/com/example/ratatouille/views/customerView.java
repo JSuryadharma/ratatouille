@@ -6,6 +6,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,14 +24,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import static maes.tech.intentanim.CustomIntent.customType;
 
 public class customerView extends AppCompatActivity {
-
-    ImageView navbar_home;
-    ImageView navbar_profile;
-    ImageView navbar_favourite;
-    ImageView navbar_home_i;
-    ImageView navbar_profile_i;
-    ImageView navbar_favourite_i;
-    Fragment selectedFragment;
+    public static RelativeLayout menubar_layout;
+    private ImageView navbar_home;
+    private ImageView navbar_profile;
+    private ImageView navbar_favourite;
+    private ImageView navbar_home_i;
+    private ImageView navbar_profile_i;
+    private ImageView navbar_favourite_i;
+    private Fragment selectedFragment;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,9 +54,13 @@ public class customerView extends AppCompatActivity {
         navbar_profile_i = findViewById(R.id.navbar_profile_i);
         navbar_favourite_i = findViewById(R.id.navbar_favourite_i);
 
+        menubar_layout = findViewById(R.id.menubar_layout);
+
         navbar_home_i.setVisibility(View.VISIBLE);
         navbar_profile_i.setVisibility(View.INVISIBLE);
         navbar_favourite_i.setVisibility(View.INVISIBLE);
+
+        menubar_layout.setVisibility(View.VISIBLE);
 
         navbar_home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,5 +99,10 @@ public class customerView extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        // Do Here what ever you want do on back press; Do nothing
+        Toast.makeText(getBaseContext(), "Please use the back button inside of the application.", Toast.LENGTH_LONG).show();
+    }
 
 }

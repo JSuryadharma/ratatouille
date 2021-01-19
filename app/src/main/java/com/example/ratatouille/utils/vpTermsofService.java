@@ -1,4 +1,4 @@
-package com.example.ratatouille.views;
+package com.example.ratatouille.utils;
 
 public class vpTermsofService {
     private static String terms;

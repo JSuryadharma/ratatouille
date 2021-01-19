@@ -9,8 +9,10 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -68,6 +70,12 @@ public class restaurantDetails extends AppCompatActivity {
         menu.setText(VariablesUsed.currentRestoDetail.getMenu_url());
         ratingBar.setRating((float) VariablesUsed.currentRestoDetail.getRating());
         photoView.setAdapter(VariablesUsed.currentRestoDetail.getPhotoAdapter());
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Do Here what ever you want do on back press; Do nothing
+        Toast.makeText(getBaseContext(), "Please use the back button inside of the application.", Toast.LENGTH_LONG).show();
     }
 
 }

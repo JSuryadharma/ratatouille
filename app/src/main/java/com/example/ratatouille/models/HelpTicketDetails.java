@@ -24,8 +24,8 @@ import static android.content.ContentValues.TAG;
 public class HelpTicketDetails {
     private String messageID;
     private String ticketID;
-    private String employeeID;
-    private String employeeName;
+    private String userID;
+    private String userName;
     private String message;
 
     private static HelpTicketDetails selectedValues = null;
@@ -35,11 +35,11 @@ public class HelpTicketDetails {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public HelpTicketDetails(String messageID, String ticketID, String employeeID, String employeeName, String message) {
+    public HelpTicketDetails(String messageID, String ticketID, String userID, String userName, String message) {
         this.messageID = messageID;
         this.ticketID = ticketID;
-        this.employeeID = employeeID;
-        this.employeeName = employeeName;
+        this.userID = userID;
+        this.userName = userName;
         this.message = message;
     }
 
@@ -110,15 +110,15 @@ public class HelpTicketDetails {
         return ticketID;
     }
 
-    public String getEmployeeID() {
-        return employeeID;
+    public String getUserID() {
+        return userID;
     }
 
     public String getMessage() {
         return message;
     }
 
-    public String getEmployeeName() {
-        return employeeName;
+    public String getUserName() {
+        return userName;
     }
 }

@@ -1,30 +1,21 @@
 package com.example.ratatouille.views;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Handler;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,11 +28,9 @@ import com.example.ratatouille.models.Users;
 import com.example.ratatouille.models.Vouchers;
 import com.example.ratatouille.utils.Utils;
 import com.example.ratatouille.utils.callbackHelper;
+import com.example.ratatouille.utils.vpTermsofService;
 import com.example.ratatouille.vars.VariablesUsed;
 
-import org.w3c.dom.Text;
-
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -153,6 +142,8 @@ public class ViewProfileFragment extends Fragment {
         voucherList = VoucherController.getAllUserVoucher(getView().getContext(), cb);
 
         reload();
+
+        customerView.menubar_layout.setVisibility(View.VISIBLE);
 
         //        ProfilePicture Initializations...
         if(VariablesUsed.loggedUser.getPhotoUrl() != null) {

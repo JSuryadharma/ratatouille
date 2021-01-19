@@ -51,6 +51,8 @@ public class faqFragment extends Fragment {
         faq_group = faqGenerator.generateGroups();
         faq_content = faqGenerator.generateChild();
 
+        customerView.menubar_layout.setVisibility(View.GONE);
+
         backButton_text.setTextColor(Color.WHITE);
 
         backButton.setOnClickListener(new View.OnClickListener() {

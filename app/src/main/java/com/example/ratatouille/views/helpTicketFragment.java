@@ -47,6 +47,8 @@ public class helpTicketFragment extends Fragment {
         screenshot = view.findViewById(R.id.ht_screenshot);
         helpTicketButton = view.findViewById(R.id.ht_sendButton);
 
+        customerView.menubar_layout.setVisibility(View.GONE);
+
         backButton_text.setTextColor(Color.WHITE);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override

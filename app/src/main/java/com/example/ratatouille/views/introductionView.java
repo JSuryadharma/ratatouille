@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -74,5 +75,11 @@ public class introductionView extends AppCompatActivity {
         introAdapter = new introductionAdapter(this);
         //set adapter to view Pager
         intro_viewPager.setAdapter(introAdapter);
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Do Here what ever you want do on back press; Do nothing
+        Toast.makeText(getBaseContext(), "Please use the back button inside of the application.", Toast.LENGTH_LONG).show();
     }
 }

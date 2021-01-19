@@ -17,18 +17,18 @@
             android:layout_height="match_parent"
             android:background="@drawable/helpticketdetails_background">
             <TextView
-                android:layout_height="40dp"
+                android:layout_height="10dp"
                 android:layout_width="250dp"
                 android:text="HelpTicket_ID"
                 android:layout_marginTop="15dp"
                 android:layout_marginHorizontal="15dp"
-                android:textSize="20dp"
+                android:textSize="10dp"
                 android:fontFamily="@font/berlinsans"
                 android:textColor="@color/black"
                 android:id="@+id/helpticketdetails_title"/>
             <TextView
                 android:layout_width="250dp"
-                android:layout_height="40dp"
+                android:layout_height="70dp"
                 android:text="Message: "
                 android:textSize="18dp"
                 android:textColor="@color/black"

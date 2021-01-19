@@ -59,6 +59,8 @@ public class EditSpecificFragment extends Fragment {
         profileUsername.setText(VariablesUsed.currentUser.getUsername());
         profileEmail.setText(VariablesUsed.loggedUser.getEmail());
 
+        customerView.menubar_layout.setVisibility(View.GONE);
+
         if(VariablesUsed.loggedUser.getPhotoUrl() != null) {
             Glide.with(getView().getContext())
                     .load(VariablesUsed.loggedUser.getPhotoUrl())

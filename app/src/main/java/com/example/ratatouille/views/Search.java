@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -165,5 +166,12 @@ public class Search extends AppCompatActivity {
         Intent mainMenuIntent = new Intent(context, customerView.class);
         startActivity(mainMenuIntent);
         finish();
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        // Do Here what ever you want do on back press; Do nothing
+        Toast.makeText(getBaseContext(), "Please use the back button inside of the application.", Toast.LENGTH_LONG).show();
     }
 }

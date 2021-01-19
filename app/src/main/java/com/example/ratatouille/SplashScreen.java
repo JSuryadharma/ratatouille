@@ -3,6 +3,8 @@ package com.example.ratatouille;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.Toast;
+
 import com.example.ratatouille.views.loginScreen;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,5 +25,11 @@ public class SplashScreen extends AppCompatActivity {
                 finish();
             }
         }, SPLASH_TIMEOUT);
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Do Here what ever you want do on back press; Do nothing
+        Toast.makeText(getBaseContext(), "Please use the back button inside of the application.", Toast.LENGTH_LONG);
     }
 }

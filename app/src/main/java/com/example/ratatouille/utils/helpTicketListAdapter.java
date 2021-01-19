@@ -60,7 +60,11 @@ public class helpTicketListAdapter extends PagerAdapter {
         helpTicketDescription.setText(selectedTicket.getDescription());
         helpTicketDate.setText(selectedTicket.getAskHelpDate());
 
-        helpTicketButton.setBackgroundResource(R.drawable.round_button);
+        if(position == helpTicketStartFragment.selectedItem){
+            helpTicketButton.setBackgroundResource(R.drawable.voucherbutton_pressed_background);
+        } else {
+            helpTicketButton.setBackgroundResource(R.drawable.round_button);
+        }
 
         helpTicketButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,10 +79,11 @@ public class helpTicketListAdapter extends PagerAdapter {
                 }
 
                 if (touched.get(position) == false) {
-                    helpTicketButton.setBackgroundResource(R.drawable.voucherbutton_pressed_background);
+                    helpTicketStartFragment.selectedItem = position;
                     touched.set(position, true);
                     System.out.println("onpressed: " + position);
                 } else if (touched.get(position) == true) {
+                    helpTicketStartFragment.selectedItem = -1;
                     helpTicketButton.setBackgroundResource(R.drawable.voucherbutton_background);
                     touched.set(position, false);
                     System.out.println("offpressed: " + position);

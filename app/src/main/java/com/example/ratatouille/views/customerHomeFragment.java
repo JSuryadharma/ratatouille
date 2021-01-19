@@ -101,6 +101,8 @@ public class customerHomeFragment extends Fragment {
         context = this.getContext();
         trendingList = new ArrayList<>();
 
+        customerView.menubar_layout.setVisibility(View.VISIBLE);
+
         pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -170,8 +172,8 @@ public class customerHomeFragment extends Fragment {
 //        myCal.set(Calendar.MINUTE, 00);
 //        mostPopularList.add(new mostPopularModels("McDonald's - Sudirman", "Fast Food, Burgers", (float) 5, myCal.getTime().toString(), "https://i1.wp.com/www.eatthis.com/wp-content/uploads/2020/07/mcdonalds-1.jpg?resize=640%2C360&ssl=1"));
 
-        mostPopularAdapter = new mostPopularAdapter(this.getContext(), mostPopularList);
-                mostPopular_recyclerView.setAdapter(mostPopularAdapter);
+            mostPopularAdapter = new mostPopularAdapter(this.getContext(), mostPopularList);
+            mostPopular_recyclerView.setAdapter(mostPopularAdapter);
     }
 
     public void reload() {

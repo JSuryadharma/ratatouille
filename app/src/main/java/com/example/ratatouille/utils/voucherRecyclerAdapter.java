@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ratatouille.R;
 import com.example.ratatouille.models.Vouchers;
 import com.example.ratatouille.vars.VariablesUsed;
+import com.example.ratatouille.views.voucherFragment;
 
 import java.util.ArrayList;
 
@@ -42,8 +43,15 @@ public class voucherRecyclerAdapter extends RecyclerView.Adapter<voucherRecycler
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Vouchers selectedVoucher = voucherList.get(position) ;
         holder.voucherName.setText(selectedVoucher.getVoucherName());
-        holder.voucherDisc.setText(selectedVoucher.getVoucherDisc().toString());
-        holder.voucherType.setText("Dine-in");
+        holder.voucherDisc.setText("Discount: " + selectedVoucher.getVoucherDisc().toString() + " %");
+        holder.voucherType.setText("Type: Dine-in");
+
+        if(position == voucherFragment.selectedItem){
+            holder.voucherButton.setBackgroundResource(R.drawable.voucherbutton_pressed_background);
+        } else {
+            holder.voucherButton.setBackgroundResource(R.drawable.voucherbutton_background);
+        }
+
         holder.voucherButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,12 +65,13 @@ public class voucherRecyclerAdapter extends RecyclerView.Adapter<voucherRecycler
                 }
 
                 if (touched.get(position) == false) {
+                    voucherFragment.selectedItem = position;
                     holder.voucherButton.setBackgroundResource(R.drawable.voucherbutton_pressed_background);
                     VariablesUsed.currentVoucher = voucherList.get(position);
                     touched.set(position, true);
                     System.out.println("onpressed: " + position);
                 } else if (touched.get(position) == true) {
-                    holder.voucherButton.setBackgroundResource(R.drawable.voucherbutton_background);
+                    voucherFragment.selectedItem = -1;
                     VariablesUsed.currentVoucher = null;
                     touched.set(position, false);
                     System.out.println("offpressed: " + position);

@@ -125,4 +125,10 @@ public class signupScreen extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        // Do Here what ever you want do on back press; Do nothing
+        Toast.makeText(getBaseContext(), "Please use the back button inside of the application.", Toast.LENGTH_LONG).show();
+    }
 }

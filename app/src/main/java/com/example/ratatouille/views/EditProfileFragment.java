@@ -71,6 +71,8 @@ public class EditProfileFragment extends Fragment {
         saveButton = view.findViewById(R.id.ep_saveButton);
         profileImage = view.findViewById(R.id.ep_imageProfile);
 
+        customerView.menubar_layout.setVisibility(View.GONE);
+
         if(VariablesUsed.loggedUser.getPhotoUrl() != null) {
             Glide.with(getView().getContext())
                     .load(VariablesUsed.loggedUser.getPhotoUrl())
