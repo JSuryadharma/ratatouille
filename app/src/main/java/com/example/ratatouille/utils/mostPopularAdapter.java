@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.ratatouille.R;
+import com.example.ratatouille.controllers.restoDetailController;
 import com.example.ratatouille.models.mostPopularModels;
 import com.example.ratatouille.views.restaurantDetails;
 
@@ -33,10 +34,7 @@ public class mostPopularAdapter extends RecyclerView.Adapter<mostPopularAdapter.
             int itemPosition = mostPopularRecycler.getChildAdapterPosition(view);
             mostPopularModels t = mostPopularList.get(itemPosition);
             Intent intent = new Intent(context, restaurantDetails.class);
-            Bundle bundle = new Bundle();
-            bundle.putString("id", t.getRestoId());
-            intent.putExtras(bundle);
-            context.startActivity(intent);
+            restoDetailController.query(context, intent, t.getRestoId());
         }
     };
 
