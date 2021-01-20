@@ -1,17 +1,23 @@
 package com.example.ratatouille.models;
 
+import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import com.example.ratatouille.db.DatabaseHelper;
 import com.example.ratatouille.db.DatabaseVars;
+import com.example.ratatouille.utils.callbackHelper;
+import com.example.ratatouille.vars.VariablesUsed;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import static android.content.ContentValues.TAG;
 
@@ -19,8 +25,10 @@ public class Review {
     private String reviewID;
     private String restaurantID;
     private String customerID;
+    private String customerUsername; //denormalization..
     private Double maskRate, temperatureRate, sanitizeRate, socialDistancingRate, physicalBarriersRate;
     private String description;
+    private String submitDate;
 
     private static Review selectedValues = null;
 
@@ -29,16 +37,20 @@ public class Review {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public Review(String reviewID, String restaurantID, String customerID, Double maskRate, Double temperatureRate, Double sanitizeRate, Double socialDistancingRate, Double physicalBarriersRate, String description) {
+    public Review(String reviewID, String restaurantID, String customerID, String customerUsername, Double maskRate, Double temperatureRate, Double sanitizeRate, Double socialDistancingRate, Double physicalBarriersRate, String description) {
         this.reviewID = reviewID;
         this.restaurantID = restaurantID;
         this.customerID = customerID;
+        this.customerUsername = customerUsername;
         this.maskRate = maskRate;
         this.temperatureRate = temperatureRate;
         this.sanitizeRate = sanitizeRate;
         this.socialDistancingRate = socialDistancingRate;
         this.physicalBarriersRate = physicalBarriersRate;
         this.description = description;
+        Date curDate = new Date();
+        SimpleDateFormat dformat = new SimpleDateFormat("dd-mm-yyyy");
+        this.submitDate = dformat.format(curDate).toString();
     }
 
     public void save(){
@@ -59,13 +71,14 @@ public class Review {
         return this;
     }
 
-    public static Review get(String reviewID){
+    public static Review get(Context context, callbackHelper cb, String reviewID){
         DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.ReviewTable.REVIEW_TABLE);
         selectedValues = null;
         dbRef.child(reviewID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 selectedValues = snapshot.getValue(Review.class);
+                cb.onUserLoadCallback(context, VariablesUsed.currentUser);
                 Log.w(TAG, "onSuccess: Review retrieved!");
             }
 
@@ -77,7 +90,7 @@ public class Review {
         return selectedValues;
     }
 
-    public static ArrayList<Review> getAll(String restaurantID){ // Review for specific restaurant
+    public static ArrayList<Review> getAll(Context context, callbackHelper cb, String restaurantID){ // Review for specific restaurant
         DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.ReviewTable.REVIEW_TABLE);
         ArrayList<Review> reviewList = new ArrayList<>();
         dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -89,6 +102,7 @@ public class Review {
                         reviewList.add(curReview);
                     }
                 }
+                cb.onUserLoadCallback(context, VariablesUsed.currentUser);
                 Log.w(TAG, "onSuccess: All Review retrieved!");
             }
 
@@ -98,5 +112,77 @@ public class Review {
             }
         });
         return reviewList;
+    }
+
+    public static ArrayList<Review> getAllForAUser(Context context, callbackHelper cb, String userID){ // Review for specific restaurant
+        DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.ReviewTable.REVIEW_TABLE);
+        ArrayList<Review> reviewList = new ArrayList<>();
+        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot eachData : snapshot.getChildren()){ // setiap child dari snapshot json
+                    if(eachData.child("userID").getValue().equals(userID)) {
+                        Review curReview = eachData.getValue(Review.class);
+                        reviewList.add(curReview);
+                    }
+                }
+                cb.onUserLoadCallback(context, VariablesUsed.currentUser);
+                Log.w(TAG, "onSuccess: All Review retrieved!");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "onFailure: All Review retrival failed!");
+            }
+        });
+        return reviewList;
+    }
+
+    public String getCustomerUsername() {
+        return customerUsername;
+    }
+
+    public String getReviewID() {
+        return reviewID;
+    }
+
+    public String getRestaurantID() {
+        return restaurantID;
+    }
+
+    public String getCustomerID() {
+        return customerID;
+    }
+
+    public Double getMaskRate() {
+        return maskRate;
+    }
+
+    public Double getTemperatureRate() {
+        return temperatureRate;
+    }
+
+    public Double getSanitizeRate() {
+        return sanitizeRate;
+    }
+
+    public Double getSocialDistancingRate() {
+        return socialDistancingRate;
+    }
+
+    public Double getPhysicalBarriersRate() {
+        return physicalBarriersRate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public static Review getSelectedValues() {
+        return selectedValues;
+    }
+
+    public String getSubmitDate() {
+        return submitDate;
     }
 }

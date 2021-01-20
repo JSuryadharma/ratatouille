@@ -202,7 +202,7 @@ public class voucherFragment extends Fragment {
             nothingToShow.setVisibility(View.GONE);
             voucher_viewPager.setVisibility(View.VISIBLE);
             // Setting the Voucher Store View Pager
-            voucheradapter = new voucherAdapter(getView().getContext(), voucherStore);
+            voucheradapter = new voucherAdapter(this.getContext(), voucherStore);
             voucher_viewPager.setAdapter(voucheradapter);
             voucher_viewPager.setClipToPadding(false);
             voucher_viewPager.setPadding(120, 0, 120, 0);
@@ -230,7 +230,7 @@ public class voucherFragment extends Fragment {
             noVoucher.setVisibility(View.GONE);
             // Setting the Voucher Recycler View
             voucher_recyclerView.setVisibility(View.VISIBLE);
-            voucherrecycleradapter = new voucherRecyclerAdapter(getView().getContext(), myVoucher);
+            voucherrecycleradapter = new voucherRecyclerAdapter(this.getContext(), myVoucher);
             voucher_recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
             voucher_recyclerView.setAdapter(voucherrecycleradapter);
         } else {
@@ -243,7 +243,7 @@ public class voucherFragment extends Fragment {
         if (voucherResults.size() > 0) {
             nothingToShow.setVisibility(View.GONE);
             voucher_viewPager.setVisibility(View.VISIBLE);
-            voucheradapter = new voucherAdapter(getView().getContext(), voucherResults);
+            voucheradapter = new voucherAdapter(this.getContext(), voucherResults);
             voucher_viewPager.setAdapter(voucheradapter);
             voucher_viewPager.setClipToPadding(false);
             voucher_viewPager.setPadding(120, 0, 120, 0);

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.example.ratatouille.controllers.ReviewController;
 import com.example.ratatouille.controllers.VoucherController;
 import com.example.ratatouille.db.DatabaseHelper;
 import com.example.ratatouille.db.DatabaseVars;
@@ -34,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
 
         Intent startAppUI = new Intent(MainActivity.this, SplashScreen.class);
         startActivity(startAppUI);
+
+        // Refresh Review Code Database
+        ReviewController.refreshReviewVerificationDatabase();
 
         // user table test, firebase
         DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.UsersTable.USERS_TABLE);

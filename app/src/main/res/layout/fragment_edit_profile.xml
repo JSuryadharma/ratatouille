@@ -19,8 +19,7 @@
                 android:layout_height="200dp"
                 android:background="@drawable/vp_background"
                 android:paddingHorizontal="20dp"
-                android:paddingTop="30dp"
-                android:elevation="30dp">
+                android:paddingTop="30dp">
 
                 <ImageView
                     android:layout_width="40dp"
@@ -60,7 +59,7 @@
                     android:layout_below="@id/ep_profileLabel"
                     android:layout_marginTop="9dp"
                     android:background="@drawable/round_card"
-                    android:elevation="30dp"
+                    android:elevation="15dp"
                     android:padding="10dp">
 
                     <de.hdodenhof.circleimageview.CircleImageView
@@ -110,7 +109,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_below="@id/vp_relativeContainerProfile"
                 android:background="@drawable/round_card"
-                android:elevation="30dp">
+                android:elevation="15dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"

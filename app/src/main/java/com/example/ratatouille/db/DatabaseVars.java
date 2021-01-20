@@ -66,4 +66,8 @@ public class DatabaseVars {
     public static final class ReservationRequestTable {
         public static final String RESERVATIONREQUEST_TABLE = "ReservationRequest";
     }
+
+    public static final class ReviewVerification {
+        public static final String REVIEWVERIFICATION_TABLE = "ReviewVerification";
+    }
 }

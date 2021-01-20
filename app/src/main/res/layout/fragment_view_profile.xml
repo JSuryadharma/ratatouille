@@ -51,7 +51,7 @@
                     android:layout_below="@id/vp_profileLabel"
                     android:layout_marginTop="9dp"
                     android:background="@drawable/round_card"
-                    android:elevation="30dp"
+                    android:elevation="15dp"
                     android:padding="10dp">
 
                     <de.hdodenhof.circleimageview.CircleImageView
@@ -91,16 +91,45 @@
 
             </RelativeLayout>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="vertical"
+                android:background="@drawable/round_card"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_below="@id/vp_relativeContainerProfile"
+                android:id="@+id/vp_reviewcodeButton"
+                android:elevation="15dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Add Review Code"
+                    android:textColor="@android:color/black"
+                    android:textSize="20dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"/>
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginRight="18dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:alpha="0.7"
+                    android:src="@drawable/ic_next_arrow"/>
+            </RelativeLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="100dp"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginBottom="20dp"
                 android:layout_below="@id/vp_relativeContainerProfile"
                 android:background="@drawable/round_card"
-                android:elevation="30dp">
+                android:elevation="15dp">
 
                 <!-- This is for Phone Number Container-->
                 <RelativeLayout

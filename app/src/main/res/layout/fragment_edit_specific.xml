@@ -55,7 +55,7 @@
                 android:layout_marginTop="9dp"
                 android:background="@drawable/round_card"
                 android:padding="10dp"
-                android:elevation="30dp">
+                android:elevation="15dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/esp_imageProfile"

@@ -207,7 +207,6 @@ public class helpTicketStartFragment extends Fragment {
     public void refreshDetails() {
         if(selectedticketID == null || selectedticketID.equals("")) {
             ticketDetails = new ArrayList<>();
-            System.out.println("Masukkkkk");
         }
         ticketDetailsAdapter = new helpTicketDetailsAdapter(this.getContext(), ticketDetails);
 
