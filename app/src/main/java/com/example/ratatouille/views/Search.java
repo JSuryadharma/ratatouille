@@ -168,7 +168,6 @@ public class Search extends AppCompatActivity {
         finish();
     }
 
-
     @Override
     public void onBackPressed() {
         // Do Here what ever you want do on back press; Do nothing

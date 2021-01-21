@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:id="@+id/home_pulltorefresh">
+    android:layout_height="match_parent">
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,36 +14,55 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:id="@+id/detail_backButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:elevation="15dp"
+                android:focusable="true"
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:id="@+id/search_backButton_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/berlinsans"
+                    android:text="Back"
+                    android:textColor="#808080"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/detailPhoto_viewpager"
                 android:layout_width="match_parent"
-                android:layout_height="211dp"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp" />
+                android:layout_height="211dp" />
 
             <TextView
                 android:id="@+id/resto_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:text="Title"
                 android:textColor="@color/black"
-                android:textSize="20dp"
-                android:text="Title" />
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/resto_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:text="Type"
                 android:textColor="#808080"
-                android:textSize="15dp"
-                android:text="Type" />
+                android:textSize="15dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_margin="10dp">
+                android:layout_margin="10dp"
+                android:orientation="horizontal">
 
                 <RatingBar
                     android:id="@+id/ratingBarRestoDetails"
@@ -70,35 +88,36 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Timings"
-                    android:textColor="#808080"
-                    android:textSize="15dp"
                     android:gravity="right"
-                    android:textAlignment="gravity"/>
+                    android:text="Timings"
+                    android:textAlignment="gravity"
+                    android:textColor="#808080"
+                    android:textSize="15dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_margin="10dp">
+                android:layout_margin="10dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textView8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#DAD9E2"
                     android:text="ADDRESS"
                     android:textColor="#404040"
-                    android:textSize="17dp"/>
+                    android:textSize="17dp" />
 
                 <TextView
                     android:id="@+id/resto_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:text="Alamat"
                     android:textColor="#808080"
-                    android:textSize="15dp"
-                    android:layout_marginTop="5dp"/>
+                    android:textSize="15dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -112,6 +131,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="AVERAGE PRICE"
+                    android:background="#DAD9E2"
                     android:textColor="#404040"
                     android:textSize="17dp" />
 
@@ -128,8 +148,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_margin="10dp">
+                android:layout_margin="10dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textView12"
@@ -137,6 +157,7 @@
                     android:layout_height="wrap_content"
                     android:text="MENU"
                     android:textColor="#404040"
+                    android:background="#DAD9E2"
                     android:textSize="17dp" />
 
                 <TextView
@@ -147,6 +168,27 @@
                     android:text="Menu"
                     android:textColor="#808080"
                     android:textSize="15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bookNowButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#DAD9E2"
+                android:clickable="true"
+                android:elevation="15dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/berlinsans"
+                    android:text="CONTACT RESTAURANT"
+                    android:textColor="@color/black"
+                    android:textSize="10pt" />
+
             </LinearLayout>
 
         </LinearLayout>

@@ -4,14 +4,16 @@ import com.example.ratatouille.R;
 
 public class trendingModels {
     private int layoutModel;
+    private String id;
     private String title;
     private String type;
     private Float rate;
     private Integer price;
     private String imageUrl;
 
-    public trendingModels(String title, String type, Float rate, Integer price, String imageUrl) {
+    public trendingModels(String id, String title, String type, Float rate, Integer price, String imageUrl) {
         this.layoutModel = R.layout.viewpager_trending; // only 1 layout model needed.
+        this.id = id;
         this.title = title;
         this.type = type;
         this.rate = rate;
@@ -41,5 +43,9 @@ public class trendingModels {
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public String getId() {
+        return id;
     }
 }

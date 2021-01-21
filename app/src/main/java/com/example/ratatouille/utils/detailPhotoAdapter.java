@@ -39,7 +39,7 @@ public class detailPhotoAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         detailPhotoModels selectedItem = photoList.get(position);
 
-        View currentView = LayoutInflater.from(context).inflate(selectedItem.getLayoutModel(), container, false);
+        View currentView = LayoutInflater.from(context).inflate(R.layout.viewpager_detailphoto, container, false);
 
         ImageView restoPhoto = currentView.findViewById(R.id.detailRestoPhoto);
         Glide.with(currentView).load(selectedItem.getImageUrl()).into(restoPhoto);

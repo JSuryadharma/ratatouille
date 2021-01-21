@@ -24,6 +24,10 @@ import com.example.ratatouille.vars.VariablesUsed;
 import com.example.ratatouille.views.restaurantDetails;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 
@@ -44,13 +48,14 @@ public class restoDetailController {
     static String jam_buka;
     static String average_price;
     static String menu_url;
+    static String phone;
     static PagerAdapter photoAdapter;
     static ArrayList<detailPhotoModels> photoList;
 
     public static restoDetailCallbackHelper rdch = new restoDetailCallbackHelper() {
         @Override
         public void onLoad(Context context, Intent intent, PagerAdapter pager) {
-            VariablesUsed.currentRestoDetail = new restoDetailModel(resto_id, resto_name, location, resto_type, average_price, jam_buka, menu_url, rating, photoAdapter);
+            VariablesUsed.currentRestoDetail = new restoDetailModel(resto_id, resto_name, location, resto_type, average_price, jam_buka, menu_url, rating, phone, null);
             context.startActivity(intent);
         }
     };
@@ -103,52 +108,40 @@ public class restoDetailController {
         jam_buka = resto.getString("timings");
         average_price = resto.getString("average_cost_for_two");
         menu_url = resto.getString("menu_url");
+        phone = resto.getString("phone_numbers");
 
-//        title.setText(resto_name);
-//        type.setText(resto_type);
-//        address.setText(location);
-//        timings.setText(jam_buka);
-//        avg.setText(average_price);
-//        menu.setText(menu_url);
-//        ratingBar.setRating((float) rating);
-        load_photo(context, intent, resto_id);
+//        load_photo(context, intent, resto_id);
+        rdch.onLoad(context, intent, photoAdapter);
     }
 
     private static void load_photo(Context context, Intent intent, String id) {
-        StorageReference images = DatabaseHelper.getStorage().getReference()
-                .child("restaurants/" + id + "/photos");
+        DatabaseReference dbRef = DatabaseHelper.getDb().getReference("Restaurants").child(id).child("photos");
+        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                collectPhotos(context, snapshot, intent);
+            }
 
-        images.listAll()
-                .addOnSuccessListener(new OnSuccessListener<ListResult>() {
-                    @Override
-                    public void onSuccess(ListResult listResult) {
-                        photoList = new ArrayList<>();
-                        for (StorageReference item : listResult.getItems()) {
-                            final long ONE_MEGABYTE = 1024 * 1024;
-                            item.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                                @Override
-                                public void onSuccess(byte[] bytes) {
-                                    Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                                    photoList.add(new detailPhotoModels(bitmap));
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception exception) {
-                                    System.out.println(exception);
-                                }
-                            });
-                        }
-                        photoAdapter = new detailPhotoAdapter(context, photoList);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-                        rdch.onLoad(context, intent, photoAdapter);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        System.out.println(e);
-                    }
-                });
+            }
+        });
+    }
+
+    private static void collectPhotos(Context context, DataSnapshot items, Intent intent) {
+        photoList = new ArrayList<>();
+
+        ArrayList<String> photoArray = (ArrayList) items.getValue();
+        //iterate through each items
+        for (int i=0; i<photoArray.size(); i++){
+            if(i == 0) continue;
+            //Get photo field and append to list
+            photoList.add(new detailPhotoModels((String) photoArray.get(i)));
+        }
+
+        photoAdapter = new detailPhotoAdapter(context, photoList);
+        rdch.onLoad(context, intent, photoAdapter);
     }
 
 }

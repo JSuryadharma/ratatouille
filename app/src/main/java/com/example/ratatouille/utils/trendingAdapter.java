@@ -1,6 +1,7 @@
 package com.example.ratatouille.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,10 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import com.bumptech.glide.Glide;
 import com.example.ratatouille.R;
+import com.example.ratatouille.controllers.restoDetailController;
+import com.example.ratatouille.models.mostPopularModels;
 import com.example.ratatouille.models.trendingModels;
+import com.example.ratatouille.views.restaurantDetails;
 
 import java.util.ArrayList;
 
@@ -55,6 +59,13 @@ public class trendingAdapter extends PagerAdapter {
         price.setText("Rp. " + selectedItem.getPrice().toString());
 
         Glide.with(currentView).load(selectedItem.getImageUrl()).into(trendingImage);
+        currentView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, restaurantDetails.class);
+                restoDetailController.query(context, intent, selectedItem.getId());
+            }
+        });
 
         container.addView(currentView);
 

@@ -2,14 +2,20 @@ package com.example.ratatouille.views;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +34,10 @@ import com.example.ratatouille.utils.requestMaker;
 import com.example.ratatouille.vars.VariablesUsed;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 
@@ -43,6 +53,10 @@ public class restaurantDetails extends AppCompatActivity {
     private ViewPager photoView;
     private TextView title, type, timings, address, avg, menu;
     private RatingBar ratingBar;
+    private LinearLayout bookNowButton, backButton;
+    private Context context;
+    private ArrayList<detailPhotoModels> photoList;
+    private PagerAdapter photoAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +71,22 @@ public class restaurantDetails extends AppCompatActivity {
         menu = findViewById(R.id.resto_menu);
         ratingBar = findViewById(R.id.ratingBarRestoDetails);
         photoView = findViewById(R.id.detailPhoto_viewpager);
+        bookNowButton = findViewById(R.id.bookNowButton);
+        backButton = findViewById(R.id.detail_backButton);
+        context = this;
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MediaPlayer player = MediaPlayer.create(context, R.raw.personleave);
+                player.start();
+                backToSearch(context);
+            }
+        });
 
         loadData();
+
+        load_photo(context, VariablesUsed.currentRestoDetail.getResto_id());
     }
 
     private void loadData() {
@@ -69,7 +97,14 @@ public class restaurantDetails extends AppCompatActivity {
         avg.setText(VariablesUsed.currentRestoDetail.getAverage_price());
         menu.setText(VariablesUsed.currentRestoDetail.getMenu_url());
         ratingBar.setRating((float) VariablesUsed.currentRestoDetail.getRating());
-        photoView.setAdapter(VariablesUsed.currentRestoDetail.getPhotoAdapter());
+        bookNowButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:"+VariablesUsed.currentRestoDetail.getPhone()));
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -78,4 +113,51 @@ public class restaurantDetails extends AppCompatActivity {
         Toast.makeText(getBaseContext(), "Please use the back button inside of the application.", Toast.LENGTH_LONG).show();
     }
 
+    private void load_photo(Context context, String id) {
+        DatabaseReference dbRef = DatabaseHelper.getDb().getReference("Restaurants").child(id).child("photos");
+        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                collectPhotos(context, snapshot);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void collectPhotos(Context context, DataSnapshot items) {
+        photoList = new ArrayList<detailPhotoModels>();
+
+        ArrayList<String> photoArray = (ArrayList) items.getValue();
+
+        if(photoArray == null) {
+            photoList.add(new detailPhotoModels(VariablesUsed.DEFAULT_PHOTO_CAMERA));
+            this.photoAdapter = new detailPhotoAdapter(context, photoList);
+            this.photoView.setAdapter(this.photoAdapter);
+            VariablesUsed.currentRestoDetail.setPhotoAdapter(photoAdapter);
+            return;
+        }
+
+        //iterate through each items
+        for (int i=1; i<photoArray.size(); i++){
+            //Get photo field and append to list
+            photoList.add(new detailPhotoModels((String) photoArray.get(i)));
+        }
+
+        this.photoAdapter = new detailPhotoAdapter(context, photoList);
+        this.photoView.setAdapter(this.photoAdapter);
+        VariablesUsed.currentRestoDetail.setPhotoAdapter(photoAdapter);
+    }
+
+    private void backToSearch(Context context) {
+        Intent searchIntent = new Intent(context, Search.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("q", title.getText().toString());
+        searchIntent.putExtras(bundle);
+        startActivity(searchIntent);
+        finish();
+    }
 }

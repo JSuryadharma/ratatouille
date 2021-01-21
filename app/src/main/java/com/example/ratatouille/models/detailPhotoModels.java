@@ -5,15 +5,15 @@ import android.graphics.Bitmap;
 import com.example.ratatouille.R;
 
 public class detailPhotoModels {
-    private Bitmap imageUrl;
+    private String imageUrl;
     private int layoutModel;
 
-    public detailPhotoModels(Bitmap imageUrl) {
+    public detailPhotoModels(String imageUrl) {
         this.imageUrl = imageUrl;
         this.layoutModel = R.id.detailPhoto_viewpager;
     }
 
-    public Bitmap getImageUrl() {
+    public String getImageUrl() {
         return imageUrl;
     }
 

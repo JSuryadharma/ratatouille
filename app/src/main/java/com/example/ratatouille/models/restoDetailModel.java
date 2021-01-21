@@ -4,11 +4,11 @@ import androidx.viewpager.widget.PagerAdapter;
 
 public class restoDetailModel {
 
-    private String resto_id, resto_name, location, resto_type, average_price, jam_buka, menu_url;
+    private String resto_id, resto_name, location, resto_type, average_price, jam_buka, menu_url, phone;
     private double rating;
     private PagerAdapter photoAdapter;
 
-    public restoDetailModel(String resto_id, String resto_name, String location, String resto_type, String average_price, String jam_buka, String menu_url, double rating, PagerAdapter photoAdapter) {
+    public restoDetailModel(String resto_id, String resto_name, String location, String resto_type, String average_price, String jam_buka, String menu_url, double rating, String phone, PagerAdapter photoAdapter) {
         this.resto_id = resto_id;
         this.resto_name = resto_name;
         this.location = location;
@@ -18,6 +18,7 @@ public class restoDetailModel {
         this.menu_url = menu_url;
         this.rating = rating;
         this.photoAdapter = photoAdapter;
+        this.phone = phone;
     }
 
     public String getResto_id() {
@@ -54,5 +55,13 @@ public class restoDetailModel {
 
     public PagerAdapter getPhotoAdapter() {
         return photoAdapter;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhotoAdapter(PagerAdapter photoAdapter) {
+        this.photoAdapter = photoAdapter;
     }
 }

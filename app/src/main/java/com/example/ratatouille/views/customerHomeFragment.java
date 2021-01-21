@@ -135,11 +135,10 @@ public class customerHomeFragment extends Fragment {
     }
 
     private void loadTrending() {
-        // Replace this with API
         trendingList = new ArrayList<>();
-        trendingList.add(new trendingModels("Starbucks - Alam Sutera", "Cafe, Coffee", (float) 4.5, 60000, "https://cdn.vox-cdn.com/thumbor/z2Oc0Qtvm3Iu1WoHOgohXbX1Ncc=/0x0:5860x4008/1200x800/filters:focal(3075x2118:4011x3054)/cdn.vox-cdn.com/uploads/chorus_image/image/66490225/shutterstock_1410002591.0.jpg"));
-        trendingList.add(new trendingModels("Burger King - Grand Indonesia", "Fast Food", (float) 3.4, 45600, "https://miro.medium.com/max/1200/1*pIJH1mPega8583Y3NuPaLg.jpeg"));
-        trendingList.add(new trendingModels("Din Tai Fung - Pacific Place", "Chinese Food, Family", (float) 4, 130000, "https://media-cdn.tripadvisor.com/media/photo-s/19/b9/5f/18/din.jpg"));
+        trendingList.add(new trendingModels("19188455", "Burger King - Tanah Abang", "Fast Food, Burger", (float) 0, 125000, "https://b.zmtcdn.com/data/pictures/chains/3/7400163/fac80eb0f665717de0d3ee3314d140c5.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A"));
+        trendingList.add(new trendingModels("18431941", "Warunk Upnormal - Grogol", "Street Food, Indonesian", (float) 2.9, 100000, "https://b.zmtcdn.com/data/pictures/chains/0/18236610/485cdb87fb4e6ed5f21348241c81c1e0.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A"));
+        trendingList.add(new trendingModels("19419437", "Martabak Pecenongan 78 - Greenvile", "Martabak", (float) 0, 100000, "https://b.zmtcdn.com/data/pictures/chains/7/19419437/8cc3dac17729107437a777e8b7432827.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A"));
         trendingAdapter = new trendingAdapter(this.getContext(), trendingList);
         trendingView.setAdapter(trendingAdapter);
         trendingView.setClipToPadding(false);
@@ -160,20 +159,12 @@ public class customerHomeFragment extends Fragment {
     }
 
     private void loadMostPopularList() {
-        ArrayList<mostPopularModels> mostPopularList = new ArrayList<>();
-        Calendar myCal = Calendar.getInstance();
-
-        //Replace this with API
-//        myCal.set(Calendar.HOUR, 10);
-//        myCal.set(Calendar.MINUTE, 00);
-//        mostPopularList.add(new mostPopularModels("Banana Leaf - Kemayoran", "Restaurant", (float) 4.5, myCal.getTime().toString(), "https://3.bp.blogspot.com/-O6iLBqFyGu8/VS9aTbm6tjI/AAAAAAAABj8/_1IZOyytYBs/s1600/Chicken_Satay_on_Banana_Leaf_Java__m.jpg"));
-//
-//        myCal.set(Calendar.HOUR, 8);
-//        myCal.set(Calendar.MINUTE, 00);
-//        mostPopularList.add(new mostPopularModels("McDonald's - Sudirman", "Fast Food, Burgers", (float) 5, myCal.getTime().toString(), "https://i1.wp.com/www.eatthis.com/wp-content/uploads/2020/07/mcdonalds-1.jpg?resize=640%2C360&ssl=1"));
-
-            mostPopularAdapter = new mostPopularAdapter(this.getContext(), mostPopularList);
-            mostPopular_recyclerView.setAdapter(mostPopularAdapter);
+        mostPopularList = new ArrayList<>();
+        mostPopularList.add(new mostPopularModels("Kokumi - Plaza Indonesia, Thamrin", "Bubble Tea, Beverages", (float) 3.4, "10 AM to 10 PM", "https://b.zmtcdn.com/data/pictures/4/18781104/8bf1e5defb6f0807d29b8e3fd91a2ffa.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A", "19342904"));
+        mostPopularList.add(new mostPopularModels("KFC - Grand Indonesia Mall, Thamrin", "Fast Food, American", (float) 3.5, "10 AM to 10 PM", "https://b.zmtcdn.com/data/pictures/chains/2/7400132/3727622cf23ce0b3dbd91844ff1abb29.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A", "7401175"));
+        mostPopularList.add(new mostPopularModels("Sate Khas Senayan - Senayan City, Senayan", "Satay, Indonesian", (float) 3.3, "10 AM to 10 PM", "https://b.zmtcdn.com/data/res_imagery/7400765_CHAIN_46918d19bbeb1ec1ee407724dc4878dd.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A", "19115601"));
+        mostPopularAdapter = new mostPopularAdapter(context, mostPopularList);
+        mostPopular_recyclerView.setAdapter(mostPopularAdapter);
     }
 
     public void reload() {
