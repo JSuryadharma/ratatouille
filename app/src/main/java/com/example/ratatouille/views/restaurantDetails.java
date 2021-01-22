@@ -2,15 +2,11 @@ package com.example.ratatouille.views;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,43 +16,30 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.ratatouille.R;
 import com.example.ratatouille.db.DatabaseHelper;
 import com.example.ratatouille.models.detailPhotoModels;
+import com.example.ratatouille.models.menuPhotoModels;
 import com.example.ratatouille.utils.detailPhotoAdapter;
-import com.example.ratatouille.utils.restoDetailCallbackHelper;
-import com.example.ratatouille.utils.requestMaker;
+import com.example.ratatouille.utils.menuPhotoAdapter;
 import com.example.ratatouille.vars.VariablesUsed;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.github.chrisbanes.photoview.PhotoView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.ListResult;
-import com.google.firebase.storage.StorageReference;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class restaurantDetails extends AppCompatActivity {
 
-    private ViewPager photoView;
-    private TextView title, type, timings, address, avg, menu;
+    private ViewPager photoView, menuView;
+    private TextView title, type, timings, address, avg;
     private RatingBar ratingBar;
     private LinearLayout bookNowButton, backButton;
     private Context context;
     private ArrayList<detailPhotoModels> photoList;
-    private PagerAdapter photoAdapter;
+    private ArrayList<menuPhotoModels> menuList;
+    private PagerAdapter photoAdapter, menuAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,9 +51,9 @@ public class restaurantDetails extends AppCompatActivity {
         timings = findViewById(R.id.resto_timing);
         address = findViewById(R.id.resto_address);
         avg = findViewById(R.id.resto_avg_price);
-        menu = findViewById(R.id.resto_menu);
         ratingBar = findViewById(R.id.ratingBarRestoDetails);
         photoView = findViewById(R.id.detailPhoto_viewpager);
+        menuView = findViewById(R.id.menuPhoto_viewpager);
         bookNowButton = findViewById(R.id.bookNowButton);
         backButton = findViewById(R.id.detail_backButton);
         context = this;
@@ -86,7 +69,8 @@ public class restaurantDetails extends AppCompatActivity {
 
         loadData();
 
-        load_photo(context, VariablesUsed.currentRestoDetail.getResto_id());
+        loadPhotos(context, VariablesUsed.currentRestoDetail.getResto_id());
+        loadMenus(context, VariablesUsed.currentRestoDetail.getResto_id());
     }
 
     private void loadData() {
@@ -95,7 +79,6 @@ public class restaurantDetails extends AppCompatActivity {
         timings.setText(VariablesUsed.currentRestoDetail.getJam_buka());
         address.setText(VariablesUsed.currentRestoDetail.getLocation());
         avg.setText(VariablesUsed.currentRestoDetail.getAverage_price());
-        menu.setText(VariablesUsed.currentRestoDetail.getMenu_url());
         ratingBar.setRating((float) VariablesUsed.currentRestoDetail.getRating());
         bookNowButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +96,46 @@ public class restaurantDetails extends AppCompatActivity {
         Toast.makeText(getBaseContext(), "Please use the back button inside of the application.", Toast.LENGTH_LONG).show();
     }
 
-    private void load_photo(Context context, String id) {
+    private void loadMenus(Context context, String id) {
+        DatabaseReference dbRef = DatabaseHelper.getDb().getReference("Restaurants").child(id).child("menus");
+        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                collectMenus(context, snapshot);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void collectMenus(Context context, DataSnapshot items) {
+        menuList = new ArrayList<menuPhotoModels>();
+
+        ArrayList<String> photoArray = (ArrayList) items.getValue();
+
+        if(photoArray == null) {
+            menuList.add(new menuPhotoModels(VariablesUsed.DEFAULT_PHOTO_FOOD));
+            this.menuAdapter = new menuPhotoAdapter(context, menuList);
+            this.menuView.setAdapter(this.menuAdapter);
+            VariablesUsed.currentRestoDetail.setMenuAdapter(menuAdapter);
+            return;
+        }
+
+        //iterate through each items
+        for (int i=1; i<photoArray.size(); i++){
+            //Get photo field and append to list
+            menuList.add(new menuPhotoModels((String) photoArray.get(i)));
+        }
+
+        this.menuAdapter = new menuPhotoAdapter(context, menuList);
+        this.menuView.setAdapter(this.menuAdapter);
+        VariablesUsed.currentRestoDetail.setMenuAdapter(menuAdapter);
+    }
+
+    private void loadPhotos(Context context, String id) {
         DatabaseReference dbRef = DatabaseHelper.getDb().getReference("Restaurants").child(id).child("photos");
         dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

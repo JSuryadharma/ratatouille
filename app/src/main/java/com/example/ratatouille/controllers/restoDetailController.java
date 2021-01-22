@@ -1,10 +1,20 @@
 package com.example.ratatouille.controllers;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.view.View;
+import android.view.Window;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
@@ -14,6 +24,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.bumptech.glide.Glide;
+import com.example.ratatouille.R;
 import com.example.ratatouille.db.DatabaseHelper;
 import com.example.ratatouille.models.detailPhotoModels;
 import com.example.ratatouille.models.restoDetailModel;
@@ -22,6 +34,7 @@ import com.example.ratatouille.utils.requestMaker;
 import com.example.ratatouille.utils.restoDetailCallbackHelper;
 import com.example.ratatouille.vars.VariablesUsed;
 import com.example.ratatouille.views.restaurantDetails;
+import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -49,13 +62,11 @@ public class restoDetailController {
     static String average_price;
     static String menu_url;
     static String phone;
-    static PagerAdapter photoAdapter;
-    static ArrayList<detailPhotoModels> photoList;
 
     public static restoDetailCallbackHelper rdch = new restoDetailCallbackHelper() {
         @Override
-        public void onLoad(Context context, Intent intent, PagerAdapter pager) {
-            VariablesUsed.currentRestoDetail = new restoDetailModel(resto_id, resto_name, location, resto_type, average_price, jam_buka, menu_url, rating, phone, null);
+        public void onLoad(Context context, Intent intent) {
+            VariablesUsed.currentRestoDetail = new restoDetailModel(resto_id, resto_name, location, resto_type, average_price, jam_buka, menu_url, rating, phone, null, null);
             context.startActivity(intent);
         }
     };
@@ -110,38 +121,29 @@ public class restoDetailController {
         menu_url = resto.getString("menu_url");
         phone = resto.getString("phone_numbers");
 
-//        load_photo(context, intent, resto_id);
-        rdch.onLoad(context, intent, photoAdapter);
+        rdch.onLoad(context, intent);
     }
 
-    private static void load_photo(Context context, Intent intent, String id) {
-        DatabaseReference dbRef = DatabaseHelper.getDb().getReference("Restaurants").child(id).child("photos");
-        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                collectPhotos(context, snapshot, intent);
-            }
+    public static void showDialogMessage(String url, Context context){
+        Dialog showDialog = new Dialog(context);
+        showDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        showDialog.setContentView(R.layout.dialog_photo);
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+//        showDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
+        PhotoView zoomPhoto = showDialog.findViewById(R.id.zoomPhoto);
+        ImageView zoomBackButton = showDialog.findViewById(R.id.zoomBackButton);
+        Glide.with(showDialog.getContext()).load(url).into(zoomPhoto);
+
+        zoomBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MediaPlayer play = MediaPlayer.create(context, R.raw.open);
+                play.start();
+                showDialog.dismiss();
             }
         });
+
+        showDialog.show();
     }
-
-    private static void collectPhotos(Context context, DataSnapshot items, Intent intent) {
-        photoList = new ArrayList<>();
-
-        ArrayList<String> photoArray = (ArrayList) items.getValue();
-        //iterate through each items
-        for (int i=0; i<photoArray.size(); i++){
-            if(i == 0) continue;
-            //Get photo field and append to list
-            photoList.add(new detailPhotoModels((String) photoArray.get(i)));
-        }
-
-        photoAdapter = new detailPhotoAdapter(context, photoList);
-        rdch.onLoad(context, intent, photoAdapter);
-    }
-
 }

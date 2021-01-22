@@ -10,6 +10,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.bumptech.glide.Glide;
@@ -47,6 +48,7 @@ public class trendingAdapter extends PagerAdapter {
 
         View currentView = LayoutInflater.from(context).inflate(selectedItem.getLayoutModel(), container, false);
 
+        CardView trendingCardView = currentView.findViewById(R.id.trending_cardview);
         TextView title = currentView.findViewById(R.id.trendingTitle);
         TextView types = currentView.findViewById(R.id.trendingTypes);
         RatingBar rating = currentView.findViewById(R.id.trendingRatingBar);
@@ -58,14 +60,15 @@ public class trendingAdapter extends PagerAdapter {
         rating.setRating(selectedItem.getRate());
         price.setText("Rp. " + selectedItem.getPrice().toString());
 
-        Glide.with(currentView).load(selectedItem.getImageUrl()).into(trendingImage);
-        currentView.setOnClickListener(new View.OnClickListener() {
+        trendingCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, restaurantDetails.class);
                 restoDetailController.query(context, intent, selectedItem.getId());
             }
         });
+
+        Glide.with(currentView).load(selectedItem.getImageUrl()).into(trendingImage);
 
         container.addView(currentView);
 

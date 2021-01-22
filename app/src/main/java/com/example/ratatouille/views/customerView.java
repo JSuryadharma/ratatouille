@@ -21,6 +21,7 @@ import com.example.ratatouille.utils.Utils;
 import com.example.ratatouille.vars.VariablesUsed;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import static com.example.ratatouille.vars.VariablesUsed.firstLoginBoolean;
 import static maes.tech.intentanim.CustomIntent.customType;
 
 public class customerView extends AppCompatActivity {
@@ -44,7 +45,10 @@ public class customerView extends AppCompatActivity {
         selectedFragment = new customerHomeFragment();
         getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fadein, R.anim.fadeout).replace(R.id.fragment_container, selectedFragment).commit();
 
-        Utils.showDialogMessage(R.drawable.verified_logo, this, "Success Log In", "Welcome back! " + VariablesUsed.currentUser.getName());
+        if(firstLoginBoolean == false) {
+            Utils.showDialogMessage(R.drawable.verified_logo, this, "Success Log In", "Welcome back! " + VariablesUsed.currentUser.getName());
+            firstLoginBoolean = true;
+        }
 
         navbar_home = findViewById(R.id.navbar_home);
         navbar_profile = findViewById(R.id.navbar_profile);

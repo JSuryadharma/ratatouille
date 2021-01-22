@@ -1,7 +1,6 @@
 package com.example.ratatouille.utils;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,16 +13,16 @@ import com.bumptech.glide.Glide;
 import com.example.ratatouille.R;
 import com.example.ratatouille.controllers.restoDetailController;
 import com.example.ratatouille.models.detailPhotoModels;
-import com.example.ratatouille.views.restaurantDetails;
+import com.example.ratatouille.models.menuPhotoModels;
 import com.github.chrisbanes.photoview.PhotoView;
 
 import java.util.ArrayList;
 
-public class detailPhotoAdapter extends PagerAdapter {
+public class menuPhotoAdapter extends PagerAdapter {
     Context context;
-    ArrayList<detailPhotoModels> photoList;
+    ArrayList<menuPhotoModels> photoList;
 
-    public detailPhotoAdapter(Context context, ArrayList<detailPhotoModels> photoList) {
+    public menuPhotoAdapter(Context context, ArrayList<menuPhotoModels> photoList) {
         this.context = context;
         this.photoList = photoList;
     }
@@ -41,7 +40,7 @@ public class detailPhotoAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        detailPhotoModels selectedItem = photoList.get(position);
+        menuPhotoModels selectedItem = photoList.get(position);
 
         View currentView = LayoutInflater.from(context).inflate(R.layout.viewpager_detailphoto, container, false);
 

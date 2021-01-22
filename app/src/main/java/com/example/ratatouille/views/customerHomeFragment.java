@@ -136,9 +136,9 @@ public class customerHomeFragment extends Fragment {
 
     private void loadTrending() {
         trendingList = new ArrayList<>();
-        trendingList.add(new trendingModels("19188455", "Burger King - Tanah Abang", "Fast Food, Burger", (float) 0, 125000, "https://b.zmtcdn.com/data/pictures/chains/3/7400163/fac80eb0f665717de0d3ee3314d140c5.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A"));
-        trendingList.add(new trendingModels("18431941", "Warunk Upnormal - Grogol", "Street Food, Indonesian", (float) 2.9, 100000, "https://b.zmtcdn.com/data/pictures/chains/0/18236610/485cdb87fb4e6ed5f21348241c81c1e0.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A"));
-        trendingList.add(new trendingModels("19419437", "Martabak Pecenongan 78 - Greenvile", "Martabak", (float) 0, 100000, "https://b.zmtcdn.com/data/pictures/chains/7/19419437/8cc3dac17729107437a777e8b7432827.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A"));
+        trendingList.add(new trendingModels("18634744", "Burger King - Living World, Serpong Utara", "Fast Food, Burger", (float) 3.2, 125000, "https://b.zmtcdn.com/data/pictures/chains/3/7400163/fac80eb0f665717de0d3ee3314d140c5.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A"));
+        trendingList.add(new trendingModels("7414651", "Roti Bakar 88 - 88 Food Court, Kec. Tangerang", "Desserts, Street Food, Indonesian", (float) 3.4, 80000, "https://b.zmtcdn.com/data/pictures/chains/1/7412021/a37acda51c150df6a1f11225ed5b54e5.jpeg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A"));
+        trendingList.add(new trendingModels("7410162", "Martabak Pecenongan 65A - Pecenongan", "Street Food, Martabak", (float) 4.3, 120000, "https://b.zmtcdn.com/data/pictures/chains/2/7410162/093f2394b94c64c0c465736865ebd835.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A"));
         trendingAdapter = new trendingAdapter(this.getContext(), trendingList);
         trendingView.setAdapter(trendingAdapter);
         trendingView.setClipToPadding(false);
