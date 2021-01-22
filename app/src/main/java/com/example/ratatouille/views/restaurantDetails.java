@@ -23,7 +23,6 @@ import com.example.ratatouille.models.menuPhotoModels;
 import com.example.ratatouille.utils.detailPhotoAdapter;
 import com.example.ratatouille.utils.menuPhotoAdapter;
 import com.example.ratatouille.vars.VariablesUsed;
-import com.github.chrisbanes.photoview.PhotoView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

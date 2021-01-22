@@ -14,6 +14,7 @@ import com.example.ratatouille.db.DatabaseHelper;
 import com.example.ratatouille.db.DatabaseVars;
 import com.example.ratatouille.models.Users;
 import com.example.ratatouille.models.Vouchers;
+import com.example.ratatouille.vars.VariablesUsed;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

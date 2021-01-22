@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ratatouille.R;
+import com.example.ratatouille.models.UserVoucher;
+import com.example.ratatouille.models.Users;
 import com.example.ratatouille.models.Vouchers;
 import com.example.ratatouille.vars.VariablesUsed;
 import com.example.ratatouille.views.voucherFragment;
@@ -23,6 +25,13 @@ public class voucherRecyclerAdapter extends RecyclerView.Adapter<voucherRecycler
     private Context context;
     private ArrayList<Vouchers> voucherList;
     private static ArrayList<Boolean> touched = new ArrayList<>();
+    private Integer voucherAmount = new Integer(0);
+    private voucherAmountCallbackHelper cb = new voucherAmountCallbackHelper() {
+        @Override
+        public void onUserCallback(MyViewHolder holder) {
+            setAmountOnHolder(holder);
+        }
+    };
 
     public voucherRecyclerAdapter(Context context, ArrayList<Vouchers> voucherList) {
         this.context = context;
@@ -45,6 +54,12 @@ public class voucherRecyclerAdapter extends RecyclerView.Adapter<voucherRecycler
         holder.voucherName.setText(selectedVoucher.getVoucherName());
         holder.voucherDisc.setText("Discount: " + selectedVoucher.getVoucherDisc().toString() + " %");
         holder.voucherType.setText("Type: Dine-in");
+
+        voucherAmount = 0;
+
+        holder.voucherAmount.setText("Amount : " + voucherAmount);
+
+        voucherAmount = UserVoucher.getVoucherQuantity(cb, holder, selectedVoucher);
 
         if(position == voucherFragment.selectedItem){
             holder.voucherButton.setBackgroundResource(R.drawable.voucherbutton_pressed_background);
@@ -80,16 +95,21 @@ public class voucherRecyclerAdapter extends RecyclerView.Adapter<voucherRecycler
         });
     }
 
+    public void setAmountOnHolder(MyViewHolder holder){
+        holder.voucherAmount.setText("Amount : " + voucherAmount);
+    }
+
     @Override
     public int getItemCount() {
         return voucherList.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder{
         TextView voucherName;
         TextView voucherDisc;
         TextView voucherMode;
         TextView voucherType;
+        TextView voucherAmount;
         LinearLayout voucherButton;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -97,6 +117,7 @@ public class voucherRecyclerAdapter extends RecyclerView.Adapter<voucherRecycler
             voucherDisc = itemView.findViewById(R.id.voucher_disc);
             voucherMode = itemView.findViewById(R.id.voucher_mode);
             voucherType = itemView.findViewById(R.id.voucher_type);
+            voucherAmount = itemView.findViewById(R.id.voucher_amount);
             voucherButton = itemView.findViewById(R.id.voucher_useButton);
         }
     }

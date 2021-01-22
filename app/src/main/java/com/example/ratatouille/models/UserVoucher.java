@@ -8,6 +8,9 @@ import androidx.annotation.NonNull;
 import com.example.ratatouille.db.DatabaseHelper;
 import com.example.ratatouille.db.DatabaseVars;
 import com.example.ratatouille.utils.callbackHelper;
+import com.example.ratatouille.utils.helpTicketDetailsAdapter;
+import com.example.ratatouille.utils.voucherAmountCallbackHelper;
+import com.example.ratatouille.utils.voucherRecyclerAdapter;
 import com.example.ratatouille.vars.VariablesUsed;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,11 +26,66 @@ import static android.content.ContentValues.TAG;
 public class UserVoucher {
 
     private static Vouchers selectedVoucher = null;
+    private static Integer voucherQuantity = -1;
 
     public static void save(Users user, Vouchers voucher){ //assigning a user to a voucher.. (Header-to-Details Relation)
         DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.UserVoucherTable.USERVOUCHER_TABLE).child(VariablesUsed.loggedUser.getUid());
+        dbRef.child(voucher.getVoucherID()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.getValue() == null){
+                    snapshot.getRef().setValue(voucher);
+                    snapshot.getRef().child("Quantity").setValue(1);
+                } else {
+                    snapshot.getRef().child("Quantity").setValue(snapshot.child("Quantity").getValue(Integer.class) + 1);
+                }
+            }
 
-        dbRef.child(voucher.getVoucherID()).setValue(voucher); //memasukkan voucher ke dalam UserVoucher table
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public static void useVoucher(Users user, Vouchers voucher){ //assigning a user to a voucher.. (Header-to-Details Relation)
+        DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.UserVoucherTable.USERVOUCHER_TABLE).child(VariablesUsed.loggedUser.getUid());
+        dbRef.child(voucher.getVoucherID()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.getValue() != null){
+                    snapshot.getRef().child("Quantity").setValue(snapshot.child("Quantity").getValue(Integer.class) - 1);
+                    if(snapshot.child("Quantity").getValue(Integer.class) == 0){
+                        delete(VariablesUsed.loggedUser.getUid(), voucher.getVoucherID());
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public static Integer getVoucherQuantity(voucherAmountCallbackHelper cb, voucherRecyclerAdapter.MyViewHolder holder, Vouchers voucher){
+        DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.UserVoucherTable.USERVOUCHER_TABLE).child(VariablesUsed.loggedUser.getUid());
+
+        voucherQuantity = -1;
+
+        dbRef.child(voucher.getVoucherID()).child("Quantity").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                voucherQuantity = snapshot.getValue(Integer.class);
+                cb.onUserCallback(holder);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return voucherQuantity;
     }
 
     public static void delete(String userID, String voucherID){

@@ -27,7 +27,7 @@
                 android:textColor="@color/black"
                 android:id="@+id/voucher_name"/>
             <TextView
-                android:layout_width="250dp"
+                android:layout_width="150dp"
                 android:layout_height="40dp"
                 android:text="Discount: "
                 android:textSize="18dp"
@@ -36,6 +36,14 @@
                 android:layout_marginHorizontal="15dp"
                 android:layout_below="@id/voucher_name"
                 android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Amount: "
+                android:textColor="@android:color/black"
+                android:id="@+id/voucher_amount"
+                android:layout_toRightOf="@id/voucher_disc"
+                android:layout_alignBaseline="@id/voucher_disc"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"

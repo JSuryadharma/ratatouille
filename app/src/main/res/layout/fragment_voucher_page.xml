@@ -146,7 +146,8 @@
                     android:orientation="horizontal"
                     android:background="@drawable/round_card"
                     android:elevation="15dp"
-                    android:padding="15dp">
+                    android:padding="15dp"
+                    android:layout_marginTop="15dp">
 
                     <androidx.viewpager.widget.ViewPager
                         android:id="@+id/voucher_viewPager"
@@ -183,7 +184,7 @@
                     android:background="@drawable/round_card"
                     android:elevation="15dp"
                     android:padding="15dp"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="15dp">
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

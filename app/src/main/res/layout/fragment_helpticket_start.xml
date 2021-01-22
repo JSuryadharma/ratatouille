@@ -4,193 +4,188 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/helpticket_start_refresh">
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/white">
+            android:orientation="vertical">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="200dp"
+                android:background="@drawable/vp_background"
+                android:paddingHorizontal="10dp"
+                android:paddingTop="15dp">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="@drawable/vp_background"
-                    android:paddingHorizontal="10dp"
-                    android:paddingTop="15dp">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:id="@+id/helpticket_start_backButton"
-                        android:orientation="horizontal"
-                        android:clickable="true"
-                        android:focusable="true">
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_backbutton"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Back"
-                            android:fontFamily="@font/berlinsans"
-                            android:textSize="20dp"
-                            android:textColor="@android:color/white"
-                            android:layout_gravity="center_vertical"
-                            android:id="@+id/ht_backButton_text"/>
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:text="HelpTicket"
-                        android:textSize="35dp"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/berlinsans"
-                        android:elevation="15dp"/>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:text="Your Ticket List"
-                        android:textSize="25dp"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/berlinsans"
-                        android:layout_marginTop="25dp"
-                        android:elevation="15dp"/>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/round_button"
-                        android:paddingHorizontal="25dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="40dp"
-                        android:layout_marginTop="25dp"
-                        android:id="@+id/helpticket_start_addButton"
-                        android:elevation="15dp"
-                        android:clickable="true"
-                        android:focusable="true">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="+"
-                            android:textSize="20dp"
-                            android:fontFamily="@font/berlinsans"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="75dp"
-                        android:layout_marginHorizontal="10dp"
-                        android:background="@drawable/round_card"
-                        android:elevation="15dp">
-
-                        <androidx.viewpager.widget.ViewPager
-                            android:layout_width="match_parent"
-                            android:layout_height="150dp"
-                            android:id="@+id/helpticket_start_viewPager"
-                            android:layout_margin="10dp"/>
-                    </LinearLayout>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/helpticket_start_backButton"
+                    android:orientation="horizontal"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_backbutton"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Ticket Details"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="25dp"
-                        android:textColor="@color/black"
-                        android:elevation="15dp"
-                        android:fontFamily="@font/berlinsans"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/round_card"
-                        android:layout_marginTop="45dp"
-                        android:layout_marginHorizontal="10dp"
-                        android:elevation="15dp">
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/helpticket_start_recyclerView"
-                            android:layout_margin="10dp"/>
-
-                    </LinearLayout>
-                </RelativeLayout>
+                        android:text="Back"
+                        android:fontFamily="@font/berlinsans"
+                        android:textSize="20dp"
+                        android:textColor="@android:color/white"
+                        android:layout_gravity="center_vertical"
+                        android:id="@+id/ht_backButton_text"/>
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Seriously, you've reached the end."
-                    android:textColor="@android:color/darker_gray"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="55dp"/>
-            </LinearLayout>
-        </ScrollView>
+                    android:layout_centerInParent="true"
+                    android:text="HelpTicket"
+                    android:textSize="35dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/berlinsans"
+                    android:elevation="15dp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="Your Ticket List"
+                    android:textSize="25dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/berlinsans"
+                    android:layout_marginTop="25dp"
+                    android:elevation="15dp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_button"
+                    android:paddingHorizontal="25dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="25dp"
+                    android:id="@+id/helpticket_start_addButton"
+                    android:elevation="15dp"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+"
+                        android:textSize="20dp"
+                        android:fontFamily="@font/berlinsans"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="75dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@drawable/round_card"
+                    android:elevation="15dp">
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:id="@+id/helpticket_start_viewPager"
+                        android:layout_margin="10dp"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ticket Details"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="25dp"
+                    android:textColor="@color/black"
+                    android:elevation="15dp"
+                    android:fontFamily="@font/berlinsans"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_card"
+                    android:layout_marginTop="45dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:elevation="15dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/helpticket_start_recyclerView"
+                        android:layout_margin="10dp"/>
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Seriously, you've reached the end."
+                android:textColor="@android:color/darker_gray"
+                android:layout_gravity="center"
+                android:layout_marginTop="55dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/transparent"
+        android:paddingBottom="15dp"
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="@android:color/transparent"
-            android:paddingBottom="15dp"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
+            android:background="@drawable/textedit_background"
+            android:layout_marginLeft="15dp"
+            android:paddingHorizontal="15dp">
+            <EditText
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/textedit_background"
-                android:layout_marginLeft="15dp"
-                android:paddingHorizontal="15dp">
-                <EditText
-                    android:layout_width="280dp"
-                    android:layout_height="wrap_content"
-                    android:hint="Send a message.."
-                    android:textSize="15dp"
-                    android:id="@+id/helpticket_start_editText"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/background_send_msg_button"
-                android:padding="5dp"
-                android:layout_marginLeft="15dp"
-                android:id="@+id/helpticket_start_sendButton">
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_baseline_play_arrow_24"/>
-            </LinearLayout>
-
+                android:hint="Send a message.."
+                android:textSize="15dp"
+                android:id="@+id/helpticket_start_editText"/>
         </LinearLayout>
-    </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_send_msg_button"
+            android:padding="5dp"
+            android:layout_marginLeft="15dp"
+            android:id="@+id/helpticket_start_sendButton">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_baseline_play_arrow_24"/>
+        </LinearLayout>
+
+    </LinearLayout>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
