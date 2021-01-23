@@ -113,7 +113,6 @@ public class customerHomeFragment extends Fragment {
             }
         });
 
-
         searchBox.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {

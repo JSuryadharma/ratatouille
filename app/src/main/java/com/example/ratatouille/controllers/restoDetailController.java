@@ -33,6 +33,7 @@ import com.example.ratatouille.utils.detailPhotoAdapter;
 import com.example.ratatouille.utils.requestMaker;
 import com.example.ratatouille.utils.restoDetailCallbackHelper;
 import com.example.ratatouille.vars.VariablesUsed;
+import com.example.ratatouille.views.ZoomImage;
 import com.example.ratatouille.views.restaurantDetails;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -124,26 +125,9 @@ public class restoDetailController {
         rdch.onLoad(context, intent);
     }
 
-    public static void showDialogMessage(String url, Context context){
-        Dialog showDialog = new Dialog(context);
-        showDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        showDialog.setContentView(R.layout.dialog_photo);
-
-//        showDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        PhotoView zoomPhoto = showDialog.findViewById(R.id.zoomPhoto);
-        ImageView zoomBackButton = showDialog.findViewById(R.id.zoomBackButton);
-        Glide.with(showDialog.getContext()).load(url).into(zoomPhoto);
-
-        zoomBackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MediaPlayer play = MediaPlayer.create(context, R.raw.open);
-                play.start();
-                showDialog.dismiss();
-            }
-        });
-
-        showDialog.show();
+    public static void showPhotoZoomed(String url, Context context){
+        Intent intent = new Intent(context, ZoomImage.class);
+        intent.putExtra("url", url);
+        context.startActivity(intent);
     }
 }

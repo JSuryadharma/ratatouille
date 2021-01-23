@@ -174,11 +174,19 @@ public class restaurantDetails extends AppCompatActivity {
     }
 
     private void backToSearch(Context context) {
-        Intent searchIntent = new Intent(context, Search.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("q", title.getText().toString());
-        searchIntent.putExtras(bundle);
-        startActivity(searchIntent);
-        finish();
+        if(VariablesUsed.previousState != null) {
+            VariablesUsed.previousState = null;
+            Intent mainMenuIntent = new Intent(context, customerView.class);
+            startActivity(mainMenuIntent);
+            finish();
+        }
+        else {
+            Intent searchIntent = new Intent(context, Search.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("q", title.getText().toString());
+            searchIntent.putExtras(bundle);
+            startActivity(searchIntent);
+            finish();
+        }
     }
 }

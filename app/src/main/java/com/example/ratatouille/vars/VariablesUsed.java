@@ -21,5 +21,6 @@ public class VariablesUsed { //currently active global variables..
     public static String DEFAULT_PHOTO = "https://i.imgur.com/9G1I9u9.png";
     public static restoDetailModel currentRestoDetail = null;
     public static Boolean firstLoginBoolean = false;
+    public static String previousState = null;
 //    public static Employee currentEmployee = null;
 }

@@ -45,12 +45,12 @@ public class menuPhotoAdapter extends PagerAdapter {
         View currentView = LayoutInflater.from(context).inflate(R.layout.viewpager_detailphoto, container, false);
 
         PhotoView restoPhoto = currentView.findViewById(R.id.detailRestoPhoto);
-        Glide.with(currentView).load(selectedItem.getImageUrl()).into(restoPhoto);
+        Glide.with(currentView).load(selectedItem.getImageUrl()).centerCrop().into(restoPhoto);
 
         restoPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                restoDetailController.showDialogMessage(selectedItem.getImageUrl(), context);
+                restoDetailController.showPhotoZoomed(selectedItem.getImageUrl(), context);
             }
         });
 

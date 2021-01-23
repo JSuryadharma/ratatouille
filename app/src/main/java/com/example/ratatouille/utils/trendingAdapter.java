@@ -18,6 +18,7 @@ import com.example.ratatouille.R;
 import com.example.ratatouille.controllers.restoDetailController;
 import com.example.ratatouille.models.mostPopularModels;
 import com.example.ratatouille.models.trendingModels;
+import com.example.ratatouille.vars.VariablesUsed;
 import com.example.ratatouille.views.restaurantDetails;
 
 import java.util.ArrayList;
@@ -63,12 +64,13 @@ public class trendingAdapter extends PagerAdapter {
         trendingCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                VariablesUsed.previousState = "home";
                 Intent intent = new Intent(context, restaurantDetails.class);
                 restoDetailController.query(context, intent, selectedItem.getId());
             }
         });
 
-        Glide.with(currentView).load(selectedItem.getImageUrl()).into(trendingImage);
+        Glide.with(currentView).load(selectedItem.getImageUrl()).centerCrop().into(trendingImage);
 
         container.addView(currentView);
 

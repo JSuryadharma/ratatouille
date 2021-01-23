@@ -18,7 +18,7 @@
         <ImageView
             android:id="@+id/trendingImage"
             android:layout_width="match_parent"
-            android:layout_height="95dp"
+            android:layout_height="120dp"
             android:background="@android:color/darker_gray"
             android:src="@drawable/ratatouille_logor" />
 

@@ -58,7 +58,7 @@ public class mostPopularAdapter extends RecyclerView.Adapter<mostPopularAdapter.
         holder.types.setText(selectedItem.getType());
         holder.ratingBar.setRating(selectedItem.getRate());
         holder.openHour.setText(selectedItem.getOpenHour());
-        Glide.with(holder.itemView).load(selectedItem.getImageUrl()).into(holder.mostPopularImage);
+        Glide.with(holder.itemView).load(selectedItem.getImageUrl()).centerCrop().into(holder.mostPopularImage);
     }
 
     @Override
