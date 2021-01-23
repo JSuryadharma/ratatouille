@@ -1,28 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:background="@color/black">
-
-    <ImageView
-        android:id="@+id/zoomBackButton"
-        android:layout_width="wrap_content"
-        android:layout_height="54dp"
-        android:layout_alignParentStart="false"
-        android:layout_alignParentEnd="false"
-        android:layout_marginRight="135dp"
-        android:layout_marginTop="15dp"
-        app:srcCompat="@drawable/ic_backbutton"/>
+    android:background="@color/black"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/zoomPhoto"
         android:layout_width="411dp"
-        android:layout_height="match_parent"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="25dp"/>
+        android:layout_height="match_parent" />
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/zoomBackButton"
+        android:layout_width="67dp"
+        android:layout_height="35dp"
+        app:srcCompat="@drawable/ic_backbutton" />
+
+</RelativeLayout>
+
