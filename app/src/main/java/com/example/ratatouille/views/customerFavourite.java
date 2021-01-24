@@ -113,6 +113,7 @@ public class customerFavourite extends Fragment {
             @Override
             public void onRefresh() {
                 reload();
+                pullToRefresh.setRefreshing(false);
             }
         });
     }

@@ -179,8 +179,8 @@ public class EditProfileFragment extends Fragment {
     }
 
     public void reload(){
-        profileUsername.setHint(VariablesUsed.currentUser.getUsername());
-        profileEmail.setHint(VariablesUsed.loggedUser.getEmail());
+        profileUsername.setText(VariablesUsed.currentUser.getUsername());
+        profileEmail.setText(VariablesUsed.loggedUser.getEmail());
 
         inputUsername.setHint(VariablesUsed.currentUser.getUsername());
         inputEmail.setHint(VariablesUsed.loggedUser.getEmail());
