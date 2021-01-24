@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ratatouille.R;
+import com.example.ratatouille.controllers.FavouritesController;
 import com.example.ratatouille.db.DatabaseHelper;
 import com.example.ratatouille.models.detailPhotoModels;
 import com.example.ratatouille.models.menuPhotoModels;
@@ -36,7 +37,7 @@ public class restaurantDetails extends AppCompatActivity {
     private ViewPager photoView, menuView;
     private TextView title, type, timings, address, avg, reviewButton;
     private RatingBar ratingBar;
-    private LinearLayout bookNowButton, backButton;
+    private LinearLayout bookNowButton, backButton, addToFavButton;
     private Context context;
     private ArrayList<detailPhotoModels> photoList;
     private ArrayList<menuPhotoModels> menuList;
@@ -59,6 +60,7 @@ public class restaurantDetails extends AppCompatActivity {
         backButton = findViewById(R.id.detail_backButton);
         pullToRefresh = findViewById(R.id.detail_pulltorefresh);
         reviewButton = findViewById(R.id.reviewButton);
+        addToFavButton = findViewById(R.id.addToFavouriteButton);
         context = this;
 
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +69,16 @@ public class restaurantDetails extends AppCompatActivity {
                 MediaPlayer player = MediaPlayer.create(context, R.raw.personleave);
                 player.start();
                 backToSearch(context);
+            }
+        });
+
+        addToFavButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FavouritesController.addFavourite(context, VariablesUsed.currentRestoDetail.getResto_name() + "-" + VariablesUsed.currentRestoDetail.getLocation(),
+                        VariablesUsed.currentRestoDetail.getResto_type(), VariablesUsed.currentRestoDetail.getAverage_price(),
+                        VariablesUsed.currentRestoDetail.getRating(), VariablesUsed.loggedUser.getUid()+"-"+VariablesUsed.currentRestoDetail.getResto_id(),
+                        VariablesUsed.loggedUser.getUid(), VariablesUsed.DEFAULT_PHOTO);
             }
         });
 

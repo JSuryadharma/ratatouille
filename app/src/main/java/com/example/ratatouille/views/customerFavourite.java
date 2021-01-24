@@ -1,16 +1,38 @@
 package com.example.ratatouille.views;
 
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.example.ratatouille.R;
+import com.example.ratatouille.controllers.FavouritesController;
+import com.example.ratatouille.controllers.ReviewController;
+import com.example.ratatouille.controllers.restoDetailController;
+import com.example.ratatouille.models.Favourite;
+import com.example.ratatouille.models.Review;
+import com.example.ratatouille.models.Users;
+import com.example.ratatouille.utils.Utils;
+import com.example.ratatouille.utils.callbackHelper;
+import com.example.ratatouille.utils.favouritesRecyclerAdapter;
+import com.example.ratatouille.utils.reviewRecyclerAdapter;
+import com.example.ratatouille.vars.VariablesUsed;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,6 +40,17 @@ import com.example.ratatouille.R;
  * create an instance of this fragment.
  */
 public class customerFavourite extends Fragment {
+
+    private SwipeRefreshLayout pullToRefresh;
+    private RecyclerView favouritesView;
+    private ArrayList<Favourite> favList;
+    private favouritesRecyclerAdapter favAdapter;
+    private callbackHelper cb = new callbackHelper() {
+        @Override
+        public void onUserLoadCallback(Context context, Users u) {
+            refreshFavouriteList();
+        }
+    };
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -70,5 +103,26 @@ public class customerFavourite extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         customerView.menubar_layout.setVisibility(View.VISIBLE);
+
+        pullToRefresh = getView().findViewById(R.id.favourites_pulltorefresh);
+        favouritesView = getView().findViewById(R.id.favourites_recyclerview);
+
+        favouritesView.setLayoutManager(new LinearLayoutManager(getView().getContext()));
+        reload();
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                reload();
+            }
+        });
+    }
+
+    public void reload(){
+        favList = FavouritesController.getAllFavouritesForAUser(getView().getContext(), cb, VariablesUsed.loggedUser.getUid());
+    }
+
+    public void refreshFavouriteList() {
+        favAdapter = new favouritesRecyclerAdapter(getView().getContext(), favList);
+        favouritesView.setAdapter(favAdapter);
     }
 }

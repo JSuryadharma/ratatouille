@@ -196,23 +196,46 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/bookNowButton"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:background="#DAD9E2"
-                    android:clickable="true"
-                    android:elevation="15dp"
-                    android:gravity="center">
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:id="@+id/addToFavouriteButton"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/berlinsans"
-                        android:text="CONTACT RESTAURANT"
-                        android:textColor="@color/black"
-                        android:textSize="10pt" />
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/round_button"
+                        android:layout_margin="10dp">
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/berlinsans"
+                            android:text="Add to Fav"
+                            android:textColor="@color/black"
+                            android:textSize="10pt"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/bookNowButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/round_button"
+                        android:clickable="true">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/berlinsans"
+                            android:text="Contact Resto"
+                            android:textColor="@color/black"
+                            android:textSize="10pt"
+                            android:textAlignment="center"/>
+
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 

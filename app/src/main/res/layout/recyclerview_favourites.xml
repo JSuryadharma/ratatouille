@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginHorizontal="15dp"
+    android:paddingVertical="15dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/recycler_cardview"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardElevation="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/round_button">
+
+            <LinearLayout
+                android:id="@+id/reviewlist_top"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/favourites_restoimage"
+                    android:layout_width="230dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:layout_weight="1"
+                    android:background="@color/cardview_dark_background"
+                    app:srcCompat="@drawable/ratatouille_logor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/favourites_restotitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="Title"
+                        android:textColor="@android:color/holo_red_light"
+                        android:textSize="15dp"
+                        android:ellipsize="marquee"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:fontFamily="@font/heebo_light"/>
+
+                    <TextView
+                        android:id="@+id/favourites_restotypes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="Types"
+                        android:textColor="@android:color/holo_red_light"
+                        android:textSize="15dp"
+                        android:fontFamily="@font/heebo_light"/>
+
+                    <TextView
+                        android:id="@+id/favourites_restoprice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="Price"
+                        android:textColor="@android:color/holo_red_light"
+                        android:textSize="15dp"
+                        android:fontFamily="@font/heebo_light"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RatingBar
+                            android:id="@+id/favourites_ratingbar"
+                            style="@style/Widget.AppCompat.RatingBar.Small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:numStars="5"
+                            android:rating="5" />
+
+                        <TextView
+                            android:id="@+id/favourites_angka"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="(5.0)"
+                            android:textColor="@color/black"
+                            android:textSize="10dp"
+                            android:fontFamily="@font/heebo_bold"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/favourite_deleteButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="Delete"
+                        android:textColor="@android:color/holo_blue_light"
+                        android:textSize="15dp"
+                        android:fontFamily="@font/roboto_bold"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
