@@ -42,6 +42,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Reviews"
+                        android:fontFamily="@font/heebo_bold"
                         android:textColor="@android:color/black"
                         android:textSize="40dp"
                         android:textStyle="bold" />
@@ -66,6 +67,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:text="Restaurant_Name"
+                    android:fontFamily="@font/heebo_bold"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="15dp" />
 
@@ -324,7 +326,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/berlinsans"
+                        android:fontFamily="@font/heebo_bold"
                         android:text="Reviews"
                         android:textColor="@android:color/darker_gray"
                         android:textSize="30dp"

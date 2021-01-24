@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:text="Back"
                 android:textColor="@android:color/darker_gray"
-                android:fontFamily="@font/berlinsans"
+                android:fontFamily="@font/roboto_bold"
                 android:textSize="20dp"
                 android:layout_gravity="center_vertical"
                 android:id="@+id/otp_backButton_text"/>
@@ -42,6 +42,7 @@
         android:text="Verify Your Phone Number"
         android:textSize="35dp"
         android:textStyle="bold"
+        android:fontFamily="@font/roboto_bold"
         android:textColor="@android:color/black"
         android:paddingTop="40dp"
         android:paddingHorizontal="50dp"/>
@@ -50,6 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enter your OTP code here"
+        android:fontFamily="@font/roboto_light"
         android:textSize="17dp"
         android:textColor="@android:color/black"
         android:paddingHorizontal="50dp"
@@ -148,6 +150,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Verify Now"
+            android:fontFamily="@font/roboto_bold"
             android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold"

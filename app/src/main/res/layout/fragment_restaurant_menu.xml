@@ -26,6 +26,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="TextView"
+        android:fontFamily="@font/heebo_bold"
         app:layout_constraintStart_toEndOf="@+id/all_menu_image"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,6 +37,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="25dp"
         android:text="Rp 199.000"
+        android:fontFamily="@font/heebo_bold"
         app:layout_constraintStart_toEndOf="@+id/all_menu_image"
         app:layout_constraintTop_toBottomOf="@+id/all_menu_name" />
 

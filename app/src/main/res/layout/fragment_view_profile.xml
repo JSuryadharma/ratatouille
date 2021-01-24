@@ -30,6 +30,7 @@
                     android:layout_alignParentLeft="true"
                     android:text="Profile"
                     android:textColor="@android:color/black"
+                    android:fontFamily="@font/roboto_bold"
                     android:textStyle="bold"
                     android:textSize="40dp"
                     android:elevation="15dp"/>

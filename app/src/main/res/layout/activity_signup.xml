@@ -13,7 +13,7 @@
         android:text="Create Account"
         android:textSize="45dp"
         android:textColor="@android:color/white"
-        android:fontFamily="@font/berlinsans"
+        android:fontFamily="@font/roboto_bold"
         android:layout_marginBottom="10dp"/>
 
     <TextView
@@ -22,7 +22,7 @@
         android:text="Hi, kindly fill in the form to proceed shopping"
         android:textSize="12dp"
         android:textColor="@android:color/white"
-        android:fontFamily="@font/berlinsans"
+        android:fontFamily="@font/roboto_light"
         android:layout_marginBottom="10dp"/>
 
     <LinearLayout
@@ -40,6 +40,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="Username"
+                android:fontFamily="@font/roboto"
                 android:textColor="@color/white"/>
 
             <LinearLayout
@@ -68,6 +69,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="Email"
+                android:fontFamily="@font/roboto"
                 android:textColor="@color/white"/>
 
             <LinearLayout
@@ -96,6 +98,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="Name"
+                android:fontFamily="@font/roboto"
                 android:textColor="@color/white"/>
 
             <LinearLayout
@@ -124,6 +127,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="Password"
+            android:fontFamily="@font/roboto"
             android:textColor="@color/white"/>
 
         <LinearLayout
@@ -145,6 +149,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:text="Show"
+            android:fontFamily="@font/roboto"
             android:id="@+id/su_showButton"
             android:textColor="@color/white"
             android:textAlignment="center"/>
@@ -160,6 +165,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="Phone"
+                android:fontFamily="@font/roboto"
                 android:textColor="@color/white"/>
 
             <LinearLayout
@@ -189,6 +195,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="Address"
+            android:fontFamily="@font/roboto"
             android:textColor="@color/white"/>
 
         <LinearLayout
@@ -219,7 +226,7 @@
             android:layout_height="wrap_content"
             android:text="Back"
             android:textSize="15dp"
-            android:fontFamily="sans-serif"
+            android:fontFamily="@font/roboto"
             android:layout_marginRight="20dp"
             android:id="@+id/su_backButton"
             android:textColor="@color/white"
@@ -239,7 +246,7 @@
                 android:text="Create Account"
                 android:textSize="20dp"
                 android:textColor="@android:color/holo_red_light"
-                android:fontFamily="@font/berlinsans"/>
+                android:fontFamily="@font/roboto_bold"/>
         </LinearLayout>
 
     </LinearLayout>

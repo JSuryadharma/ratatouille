@@ -34,6 +34,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_marginStart="30dp"
                 android:text="Edit Profile"
+                android:fontFamily="@font/roboto_bold"
                 android:textColor="@android:color/black"
                 android:textSize="40dp"/>
 
@@ -44,6 +45,7 @@
                 android:layout_alignBaseline="@id/esp_profileLabel"
                 android:layout_alignParentRight="true"
                 android:text="Save"
+                android:fontFamily="@font/roboto_bold"
                 android:textAlignment="textEnd"
                 android:textColor="@android:color/black"
                 android:textSize="25dp"

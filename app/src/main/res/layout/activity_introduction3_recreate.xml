@@ -33,6 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Book A Table"
+                android:fontFamily="@font/roboto_bold"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="36sp" />
@@ -42,6 +43,7 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:fontFamily="@font/roboto_light"
                 android:text="Here in Ratatouille, you can book a table in your favorite restaurant. All you need to do is tell us when."
                 android:textAlignment="center"
                 android:textColor="@color/black"

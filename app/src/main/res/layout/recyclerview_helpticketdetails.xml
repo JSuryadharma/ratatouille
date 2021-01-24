@@ -23,7 +23,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginHorizontal="15dp"
                 android:textSize="10dp"
-                android:fontFamily="@font/berlinsans"
+                android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/black"
                 android:id="@+id/helpticketdetails_title"/>
             <TextView
@@ -31,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:text="Message: "
                 android:textSize="18dp"
+                android:fontFamily="@font/roboto"
                 android:textColor="@color/black"
                 android:id="@+id/helpticketdetails_message"
                 android:layout_marginHorizontal="15dp"
@@ -46,6 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Replied By:"
+                android:fontFamily="@font/roboto"
                 android:layout_below="@id/helpticketdetails_message"
                 android:textSize="15dp"
                 android:id="@+id/helpticketdetails_employeeReply"

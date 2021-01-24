@@ -34,6 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Discover Restaurants"
+                android:fontFamily="@font/roboto_bold"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="36sp" />
@@ -44,6 +45,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Wondering about where to eat? Don't worry, we've got you covered. Here in Ratatouille, you can discover so many hidden gems, so many restaurants you wish you had visited sooner."
+                android:fontFamily="@font/roboto_light"
                 android:textAlignment="center"
                 android:textSize="12sp"
                 android:textColor="@color/black"/>

@@ -29,7 +29,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:fontFamily="@font/berlinsans"
+                    android:fontFamily="@font/roboto_bold"
                     android:text="Back"
                     android:textColor="#808080"
                     android:textSize="20dp" />
@@ -58,6 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="Title"
+                    android:fontFamily="@font/heebo_bold"
                     android:textColor="@color/black"
                     android:textSize="20dp" />
 
@@ -67,6 +68,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="Type"
+                    android:fontFamily="@font/heebo_light"
                     android:textColor="#808080"
                     android:textSize="15dp" />
 
@@ -93,6 +95,7 @@
                         android:layout_marginBottom="5dp"
                         android:layout_weight="1"
                         android:text="Details"
+                        android:fontFamily="@font/heebo_bold"
                         android:textColor="#2196F3"
                         android:textSize="15dp" />
 
@@ -110,6 +113,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Timings"
+                        android:fontFamily="@font/heebo_light"
                         android:textColor="#808080"
                         android:textSize="15dp" />
                 </LinearLayout>
@@ -126,6 +130,7 @@
                         android:layout_height="wrap_content"
                         android:background="#DAD9E2"
                         android:text="ADDRESS"
+                        android:fontFamily="@font/heebo_bold"
                         android:textColor="@color/black"
                         android:textSize="17dp" />
 
@@ -135,6 +140,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:text="Alamat"
+                        android:fontFamily="@font/heebo_light"
                         android:textColor="#808080"
                         android:textSize="15dp" />
                 </LinearLayout>
@@ -151,6 +157,7 @@
                         android:layout_height="wrap_content"
                         android:background="#DAD9E2"
                         android:text="AVERAGE PRICE"
+                        android:fontFamily="@font/roboto_bold"
                         android:textColor="@color/black"
                         android:textSize="17dp" />
 
@@ -160,6 +167,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:text="Rata - rata"
+                        android:fontFamily="@font/heebo_light"
                         android:textColor="#808080"
                         android:textSize="15dp" />
                 </LinearLayout>
@@ -176,6 +184,7 @@
                         android:layout_height="wrap_content"
                         android:background="#DAD9E2"
                         android:text="MENU"
+                        android:fontFamily="@font/heebo_bold"
                         android:textColor="@color/black"
                         android:textSize="17dp" />
 

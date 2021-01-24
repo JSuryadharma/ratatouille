@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:text="Introduction"
         android:textSize="45dp"
-        android:fontFamily="@font/berlinsans"
+        android:fontFamily="@font/roboto_bold"
         android:textColor="@android:color/darker_gray"
         android:layout_above="@id/intro_viewPager"
         android:layout_centerHorizontal="true"/>

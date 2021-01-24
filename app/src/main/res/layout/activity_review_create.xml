@@ -24,6 +24,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_marginTop="35dp"
                 android:text="Reviews Create"
+                android:fontFamily="@font/heebo_bold"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="40dp"
                 android:textStyle="bold" />
@@ -34,6 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:text="Submit"
+                android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
@@ -53,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:fontFamily="@font/berlinsans"
+                    android:fontFamily="@font/roboto_bold"
                     android:text="Back"
                     android:textColor="@color/black"
                     android:textSize="20dp" />
@@ -65,6 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
             android:text="Please kindly fill the form below."
+            android:fontFamily="@font/heebo_light"
             android:textColor="@android:color/darker_gray"
             android:textSize="20dp" />
 
@@ -82,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-                android:fontFamily="@font/berlinsans"
+                android:fontFamily="@font/heebo_bold"
                 android:text="Ratings"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="25dp" />
@@ -364,6 +367,7 @@
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="15dp"
                 android:text="Message"
+                android:fontFamily="@font/heebo_bold"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="15dp" />
 
@@ -380,6 +384,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="15dp"
                     android:hint="Enter a message.."
+                    android:fontFamily="@font/heebo_light"
                     android:inputType="textMultiLine"
                     android:textColor="@color/black"
                     android:textColorHint="@android:color/darker_gray"

@@ -27,6 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Hi, nice to meet you!"
+            android:fontFamily="@font/roboto_bold"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="36sp"/>
@@ -37,6 +38,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Choose your location to let Ratatouille find restaurants around you."
+            android:fontFamily="@font/roboto_light"
             android:textColor="@android:color/darker_gray"
             android:textAlignment="center"
             android:textSize="15sp" />
@@ -62,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:text="Select Location"
                 android:textSize="10pt"
-                android:fontFamily="@font/berlinsans"
+                android:fontFamily="@font/roboto_bold"
                 android:textColor="#ABD2DE"/>
 
 

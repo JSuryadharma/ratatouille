@@ -18,6 +18,7 @@
             android:textColor="@color/black"
             android:textSize="25dp"
             android:textStyle="bold"
+            android:fontFamily="@font/heebo_bold"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
             android:id="@+id/dialog_title"
@@ -39,6 +40,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:text="text_information"
+            android:fontFamily="@font/heebo_light"
             android:textSize="15dp"
             android:textColor="@color/black"
             android:textAlignment="center"
@@ -59,6 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ok"
+                android:fontFamily="@font/heebo_bold"
                 android:textColor="@android:color/holo_red_light"
                 android:textSize="20dp"/>
         </LinearLayout>

@@ -36,7 +36,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:fontFamily="@font/berlinsans"
+                    android:fontFamily="@font/roboto_bold"
                     android:text="Back"
                     android:textColor="@android:color/white"
                     android:textSize="20dp" />
@@ -48,6 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
                 android:text="Search"
+                android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/black"
                 android:textSize="40dp"
                 android:textStyle="bold" />

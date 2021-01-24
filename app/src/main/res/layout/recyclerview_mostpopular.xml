@@ -37,6 +37,7 @@
                 android:scrollHorizontally="true"
                 android:singleLine="true"
                 android:text="Title"
+                android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/black"
                 android:textSize="15dp" />
 
@@ -46,6 +47,7 @@
                 android:layout_height="wrap_content"
                 android:text="Types"
                 android:textColor="@color/black"
+                android:fontFamily="@font/roboto_light"
                 android:textSize="8dp" />
 
             <LinearLayout
@@ -67,6 +69,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:text="Opens at 1.00am"
+                    android:fontFamily="@font/roboto_bold"
                     android:textColor="@color/black"
                     android:textSize="12dp"
                     android:textStyle="italic" />

@@ -34,6 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Rate Restaurants"
+                android:fontFamily="@font/roboto_bold"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="36sp" />
@@ -43,6 +44,7 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:fontFamily="@font/roboto_light"
                 android:text="Your review matters. Rate the implementation of health protocols in every restaurant you visit, and we listen!"
                 android:textAlignment="center"
                 android:textSize="15sp"
