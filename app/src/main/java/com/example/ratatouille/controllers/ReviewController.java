@@ -24,8 +24,9 @@ public class ReviewController {
     }
 
     public static ArrayList<Review> getAllReviewForAUser(Context context, callbackHelper cb, String userID){
-        ArrayList<Review> reviewList = Review.getAllForAUser(context, cb, userID);
-        return reviewList;
+//        ArrayList<Review> reviewList = Review.getAllForAUser(context, cb, userID);
+//        return reviewList;
+        return null;
     }
 
     public static Review addReview(String restaurantID, Double maskRate, Double temperatureRate, Double sanitizeRate, Double socialDistancingRate, Double physicalBarriersRate, String description){

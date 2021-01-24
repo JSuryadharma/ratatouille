@@ -62,7 +62,7 @@ public class ReviewVerification {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 selectedValues = snapshot.getValue(ReviewVerification.class);
                 if(ReviewController.databaseVerificationCheck(selectedValues, reviewCode, restaurantID)){
-                    Utils.showDialogMessage(R.drawable.verified_logo, context, "Successfully Verified", "Please kindly rate your selected restaurant.");
+//                    Utils.showDialogMessage(R.drawable.verified_logo, context, "Successfully Verified", "Please kindly rate your selected restaurant.");
                     ReviewController.deleteVerificationCode(reviewCode);
                     cb.onUserLoadCallback(context, VariablesUsed.currentUser);
                 } else {
@@ -115,5 +115,21 @@ public class ReviewVerification {
 
     public Date getSubmitDate() {
         return submitDate;
+    }
+
+    public void setReviewCode(String reviewCode) {
+        this.reviewCode = reviewCode;
+    }
+
+    public void setRestaurantID(String restaurantID) {
+        this.restaurantID = restaurantID;
+    }
+
+    public void setCustomerID(String customerID) {
+        this.customerID = customerID;
+    }
+
+    public void setSubmitDate(Date submitDate) {
+        this.submitDate = submitDate;
     }
 }

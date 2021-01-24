@@ -15,6 +15,9 @@
         <activity android:name=".views.ZoomImage"></activity>
         <activity android:name=".views.restaurantDetails" />
         <activity android:name=".views.Search" />
+        <activity android:name=".views.reviewPage"/>
+        <activity android:name=".views.ReviewCode"/>
+        <activity android:name=".views.reviewCreatePage"/>
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">

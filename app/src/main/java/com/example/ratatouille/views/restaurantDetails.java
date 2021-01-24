@@ -2,6 +2,7 @@ package com.example.ratatouille.views;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -31,8 +32,9 @@ import java.util.ArrayList;
 
 public class restaurantDetails extends AppCompatActivity {
 
+    private SwipeRefreshLayout pullToRefresh;
     private ViewPager photoView, menuView;
-    private TextView title, type, timings, address, avg;
+    private TextView title, type, timings, address, avg, reviewButton;
     private RatingBar ratingBar;
     private LinearLayout bookNowButton, backButton;
     private Context context;
@@ -55,6 +57,8 @@ public class restaurantDetails extends AppCompatActivity {
         menuView = findViewById(R.id.menuPhoto_viewpager);
         bookNowButton = findViewById(R.id.bookNowButton);
         backButton = findViewById(R.id.detail_backButton);
+        pullToRefresh = findViewById(R.id.detail_pulltorefresh);
+        reviewButton = findViewById(R.id.reviewButton);
         context = this;
 
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +67,28 @@ public class restaurantDetails extends AppCompatActivity {
                 MediaPlayer player = MediaPlayer.create(context, R.raw.personleave);
                 player.start();
                 backToSearch(context);
+            }
+        });
+
+        reviewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MediaPlayer player = MediaPlayer.create(context, R.raw.personleave);
+                player.start();
+                Intent mainMenuIntent = new Intent(context, reviewPage.class);
+                startActivity(mainMenuIntent);
+            }
+        });
+
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadData();
+                loadPhotos(context, VariablesUsed.currentRestoDetail.getResto_id());
+                loadMenus(context, VariablesUsed.currentRestoDetail.getResto_id());
+                MediaPlayer player = MediaPlayer.create(context, R.raw.open);
+                player.start();
+                pullToRefresh.setRefreshing(false);
             }
         });
 

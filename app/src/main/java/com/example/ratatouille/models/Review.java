@@ -54,7 +54,7 @@ public class Review {
     }
 
     public void save(){
-        DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.ReviewTable.REVIEW_TABLE);
+        DatabaseReference dbRef = DatabaseHelper.getDb().getReference("Restaurants").child(restaurantID).child("reviews");
         dbRef.child(reviewID).setValue(this);
     }
 
@@ -91,7 +91,7 @@ public class Review {
     }
 
     public static ArrayList<Review> getAll(Context context, callbackHelper cb, String restaurantID){ // Review for specific restaurant
-        DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.ReviewTable.REVIEW_TABLE);
+        DatabaseReference dbRef = DatabaseHelper.getDb().getReference("Restaurants/" + restaurantID + "/reviews");
         ArrayList<Review> reviewList = new ArrayList<>();
         dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -114,29 +114,29 @@ public class Review {
         return reviewList;
     }
 
-    public static ArrayList<Review> getAllForAUser(Context context, callbackHelper cb, String userID){ // Review for specific restaurant
-        DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.ReviewTable.REVIEW_TABLE);
-        ArrayList<Review> reviewList = new ArrayList<>();
-        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot eachData : snapshot.getChildren()){ // setiap child dari snapshot json
-                    if(eachData.child("userID").getValue().equals(userID)) {
-                        Review curReview = eachData.getValue(Review.class);
-                        reviewList.add(curReview);
-                    }
-                }
-                cb.onUserLoadCallback(context, VariablesUsed.currentUser);
-                Log.w(TAG, "onSuccess: All Review retrieved!");
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.w(TAG, "onFailure: All Review retrival failed!");
-            }
-        });
-        return reviewList;
-    }
+//    public static ArrayList<Review> getAllForAUser(Context context, callbackHelper cb, String userID){ // Review for specific restaurant
+//        DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.ReviewTable.REVIEW_TABLE);
+//        ArrayList<Review> reviewList = new ArrayList<>();
+//        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for(DataSnapshot eachData : snapshot.getChildren()){ // setiap child dari snapshot json
+//                    if(eachData.child("userID").getValue().equals(userID)) {
+//                        Review curReview = eachData.getValue(Review.class);
+//                        reviewList.add(curReview);
+//                    }
+//                }
+//                cb.onUserLoadCallback(context, VariablesUsed.currentUser);
+//                Log.w(TAG, "onSuccess: All Review retrieved!");
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                Log.w(TAG, "onFailure: All Review retrival failed!");
+//            }
+//        });
+//        return reviewList;
+//    }
 
     public String getCustomerUsername() {
         return customerUsername;

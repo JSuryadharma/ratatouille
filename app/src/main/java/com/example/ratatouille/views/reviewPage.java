@@ -1,16 +1,19 @@
 package com.example.ratatouille.views;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,17 +26,18 @@ import com.example.ratatouille.models.Review;
 import com.example.ratatouille.models.Users;
 import com.example.ratatouille.utils.callbackHelper;
 import com.example.ratatouille.utils.reviewRecyclerAdapter;
+import com.example.ratatouille.vars.VariablesUsed;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class reviewFragment extends Fragment {
+public class reviewPage extends AppCompatActivity {
     private String currentRestaurantID = "";
     private String currentRestaurantName = "";
     private LinearLayout addButton;
     private SwipeRefreshLayout refresh;
     private TextView restaurantName_overall;
-    private TextView overall_score;
+    private TextView overall_score, zomato_score;
     private RatingBar maskRate_overall;
     private RatingBar tempRate_overall;
     private RatingBar sanitizeRate_overall;
@@ -42,6 +46,8 @@ public class reviewFragment extends Fragment {
     private RecyclerView review_recyclerView;
     private ArrayList<Review> reviewList;
     private reviewRecyclerAdapter reviewAdapter;
+    private ImageView backButton;
+    private Context context;
     private callbackHelper cb = new callbackHelper() {
         @Override
         public void onUserLoadCallback(Context context, Users u) {
@@ -49,36 +55,47 @@ public class reviewFragment extends Fragment {
         }
     };
 
-    public reviewFragment(String currentRestaurantID) {
-        //Set the current RestaurantID, for each view page objects.
-        this.currentRestaurantID = currentRestaurantID;
-    }
-
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_review_page, container, false);
-    }
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_review_page);
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        addButton = getView().findViewById(R.id.reviewpage_addButton);
-        refresh = getView().findViewById(R.id.reviewpage_refresh);
-        restaurantName_overall = getView().findViewById(R.id.reviewpage_restaurant_name);
-        overall_score = getView().findViewById(R.id.reviewpage_overall_score);
-        maskRate_overall = getView().findViewById(R.id.reviewpage_maskRatingBar);
-        tempRate_overall = getView().findViewById(R.id.reviewpage_tempRatingBar);
-        sanitizeRate_overall = getView().findViewById(R.id.reviewpage_sanitationRatingBar);
-        socialDistRate_overall = getView().findViewById(R.id.reviewpage_socialDistRatingBar);
-        physicalBarRate_overall = getView().findViewById(R.id.reviewpage_physicalBarRatingBar);
+        addButton = findViewById(R.id.reviewpage_addButton);
+        refresh = findViewById(R.id.reviewpage_refresh);
+        restaurantName_overall = findViewById(R.id.reviewpage_restaurant_name);
+        overall_score = findViewById(R.id.reviewpage_overall_score);
+        zomato_score = findViewById(R.id.reviewpage_zomato_score);
+        maskRate_overall = findViewById(R.id.reviewpage_maskRatingBar);
+        tempRate_overall = findViewById(R.id.reviewpage_tempRatingBar);
+        sanitizeRate_overall = findViewById(R.id.reviewpage_sanitationRatingBar);
+        socialDistRate_overall = findViewById(R.id.reviewpage_socialDistRatingBar);
+        physicalBarRate_overall = findViewById(R.id.reviewpage_physicalBarRatingBar);
+        backButton = findViewById(R.id.reviewPageBackButton);
+        currentRestaurantID = VariablesUsed.currentRestoDetail.getResto_id();
+        context = this;
 
-        review_recyclerView = getView().findViewById(R.id.reviewpage_recyclerView);
-        review_recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        review_recyclerView = findViewById(R.id.reviewpage_recyclerView);
+        review_recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        restaurantName_overall.setText(currentRestaurantName);
+        restaurantName_overall.setText(VariablesUsed.currentRestoDetail.getResto_name());
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ReviewCode.class);
+                startActivity(intent);
+            }
+        });
 
         reload();
+        zomato_score.setText(String.valueOf((float) VariablesUsed.currentRestoDetail.getRating()));
 
         refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -86,16 +103,15 @@ public class reviewFragment extends Fragment {
                 reload();
             }
         });
-
     }
 
     public void reload(){
-        reviewList = ReviewController.getAllReviewForARestaurant(this.getContext(), cb, currentRestaurantID);
-        currentRestaurantName = Restaurant.get(currentRestaurantID).getName();
+        reviewList = ReviewController.getAllReviewForARestaurant(this, cb, currentRestaurantID);
+        currentRestaurantName = VariablesUsed.currentRestoDetail.getResto_id();
     }
 
     public void refreshReviewList(){
-        reviewAdapter = new reviewRecyclerAdapter(this.getContext(), reviewList);
+        reviewAdapter = new reviewRecyclerAdapter(this, reviewList);
         review_recyclerView.setAdapter(reviewAdapter);
 
         // Refresh the current overall score
@@ -140,4 +156,5 @@ public class reviewFragment extends Fragment {
         // Do not neet callback, should get the values after the reviewList got its values, from the database..
         restaurantName_overall.setText(currentRestaurantName);
     }
+
 }
