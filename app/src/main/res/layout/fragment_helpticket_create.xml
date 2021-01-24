@@ -82,7 +82,11 @@
                 android:alpha="0.7"
                 android:background="@drawable/searchbox_background"
                 android:inputType="text"
+                android:textColor="@android:color/darker_gray"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="15dp"
                 android:paddingHorizontal="5dp"
+                android:hint="subject"
                 android:elevation="15dp"/>
         </LinearLayout>
 
@@ -102,7 +106,11 @@
                 android:alpha="0.7"
                 android:background="@drawable/searchbox_background"
                 android:inputType="textLongMessage"
+                android:textColor="@android:color/darker_gray"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="15dp"
                 android:paddingHorizontal="5dp"
+                android:hint="your descriptions.."
                 android:elevation="15dp"/>
         </LinearLayout>
 
@@ -124,8 +132,11 @@
                 android:alpha="0.7"
                 android:background="@drawable/searchbox_background"
                 android:inputType="textMultiLine"
-                android:hint="(upload a screenshot here)"
-                android:textSize="12dp"
+                android:hint="(upload a screenshot here)\n available soon!"
+                android:textSize="15dp"
+                android:textColor="@android:color/darker_gray"
+                android:textColorHint="@android:color/darker_gray"
+                android:enabled="false"
                 android:paddingHorizontal="5dp"
                 android:elevation="15dp"/>
         </LinearLayout>
@@ -143,7 +154,7 @@
         <LinearLayout
             android:layout_width="180dp"
             android:layout_height="60dp"
-            android:background="@drawable/button_background"
+            android:background="@drawable/round_button"
             android:gravity="center"
             android:id="@+id/ht_sendButton"
             android:elevation="15dp"
@@ -154,7 +165,7 @@
                 android:layout_height="wrap_content"
                 android:text="Send"
                 android:textSize="20dp"
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/holo_red_light"
                 android:fontFamily="@font/berlinsans"/>
         </LinearLayout>
 

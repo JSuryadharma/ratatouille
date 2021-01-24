@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,14 +19,18 @@ import androidx.fragment.app.Fragment;
 import com.example.ratatouille.MainActivity;
 import com.example.ratatouille.R;
 import com.example.ratatouille.utils.Utils;
+import com.example.ratatouille.utils.voucherRecyclerAdapter;
 import com.example.ratatouille.vars.VariablesUsed;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import static com.example.ratatouille.vars.VariablesUsed.currentVoucher;
 import static com.example.ratatouille.vars.VariablesUsed.firstLoginBoolean;
 import static maes.tech.intentanim.CustomIntent.customType;
 
 public class customerView extends AppCompatActivity {
     public static RelativeLayout menubar_layout;
+    public static RelativeLayout currentVoucher_area;
+    public static TextView currentVoucher_name;
     private ImageView navbar_home;
     private ImageView navbar_profile;
     private ImageView navbar_favourite;
@@ -58,12 +63,21 @@ public class customerView extends AppCompatActivity {
         navbar_profile_i = findViewById(R.id.navbar_profile_i);
         navbar_favourite_i = findViewById(R.id.navbar_favourite_i);
 
+        currentVoucher_area = findViewById(R.id.currentVoucher_area);
+        currentVoucher_name = findViewById(R.id.currentVoucher_name);
         menubar_layout = findViewById(R.id.menubar_layout);
 
         navbar_home_i.setVisibility(View.VISIBLE);
         navbar_profile_i.setVisibility(View.INVISIBLE);
         navbar_favourite_i.setVisibility(View.INVISIBLE);
 
+        if(voucherRecyclerAdapter.selectedItem == -1) {
+            currentVoucher_area.setVisibility(View.GONE);
+            currentVoucher_name.setText("");
+        } else {
+            currentVoucher_area.setVisibility(View.VISIBLE);
+            currentVoucher_name.setText(currentVoucher.getVoucherName() + " " + currentVoucher.getVoucherDisc().toString() + "%");
+        }
         menubar_layout.setVisibility(View.VISIBLE);
 
         navbar_home.setOnClickListener(new View.OnClickListener() {

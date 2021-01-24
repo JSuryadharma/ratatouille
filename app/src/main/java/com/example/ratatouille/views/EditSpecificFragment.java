@@ -83,11 +83,11 @@ public class EditSpecificFragment extends Fragment {
         switch(mode){
             case "Phone Number":
                 toBeLabel.setText("Phone Number");
-                toBeInput.setText(VariablesUsed.currentUser.getUsername());
+                toBeInput.setHint(VariablesUsed.currentUser.getPhone());
                 break;
             case "Address":
                 toBeLabel.setText("Address");
-                toBeInput.setText(VariablesUsed.currentUser.getAddress());
+                toBeInput.setHint(VariablesUsed.currentUser.getAddress());
                 break;
         }
 
@@ -97,7 +97,7 @@ public class EditSpecificFragment extends Fragment {
             public void onClick(View v) {
                 saveButton.setTextColor(Color.DKGRAY);
                 if(mode.equals("Phone Number")){
-                    if(Utils.validatePhone(toBeInput.getText().toString())){
+                    if(Utils.validateInput(toBeInput.getText().toString()) && Utils.validatePhone(toBeInput.getText().toString())){
                         UserController.updateProfile(VariablesUsed.currentUser.getUsername(), VariablesUsed.currentUser.getName(), toBeInput.getText().toString(), VariablesUsed.currentUser.getAddress(), VariablesUsed.currentUser.getPoints());
                         Utils.showDialogMessage(R.drawable.verified_logo, getView().getContext(), "Profile Updated", "Reloading the new data!");
                     } else {

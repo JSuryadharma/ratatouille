@@ -75,7 +75,8 @@ public class signupScreen extends AppCompatActivity {
                 String phoneInput = phoneField.getText().toString();
                 String addressInput = addressField.getText().toString();
 
-                if (Utils.validateEmail(emailInput) && Utils.validateUsername(usernameInput) && Utils.validatePassword(passwordInput) && Utils.validatePhone(phoneInput)) {
+                if (Utils.validateInput(emailInput) && Utils.validateInput(usernameInput) && Utils.validateInput(passwordInput) && Utils.validateInput(phoneInput) &&
+                        Utils.validateEmail(emailInput) && Utils.validateUsername(usernameInput) && Utils.validatePassword(passwordInput) && Utils.validatePhone(phoneInput)) {
                     UserController.UserSignup(signupScreen.this, emailInput, usernameInput, passwordInput, nameInput, phoneInput, addressInput);
 
                     Toast.makeText(getBaseContext(), "Account Created Successfully!", Toast.LENGTH_LONG).show();
@@ -96,16 +97,16 @@ public class signupScreen extends AppCompatActivity {
                         signupAlert.show();
 
                 } else {
-                    if(!Utils.validateEmail(emailInput)){
+                    if(!Utils.validateInput(emailInput) && !Utils.validateEmail(emailInput)){
                         emailField.setError("Invalid Input!");
                     }
-                    if(!Utils.validateUsername(usernameInput)){
+                    if(!Utils.validateInput(usernameInput) && !Utils.validateUsername(usernameInput)){
                         usernameField.setError("Invalid Input!");
                     }
-                    if(!Utils.validatePassword(passwordInput)){
+                    if(!Utils.validateInput(passwordInput) && !Utils.validatePassword(passwordInput)){
                         passwordField.setError("Invalid Input!");
                     }
-                    if(!Utils.validatePhone(phoneInput)){
+                    if(!Utils.validateInput(phoneInput) && !Utils.validatePhone(phoneInput)){
                         phoneField.setError("Invalid Input!");
                     }
                 }

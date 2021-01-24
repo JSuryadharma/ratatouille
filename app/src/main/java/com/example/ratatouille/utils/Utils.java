@@ -23,7 +23,7 @@ public class Utils {
     }
 
     public static Boolean validateEmail(String input){
-        if(validateInput(input) == false || input.length() < 5){
+        if(input.length() < 5){
             return false;
         }
         String[] verifiedEmailHost = {"@gmail.com", "@hotmail.com", "@yahoo.com", "@icloud.com", "@outlook.com"};
@@ -37,7 +37,7 @@ public class Utils {
     }
 
     public static Boolean validatePassword(String input){
-        if(validateInput(input) == false || input.length() < 6 || input.length() > 15){ // password minim 6 karakter.. ketentuan Firebase..
+        if(input.length() < 6 || input.length() > 15){ // password minim 6 karakter.. ketentuan Firebase..
             return false;
         }
 
@@ -52,7 +52,7 @@ public class Utils {
     }
 
     public static Boolean validateUsername(String input){
-        if(validateInput(input) == false || input.length() < 5 || input.length() > 20){
+        if(input.length() < 5 || input.length() > 20){
             return false;
         }
 
@@ -67,7 +67,7 @@ public class Utils {
     }
 
     public static Boolean validatePhone(String input){
-        if(validateInput(input) == false || input.length() < 11 || input.length() > 12){ // bisa 62 bisa 0
+        if(input.length() < 11 || input.length() > 12){ // bisa 62 bisa 0
             return false;
         }
 
@@ -109,6 +109,50 @@ public class Utils {
         });
 
         showDialog.show();
+    }
+
+    public static void showOptMessage(Context context, response dialogResp, String title, String message){
+        Dialog showOptDialog = new Dialog(context);
+        showOptDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        showOptDialog.setContentView(R.layout.dialog_viewopt);
+
+        showOptDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        TextView titleDialog = showOptDialog.findViewById(R.id.dialog2_title);
+        TextView textDialog = showOptDialog.findViewById(R.id.dialog2_information);
+        ImageView logoDialog = showOptDialog.findViewById(R.id.dialog2_logo);
+        LinearLayout yesButton = showOptDialog.findViewById(R.id.dialog2_buttonYes);
+        LinearLayout noButton = showOptDialog.findViewById(R.id.dialog2_buttonNo);
+
+        titleDialog.setText(title);
+        textDialog.setText(message);
+        logoDialog.setImageResource(R.drawable.ic_baseline_help_24);
+
+        yesButton.setOnClickListener(new View.OnClickListener() { // this is a listener, means a thread that doesn't work iteratively..
+            @Override
+            public void onClick(View v) {
+                MediaPlayer play = MediaPlayer.create(context, R.raw.open);
+                play.start();
+                showOptDialog.dismiss();
+                dialogResp.yesResponse();
+            }
+        });
+        noButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MediaPlayer play = MediaPlayer.create(context, R.raw.open);
+                play.start();
+                showOptDialog.dismiss();
+                dialogResp.noResponse();
+            }
+        });
+
+        showOptDialog.show();
+    }
+
+    public interface response {
+        public void yesResponse();
+        public void noResponse();
     }
 
     public static Boolean matchString(String string1, String string2){

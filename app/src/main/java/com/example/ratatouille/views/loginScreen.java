@@ -91,14 +91,14 @@ public class loginScreen extends AppCompatActivity {
                 String emailInput = userTextbox.getText().toString();
                 String passwordInput = passTextbox.getText().toString();
 
-                if(Utils.validateEmail(emailInput) && Utils.validatePassword(passwordInput)) {
+                if(Utils.validateInput(emailInput) && Utils.validateInput(passwordInput) && Utils.validateEmail(emailInput) && Utils.validatePassword(passwordInput)) {
                     UserController.UserLogin(cb, loginScreen.this, emailInput, passwordInput);
                 }
                 else {
-                    if(!Utils.validateEmail(userTextbox.getText().toString())) {
+                    if(!Utils.validateInput(emailInput) && !Utils.validateEmail(emailInput)) {
                         userTextbox.setError("Invalid Input!");
                     }
-                    if(!Utils.validatePassword(userTextbox.getText().toString())) {
+                    if(!Utils.validateInput(passwordInput) && !Utils.validatePassword(passwordInput)) {
                         passTextbox.setError("Invalid Input!");
                     }
                 }

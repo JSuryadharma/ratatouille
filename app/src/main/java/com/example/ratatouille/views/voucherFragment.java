@@ -57,7 +57,6 @@ public class voucherFragment extends Fragment {
     private com.example.ratatouille.utils.voucherRecyclerAdapter voucherrecycleradapter;
     private ArrayList<Vouchers> myVoucher;
     private ArrayList<Vouchers> voucherStore;
-    public static Integer selectedItem = -1;
     private static Handler handler = null;
     private static Runnable runnable = null;
 
@@ -154,13 +153,6 @@ public class voucherFragment extends Fragment {
                     }
                     showSearchVoucherResults(voucherResults);
                 }
-            }
-        });
-
-        searchBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                searchBox.setText("");
             }
         });
 

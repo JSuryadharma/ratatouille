@@ -15,7 +15,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import static android.content.ContentValues.TAG;
 
@@ -27,6 +29,7 @@ public class HelpTicketDetails {
     private String userID;
     private String userName;
     private String message;
+    private String submitDate;
 
     private static HelpTicketDetails selectedValues = null;
 
@@ -41,6 +44,9 @@ public class HelpTicketDetails {
         this.userID = userID;
         this.userName = userName;
         this.message = message;
+        Date date = new Date();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        this.submitDate = df.format(date);
     }
 
     public void save() {
@@ -120,5 +126,9 @@ public class HelpTicketDetails {
 
     public String getUserName() {
         return userName;
+    }
+
+    public String getSubmitDate() {
+        return submitDate;
     }
 }

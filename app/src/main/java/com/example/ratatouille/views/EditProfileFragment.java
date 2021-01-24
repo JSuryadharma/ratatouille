@@ -104,42 +104,6 @@ public class EditProfileFragment extends Fragment {
                 getParentFragmentManager().beginTransaction().setCustomAnimations(R.anim.fadein, R.anim.fade_out).replace(R.id.fragment_container, backPage).commit();
             }
         });
-        inputUsername.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                inputUsername.setText("");
-            }
-        });
-        inputEmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                inputEmail.setText("");
-            }
-        });
-        inputPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                inputPassword.setText("");
-            }
-        });
-        inputName.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                inputName.setText("");
-            }
-        });
-        inputPhoneNumber.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                inputPhoneNumber.setText("");
-            }
-        });
-        inputAddress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                inputAddress.setText("");
-            }
-        });
 
         saveButton.setTextColor(Color.WHITE);
 
@@ -148,35 +112,58 @@ public class EditProfileFragment extends Fragment {
             public void onClick(View v) {
                 saveButton.setTextColor(Color.DKGRAY);
                 Boolean falseChecker = false;
+                String updateUsername = VariablesUsed.currentUser.getUsername();
+                String updateEmail = VariablesUsed.loggedUser.getEmail();
+                String updatePassword = "";
+                String updatePhoneNumber = VariablesUsed.currentUser.getPhone();
+                String updateAddress = VariablesUsed.currentUser.getAddress();
+                String updateName = VariablesUsed.currentUser.getName();
 
-                if(Utils.validateUsername(inputUsername.getText().toString())){
-                    inputUsername.setError("Invalid Input!");
-                    falseChecker = true;
+                if(Utils.validateInput(inputUsername.getText().toString())){
+                    if(!Utils.validateUsername(inputUsername.getText().toString())) {
+                        inputUsername.setError("Invalid Input!");
+                        falseChecker = true;
+                    } else {
+                        updateUsername = inputUsername.getText().toString();
+                    }
                 }
 
-                if(Utils.validateEmail(inputEmail.getText().toString())){
-                    inputEmail.setError("Invalid Input!");
-                    falseChecker = true;
+                if(Utils.validateInput(inputEmail.getText().toString())) {
+                    if (!Utils.validateEmail(inputEmail.getText().toString())) {
+                        inputEmail.setError("Invalid Input!");
+                        falseChecker = true;
+                    } else {
+                        updateEmail = inputEmail.getText().toString();
+                    }
                 }
-                if(Utils.validatePassword(inputPassword.getText().toString())){
-                    inputPassword.setError("Invalid Input!");
-                    falseChecker = true;
+                if(Utils.validateInput(inputPassword.getText().toString())){
+                    if(!Utils.validatePassword(inputPassword.getText().toString())){
+                        inputPassword.setError("Invalid Input!");
+                        falseChecker = true;
+                    } else {
+                        updatePassword = inputPassword.getText().toString();
+                    }
                 }
-                if(Utils.validatePhone(inputPhoneNumber.getText().toString())){
-                    inputPhoneNumber.setError("Invalid Input!");
-                    falseChecker = true;
+                if(Utils.validateInput(inputPhoneNumber.getText().toString())){
+                    if(!Utils.validatePhone(inputPhoneNumber.getText().toString())) {
+                        inputPhoneNumber.setError("Invalid Input!");
+                        falseChecker = true;
+                    } else {
+                        updatePhoneNumber = inputPhoneNumber.getText().toString();
+                    }
                 }
                 if(Utils.validateInput(inputAddress.getText().toString())){
-                    inputAddress.setError("Invalid Input!");
-                    falseChecker = true;
+                    updateAddress = inputAddress.getText().toString();
                 }
-                if(Utils.validateInput(inputName.getText().toString())){
-                    inputName.setError("Invalid Input!");
-                    falseChecker = true;
+                if(Utils.validateInput(inputName.getText().toString())) {
+                    updateName = inputName.getText().toString();
                 }
 
                 if(falseChecker == false){
-                    UserController.updateProfile(inputUsername.getText().toString(), inputName.getText().toString(), inputPhoneNumber.getText().toString(), inputAddress.getText().toString(), VariablesUsed.currentUser.getPoints());
+                    UserController.updateProfile(updateUsername, updateName, updatePhoneNumber, updateAddress, VariablesUsed.currentUser.getPoints());
+                    if(Utils.validateInput(updatePassword)) {
+                        UserController.updatePassword(updatePassword);
+                    }
                     // Reload current fragment
                     final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
                     MediaPlayer player = MediaPlayer.create(getView().getContext(), R.raw.open);
@@ -192,14 +179,14 @@ public class EditProfileFragment extends Fragment {
     }
 
     public void reload(){
-        profileUsername.setText(VariablesUsed.currentUser.getUsername());
-        profileEmail.setText(VariablesUsed.loggedUser.getEmail());
+        profileUsername.setHint(VariablesUsed.currentUser.getUsername());
+        profileEmail.setHint(VariablesUsed.loggedUser.getEmail());
 
-        inputUsername.setText(VariablesUsed.currentUser.getUsername());
-        inputEmail.setText(VariablesUsed.loggedUser.getEmail());
-        inputPassword.setText("********");
-        inputPhoneNumber.setText(VariablesUsed.currentUser.getPhone());
-        inputAddress.setText(VariablesUsed.currentUser.getAddress());
-        inputName.setText(VariablesUsed.currentUser.getName());
+        inputUsername.setHint(VariablesUsed.currentUser.getUsername());
+        inputEmail.setHint(VariablesUsed.loggedUser.getEmail());
+        inputPassword.setHint("********");
+        inputPhoneNumber.setHint(VariablesUsed.currentUser.getPhone());
+        inputAddress.setHint(VariablesUsed.currentUser.getAddress());
+        inputName.setHint(VariablesUsed.currentUser.getName());
     }
 }

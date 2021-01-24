@@ -140,6 +140,8 @@
                             android:layout_height="35dp"
                             android:background="@android:color/transparent"
                             android:inputType="text"
+                            android:textColorHint="@android:color/holo_red_light"
+                            android:textColor="@android:color/holo_red_light"
                             android:id="@+id/ep_nameInput"/>
                     </LinearLayout>
 
@@ -174,6 +176,8 @@
                                 android:layout_width="300dp"
                                 android:layout_height="35dp"
                                 android:background="@android:color/transparent"
+                                android:textColor="@android:color/holo_red_light"
+                                android:textColorHint="@android:color/holo_red_light"
                                 android:inputType="text"
                                 android:id="@+id/ep_usernameInput"/>
                         </LinearLayout>
@@ -209,6 +213,8 @@
                             android:layout_width="300dp"
                             android:layout_height="35dp"
                             android:background="@android:color/transparent"
+                            android:textColor="@android:color/holo_red_light"
+                            android:textColorHint="@android:color/holo_red_light"
                             android:inputType="text"
                             android:id="@+id/ep_passwordInput"/>
                     </LinearLayout>
@@ -242,7 +248,9 @@
                         <EditText
                             android:layout_width="300dp"
                             android:layout_height="35dp"
-                            android:background="@drawable/round_edittext"
+                            android:background="@android:color/transparent"
+                            android:textColor="@android:color/holo_red_light"
+                            android:textColorHint="@android:color/holo_red_light"
                             android:inputType="text"
                             android:id="@+id/ep_emailInput"/>
                     </LinearLayout>
@@ -276,7 +284,9 @@
                         <EditText
                             android:layout_width="300dp"
                             android:layout_height="35dp"
-                            android:background="@drawable/round_edittext"
+                            android:background="@android:color/transparent"
+                            android:textColor="@android:color/holo_red_light"
+                            android:textColorHint="@android:color/holo_red_light"
                             android:inputType="text"
                             android:id="@+id/ep_phoneNumberInput"/>
                     </LinearLayout>
@@ -311,7 +321,9 @@
                         <EditText
                             android:layout_width="300dp"
                             android:layout_height="150dp"
-                            android:background="@drawable/round_edittext"
+                            android:background="@android:color/transparent"
+                            android:textColor="@android:color/holo_red_light"
+                            android:textColorHint="@android:color/holo_red_light"
                             android:inputType="text"
                             android:id="@+id/ep_addressInput"/>
 

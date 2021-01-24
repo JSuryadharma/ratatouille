@@ -83,10 +83,10 @@ public class faqFragment extends Fragment {
         helpTicket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment helpTicketStartFragment = new helpTicketStartFragment();
+                Fragment customerSupportFragment = new customerSupportFragment();
                 MediaPlayer player = MediaPlayer.create(getView().getContext(), R.raw.open);
                 player.start();
-                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, helpTicketStartFragment).commit();
+                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, customerSupportFragment).commit();
             }
         });
     }

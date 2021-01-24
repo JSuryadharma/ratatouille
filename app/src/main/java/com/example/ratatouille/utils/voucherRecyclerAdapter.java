@@ -16,16 +16,20 @@ import com.example.ratatouille.models.UserVoucher;
 import com.example.ratatouille.models.Users;
 import com.example.ratatouille.models.Vouchers;
 import com.example.ratatouille.vars.VariablesUsed;
+import com.example.ratatouille.views.customerView;
 import com.example.ratatouille.views.voucherFragment;
 
 import java.util.ArrayList;
+
+import static com.example.ratatouille.vars.VariablesUsed.currentVoucher;
 
 // For my vouchers
 public class voucherRecyclerAdapter extends RecyclerView.Adapter<voucherRecyclerAdapter.MyViewHolder> {
     private Context context;
     private ArrayList<Vouchers> voucherList;
+    public static Integer selectedItem = -1;
     private static ArrayList<Boolean> touched = new ArrayList<>();
-    private Integer voucherAmount = new Integer(0);
+    public Integer voucherAmount = new Integer(0);
     private voucherAmountCallbackHelper cb = new voucherAmountCallbackHelper() {
         @Override
         public void onUserCallback(MyViewHolder holder) {
@@ -59,9 +63,9 @@ public class voucherRecyclerAdapter extends RecyclerView.Adapter<voucherRecycler
 
         holder.voucherAmount.setText("Amount : " + voucherAmount);
 
-        voucherAmount = UserVoucher.getVoucherQuantity(cb, holder, selectedVoucher);
+        voucherAmount = UserVoucher.getVoucherQuantity(this, cb, holder, selectedVoucher);
 
-        if(position == voucherFragment.selectedItem){
+        if(position == this.selectedItem){
             holder.voucherButton.setBackgroundResource(R.drawable.voucherbutton_pressed_background);
         } else {
             holder.voucherButton.setBackgroundResource(R.drawable.voucherbutton_background);
@@ -73,22 +77,26 @@ public class voucherRecyclerAdapter extends RecyclerView.Adapter<voucherRecycler
                 //Checking if there's a voucher selected..
                 for (int i = 0; i < voucherList.size(); i++) {
                     if (touched.get(i) == true && position != i) {
-                        Toast.makeText(context, "You have selected a voucher!", Toast.LENGTH_LONG);
+                        Toast.makeText(context, "You have selected a voucher!", Toast.LENGTH_LONG).show();
                         Utils.showDialogMessage(R.drawable.ic_warning, context, "Cannot Select Item", "You already have selected an Item!\n Please unselect an item.");
                         return;
                     }
                 }
 
                 if (touched.get(position) == false) {
-                    voucherFragment.selectedItem = position;
+                    selectedItem = position;
                     holder.voucherButton.setBackgroundResource(R.drawable.voucherbutton_pressed_background);
-                    VariablesUsed.currentVoucher = voucherList.get(position);
+                    currentVoucher = voucherList.get(position);
                     touched.set(position, true);
+                    customerView.currentVoucher_name.setText(currentVoucher.getVoucherName() + " " + currentVoucher.getVoucherDisc().toString() + "%");
+                    customerView.currentVoucher_area.setVisibility(View.VISIBLE);
                     System.out.println("onpressed: " + position);
                 } else if (touched.get(position) == true) {
-                    voucherFragment.selectedItem = -1;
-                    VariablesUsed.currentVoucher = null;
+                    selectedItem = -1;
+                    currentVoucher = null;
                     touched.set(position, false);
+                    customerView.currentVoucher_name.setText("");
+                    customerView.currentVoucher_area.setVisibility(View.GONE);
                     System.out.println("offpressed: " + position);
                 }
             }

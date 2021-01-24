@@ -8,13 +8,13 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="300dp"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         app:cardBackgroundColor="@android:color/transparent"
         app:cardElevation="0dp">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/helpticketdetails_background">
             <TextView
                 android:layout_height="10dp"
@@ -28,7 +28,7 @@
                 android:id="@+id/helpticketdetails_title"/>
             <TextView
                 android:layout_width="250dp"
-                android:layout_height="70dp"
+                android:layout_height="wrap_content"
                 android:text="Message: "
                 android:textSize="18dp"
                 android:textColor="@color/black"
@@ -40,7 +40,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@android:color/black"
-                android:layout_below="@id/helpticketdetails_message"/>
+                android:layout_below="@id/helpticketdetails_message"
+                android:layout_marginTop="15dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -50,7 +51,8 @@
                 android:id="@+id/helpticketdetails_employeeReply"
                 android:textColor="@color/black"
                 android:layout_marginHorizontal="15dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="10dp"/>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 

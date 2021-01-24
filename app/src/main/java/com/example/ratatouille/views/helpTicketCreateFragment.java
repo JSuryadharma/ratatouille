@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,7 +20,7 @@ import com.example.ratatouille.models.HelpTicket;
 
 import java.util.Date;
 
-public class helpTicketFragment extends Fragment {
+public class helpTicketCreateFragment extends Fragment {
     private LinearLayout backButton;
     private TextView backButton_text;
     private TextView problemSubject;
@@ -27,14 +28,14 @@ public class helpTicketFragment extends Fragment {
     private TextView screenshot;
     private LinearLayout helpTicketButton;
 
-    public helpTicketFragment() {
+    public helpTicketCreateFragment() {
         // empty constructor
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_help_ticket_create, container,false);
+        return inflater.inflate(R.layout.fragment_helpticket_create, container,false);
     }
 
     @Override
@@ -58,45 +59,25 @@ public class helpTicketFragment extends Fragment {
                 MediaPlayer play = MediaPlayer.create(getView().getContext(), R.raw.personleave);
                 play.start();
 
-                Fragment backFragment = new helpTicketStartFragment();
+                Fragment backFragment = new customerSupportFragment();
                 getParentFragmentManager().beginTransaction().setCustomAnimations(R.anim.fadein, R.anim.fadeout)
                         .replace(R.id.fragment_container, backFragment).commit();
             }
         });
 
-        problemSubject.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                problemSubject.setText("");
-            }
-        });
-
-        description.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                description.setText("");
-            }
-        });
-
-        screenshot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                screenshot.setText("");
-            }
-        });
-
-        helpTicketButton.setBackgroundResource(R.drawable.button_background);
+        helpTicketButton.setBackgroundResource(R.drawable.round_button);
         helpTicketButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                helpTicketButton.setBackgroundResource(R.drawable.pressed_button_background);
+                helpTicketButton.setBackgroundResource(R.drawable.pressed_round_button);
                 MediaPlayer play = MediaPlayer.create(getView().getContext(), R.raw.open);
                 play.start();
 
                 Date date = new Date();
+                HelpTicket toBeAdded = HelpTicketController.addTicket(problemSubject.getText().toString(), description.getText().toString(), screenshot.getText().toString(), date, false);
 
-                HelpTicket toBeAdded = HelpTicketController.addTicket(problemSubject.getText().toString(), description.getText().toString(), screenshot.getText().toString(), date.toString(), false);
-                Fragment backFragment = new helpTicketStartFragment();
+                Toast.makeText(view.getContext(), "Your Help Ticket is successfully created!", Toast.LENGTH_SHORT).show();
+                Fragment backFragment = new customerSupportFragment();
                 getParentFragmentManager().beginTransaction().setCustomAnimations(R.anim.fadein, R.anim.fadeout)
                         .replace(R.id.fragment_container, backFragment).commit();
             }

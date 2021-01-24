@@ -184,7 +184,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Jl. xxx xxx xxx"
+                        android:text="loading address.."
                         android:textColor="@android:color/darker_gray"
                         android:layout_below="@id/vp_addressLabel"
                         android:id="@+id/vp_addressText"/>

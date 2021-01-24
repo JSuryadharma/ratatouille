@@ -15,13 +15,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import static android.content.ContentValues.TAG;
 
 public class HelpTicket {
     private String ticketID;
     private String customerID;
-    private String problemSubject, description, screenshot, askHelpDate;
+    private String problemSubject, description, screenshot;
+    private String askHelpDate;
     private Boolean isSolved;
     private static HelpTicket selectedValues = null;
 
@@ -49,6 +51,11 @@ public class HelpTicket {
     public static void delete(String ticketID){
         DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.HelpTicketTable.HELPTICKET_TABLE);
         dbRef.child(ticketID).removeValue();
+    }
+
+    public void closeTicket(){
+        this.isSolved = true;
+        this.save();
     }
 
     public static ArrayList<HelpTicket> getForAUser(Context context, callbackHelper cb, String userID){

@@ -43,12 +43,14 @@
             android:background="@drawable/round_edittext"
             android:focusable="false"
             android:focusableInTouchMode="true"
+            android:alpha="0.7"
             android:elevation="15dp"
             android:clickable="true">
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="5dp"
                 android:src="@drawable/ic_person" />
 
             <EditText
@@ -57,6 +59,9 @@
                 android:id="@+id/li_userTextbox"
                 android:hint="Email"
                 android:inputType="text"
+                android:textColorHint="@android:color/holo_red_light"
+                android:textColor="@android:color/holo_red_light"
+                android:textStyle="italic"
                 android:background="@android:color/transparent"/>
         </LinearLayout>
 
@@ -69,17 +74,22 @@
             android:background="@drawable/round_edittext"
             android:focusable="false"
             android:focusableInTouchMode="true"
+            android:alpha="0.7"
             android:elevation="15dp"
             android:clickable="true">
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="5dp"
                 android:src="@drawable/ic_lock"/>
             <EditText
                 android:layout_width="155dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/li_passTextbox"
                 android:hint="Password"
+                android:textColorHint="@android:color/holo_red_light"
+                android:textColor="@android:color/holo_red_light"
+                android:textStyle="italic"
                 android:inputType="text"
                 android:background="@android:color/transparent"/>
             <TextView
@@ -97,10 +107,11 @@
             android:layout_height="40dp"
             android:layout_marginTop="15dp"
             android:id="@+id/li_loginButton"
-            android:background="@drawable/button_background"
+            android:background="@drawable/round_button"
             android:gravity="center"
             android:elevation="15dp"
-            android:clickable="true">
+            android:clickable="true"
+            android:focusable="true">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -108,7 +119,7 @@
                 android:text="SIGN IN"
                 android:textSize="10pt"
                 android:fontFamily="@font/berlinsans"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/holo_red_light"/>
 
         </LinearLayout>
 

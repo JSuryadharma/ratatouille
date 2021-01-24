@@ -8,12 +8,14 @@ import com.example.ratatouille.models.HelpTicketDetails;
 import com.example.ratatouille.utils.callbackHelper;
 import com.example.ratatouille.vars.VariablesUsed;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.UUID;
 
 public class HelpTicketController {
 
-    public static ArrayList<HelpTicket> getAllTicket(Context context, callbackHelper cb, String userID) {
+    public static ArrayList<HelpTicket> getTicketList(Context context, callbackHelper cb, String userID) {
         ArrayList<HelpTicket> userTicketList = HelpTicket.getForAUser(context, cb, userID);
         return userTicketList;
     }
@@ -23,8 +25,9 @@ public class HelpTicketController {
         return ticketDetails;
     }
 
-    public static HelpTicket addTicket(String problemSubject, String description, String screenshot, String askHelpDate, Boolean isSolved){
-        HelpTicket toBeAdded = new HelpTicket(UUID.randomUUID().toString(), DatabaseHelper.getDbAuth().getUid(), problemSubject, description, screenshot, askHelpDate, isSolved);
+    public static HelpTicket addTicket(String problemSubject, String description, String screenshot, Date askHelpDate, Boolean isSolved){
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        HelpTicket toBeAdded = new HelpTicket(UUID.randomUUID().toString(), DatabaseHelper.getDbAuth().getUid(), problemSubject, description, screenshot, df.format(askHelpDate), isSolved);
         toBeAdded.save();
         return toBeAdded;
     }
@@ -33,5 +36,9 @@ public class HelpTicketController {
         HelpTicketDetails toBeAdded = new HelpTicketDetails(UUID.randomUUID().toString(), ticketID, userID, userName, message);
         toBeAdded.save();
         return toBeAdded;
+    }
+
+    public static void closeHelpTicket(HelpTicket helpTicket){
+        helpTicket.closeTicket();
     }
 }

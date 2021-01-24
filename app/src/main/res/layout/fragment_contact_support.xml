@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/vp_background"
+        android:paddingHorizontal="10dp"
+        android:paddingTop="15dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:id="@+id/cs_backButton"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_backbutton"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Back"
+                android:textSize="20dp"
+                android:textColor="@android:color/white"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/ht_backButton_text"
+                android:layout_marginBottom="5dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:text="Contact Support"
+            android:textColor="@android:color/black"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="30dp"/>
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hello, x!"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:paddingTop="45dp"
+        android:paddingHorizontal="50dp"
+        android:id="@+id/cs_username"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="We are ready to help you!"
+        android:textSize="17dp"
+        android:textColor="@android:color/black"
+        android:paddingHorizontal="50dp"
+        android:paddingTop="10dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="35dp"
+        android:layout_marginBottom="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/round_button"
+            android:elevation="15dp"
+            android:id="@+id/cs_helpticketcreate_button">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Apply for Help Ticket"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_centerInParent="true"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_next_arrow"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/round_button"
+            android:elevation="15dp"
+            android:id="@+id/cs_helpticketlist_button">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="See Help Ticket History"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_centerInParent="true"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_next_arrow"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import com.example.ratatouille.db.DatabaseHelper;
 import com.example.ratatouille.db.DatabaseVars;
 import com.example.ratatouille.utils.callbackHelper;
-import com.example.ratatouille.utils.helpTicketDetailsAdapter;
 import com.example.ratatouille.utils.voucherAmountCallbackHelper;
 import com.example.ratatouille.utils.voucherRecyclerAdapter;
 import com.example.ratatouille.vars.VariablesUsed;
@@ -68,7 +67,7 @@ public class UserVoucher {
         });
     }
 
-    public static Integer getVoucherQuantity(voucherAmountCallbackHelper cb, voucherRecyclerAdapter.MyViewHolder holder, Vouchers voucher){
+    public static Integer getVoucherQuantity(voucherRecyclerAdapter voucherObject, voucherAmountCallbackHelper cb, voucherRecyclerAdapter.MyViewHolder holder, Vouchers voucher){
         DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.UserVoucherTable.USERVOUCHER_TABLE).child(VariablesUsed.loggedUser.getUid());
 
         voucherQuantity = -1;
@@ -77,6 +76,7 @@ public class UserVoucher {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 voucherQuantity = snapshot.getValue(Integer.class);
+                voucherObject.voucherAmount = voucherQuantity;
                 cb.onUserCallback(holder);
             }
 

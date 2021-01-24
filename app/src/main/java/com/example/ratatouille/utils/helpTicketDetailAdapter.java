@@ -10,51 +10,50 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ratatouille.R;
-import com.example.ratatouille.controllers.EmployeeController;
-import com.example.ratatouille.models.Employee;
 import com.example.ratatouille.models.HelpTicketDetails;
 
 import java.util.ArrayList;
 
-public class helpTicketDetailsAdapter extends RecyclerView.Adapter<helpTicketDetailsAdapter.MyViewHolder> {
-
+public class helpTicketDetailAdapter extends RecyclerView.Adapter<helpTicketDetailAdapter.MyViewHolder> {
     private Context context;
-    private ArrayList<HelpTicketDetails> helpTicketDetails;
+    private ArrayList<HelpTicketDetails> ticketDetails;
 
-    public helpTicketDetailsAdapter(Context context, ArrayList<HelpTicketDetails> helpTicketDetails) {
+    public helpTicketDetailAdapter(Context context, ArrayList<HelpTicketDetails> ticketDetails){
         this.context = context;
-        this.helpTicketDetails = helpTicketDetails;
+        this.ticketDetails = ticketDetails;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_helpticketdetails, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.recyclerview_helpticketdetails, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        HelpTicketDetails details = helpTicketDetails.get(position);
-        holder.helpTicketID.setText("Message ID: " + details.getMessageID());
-        holder.helpTicketMessage.setText("Message: \n" + details.getMessage());
-        holder.helpTicketEmployeeReply.setText("Replied By: " + details.getUserName());
+        HelpTicketDetails currentDetail = ticketDetails.get(position);
+
+        holder.helpTicketID.setText("Message ID: " + currentDetail.getMessageID());
+        holder.helpTicketMessage.setText("Message:\n" + currentDetail.getMessage());
+        holder.helpTicketReply.setText("Replied By: " + currentDetail.getUserName());
     }
 
     @Override
     public int getItemCount() {
-        return helpTicketDetails.size();
+        return ticketDetails.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+
+    class MyViewHolder extends RecyclerView.ViewHolder{
         private TextView helpTicketID;
         private TextView helpTicketMessage;
-        private TextView helpTicketEmployeeReply;
+        private TextView helpTicketReply;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             helpTicketID = itemView.findViewById(R.id.helpticketdetails_title);
             helpTicketMessage = itemView.findViewById(R.id.helpticketdetails_message);
-            helpTicketEmployeeReply = itemView.findViewById(R.id.helpticketdetails_employeeReply);
+            helpTicketReply = itemView.findViewById(R.id.helpticketdetails_employeeReply);
         }
     }
 }
