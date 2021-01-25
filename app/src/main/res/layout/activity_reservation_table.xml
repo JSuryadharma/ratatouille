@@ -61,5 +61,6 @@
             android:src="@drawable/bookatable"/>
 
         
+    </LinearLayout>
 
 </LinearLayout>

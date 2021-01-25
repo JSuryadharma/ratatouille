@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/restaurant_refresh"
+    android:background="@android:color/white">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/restaurant_header"
+                android:background="@drawable/vp_background">
+
+                <LinearLayout
+                    android:id="@+id/restaurant_backButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:elevation="15dp"
+                    android:focusable="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_backbutton" />
+
+                    <TextView
+                        android:id="@+id/restaurant_backButton_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="Back"
+                        android:layout_marginBottom="5dp"
+                        android:textColor="@android:color/white"
+                        android:textSize="20dp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Reservation Manager"
+                    android:textSize="35dp"
+                    android:textStyle="bold"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:paddingBottom="25dp"
+                    android:paddingLeft="15dp"
+                    android:elevation="15dp"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/restaurant_header"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingHorizontal="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="15dp"
+                    android:text="Restaurant Name"
+                    android:textSize="25dp"
+                    android:textColor="@android:color/black"
+                    android:id="@+id/restaurant_name"
+                    android:paddingBottom="15dp"
+                    android:elevation="15dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_card"
+                    android:elevation="15dp"
+                    android:padding="15dp"
+                    android:clipToPadding="false">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/restaurant_recyclerView"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

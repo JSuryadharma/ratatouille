@@ -170,7 +170,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="25dp"
                     android:text="Generate"
-                    android:textColor="@color/white"
+                    android:textColor="@android:color/holo_red_light"
                     android:fontFamily="@font/berlinsans"
                     android:inputType="text"
                     android:layout_centerInParent="true"

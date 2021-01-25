@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:background="@drawable/round_card"
+        android:layout_centerInParent="true"
+        android:elevation="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:fontFamily="@font/heebo_bold"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:id="@+id/dialogr_title"
+            android:layout_marginTop="15dp"/>
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ratatouille_logor"
+            android:id="@+id/dialogr_logo"
+            android:layout_below="@id/dialogr_title"
+            android:layout_marginTop="25dp"/>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@id/dialogr_logo"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Message"
+                android:textColor="@android:color/darker_gray"
+                android:layout_marginLeft="15dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/textedit_background"
+                android:orientation="vertical">
+
+                <EditText
+                    android:layout_width="300dp"
+                    android:layout_height="70dp"
+                    android:text="text_information"
+                    android:fontFamily="@font/heebo_light"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    android:id="@+id/dialogr_message"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="45dp"
+            android:background="@drawable/round_button"
+            android:id="@+id/dialogr_buttonAcc"
+            android:gravity="center"
+            android:elevation="15dp"
+            android:clickable="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Accept"
+                android:fontFamily="@font/heebo_bold"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="20dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="45dp"
+            android:background="@drawable/round_button"
+            android:id="@+id/dialogr_buttonDec"
+            android:gravity="center"
+            android:elevation="15dp"
+            android:clickable="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Decline"
+                android:fontFamily="@font/heebo_bold"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="20dp"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

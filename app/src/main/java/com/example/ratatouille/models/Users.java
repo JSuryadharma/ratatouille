@@ -1,18 +1,25 @@
 package com.example.ratatouille.models;
 
+import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import com.example.ratatouille.db.DatabaseHelper;
 import com.example.ratatouille.db.DatabaseVars;
+import com.example.ratatouille.utils.reservationRecyclerAdapter;
+import com.example.ratatouille.utils.restaurantCB;
+import com.example.ratatouille.utils.restaurantReservationCallbackHelper;
 import com.example.ratatouille.vars.VariablesUsed;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 import java.sql.Timestamp;
 import java.util.UUID;
@@ -20,10 +27,11 @@ import java.util.UUID;
 import static android.content.ContentValues.TAG;
 
 public class Users {
-
     private String username, name, phone, address, last_login;
     private Integer points = 0;
     private Integer numberOfLogins = 0;
+
+    private static  Users selectedValues = null;
 
     public Users(){
         //let this to be blank, for data retrival..
@@ -86,6 +94,28 @@ public class Users {
     public static void delete(String userID){
         DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.UsersTable.USERS_TABLE);
         dbRef.child(userID).removeValue();
+    }
+
+    public static Users getForReservation(restaurantReservationCallbackHelper cb, reservationRecyclerAdapter.MyViewHolder holder, String userID){
+        selectedValues = null;
+
+        DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.UsersTable.USERS_TABLE);
+
+        dbRef.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                selectedValues = snapshot.getValue(Users.class);
+                cb.onLoadCallback(holder);
+                Log.w(TAG, "onSuccess : Retrieved user -> " + selectedValues.getUsername());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "onFailure : Error while Retrieving user");
+            }
+        });
+
+        return selectedValues;
     }
 
     public String getUsername() {

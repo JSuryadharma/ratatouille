@@ -1,11 +1,15 @@
 package com.example.ratatouille.models;
 
+import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.ratatouille.R;
 import com.example.ratatouille.db.DatabaseHelper;
 import com.example.ratatouille.db.DatabaseVars;
+import com.example.ratatouille.utils.Utils;
+import com.example.ratatouille.utils.callbackHelper;
 import com.example.ratatouille.vars.VariablesUsed;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -17,7 +21,9 @@ import java.util.ArrayList;
 import static android.content.ContentValues.TAG;
 
 public class Restaurant {
+    private String restaurantID;
     private String name, description, phone, address;
+    private String email, password;
 
     private static Restaurant selectedValues = null;
 
@@ -26,11 +32,14 @@ public class Restaurant {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public Restaurant(String name, String description, String phone, String address) {
+    public Restaurant(String restaurantID, String name, String description, String phone, String address, String email, String password) {
+        this.restaurantID = restaurantID;
         this.name = name;
         this.description = description;
         this.phone = phone;
         this.address = address;
+        this.email = email;
+        this.password = password;
     }
 
     public void save(){
@@ -97,6 +106,10 @@ public class Restaurant {
         return restaurantList;
     }
 
+    public String getRestaurantID() {
+        return restaurantID;
+    }
+
     public String getName() {
         return name;
     }
@@ -115,5 +128,13 @@ public class Restaurant {
 
     public static Restaurant getSelectedValues() {
         return selectedValues;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

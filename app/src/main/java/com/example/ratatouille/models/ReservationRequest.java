@@ -1,11 +1,14 @@
 package com.example.ratatouille.models;
 
+import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import com.example.ratatouille.db.DatabaseHelper;
 import com.example.ratatouille.db.DatabaseVars;
+import com.example.ratatouille.utils.restaurantCB;
+import com.example.ratatouille.vars.VariablesUsed;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +26,8 @@ public class ReservationRequest {
     private String reserveDate;
     private String reserveTime;
     private Integer numberOfPerson;
+    private String description;
+    private String reply;
     private Boolean isAccepted;
 
     private static ReservationRequest selectedValues = null;
@@ -32,7 +37,7 @@ public class ReservationRequest {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public ReservationRequest(String reservationRequestID, String userID, String restaurantID, String requestDate, String reserveDate, String reserveTime, Integer numberOfPerson, Boolean isAccepted) {
+    public ReservationRequest(String reservationRequestID, String userID, String restaurantID, String requestDate, String reserveDate, String reserveTime, Integer numberOfPerson, String description, Boolean isAccepted) {
         this.reservationRequestID = reservationRequestID;
         this.userID = userID;
         this.restaurantID = restaurantID;
@@ -40,6 +45,8 @@ public class ReservationRequest {
         this.reserveDate = reserveDate;
         this.reserveTime = reserveTime;
         this.numberOfPerson = numberOfPerson;
+        this.reply = null;
+        this.description = description;
         this.isAccepted = isAccepted;
     }
 
@@ -48,11 +55,33 @@ public class ReservationRequest {
         dbRef.child(reservationRequestID).setValue(this);
     }
 
-    public ReservationRequest update(String requestDate, String reserveDate, String reserveTime, Integer numberOfPerson, Boolean isAccepted){
+    public void delete(){
+        DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.ReservationRequestTable.RESERVATIONREQUEST_TABLE);
+        dbRef.child(this.reservationRequestID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                snapshot.getRef().removeValue();
+                Log.w(TAG, "onSuccess: Reservation deletion completed!");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "onFailure: Reservation deletion failed!");
+            }
+        });
+    }
+
+    public void replyReservation(String message){
+        this.reply = message;
+        this.save();
+    }
+
+    public ReservationRequest update(String requestDate, String reserveDate, String reserveTime, Integer numberOfPerson, String description, Boolean isAccepted){
         this.requestDate = requestDate;
         this.reserveDate = reserveDate;
         this.reserveTime = reserveTime;
         this.numberOfPerson = numberOfPerson;
+        this.description = description;
         this.isAccepted = isAccepted;
 
         save();
@@ -60,13 +89,19 @@ public class ReservationRequest {
         return this;
     }
 
-    public static ReservationRequest get(String reservationRequestID){
+    public void acceptRequest(){
+        this.isAccepted = true;
+        save();
+    }
+
+    public static ReservationRequest get(Context context, restaurantCB cb, String reservationRequestID){
         DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.ReservationRequestTable.RESERVATIONREQUEST_TABLE);
         selectedValues = null;
         dbRef.child(reservationRequestID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 selectedValues = snapshot.getValue(ReservationRequest.class);
+                cb.onRestaurantCB(context, VariablesUsed.currentRestaurant);
                 Log.w(TAG, "onSuccess: ReservationRequest retrieved successfully!");
             }
 
@@ -78,16 +113,18 @@ public class ReservationRequest {
         return selectedValues;
     }
 
-    public static ArrayList<ReservationRequest> getAll(String userID){
+    public static ArrayList<ReservationRequest> getAll(Context context, restaurantCB cb, String restaurantID){
         DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.ReservationRequestTable.RESERVATIONREQUEST_TABLE);
         ArrayList<ReservationRequest> reservationRequestList = new ArrayList<>();
         dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot eachData :snapshot.getChildren()){
-                    if(eachData.child("userID").getValue().equals(userID)){
+                    if(eachData.child("userID").getValue().equals(restaurantID)){
                         ReservationRequest curRequest = eachData.getValue(ReservationRequest.class);
                         reservationRequestList.add(curRequest);
+                        cb.onRestaurantCB(context, VariablesUsed.currentRestaurant);
+                        break;
                     }
                 }
                 Log.w(TAG, "onSuccess: All ReservationRequest (Specified to a user) retrieved successfully!");
@@ -99,5 +136,85 @@ public class ReservationRequest {
             }
         });
         return reservationRequestList;
+    }
+
+    public String getReservationRequestID() {
+        return reservationRequestID;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public String getRestaurantID() {
+        return restaurantID;
+    }
+
+    public String getRequestDate() {
+        return requestDate;
+    }
+
+    public String getReserveDate() {
+        return reserveDate;
+    }
+
+    public String getReserveTime() {
+        return reserveTime;
+    }
+
+    public Integer getNumberOfPerson() {
+        return numberOfPerson;
+    }
+
+    public Boolean getAccepted() {
+        return isAccepted;
+    }
+
+    public void setReservationRequestID(String reservationRequestID) {
+        this.reservationRequestID = reservationRequestID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public void setRestaurantID(String restaurantID) {
+        this.restaurantID = restaurantID;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public static ReservationRequest getSelectedValues() {
+        return selectedValues;
+    }
+
+    public static void setSelectedValues(ReservationRequest selectedValues) {
+        ReservationRequest.selectedValues = selectedValues;
+    }
+
+    public void setRequestDate(String requestDate) {
+        this.requestDate = requestDate;
+    }
+
+    public void setReserveDate(String reserveDate) {
+        this.reserveDate = reserveDate;
+    }
+
+    public void setReserveTime(String reserveTime) {
+        this.reserveTime = reserveTime;
+    }
+
+    public void setNumberOfPerson(Integer numberOfPerson) {
+        this.numberOfPerson = numberOfPerson;
+    }
+
+    public void setAccepted(Boolean accepted) {
+        isAccepted = accepted;
     }
 }

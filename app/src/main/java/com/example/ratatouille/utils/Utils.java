@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.ratatouille.R;
+import com.example.ratatouille.models.ReservationRequest;
 
 public class Utils {
     public static Boolean validateInput(String input) {
@@ -153,6 +154,44 @@ public class Utils {
     public interface response {
         public void yesResponse();
         public void noResponse();
+    }
+
+    public static void showReservationOptDialog(Context context, reservationResponse response, ReservationRequest curRequest, String title){
+        Dialog showReservationOpt = new Dialog(context);
+        showReservationOpt.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        showReservationOpt.setContentView(R.layout.dialog_reservationrestaurantview);
+
+        showReservationOpt.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        TextView titleDialog = showReservationOpt.findViewById(R.id.dialogr_title);
+        ImageView logoDialog = showReservationOpt.findViewById(R.id.dialogr_logo);
+        TextView messageDialog = showReservationOpt.findViewById(R.id.dialogr_message);
+        LinearLayout accButton = showReservationOpt.findViewById(R.id.dialogr_buttonAcc);
+        LinearLayout decButton = showReservationOpt.findViewById(R.id.dialogr_buttonDec);
+
+        titleDialog.setText(title);
+        logoDialog.setImageResource(R.drawable.ic_baseline_help_24);
+
+        accButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                response.accResponse(curRequest);
+                curRequest.replyReservation(messageDialog.getText().toString());
+            }
+        });
+
+        decButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                response.decResponse(curRequest);
+                curRequest.replyReservation(messageDialog.getText().toString());
+            }
+        });
+    }
+
+    public interface reservationResponse {
+        public void accResponse(ReservationRequest curRequest);
+        public void decResponse(ReservationRequest curRequest);
     }
 
     public static Boolean matchString(String string1, String string2){

@@ -87,7 +87,8 @@
                         android:text="Type in keywords (e.g reschedule)"
                         android:textSize="15dp"
                         android:textColor="@android:color/darker_gray"
-                        android:paddingHorizontal="5dp"/>
+                        android:paddingHorizontal="5dp"
+                        android:id="@+id/faq_searchbar"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -114,9 +115,10 @@
 
             <ExpandableListView
                 android:layout_width="match_parent"
-                android:layout_height="600dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/faq_list"
                 android:padding="10dp"
+                android:clipToPadding="false"
                 android:nestedScrollingEnabled="false"/>
 
             </LinearLayout>

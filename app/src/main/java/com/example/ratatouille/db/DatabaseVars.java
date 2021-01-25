@@ -40,7 +40,7 @@ public class DatabaseVars {
     }
 
     public static final class RestaurantTable {
-        public static final String RESTAURANT_TABLE = "Restaurant";
+        public static final String RESTAURANT_TABLE = "Restaurants";
     }
 
     public static final class RestaurantTypes {

@@ -172,6 +172,7 @@ public class helpTicketDetailsFragment extends Fragment {
                 }
                 if(Utils.validateInput(textMessage.getText().toString())){
                     Utils.showOptMessage(view.getContext(), dialogRespSend, "Confirmation", "Are you sure to add this message\n to your HelpTicket ID:\n" + helpTicket.getTicketID());
+                    textMessage.setText("");
                 } else {
                     Toast.makeText(view.getContext(), "Input invalid.", Toast.LENGTH_LONG).show();
                     textMessage.setError("Input cannot be empty.");

@@ -17,7 +17,9 @@
             android:textSize="40dp"
             android:fontFamily="@font/roboto_bold"
             android:layout_gravity="center_horizontal"
-            android:elevation="15dp"/>
+            android:elevation="15dp"
+            android:id="@+id/li_welcomeLabel"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,7 +36,8 @@
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/ratatouille_logor"
-            android:elevation="15dp"/>
+            android:elevation="15dp"
+            android:id="@+id/li_logo"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -143,7 +146,8 @@
             android:fontFamily="@font/roboto"
             android:textColor="@android:color/white"
             android:textSize="10dp"
-            android:clickable="true"/>
+            android:clickable="true"
+            android:focusable="true" />
 
         <TextView
             android:id="@+id/li_forgotPassword"
@@ -155,7 +159,8 @@
             android:fontFamily="@font/roboto"
             android:textColor="@android:color/white"
             android:textSize="10dp"
-            android:clickable="true"/>
+            android:clickable="true"
+            android:focusable="true" />
 
     </LinearLayout>
 

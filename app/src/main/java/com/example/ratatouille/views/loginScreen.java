@@ -9,7 +9,10 @@ import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ratatouille.MainActivity;
 import com.example.ratatouille.R;
+import com.example.ratatouille.controllers.RestaurantController;
 import com.example.ratatouille.db.DatabaseHelper;
 import com.example.ratatouille.db.DatabaseVars;
 import com.example.ratatouille.models.Users;
@@ -35,10 +39,13 @@ import com.google.android.gms.tasks.Task;
 import static maes.tech.intentanim.CustomIntent.customType;
 
 public class loginScreen extends AppCompatActivity {
-    EditText userTextbox, passTextbox;
-    TextView showButton;
-    LinearLayout btSignIn;
-    TextView dhaButton, forgotPassword;
+    private EditText userTextbox, passTextbox;
+    private TextView showButton;
+    private LinearLayout btSignIn;
+    private TextView welcomeLabel;
+    private ImageView imageLogo;
+    private TextView dhaButton, forgotPassword;
+    private String mode = "customer";
 
     callbackHelper cb = new callbackHelper() {
         @Override
@@ -58,6 +65,9 @@ public class loginScreen extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         customType(loginScreen.this, "fadein-to-fadeout");
 
+        welcomeLabel = findViewById(R.id.li_welcomeLabel);
+        imageLogo = findViewById(R.id.li_logo);
+
         userTextbox = findViewById(R.id.li_userTextbox);
         passTextbox = findViewById(R.id.li_passTextbox);
         btSignIn = findViewById(R.id.li_loginButton);
@@ -70,6 +80,36 @@ public class loginScreen extends AppCompatActivity {
         forgotPassword.setTextColor(Color.WHITE);
 
         passTextbox.setTransformationMethod(PasswordTransformationMethod.getInstance()); // set model password pertama (hidden)..
+
+        welcomeLabel.setText("Welcome Back");
+        imageLogo.setImageResource(R.drawable.ratatouille_logor);
+
+        imageLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Animation anim = AnimationUtils.loadAnimation(loginScreen.this, R.anim.fragment_fade_exit);
+                imageLogo.startAnimation(anim);
+
+                if(mode.equals("customer")) {
+                    MediaPlayer player = MediaPlayer.create(loginScreen.this, R.raw.open);
+                    player.start();
+
+                    Utils.showDialogMessage(R.drawable.ic_warning, loginScreen.this, "Attention", "Please be aware that you're trying to access\n the reservation system that was meant for restaurants only!");
+
+                    imageLogo.setImageResource(R.drawable.ic_restaurant);
+                    welcomeLabel.setText("Reservations");
+                    mode = "restaurant";
+                    dhaButton.setVisibility(View.GONE);
+                    forgotPassword.setVisibility(View.GONE);
+                } else {
+                    imageLogo.setImageResource(R.drawable.ratatouille_logor);
+                    welcomeLabel.setText("Welcome Back");
+                    mode = "customer";
+                    dhaButton.setVisibility(View.VISIBLE);
+                    forgotPassword.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
         showButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -91,16 +131,33 @@ public class loginScreen extends AppCompatActivity {
                 String emailInput = userTextbox.getText().toString();
                 String passwordInput = passTextbox.getText().toString();
 
-                if(Utils.validateInput(emailInput) && Utils.validateInput(passwordInput) && Utils.validateEmail(emailInput) && Utils.validatePassword(passwordInput)) {
-                    UserController.UserLogin(cb, loginScreen.this, emailInput, passwordInput);
-                }
-                else {
-                    if(!Utils.validateInput(emailInput) && !Utils.validateEmail(emailInput)) {
-                        userTextbox.setError("Invalid Input!");
-                    }
-                    if(!Utils.validateInput(passwordInput) && !Utils.validatePassword(passwordInput)) {
-                        passTextbox.setError("Invalid Input!");
-                    }
+                switch(mode){
+                    case "customer":
+                        if(Utils.validateInput(emailInput) && Utils.validateInput(passwordInput) && Utils.validateEmail(emailInput) && Utils.validatePassword(passwordInput)) {
+                            UserController.UserLogin(cb, loginScreen.this, emailInput, passwordInput);
+                        }
+                        else {
+                            if(!Utils.validateInput(emailInput) && !Utils.validateEmail(emailInput)) {
+                                userTextbox.setError("Invalid Input!");
+                            }
+                            if(!Utils.validateInput(passwordInput) && !Utils.validatePassword(passwordInput)) {
+                                passTextbox.setError("Invalid Input!");
+                            }
+                        }
+                        break;
+                    case "restaurant":
+                        if(Utils.validateInput(emailInput) && Utils.validateInput(passwordInput) && Utils.validateEmail(emailInput) && Utils.validatePassword(passwordInput)) {
+                            RestaurantController.RestaurantLogin(loginScreen.this, emailInput, passwordInput);
+                        }
+                        else {
+                            if(!Utils.validateInput(emailInput) && !Utils.validateEmail(emailInput)) {
+                                userTextbox.setError("Invalid Input!");
+                            }
+                            if(!Utils.validateInput(passwordInput) && !Utils.validatePassword(passwordInput)) {
+                                passTextbox.setError("Invalid Input!");
+                            }
+                        }
+                        break;
                 }
             }
         });

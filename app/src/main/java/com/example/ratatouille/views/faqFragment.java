@@ -3,9 +3,12 @@ package com.example.ratatouille.views;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,6 +20,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.ratatouille.R;
+import com.example.ratatouille.utils.Utils;
 import com.example.ratatouille.utils.faqAdapter;
 import com.example.ratatouille.utils.faqGenerator;
 
@@ -27,10 +31,11 @@ public class faqFragment extends Fragment {
     private SwipeRefreshLayout pulltorefresh;
     private LinearLayout backButton;
     private TextView backButton_text;
+    private EditText searchBar;
     private ExpandableListView faq_list;
     private TextView helpTicket;
     private ArrayList<String> faq_group;
-    private HashMap<String, ArrayList<String>> faq_child = new HashMap<>();
+    private HashMap<String, String> faq_child = new HashMap<>();
     private faqAdapter faqadapter;
     private ArrayList<String> faq_content;
 
@@ -45,11 +50,11 @@ public class faqFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         pulltorefresh = view.findViewById(R.id.faq_pulltorefresh);
         backButton = view.findViewById(R.id.faq_backbutton);
+        searchBar = view.findViewById(R.id.faq_searchbar);
         faq_list = view.findViewById(R.id.faq_list);
         helpTicket = view.findViewById(R.id.faq_helpTicket);
         backButton_text = view.findViewById(R.id.faq_backbutton_text);
-        faq_group = faqGenerator.generateGroups();
-        faq_content = faqGenerator.generateChild();
+        reload();
 
         customerView.menubar_layout.setVisibility(View.GONE);
 
@@ -67,6 +72,33 @@ public class faqFragment extends Fragment {
         });
 
         reload();
+
+        searchBar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(searchBar.getText().toString().equals("")){
+                    reload();
+                    return;
+                }
+                ArrayList<String> searchResult = new ArrayList<>();
+                for(String eachData : faq_group){
+                    if(Utils.matchString(eachData, searchBar.getText().toString())){
+                        searchResult.add(eachData);
+                    }
+                }
+                showSearchResult(searchResult);
+            }
+        });
 
         pulltorefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -92,18 +124,31 @@ public class faqFragment extends Fragment {
     }
 
     public void reload() {
-        //Initialize the FAQ List
         faq_group = faqGenerator.generateGroups();
         faq_content = faqGenerator.generateChild();
-
+        faq_child = new HashMap<>();
+        System.out.println(faq_content.get(0));
         // Loop for the group head
-        for(int i=0; i<4; i++){
-            ArrayList<String> eachContent = new ArrayList<>();
-            eachContent.add(faq_content.get(i));
+        faq_child.put(faq_group.get(0), faq_content.get(0));
 
-            faq_child.put(faq_group.get(i), eachContent);
-        }
+        faq_child.put(faq_group.get(1), faq_content.get(1));
+
+        faq_child.put(faq_group.get(2), faq_content.get(2));
+
+        faq_child.put(faq_group.get(3), faq_content.get(3));
+
         faqadapter = new faqAdapter(faq_group, faq_child);
+        faq_list.setAdapter(faqadapter);
+    }
+
+    public void showSearchResult(ArrayList<String> searchResult) {
+        faq_child = new HashMap<>();
+        Integer k = 0;
+        for(int i=0; i<searchResult.size(); i++){
+            Integer idx = faq_group.indexOf(searchResult.get(i));
+            faq_child.put(searchResult.get(i), faq_content.get(idx));
+        }
+        faqadapter = new faqAdapter(searchResult, faq_child);
         faq_list.setAdapter(faqadapter);
     }
 
