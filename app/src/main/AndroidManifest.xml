@@ -12,12 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.NoActionBar">
-        <activity android:name=".views.ZoomImage"></activity>
+        <activity android:name=".Login_Reservation"></activity>
+        <activity android:name=".dialog_reservation" />
+        <activity android:name=".ReservationTable" />
+        <activity android:name=".views.ZoomImage" />
         <activity android:name=".views.restaurantDetails" />
         <activity android:name=".views.Search" />
-        <activity android:name=".views.reviewPage"/>
-        <activity android:name=".views.ReviewCode"/>
-        <activity android:name=".views.reviewCreatePage"/>
+        <activity android:name=".views.reviewPage" />
+        <activity android:name=".views.ReviewCode" />
+        <activity android:name=".views.reviewCreatePage" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">

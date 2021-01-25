@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/login_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reserve A Table"
+        android:textColor="@android:color/white"
+        android:textSize="40dp"
+        android:fontFamily="@font/roboto_bold"
+        android:layout_gravity="center_horizontal"
+        android:elevation="15dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign in to Reserve A Table"
+        android:fontFamily="@font/roboto"
+        android:textColor="@android:color/white"
+        android:layout_gravity="center_horizontal"
+        android:textSize="20dp"
+        android:elevation="15dp"/>
+
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/ratatouille_logor"
+        android:elevation="15dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_edittext"
+        android:focusable="false"
+        android:focusableInTouchMode="true"
+        android:alpha="0.7"
+        android:elevation="15dp"
+        android:clickable="true">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_person" />
+
+        <EditText
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/li_userTextbox"
+            android:hint="Email"
+            android:inputType="text"
+            android:textColorHint="@android:color/holo_red_light"
+            android:textColor="@android:color/holo_red_light"
+            android:fontFamily="@font/roboto"
+            android:background="@android:color/transparent"/>
+
+        <Spinner
+            android:id="@+id/users_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_edittext"
+        android:focusable="false"
+        android:focusableInTouchMode="true"
+        android:alpha="0.7"
+        android:elevation="15dp"
+        android:clickable="true">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_lock"/>
+        <EditText
+            android:layout_width="155dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/li_passTextbox"
+            android:hint="Password"
+            android:textColorHint="@android:color/holo_red_light"
+            android:textColor="@android:color/holo_red_light"
+            android:fontFamily="@font/roboto"
+            android:inputType="text"
+            android:background="@android:color/transparent"/>
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Show"
+            android:fontFamily="@font/roboto"
+            android:id="@+id/li_showButton"
+            android:textColor="@color/black"
+            android:textAlignment="center"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:id="@+id/li_loginButton"
+        android:background="@drawable/round_button"
+        android:gravity="center"
+        android:elevation="15dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SIGN IN"
+            android:textSize="10pt"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@android:color/holo_red_light"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+
