@@ -6,7 +6,7 @@ import com.example.ratatouille.models.Review;
 import com.example.ratatouille.models.ReviewVerification;
 import com.example.ratatouille.utils.callbackHelper;
 import com.example.ratatouille.vars.VariablesUsed;
-import com.example.ratatouille.views.AddReviewCodeFragment;
+import com.example.ratatouille.views.viewReservationListFragment;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -38,14 +38,6 @@ public class ReviewController {
 
     public static void refreshReviewVerificationDatabase() {
         ReviewVerification.refreshDatabase();
-    }
-
-    public static ReviewVerification addVerificationCode(Context context, callbackHelper cb, String restaurantID, String customerID){
-        ReviewVerification verifier = new ReviewVerification(UUID.randomUUID().toString(), restaurantID, customerID);
-        verifier.save();
-        AddReviewCodeFragment.verifier = verifier;
-        cb.onUserLoadCallback(context, VariablesUsed.currentUser);
-        return verifier;
     }
 
     public static void deleteVerificationCode(String reviewCode){

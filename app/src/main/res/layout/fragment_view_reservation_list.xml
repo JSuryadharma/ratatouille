@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ReservationTable">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,17 +22,17 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_marginTop="35dp"
-                android:text="Book A Table to Make Reservation Request"
                 android:fontFamily="@font/heebo_bold"
-                android:textColor="@android:color/black"
-                android:textSize="30dp"
+                android:text="Your Reservation List"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="40dp"
                 android:textStyle="bold" />
 
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/addreviewcode_backButton"
+                android:id="@+id/reservationlist_backButton"
                 android:clickable="true">
 
                 <ImageView
@@ -52,15 +50,31 @@
                     android:layout_gravity="center_vertical"
                     android:id="@+id/reservationlist_backButtonText"/>
             </LinearLayout>
-
         </RelativeLayout>
 
-        <ImageView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:src="@drawable/bookatable"/>
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_card"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="15dp"
+            android:elevation="15dp"
+            android:orientation="vertical">
 
-        
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/userReservationList"
+                android:layout_width="match_parent"
+                android:layout_height="270dp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Seriously, you've reached the bottom."
+            android:textAlignment="center"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="15dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginHorizontal="15dp"/>
     </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

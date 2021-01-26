@@ -37,7 +37,7 @@ public class restaurantDetails extends AppCompatActivity {
     private ViewPager photoView, menuView;
     private TextView title, type, timings, address, avg, reviewButton;
     private RatingBar ratingBar;
-    private LinearLayout bookNowButton, backButton, addToFavButton;
+    private LinearLayout bookNowButton, backButton, addToFavButton, makeReservationButton;
     private Context context;
     private ArrayList<detailPhotoModels> photoList;
     private ArrayList<menuPhotoModels> menuList;
@@ -61,6 +61,7 @@ public class restaurantDetails extends AppCompatActivity {
         pullToRefresh = findViewById(R.id.detail_pulltorefresh);
         reviewButton = findViewById(R.id.reviewButton);
         addToFavButton = findViewById(R.id.addToFavouriteButton);
+        makeReservationButton = findViewById(R.id.makeReservationButton);
         context = this;
 
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +70,16 @@ public class restaurantDetails extends AppCompatActivity {
                 MediaPlayer player = MediaPlayer.create(context, R.raw.personleave);
                 player.start();
                 backToSearch(context);
+            }
+        });
+
+        makeReservationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MediaPlayer player = MediaPlayer.create(context, R.raw.personleave);
+                player.start();
+                Intent intent = new Intent(context, ReservationPage.class);
+                startActivity(intent);
             }
         });
 

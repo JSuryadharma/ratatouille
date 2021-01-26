@@ -105,7 +105,7 @@ public class Users {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 selectedValues = snapshot.getValue(Users.class);
-                cb.onLoadCallback(holder);
+                cb.onLoadCallback(holder, selectedValues);
                 Log.w(TAG, "onSuccess : Retrieved user -> " + selectedValues.getUsername());
             }
 

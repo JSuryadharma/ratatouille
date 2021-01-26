@@ -1,29 +1,11 @@
 package com.example.ratatouille.controllers;
 
 import android.content.Context;
-import android.util.Log;
 
-import androidx.annotation.NonNull;
-
-import com.example.ratatouille.R;
-import com.example.ratatouille.db.DatabaseHelper;
 import com.example.ratatouille.models.Favourite;
-import com.example.ratatouille.models.Review;
-import com.example.ratatouille.models.ReviewVerification;
-import com.example.ratatouille.models.Users;
-import com.example.ratatouille.utils.Utils;
 import com.example.ratatouille.utils.callbackHelper;
-import com.example.ratatouille.vars.VariablesUsed;
-import com.example.ratatouille.views.AddReviewCodeFragment;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.UUID;
-
-import static android.content.ContentValues.TAG;
 
 public class FavouritesController {
     public static ArrayList<Favourite> getAllFavouritesForAUser(Context context, callbackHelper cb, String userID){

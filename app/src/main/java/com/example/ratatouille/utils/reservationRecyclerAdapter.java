@@ -26,8 +26,8 @@ public class reservationRecyclerAdapter extends RecyclerView.Adapter<reservation
     private Users currentBooker;
     private restaurantReservationCallbackHelper cb = new restaurantReservationCallbackHelper() {
         @Override
-        public void onLoadCallback(MyViewHolder holder) {
-            setReservationUsername(holder);
+        public void onLoadCallback(MyViewHolder holder, Users u) {
+            setReservationUsername(holder, u);
         }
     };
     private Utils.reservationResponse response = new Utils.reservationResponse() {
@@ -81,13 +81,12 @@ public class reservationRecyclerAdapter extends RecyclerView.Adapter<reservation
         currentBooker = UserController.getAUserForReservation(cb, holder, currentRequest.getUserID());
 
         holder.reservationDate.setText(currentRequest.getReserveDate().toString());
-        holder.reservationTime.setText(currentRequest.getReserveTime().toString());
         holder.reservationSeats.setText(currentRequest.getNumberOfPerson().toString());
         holder.reservationDesc.setText(currentRequest.getDescription());
     }
 
-    public void setReservationUsername(MyViewHolder holder) {
-        holder.reservationName.setText(currentBooker.getUsername());
+    public void setReservationUsername(MyViewHolder holder, Users user) {
+        holder.reservationName.setText(user.getUsername());
     }
 
     @Override
@@ -101,7 +100,6 @@ public class reservationRecyclerAdapter extends RecyclerView.Adapter<reservation
         private TextView reservationName;
         private TextView reservationSeats;
         private TextView reservationDate;
-        private TextView reservationTime;
         private TextView reservationDesc;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -110,7 +108,6 @@ public class reservationRecyclerAdapter extends RecyclerView.Adapter<reservation
             reservationName = itemView.findViewById(R.id.reservationsrv_name);
             reservationSeats = itemView.findViewById(R.id.reservationsrv_seats);
             reservationDate = itemView.findViewById(R.id.reservationsrv_date);
-            reservationTime = itemView.findViewById(R.id.reservationsrv_time);
             reservationDesc = itemView.findViewById(R.id.reservationsrv_desc);
         }
     }

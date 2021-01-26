@@ -58,7 +58,6 @@ public class ViewProfileFragment extends Fragment {
     private TextView phoneNumberText;
     private TextView addressText;
     private TextView yourVouchersText;
-    private RelativeLayout addReviewCode;
     private RelativeLayout phoneNumberArea;
     private RelativeLayout addressArea;
     private RelativeLayout yourVoucherArea;
@@ -66,6 +65,7 @@ public class ViewProfileFragment extends Fragment {
     private RelativeLayout settings;
     private RelativeLayout termsOfUse;
     private RelativeLayout privacyPolicy;
+    private RelativeLayout viewReservationButton;
     private ArrayList<Vouchers> voucherList;
     private Integer TAKE_IMAGE_CODE = 1001;
     private static Handler handler = null;
@@ -133,11 +133,11 @@ public class ViewProfileFragment extends Fragment {
         phoneNumberText = getView().findViewById(R.id.vp_phoneNumberText);
         addressText = getView().findViewById(R.id.vp_addressText);
         yourVouchersText = getView().findViewById(R.id.vp_yourVouchersText);
-        addReviewCode = getView().findViewById(R.id.vp_reviewcodeButton);
         contactSupport = getView().findViewById(R.id.vp_contactSupport);
         settings = getView().findViewById(R.id.vp_settings);
         termsOfUse = getView().findViewById(R.id.vp_termsOfUse);
         privacyPolicy = getView().findViewById(R.id.vp_privacyPolicy);
+        viewReservationButton = getView().findViewById(R.id.vp_viewReservations);
         phoneNumberArea = view.findViewById(R.id.vp_phoneNumber);
         addressArea = view.findViewById(R.id.vp_address);
         yourVoucherArea = view.findViewById(R.id.vp_yourVouchers);
@@ -154,6 +154,16 @@ public class ViewProfileFragment extends Fragment {
                     .into(imageProfile);
         }
 
+        viewReservationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment reviewCodeFragment = new viewReservationListFragment();
+                MediaPlayer player = MediaPlayer.create(getView().getContext(), R.raw.open);
+                player.start();
+                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, reviewCodeFragment).commit();
+            }
+        });
+
         pulltorefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -161,16 +171,6 @@ public class ViewProfileFragment extends Fragment {
                 MediaPlayer player = MediaPlayer.create(getView().getContext(), R.raw.open);
                 player.start();
                 pulltorefresh.setRefreshing(false);
-            }
-        });
-
-        addReviewCode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment reviewCodeFragment = new AddReviewCodeFragment();
-                MediaPlayer player = MediaPlayer.create(getView().getContext(), R.raw.open);
-                player.start();
-                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, reviewCodeFragment).commit();
             }
         });
 

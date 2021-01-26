@@ -71,15 +71,14 @@
                 android:paddingHorizontal="15dp">
 
                 <TextView
+                    android:id="@+id/restaurant_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:elevation="15dp"
                     android:paddingTop="15dp"
-                    android:text="Restaurant Name"
-                    android:textSize="25dp"
-                    android:textColor="@android:color/black"
-                    android:id="@+id/restaurant_name"
                     android:paddingBottom="15dp"
-                    android:elevation="15dp"/>
+                    android:textColor="@android:color/black"
+                    android:textSize="25dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

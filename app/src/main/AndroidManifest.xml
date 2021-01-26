@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.NoActionBar">
+        <activity android:name=".views.ReservationPage"></activity>
         <activity android:name=".views.RestaurantView" />
         <activity android:name=".dialog_reservation" />
         <activity android:name=".ReservationTable" />

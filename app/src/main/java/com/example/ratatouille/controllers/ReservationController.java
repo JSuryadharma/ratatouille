@@ -14,8 +14,8 @@ public class ReservationController {
         return reservationData;
     }
 
-    public static ArrayList<ReservationRequest> getAllReservations(Context context, restaurantCB cb, String restaurantID) {
-        ArrayList<ReservationRequest> reservationData = ReservationRequest.getAll(context, cb, restaurantID);
+    public static ArrayList<ReservationRequest> getAllReservations(Context context, restaurantCB cb, String restaurantID, String userID) {
+        ArrayList<ReservationRequest> reservationData = ReservationRequest.getAll(context, cb, restaurantID, userID);
         return reservationData;
     }
 

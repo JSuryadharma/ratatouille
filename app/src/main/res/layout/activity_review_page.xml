@@ -128,7 +128,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/reviewpage_restaurant_name"
-                    android:layout_marginLeft="235dp"
+                    android:layout_marginLeft="225dp"
                     android:layout_marginTop="25dp"
                     android:orientation="horizontal">
 

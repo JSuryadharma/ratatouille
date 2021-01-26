@@ -18,6 +18,7 @@
             android:background="@drawable/reservations_background"
             android:orientation="vertical"
             android:id="@+id/reservationsrv_area">
+
             <TextView
                 android:layout_height="10dp"
                 android:layout_width="250dp"
@@ -27,17 +28,18 @@
                 android:textSize="10dp"
                 android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/black"
-                android:id="@+id/reservationsrv_id"/>
+                android:id="@+id/userReservationReservationID"/>
+
             <TextView
+                android:id="@+id/userReservationRestoName"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:text="Name: "
-                android:textSize="18dp"
-                android:fontFamily="@font/roboto"
-                android:textColor="@color/black"
-                android:id="@+id/reservationsrv_name"
                 android:layout_marginHorizontal="15dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto"
+                android:text="Restaurant:"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
             <TextView
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
@@ -45,7 +47,7 @@
                 android:textSize="18dp"
                 android:fontFamily="@font/roboto"
                 android:textColor="@color/black"
-                android:id="@+id/reservationsrv_seats"
+                android:id="@+id/userReservationSeat"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="10dp"/>
             <TextView
@@ -55,7 +57,7 @@
                 android:textSize="18dp"
                 android:fontFamily="@font/roboto"
                 android:textColor="@color/black"
-                android:id="@+id/reservationsrv_date"
+                android:id="@+id/userReservationDate"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="10dp"/>
 
@@ -66,10 +68,21 @@
                 android:textSize="18dp"
                 android:fontFamily="@font/roboto"
                 android:textColor="@color/black"
-                android:id="@+id/reservationsrv_desc"
+                android:id="@+id/userReservationDesc"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                android:id="@+id/userReservationStatus"
+                android:layout_width="249dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/roboto"
+                android:text="Status:"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

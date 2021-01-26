@@ -24,7 +24,6 @@ public class ReservationRequest {
     private String restaurantID;
     private String requestDate;
     private String reserveDate;
-    private String reserveTime;
     private Integer numberOfPerson;
     private String description;
     private String reply;
@@ -37,13 +36,14 @@ public class ReservationRequest {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public ReservationRequest(String reservationRequestID, String userID, String restaurantID, String requestDate, String reserveDate, String reserveTime, Integer numberOfPerson, String description, Boolean isAccepted) {
+    public ReservationRequest(String reservationRequestID, String userID, String restaurantID,
+                              String requestDate, String reserveDate, Integer numberOfPerson,
+                              String description, Boolean isAccepted) {
         this.reservationRequestID = reservationRequestID;
         this.userID = userID;
         this.restaurantID = restaurantID;
         this.requestDate = requestDate;
         this.reserveDate = reserveDate;
-        this.reserveTime = reserveTime;
         this.numberOfPerson = numberOfPerson;
         this.reply = null;
         this.description = description;
@@ -76,10 +76,9 @@ public class ReservationRequest {
         this.save();
     }
 
-    public ReservationRequest update(String requestDate, String reserveDate, String reserveTime, Integer numberOfPerson, String description, Boolean isAccepted){
+    public ReservationRequest update(String requestDate, String reserveDate, Integer numberOfPerson, String description, Boolean isAccepted){
         this.requestDate = requestDate;
         this.reserveDate = reserveDate;
-        this.reserveTime = reserveTime;
         this.numberOfPerson = numberOfPerson;
         this.description = description;
         this.isAccepted = isAccepted;
@@ -113,26 +112,33 @@ public class ReservationRequest {
         return selectedValues;
     }
 
-    public static ArrayList<ReservationRequest> getAll(Context context, restaurantCB cb, String restaurantID){
+    public static ArrayList<ReservationRequest> getAll(Context context, restaurantCB cb, String restaurantID, String userID){
         DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.ReservationRequestTable.RESERVATIONREQUEST_TABLE);
         ArrayList<ReservationRequest> reservationRequestList = new ArrayList<>();
         dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot eachData :snapshot.getChildren()){
-                    if(eachData.child("userID").getValue().equals(restaurantID)){
+                    if(eachData.child("restaurantID").getValue().equals(restaurantID) && userID == null){
+                        System.out.println("restoran");
                         ReservationRequest curRequest = eachData.getValue(ReservationRequest.class);
                         reservationRequestList.add(curRequest);
                         cb.onRestaurantCB(context, VariablesUsed.currentRestaurant);
                         break;
                     }
+                    if(eachData.child("userID").getValue().equals(userID) && restaurantID == null){
+                        System.out.println("user");
+                        ReservationRequest curRequest = eachData.getValue(ReservationRequest.class);
+                        reservationRequestList.add(curRequest);
+                        cb.onRestaurantCB(null, null);
+                    }
                 }
-                Log.w(TAG, "onSuccess: All ReservationRequest (Specified to a user) retrieved successfully!");
+                Log.w(TAG, "onSuccess: All ReservationRequest retrieved successfully!");
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.w(TAG, "onFailure: All ReservationRequest (Specified to a user) retrieval failed!");
+                Log.w(TAG, "onFailure: All ReservationRequest retrieval failed!");
             }
         });
         return reservationRequestList;
@@ -156,10 +162,6 @@ public class ReservationRequest {
 
     public String getReserveDate() {
         return reserveDate;
-    }
-
-    public String getReserveTime() {
-        return reserveTime;
     }
 
     public Integer getNumberOfPerson() {
@@ -204,10 +206,6 @@ public class ReservationRequest {
 
     public void setReserveDate(String reserveDate) {
         this.reserveDate = reserveDate;
-    }
-
-    public void setReserveTime(String reserveTime) {
-        this.reserveTime = reserveTime;
     }
 
     public void setNumberOfPerson(Integer numberOfPerson) {
