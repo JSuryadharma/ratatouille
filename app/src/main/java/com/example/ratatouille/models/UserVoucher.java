@@ -53,10 +53,10 @@ public class UserVoucher {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.getValue() != null){
-                    snapshot.getRef().child("Quantity").setValue(snapshot.child("Quantity").getValue(Integer.class) - 1);
-                    if(snapshot.child("Quantity").getValue(Integer.class) == 0){
+                    if(snapshot.child("Quantity").getValue(Integer.class) == 1){
                         delete(VariablesUsed.loggedUser.getUid(), voucher.getVoucherID());
                     }
+                    snapshot.getRef().child("Quantity").setValue(snapshot.child("Quantity").getValue(Integer.class) - 1);
                     callback.onUserLoadCallback(context, VariablesUsed.currentUser);
                 }
             }

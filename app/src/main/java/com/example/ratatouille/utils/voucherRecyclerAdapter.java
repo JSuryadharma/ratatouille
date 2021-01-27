@@ -33,7 +33,6 @@ public class voucherRecyclerAdapter extends RecyclerView.Adapter<voucherRecycler
     private ArrayList<Vouchers> voucherList;
 
     public static Integer selectedItem = -1;
-    public static MyViewHolder currentHolder = null;
     public Integer voucherAmount = new Integer(0);
     private voucherAmountCallbackHelper cb = new voucherAmountCallbackHelper() {
         @Override
@@ -76,7 +75,6 @@ public class voucherRecyclerAdapter extends RecyclerView.Adapter<voucherRecycler
     private Utils.response dialogRsp = new Utils.response() {
         @Override
         public void yesResponse() {
-            currentHolder.voucherButton.setBackgroundResource(R.drawable.voucherbutton_pressed_background);
             currentVoucher = voucherList.get(selectedItem);
             Animation anim = AnimationUtils.loadAnimation(context, R.anim.up_to_bottom);
             customerView.currentVoucher_name.setText(currentVoucher.getVoucherName() + " " + currentVoucher.getVoucherDisc().toString() + "%");
@@ -97,20 +95,13 @@ public class voucherRecyclerAdapter extends RecyclerView.Adapter<voucherRecycler
         holder.voucherName.setText(selectedVoucher.getVoucherName());
         holder.voucherDisc.setText("Discount: " + selectedVoucher.getVoucherDisc().toString() + " %");
         holder.voucherType.setText("Type: Dine-in");
-
-        selectedItem = -1;
         voucherAmount = 0;
-        currentHolder = holder;
 
         holder.voucherAmount.setText("Amount : " + voucherAmount);
 
         voucherAmount = UserVoucher.getVoucherQuantity(this, cb, holder, selectedVoucher);
 
-        if(position == this.selectedItem){
-            holder.voucherButton.setBackgroundResource(R.drawable.voucherbutton_pressed_background);
-        } else {
-            holder.voucherButton.setBackgroundResource(R.drawable.voucherbutton_background);
-        }
+        holder.voucherButton.setBackgroundResource(R.drawable.voucherbutton_background);
 
         holder.voucherButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,6 +111,7 @@ public class voucherRecyclerAdapter extends RecyclerView.Adapter<voucherRecycler
                     return;
                 }
                 selectedItem = position;
+                holder.voucherButton.setBackgroundResource(R.drawable.voucherbutton_pressed_background);
                 Utils.showOptMessage(context, dialogRsp, "Confirmation", "Are you sure to use : " + selectedVoucher.getVoucherName() + " " + selectedVoucher.getVoucherDisc() + "\n Please be noted that this action can only be done by the Restaurant only!");
             }
         });
