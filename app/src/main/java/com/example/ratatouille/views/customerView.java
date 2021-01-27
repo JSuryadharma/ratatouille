@@ -51,7 +51,7 @@ public class customerView extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fadein, R.anim.fadeout).replace(R.id.fragment_container, selectedFragment).commit();
 
         if(firstLoginBoolean == false) {
-            Utils.showDialogMessage(R.drawable.verified_logo, this, "Success Log In", "Welcome back! " + VariablesUsed.currentUser.getName());
+            Utils.showDialogMessage(R.drawable.verified_logo, this, "Success Log In", "Welcome back, " + VariablesUsed.currentUser.getName() + " !");
             firstLoginBoolean = true;
         }
 

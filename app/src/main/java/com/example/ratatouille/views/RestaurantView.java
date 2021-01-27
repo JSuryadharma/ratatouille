@@ -106,7 +106,7 @@ public class RestaurantView extends AppCompatActivity {
         reservationData = new ArrayList<>();
 
         if(firstLoginBoolean == false) {
-            Utils.showDialogMessage(R.drawable.verified_logo, this, "Success Log In", "Welcome back! " + currentRestaurant.getName());
+            Utils.showDialogMessage(R.drawable.verified_logo, this, "Success Log In", "Welcome back, " + currentRestaurant.getName() + " !");
             firstLoginBoolean = true;
         }
 
