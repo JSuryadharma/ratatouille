@@ -98,7 +98,7 @@ public class viewReservationListFragment extends Fragment {
             @Override
             public void onRefresh() {
                 reload();
-                refreshLayout.setEnabled(false);
+                refreshLayout.setRefreshing(false);
             }
         });
     }
