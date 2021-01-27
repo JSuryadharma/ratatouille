@@ -114,7 +114,7 @@ public class restoDetailController {
 
         resto_id = resto.getString("id");
         resto_name = resto.getString("name");
-        location = resto.getJSONObject("location").getString("locality");
+        location = resto.getJSONObject("location").getString("address");
         resto_type = resto.getString("cuisines");
         rating = resto.getJSONObject("user_rating").getDouble("aggregate_rating");
         jam_buka = resto.getString("timings");

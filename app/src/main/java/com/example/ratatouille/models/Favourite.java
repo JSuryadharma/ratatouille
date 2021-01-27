@@ -57,7 +57,7 @@ public class Favourite {
         }
 
         if(flag == false) {
-            DatabaseReference dbRef = DatabaseHelper.getDb().getReference("Users").child(userID).child("favourites").child(favouriteID);
+            DatabaseReference dbRef = DatabaseHelper.getDb().getReference("Favourites").child(favouriteID);
             dbRef.setValue(this);
             Utils.showDialogMessage(R.drawable.verified_logo, context, "Sucess", "Success adding!");
             return;
@@ -66,14 +66,14 @@ public class Favourite {
     }
 
     public static ArrayList<Favourite> getAll(Context context, callbackHelper cb, String userID){ // Review for specific restaurant
-        DatabaseReference dbRef = DatabaseHelper.getDb().getReference("Users").child(userID).child("favourites");
+        DatabaseReference dbRef = DatabaseHelper.getDb().getReference("Favourites");
         ArrayList<Favourite> favouriteList = new ArrayList<>();
         dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot eachData : snapshot.getChildren()){ // setiap child dari snapshot json
                     Favourite curReview = eachData.getValue(Favourite.class);
-                    favouriteList.add(curReview);
+                    if(curReview.getUserID().equals(userID)) favouriteList.add(curReview);
                 }
                 cb.onUserLoadCallback(context, VariablesUsed.currentUser);
                 Log.w(TAG, "onSuccess: All Review retrieved!");

@@ -25,6 +25,7 @@ import com.example.ratatouille.models.mostPopularModels;
 import com.example.ratatouille.models.trendingModels;
 import com.example.ratatouille.utils.mostPopularAdapter;
 import com.example.ratatouille.utils.trendingAdapter;
+import com.example.ratatouille.vars.VariablesUsed;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -100,6 +101,7 @@ public class customerHomeFragment extends Fragment {
         searchBox = getView().findViewById(R.id.searchBox);
         context = this.getContext();
         trendingList = new ArrayList<>();
+        VariablesUsed.previousState = "home";
 
         customerView.menubar_layout.setVisibility(View.VISIBLE);
 

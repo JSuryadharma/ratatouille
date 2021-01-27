@@ -71,6 +71,12 @@
                         android:text="Types"
                         android:textColor="@android:color/holo_red_light"
                         android:textSize="15dp"
+                        android:ellipsize="marquee"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
                         android:fontFamily="@font/heebo_light"/>
 
                     <TextView
