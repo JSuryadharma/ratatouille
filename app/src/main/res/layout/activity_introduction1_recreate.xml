@@ -9,7 +9,6 @@
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="15dp"
         app:cardBackgroundColor="@android:color/transparent">
 
         <LinearLayout
@@ -21,7 +20,7 @@
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp"
             android:padding="15dp"
-            android:background="@drawable/round_card">
+            android:background="@drawable/round_button">
 
             <ImageView
                 android:id="@+id/imageView"

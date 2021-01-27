@@ -24,7 +24,7 @@
     <SeekBar
         android:id="@+id/seekBar"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:background="@drawable/round_card"
+        android:background="@drawable/round_button"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_marginHorizontal="150dp"

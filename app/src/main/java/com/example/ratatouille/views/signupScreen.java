@@ -81,32 +81,27 @@ public class signupScreen extends AppCompatActivity {
 
                     Toast.makeText(getBaseContext(), "Account Created Successfully!", Toast.LENGTH_LONG).show();
 
-                    Intent loginIntent = new Intent(signupScreen.this, loginScreen.class);
+                    Utils.actresponse dialogRsp = new Utils.actresponse() {
+                        @Override
+                        public void okResponse() {
+                            Intent loginIntent = new Intent(signupScreen.this, loginScreen.class);
+                            startActivity(loginIntent);
+                        }
+                    };
 
-                    AlertDialog.Builder signupAlert = new AlertDialog.Builder(signupScreen.this) // alert message after sign up..
-                            .setTitle("Sign Up Attention")
-                            .setMessage("Your account has been successfully saved into our database, however you need to verify your account first.")
-                            .setIcon(R.drawable.ic_warning)
-                            .setOnDismissListener(new DialogInterface.OnDismissListener() {
-                                @Override
-                                public void onDismiss(DialogInterface dialogInterface) {
-                                    startActivity(loginIntent);
-                                }
-                            });
-
-                        signupAlert.show();
+                    Utils.showActionMessage(R.drawable.ic_warning, dialogRsp, signupScreen.this, "Sign Up Attention", "Your account has been successfully saved into our database,\n however you need to verify your account first.");
 
                 } else {
-                    if(!Utils.validateInput(emailInput) && !Utils.validateEmail(emailInput)){
+                    if(!Utils.validateInput(emailInput) || !Utils.validateEmail(emailInput)){
                         emailField.setError("Invalid Input!");
                     }
-                    if(!Utils.validateInput(usernameInput) && !Utils.validateUsername(usernameInput)){
+                    if(!Utils.validateInput(usernameInput) || !Utils.validateUsername(usernameInput)){
                         usernameField.setError("Invalid Input!");
                     }
-                    if(!Utils.validateInput(passwordInput) && !Utils.validatePassword(passwordInput)){
+                    if(!Utils.validateInput(passwordInput) || !Utils.validatePassword(passwordInput)){
                         passwordField.setError("Invalid Input!");
                     }
-                    if(!Utils.validateInput(phoneInput) && !Utils.validatePhone(phoneInput)){
+                    if(!Utils.validateInput(phoneInput) || !Utils.validatePhone(phoneInput)){
                         phoneField.setError("Invalid Input!");
                     }
                 }
