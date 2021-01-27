@@ -88,14 +88,14 @@
 
                     <TextView
                         android:id="@+id/reviewButton"
-                        android:layout_width="82dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="230dp"
                         android:layout_marginBottom="5dp"
                         android:layout_weight="1"
-                        android:text="Details"
                         android:fontFamily="@font/heebo_bold"
+                        android:text="Details"
                         android:textColor="#2196F3"
                         android:textSize="15dp" />
 

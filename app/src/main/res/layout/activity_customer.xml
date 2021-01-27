@@ -14,15 +14,16 @@
         android:background="@android:color/holo_blue_light"
         android:id="@+id/currentVoucher_area"
         android:elevation="15dp">
+
         <TextView
+            android:id="@+id/currentVoucher_intro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hey There ! Your currently used voucher:"
-            android:textSize="10dp"
+            android:layout_alignParentLeft="true"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="5dp"
-            android:layout_alignParentLeft="true"
-            android:id="@+id/currentVoucher_intro"/>
+            android:text="Hey there! Your currently used voucher is:"
+            android:textSize="10dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,7 +46,7 @@
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
     <RelativeLayout
         android:layout_width="380dp"
