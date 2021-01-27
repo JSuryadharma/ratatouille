@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.ratatouille.R;
 import com.example.ratatouille.controllers.ReservationController;
@@ -31,6 +33,8 @@ import com.example.ratatouille.vars.VariablesUsed;
 import java.util.ArrayList;
 
 public class viewReservationListFragment extends Fragment {
+    private SwipeRefreshLayout refreshLayout;
+    private ScrollView scrollView;
     private LinearLayout backButton;
     private TextView backButton_text;
     private RecyclerView reservation_RecyclerView;
@@ -55,11 +59,24 @@ public class viewReservationListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        refreshLayout = getView().findViewById(R.id.reservationlist_refresh);
+        scrollView = getView().findViewById(R.id.reservationlist_scrollView);
         backButton = getView().findViewById(R.id.reservationlist_backButton);
         backButton_text = getView().findViewById(R.id.reservationlist_backButtonText);
         reservation_RecyclerView = getView().findViewById(R.id.userReservationList);
 
         customerView.menubar_layout.setVisibility(View.GONE);
+
+        scrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                if(scrollY == 0){
+                    refreshLayout.setEnabled(true);
+                } else {
+                    refreshLayout.setEnabled(false);
+                }
+            }
+        });
 
         backButton_text.setTextColor(Color.BLACK);
 
@@ -76,6 +93,14 @@ public class viewReservationListFragment extends Fragment {
             }
         });
         reload();
+
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                reload();
+                refreshLayout.setEnabled(false);
+            }
+        });
     }
 
     private void reload() {
