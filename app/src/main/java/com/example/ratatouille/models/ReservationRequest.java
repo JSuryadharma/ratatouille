@@ -90,6 +90,7 @@ public class ReservationRequest {
 
     public void acceptRequest(){
         this.isAccepted = true;
+        this.reply = "";
         save();
     }
 
@@ -174,6 +175,10 @@ public class ReservationRequest {
 
     public void setReservationRequestID(String reservationRequestID) {
         this.reservationRequestID = reservationRequestID;
+    }
+
+    public String getReply() {
+        return reply;
     }
 
     public void setUserID(String userID) {

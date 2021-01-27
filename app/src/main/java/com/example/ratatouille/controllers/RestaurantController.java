@@ -33,7 +33,6 @@ public class RestaurantController {
                         VariablesUsed.currentRestaurant = curValue;
                         Intent homeIntent = new Intent(context, RestaurantView.class);
                         context.startActivity(homeIntent);
-                        Utils.showDialogMessage(R.drawable.verified_logo, context, "Successfully Login", "Welcome Back, " + VariablesUsed.currentRestaurant.getName() + " !");
                         return;
                     }
                 }

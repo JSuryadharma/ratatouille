@@ -37,6 +37,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
+import static com.example.ratatouille.vars.VariablesUsed.currentRestaurant;
+import static com.example.ratatouille.vars.VariablesUsed.currentRestoDetail;
+import static com.example.ratatouille.vars.VariablesUsed.currentUser;
+import static com.example.ratatouille.vars.VariablesUsed.currentVoucher;
+import static com.example.ratatouille.vars.VariablesUsed.firstLoginBoolean;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -66,7 +71,31 @@ public class ViewProfileFragment extends Fragment {
     private RelativeLayout termsOfUse;
     private RelativeLayout privacyPolicy;
     private RelativeLayout viewReservationButton;
+    private RelativeLayout logoutArea;
+    private Context context;
+
     private ArrayList<Vouchers> voucherList;
+
+    private Utils.response opt_respond = new Utils.response() {
+        @Override
+        public void yesResponse() {
+            MediaPlayer player = MediaPlayer.create(context, R.raw.personleave);
+            player.start();
+            firstLoginBoolean = false;
+            currentRestaurant = null;
+            currentUser = null;
+            currentRestoDetail = null;
+            currentVoucher = null;
+            Intent backIntent = new Intent(context, loginScreen.class);
+            startActivity(backIntent);
+        }
+
+        @Override
+        public void noResponse() {
+            Toast.makeText(context, "Action cancelled.", Toast.LENGTH_LONG).show();
+        }
+    };
+
     private Integer TAKE_IMAGE_CODE = 1001;
     private static Handler handler = null;
     private static Runnable runnable = null;
@@ -125,6 +154,8 @@ public class ViewProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        context = null;
+        context = view.getContext();
         pulltorefresh = getView().findViewById(R.id.vp_pulltorefresh);
         imageProfile = getView().findViewById(R.id.vp_imageProfile);
         editButton = getView().findViewById(R.id.vp_editButton);
@@ -142,6 +173,7 @@ public class ViewProfileFragment extends Fragment {
         addressArea = view.findViewById(R.id.vp_address);
         yourVoucherArea = view.findViewById(R.id.vp_yourVouchers);
         voucherList = VoucherController.getAllUserVoucher(getView().getContext(), cb);
+        logoutArea = view.findViewById(R.id.vp_logout);
 
         reload();
 
@@ -257,6 +289,13 @@ public class ViewProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getView().getContext(), "Still in Alpha Version. Privacy Policies will be available to users.", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        logoutArea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Utils.showOptMessage(view.getContext(), opt_respond, "Confirmation", "Are you sure want to logout?");
             }
         });
 

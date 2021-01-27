@@ -17,8 +17,10 @@ import com.example.ratatouille.models.ReservationRequest;
 import com.example.ratatouille.models.Restaurant;
 import com.example.ratatouille.models.Users;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class reservationRecyclerAdapter extends RecyclerView.Adapter<reservationRecyclerAdapter.MyViewHolder> {
     private Context context;
@@ -71,7 +73,18 @@ public class reservationRecyclerAdapter extends RecyclerView.Adapter<reservation
         holder.reservationArea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Utils.showReservationOptDialog(context, response, currentRequest, "Action Selection for:\n" + currentRequest.getReserveDate() + "\n for " + currentRequest.getNumberOfPerson() + " seats.");
+
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+                Date selectedDate = null;
+                try {
+                    selectedDate = df.parse(currentRequest.getReserveDate());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                df.applyPattern("EEE, dd-MM-yyyy HH:mm");
+                String newDate = df.format(selectedDate);
+
+                Utils.showReservationOptDialog(context, response, currentRequest, "Selection for:\n" + newDate + " (" + currentRequest.getNumberOfPerson() + " seats)");
             }
         });
 

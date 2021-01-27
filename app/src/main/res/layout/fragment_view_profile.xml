@@ -365,7 +365,40 @@
                         android:alpha="0.7"
                         android:src="@drawable/ic_next_arrow"/>
                 </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.01dp"
+                    android:background="@android:color/darker_gray"
+                    android:layout_below="@id/vp_privacyPolicy"
+                    android:layout_marginTop="5dp"/>
+
+                <!-- This is for Log Out Container-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="30dp"
+                    android:paddingVertical="15dp"
+                    android:id="@+id/vp_logout">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Log Out"
+                        android:textSize="20dp"
+                        android:textColor="@android:color/holo_red_light" />
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:alpha="0.7"
+                        android:src="@drawable/ic_next_arrow"/>
+                </RelativeLayout>
+
             </LinearLayout>
+
         </RelativeLayout>
     </ScrollView>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

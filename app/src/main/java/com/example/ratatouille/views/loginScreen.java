@@ -1,32 +1,40 @@
 package com.example.ratatouille.views;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.ratatouille.MainActivity;
 import com.example.ratatouille.R;
 import com.example.ratatouille.controllers.RestaurantController;
 import com.example.ratatouille.db.DatabaseHelper;
 import com.example.ratatouille.db.DatabaseVars;
+import com.example.ratatouille.models.AboutUs;
 import com.example.ratatouille.models.Users;
 import com.example.ratatouille.utils.Utils;
 import com.example.ratatouille.controllers.UserController;
+import com.example.ratatouille.utils.aboutUsAdapter;
 import com.example.ratatouille.utils.callbackHelper;
 import com.example.ratatouille.vars.VariablesUsed;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -36,9 +44,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
+import java.util.ArrayList;
+
 import static maes.tech.intentanim.CustomIntent.customType;
 
 public class loginScreen extends AppCompatActivity {
+    private ImageView aboutusButton;
     private EditText userTextbox, passTextbox;
     private TextView showButton;
     private LinearLayout btSignIn;
@@ -65,6 +76,8 @@ public class loginScreen extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         customType(loginScreen.this, "fadein-to-fadeout");
 
+        aboutusButton = findViewById(R.id.li_aboutusButton);
+
         welcomeLabel = findViewById(R.id.li_welcomeLabel);
         imageLogo = findViewById(R.id.li_logo);
 
@@ -80,6 +93,61 @@ public class loginScreen extends AppCompatActivity {
         forgotPassword.setTextColor(Color.WHITE);
 
         passTextbox.setTransformationMethod(PasswordTransformationMethod.getInstance()); // set model password pertama (hidden)..
+
+        aboutusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dialog aboutUsDialog = new Dialog(loginScreen.this);
+                aboutUsDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                aboutUsDialog.setContentView(R.layout.dialog_aboutus);
+
+                aboutUsDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                ViewPager aboutUs_viewPager = aboutUsDialog.findViewById(R.id.aboutus_viewPager);
+                SeekBar aboutUs_seekBar = aboutUsDialog.findViewById(R.id.aboutus_seekBar);
+                LinearLayout aboutus_Button = aboutUsDialog.findViewById(R.id.aboutusButton);
+
+                aboutus_Button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        aboutUsDialog.dismiss();
+                    }
+                });
+
+                ArrayList<AboutUs> aboutUsData = new ArrayList<>();
+                aboutUsData.add(new AboutUs(R.drawable.catur, "Anggoro Caturdewa", "System Analyst\n BINUS University"));
+                aboutUsData.add(new AboutUs(R.drawable.ajo, "Johanes Mistrialdo", "Programmer\n BINUS University"));
+                aboutUsData.add(new AboutUs(R.drawable.josur, "Jonathan Suryadharma", "Project Manager\n BINUS University"));
+                aboutUsData.add(new AboutUs(R.drawable.mei, "Meiriska Amelia", "Documentator\n BINUS University"));
+                aboutUsData.add(new AboutUs(R.drawable.shan, "Shannen Latisha", "Designer\n BINUS University"));
+
+                for(AboutUs data : aboutUsData){
+                    System.out.println(data.getName());
+                }
+
+                aboutUsAdapter auAdapter = new aboutUsAdapter(loginScreen.this, aboutUsData);
+                aboutUs_viewPager.setAdapter(auAdapter);
+
+                aboutUs_viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                    @Override
+                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                    }
+
+                    @Override
+                    public void onPageSelected(int position) {
+                        aboutUs_seekBar.setProgress(position);
+                    }
+
+                    @Override
+                    public void onPageScrollStateChanged(int state) {
+
+                    }
+                });
+
+                aboutUsDialog.show();
+            }
+        });
 
         welcomeLabel.setText("Welcome Back");
         imageLogo.setImageResource(R.drawable.ratatouille_logor);

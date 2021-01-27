@@ -17,7 +17,7 @@
             android:text="Title"
             android:fontFamily="@font/heebo_bold"
             android:textColor="@color/black"
-            android:textSize="25dp"
+            android:textSize="20dp"
             android:textStyle="bold"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
@@ -56,7 +56,8 @@
                 <EditText
                     android:layout_width="300dp"
                     android:layout_height="70dp"
-                    android:text="text_information"
+                    android:hint="Enter your text"
+                    android:textColorHint="@android:color/black"
                     android:fontFamily="@font/heebo_light"
                     android:textSize="15dp"
                     android:textColor="@color/black"

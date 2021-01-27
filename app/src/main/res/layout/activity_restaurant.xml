@@ -41,9 +41,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:fontFamily="@font/roboto_bold"
-                        android:text="Back"
+                        android:text="Logout"
                         android:layout_marginBottom="5dp"
-                        android:textColor="@android:color/white"
+                        android:textColor="@android:color/holo_red_light"
                         android:textSize="20dp" />
 
                 </LinearLayout>

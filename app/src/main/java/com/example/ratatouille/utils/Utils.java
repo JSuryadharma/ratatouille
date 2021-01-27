@@ -177,6 +177,7 @@ public class Utils {
             public void onClick(View v) {
                 response.accResponse(curRequest);
                 curRequest.replyReservation(messageDialog.getText().toString());
+                showReservationOpt.dismiss();
             }
         });
 
@@ -185,8 +186,11 @@ public class Utils {
             public void onClick(View v) {
                 response.decResponse(curRequest);
                 curRequest.replyReservation(messageDialog.getText().toString());
+                showReservationOpt.dismiss();
             }
         });
+
+        showReservationOpt.show();
     }
 
     public interface reservationResponse {

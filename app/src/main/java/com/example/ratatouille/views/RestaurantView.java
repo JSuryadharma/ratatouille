@@ -10,6 +10,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,6 +29,7 @@ import com.example.ratatouille.controllers.ReservationController;
 import com.example.ratatouille.models.ReservationRequest;
 import com.example.ratatouille.models.Restaurant;
 import com.example.ratatouille.models.mostPopularModels;
+import com.example.ratatouille.utils.Utils;
 import com.example.ratatouille.utils.mostPopularAdapter;
 import com.example.ratatouille.utils.requestMaker;
 import com.example.ratatouille.utils.reservationRecyclerAdapter;
@@ -42,10 +44,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.ratatouille.vars.VariablesUsed.currentRestaurant;
+import static com.example.ratatouille.vars.VariablesUsed.currentRestoDetail;
+import static com.example.ratatouille.vars.VariablesUsed.currentUser;
+import static com.example.ratatouille.vars.VariablesUsed.currentVoucher;
+import static com.example.ratatouille.vars.VariablesUsed.firstLoginBoolean;
+
 public class RestaurantView extends AppCompatActivity {
     private SwipeRefreshLayout refreshLayout;
-    private LinearLayout backButton;
-    private TextView backButton_text;
+    private LinearLayout logoutButton;
+    private TextView logoutButton_text;
     private TextView restaurantTitle;
     private RecyclerView reservation_RecyclerView;
     private Context context;
@@ -54,6 +62,27 @@ public class RestaurantView extends AppCompatActivity {
         @Override
         public void onRestaurantCB(Context context, Restaurant restaurant) {
             setReservationList();
+        }
+    };
+
+    private Utils.response opt_resp = new Utils.response() {
+        @Override
+        public void yesResponse() {
+            logoutButton_text.setTextColor(Color.DKGRAY);
+            MediaPlayer player = MediaPlayer.create(RestaurantView.this, R.raw.personleave);
+            player.start();
+            firstLoginBoolean = false;
+            currentRestaurant = null;
+            currentUser = null;
+            currentRestoDetail = null;
+            currentVoucher = null;
+            Intent backIntent = new Intent(RestaurantView.this, loginScreen.class);
+            startActivity(backIntent);
+        }
+
+        @Override
+        public void noResponse() {
+            Toast.makeText(context, "Action cancelled.", Toast.LENGTH_LONG).show();
         }
     };
 
@@ -66,27 +95,27 @@ public class RestaurantView extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant);
+        context = null;
 
         refreshLayout = findViewById(R.id.restaurant_refresh);
-        backButton = findViewById(R.id.restaurant_backButton);
-        backButton_text = findViewById(R.id.restaurant_backButton_text);
+        logoutButton = findViewById(R.id.restaurant_backButton);
+        logoutButton_text = findViewById(R.id.restaurant_backButton_text);
         restaurantTitle = findViewById(R.id.restaurant_name);
         reservation_RecyclerView = findViewById(R.id.restaurant_recyclerView);
         context = this;
         reservationData = new ArrayList<>();
 
+        if(firstLoginBoolean == false) {
+            Utils.showDialogMessage(R.drawable.verified_logo, this, "Success Log In", "Welcome back! " + currentRestaurant.getName());
+            firstLoginBoolean = true;
+        }
+
         loadRestoData(context);
 
-        backButton_text.setTextColor(Color.WHITE);
-
-        backButton.setOnClickListener(new View.OnClickListener() {
+        logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                backButton_text.setTextColor(Color.DKGRAY);
-                MediaPlayer player = MediaPlayer.create(RestaurantView.this, R.raw.personleave);
-                player.start();
-                Intent backIntent = new Intent(RestaurantView.this, loginScreen.class);
-                startActivity(backIntent);
+                Utils.showOptMessage(context, opt_resp, "Confirmation", "Are you sure want to log out?");
             }
         });
 
@@ -113,6 +142,14 @@ public class RestaurantView extends AppCompatActivity {
     }
 
     private void setReservationList() {
+        // Setting the dataset to be showing "null" reply
+        ArrayList<ReservationRequest> tempReservations = new ArrayList<>();
+        for(ReservationRequest curReq : reservationData){
+            if(curReq.getReply() == null){
+                tempReservations.add(curReq);
+            }
+        }
+        reservationData = tempReservations;
         reservationRecyclerAdapter reservation_RecyclerAdapter = new reservationRecyclerAdapter(RestaurantView.this, reservationData);
         reservation_RecyclerView.setLayoutManager(new LinearLayoutManager(RestaurantView.this));
         reservation_RecyclerView.setAdapter(reservation_RecyclerAdapter);

@@ -2,12 +2,12 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -21,12 +21,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_marginTop="35dp"
+                android:layout_alignParentBottom="true"
                 android:fontFamily="@font/heebo_bold"
-                android:text="Your Reservation List"
+                android:text="Your Reservations"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="40dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginBottom="15dp"/>
 
 
             <LinearLayout
@@ -64,7 +65,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/userReservationList"
                 android:layout_width="match_parent"
-                android:layout_height="270dp" />
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <TextView
