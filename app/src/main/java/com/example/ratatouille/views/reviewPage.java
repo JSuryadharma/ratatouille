@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,6 +39,7 @@ public class reviewPage extends AppCompatActivity {
     private String currentRestaurantName = "";
     private LinearLayout addButton;
     private SwipeRefreshLayout refresh;
+    private NestedScrollView scrollView;
     private TextView restaurantName_overall;
     private TextView overall_score, zomato_score;
     private RatingBar maskRate_overall;
@@ -64,6 +66,7 @@ public class reviewPage extends AppCompatActivity {
 
         addButton = findViewById(R.id.reviewpage_addButton);
         refresh = findViewById(R.id.reviewpage_refresh);
+        scrollView = findViewById(R.id.reviewpage_scrollView);
         restaurantName_overall = findViewById(R.id.reviewpage_restaurant_name);
         overall_score = findViewById(R.id.reviewpage_overall_score);
         zomato_score = findViewById(R.id.reviewpage_zomato_score);
@@ -85,6 +88,17 @@ public class reviewPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+        scrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                if(scrollY == 0){
+                    refresh.setEnabled(true);
+                } else {
+                    refresh.setEnabled(false);
+                }
             }
         });
 
