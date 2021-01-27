@@ -14,7 +14,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import static android.content.ContentValues.TAG;
 
@@ -36,13 +38,14 @@ public class ReservationRequest {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public ReservationRequest(String reservationRequestID, String userID, String restaurantID,
-                              String requestDate, String reserveDate, Integer numberOfPerson,
+    public ReservationRequest(String reservationRequestID, String userID, String restaurantID, String reserveDate, Integer numberOfPerson,
                               String description) {
         this.reservationRequestID = reservationRequestID;
         this.userID = userID;
         this.restaurantID = restaurantID;
-        this.requestDate = requestDate;
+        Date date = new Date();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        this.requestDate = df.format(date);
         this.reserveDate = reserveDate;
         this.numberOfPerson = numberOfPerson;
         this.reply = null;

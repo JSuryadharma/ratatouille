@@ -74,7 +74,7 @@ public class reservationRecyclerAdapter extends RecyclerView.Adapter<reservation
             @Override
             public void onClick(View v) {
 
-                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Date selectedDate = null;
                 try {
                     selectedDate = df.parse(currentRequest.getReserveDate());

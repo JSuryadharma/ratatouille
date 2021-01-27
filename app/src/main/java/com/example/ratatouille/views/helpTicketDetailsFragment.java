@@ -154,6 +154,8 @@ public class helpTicketDetailsFragment extends Fragment {
                 MediaPlayer player = MediaPlayer.create(view.getContext(), R.raw.send_message);
                 player.start();
 
+                textMessage.setText("");
+
                 Toast.makeText(view.getContext(), "Details added succesfully.", Toast.LENGTH_LONG).show();
             }
 
@@ -172,7 +174,6 @@ public class helpTicketDetailsFragment extends Fragment {
                 }
                 if(Utils.validateInput(textMessage.getText().toString())){
                     Utils.showOptMessage(view.getContext(), dialogRespSend, "Confirmation", "Are you sure to add this message\n to your HelpTicket ID:\n" + helpTicket.getTicketID());
-                    textMessage.setText("");
                 } else {
                     Toast.makeText(view.getContext(), "Input invalid.", Toast.LENGTH_LONG).show();
                     textMessage.setError("Input cannot be empty.");
@@ -195,16 +196,19 @@ public class helpTicketDetailsFragment extends Fragment {
         Collections.sort(ticketDetails, new Comparator<HelpTicketDetails>() {
             @Override
             public int compare(HelpTicketDetails o1, HelpTicketDetails o2) {
-                SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-                Date date1 = new Date();
-                Date date2 = new Date();
+                SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                Date time1 = null;
+                Date time2 = null;
                 try {
-                    date1 = df.parse(o1.getSubmitDate());
-                    date2 = df.parse(o2.getSubmitDate());
+                    time1 = df.parse(o1.getSubmitDate());
+                    time2 = df.parse(o2.getSubmitDate());
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                return date1.compareTo(date2);
+
+                if (time1 == null || time2 == null) return 0;
+
+                return time1.compareTo(time2);
             }
         });
     }

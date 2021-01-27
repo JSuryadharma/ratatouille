@@ -82,6 +82,41 @@ public class Utils {
         return true; //valid
     }
 
+    public static void showActionMessage(Integer resId, actresponse rsp, Context context, String title, String message){
+        Dialog showDialog = new Dialog(context);
+        showDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        showDialog.setContentView(R.layout.dialog_view);
+
+        showDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        TextView titleDialog = showDialog.findViewById(R.id.dialog_title);
+        TextView textDialog = showDialog.findViewById(R.id.dialog_information);
+        ImageView logoDialog = showDialog.findViewById(R.id.dialog_logo);
+        LinearLayout buttonDialog = showDialog.findViewById(R.id.dialog_button);
+
+        titleDialog.setText(title);
+        textDialog.setText(message);
+        logoDialog.setImageResource(resId);
+
+        buttonDialog.setBackgroundResource(R.drawable.round_button);
+        buttonDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonDialog.setBackgroundResource(R.drawable.pressed_round_button);
+                MediaPlayer play = MediaPlayer.create(context, R.raw.open);
+                play.start();
+                rsp.okResponse();
+                showDialog.dismiss();
+            }
+        });
+
+        showDialog.show();
+    }
+
+    public interface actresponse {
+        public void okResponse();
+    }
+
     public static void showDialogMessage(Integer resId, Context context, String title, String message){
         Dialog showDialog = new Dialog(context);
         showDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

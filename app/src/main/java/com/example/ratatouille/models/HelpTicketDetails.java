@@ -45,7 +45,7 @@ public class HelpTicketDetails {
         this.userName = userName;
         this.message = message;
         Date date = new Date();
-        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         this.submitDate = df.format(date);
     }
 

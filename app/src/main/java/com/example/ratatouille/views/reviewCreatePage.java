@@ -211,6 +211,15 @@ public class reviewCreatePage extends AppCompatActivity {
             }
         });
 
+        Utils.actresponse rsp = new Utils.actresponse(){
+            @Override
+            public void okResponse() {
+                VariablesUsed.currentUser.setPoints(VariablesUsed.currentUser.getPoints() + 500);
+                Intent intent = new Intent(context, restaurantDetails.class);
+                restoDetailController.query(context, intent, currentRestaurantID);
+            }
+        };
+
         submitButton.setTextColor(Color.BLACK);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -219,10 +228,7 @@ public class reviewCreatePage extends AppCompatActivity {
                 MediaPlayer player = MediaPlayer.create(context, R.raw.open);
                 player.start();
                 ReviewController.addReview(currentRestaurantID, currentMaskRate.doubleValue(), currentTempRate.doubleValue(), currentSanitizeRate.doubleValue(), currentSocialDistRate.doubleValue(), currentPhysicalRate.doubleValue(), reviewMessage.getText().toString());
-                Utils.showDialogMessage(R.drawable.verified_logo, context, "Thank You For Your Review!", "Here are your bonus +1000 points!");
-                VariablesUsed.currentUser.setPoints(VariablesUsed.currentUser.getPoints() + 1000);
-                Intent intent = new Intent(context, restaurantDetails.class);
-                restoDetailController.query(context, intent, currentRestaurantID);
+                Utils.showActionMessage(R.drawable.verified_logo, rsp, context, "Thank You For Your Review!", "Here are your bonus +1000 points!");
             }
         });
     }

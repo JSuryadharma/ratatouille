@@ -34,7 +34,7 @@ public class helpTicketDetailAdapter extends RecyclerView.Adapter<helpTicketDeta
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         HelpTicketDetails currentDetail = ticketDetails.get(position);
 
-        holder.helpTicketID.setText("Message ID: " + currentDetail.getMessageID());
+        holder.helpTicketID.setText("submitted: " + currentDetail.getSubmitDate());
         holder.helpTicketMessage.setText("Message:\n" + currentDetail.getMessage());
         holder.helpTicketReply.setText("Replied By: " + currentDetail.getUserName());
     }

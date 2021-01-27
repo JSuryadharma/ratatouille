@@ -49,7 +49,7 @@ public class Review {
         this.physicalBarriersRate = physicalBarriersRate;
         this.description = description;
         Date curDate = new Date();
-        SimpleDateFormat dformat = new SimpleDateFormat("dd-mm-yyyy");
+        SimpleDateFormat dformat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         this.submitDate = dformat.format(curDate).toString();
     }
 
