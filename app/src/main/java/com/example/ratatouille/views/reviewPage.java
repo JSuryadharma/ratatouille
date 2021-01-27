@@ -121,6 +121,16 @@ public class reviewPage extends AppCompatActivity {
     }
 
     public void refreshReviewList(){
+        Collections.sort(reviewList, new Comparator<Review>() {
+            @Override
+            public int compare(Review review, Review t1) {
+                Double ovrall = (review.getMaskRate() + review.getTemperatureRate() + review.getSanitizeRate() + review.getPhysicalBarriersRate() + review.getSocialDistancingRate())/5;
+                Double ovrall2 = (t1.getMaskRate() + t1.getTemperatureRate() + t1.getSanitizeRate() + t1.getPhysicalBarriersRate() + t1.getSocialDistancingRate())/5;
+                return ovrall > ovrall2 ? 1 : 0;
+            }
+        });
+
+
         reviewAdapter = new reviewRecyclerAdapter(this, reviewList);
         review_recyclerView.setAdapter(reviewAdapter);
 

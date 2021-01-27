@@ -193,27 +193,16 @@ public class helpTicketDetailsFragment extends Fragment {
 
     private void reload() {
         ticketDetails = HelpTicketController.getTicketDetails(this.getContext(), cb, helpTicket.getTicketID());
-        Collections.sort(ticketDetails, new Comparator<HelpTicketDetails>() {
-            @Override
-            public int compare(HelpTicketDetails o1, HelpTicketDetails o2) {
-                SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-                Date time1 = null;
-                Date time2 = null;
-                try {
-                    time1 = df.parse(o1.getSubmitDate());
-                    time2 = df.parse(o2.getSubmitDate());
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-                if (time1 == null || time2 == null) return 0;
-
-                return time1.compareTo(time2);
-            }
-        });
     }
 
     private void setRecyclerView(){
+        Collections.sort(ticketDetails, new Comparator<HelpTicketDetails>() {
+            @Override
+            public int compare(HelpTicketDetails o1, HelpTicketDetails o2) {
+                return o1.getSubmitDate().compareTo(o2.getSubmitDate());
+            }
+        });
+
         helpTicketDetailAdapter detailAdapter = new helpTicketDetailAdapter(this.getContext(), ticketDetails);
         ticketDetails_RecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         ticketDetails_RecyclerView.setAdapter(detailAdapter);
