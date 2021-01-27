@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -44,6 +45,7 @@ import java.util.UUID;
 
 public class voucherFragment extends Fragment {
     private SwipeRefreshLayout pullToRefresh;
+    private NestedScrollView scrollView;
     private LinearLayout backButton;
     private TextView backButton_text;
     private TextView header;
@@ -82,6 +84,7 @@ public class voucherFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         pullToRefresh = view.findViewById(R.id.voucher_pulltorefresh);
+        scrollView = view.findViewById(R.id.voucher_scrollView);
         backButton = view.findViewById(R.id.voucher_backButton);
         backButton_text = view.findViewById(R.id.voucher_backButton_text);
         header= view.findViewById(R.id.voucher_header);
@@ -105,6 +108,17 @@ public class voucherFragment extends Fragment {
                 MediaPlayer player = MediaPlayer.create(getView().getContext(), R.raw.open);
                 player.start();
                 pullToRefresh.setRefreshing(false);
+            }
+        });
+
+        scrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                if(scrollY == 0){
+                    pullToRefresh.setEnabled(true);
+                } else {
+                    pullToRefresh.setEnabled(false);
+                }
             }
         });
 

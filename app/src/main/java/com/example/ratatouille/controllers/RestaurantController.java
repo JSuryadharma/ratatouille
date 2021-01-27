@@ -28,6 +28,7 @@ public class RestaurantController {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot ds : snapshot.getChildren()){
                     System.out.println(ds.child("restaurantID").getValue());
+                    if(ds.child("restaurantID").getValue() == null) continue;
                     Restaurant curValue = new Restaurant(ds.child("restaurantID").getValue(Long.class).toString(), null, null, null, null, ds.child("email").getValue(String.class), ds.child("password").getValue(String.class));
                     if(curValue.getEmail().equals(email) && curValue.getPassword().equals(password)){
                         VariablesUsed.currentRestaurant = curValue;

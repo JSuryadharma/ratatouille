@@ -6,7 +6,8 @@
     android:id="@+id/voucher_pulltorefresh">
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/voucher_scrollView">
 
         <LinearLayout
             android:layout_width="match_parent"
