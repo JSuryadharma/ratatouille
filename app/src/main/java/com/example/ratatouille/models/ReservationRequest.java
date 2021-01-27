@@ -84,7 +84,6 @@ public class ReservationRequest {
         this.numberOfPerson = numberOfPerson;
         this.description = description;
         this.isAccepted = isAccepted;
-
         save();
 
         return this;
