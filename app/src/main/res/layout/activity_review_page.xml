@@ -35,15 +35,15 @@
                     <ImageView
                         android:id="@+id/reviewPageBackButton"
                         android:layout_width="39dp"
-                        android:layout_height="38dp"
+                        android:layout_height="41dp"
                         android:layout_marginTop="7dp"
                         android:src="@drawable/ic_backbutton" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Reviews"
                         android:fontFamily="@font/heebo_bold"
+                        android:text="Reviews"
                         android:textColor="@android:color/black"
                         android:textSize="40dp"
                         android:textStyle="bold" />
@@ -348,7 +348,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/berlinsans"
+                            android:fontFamily="@font/roboto"
                             android:text="+"
                             android:textColor="@android:color/holo_red_light"
                             android:textSize="21dp" />
