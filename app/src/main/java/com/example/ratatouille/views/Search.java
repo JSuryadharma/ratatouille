@@ -51,6 +51,7 @@ public class Search extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         customType(Search.this, "fadein-to-fadeout");
+        VariablesUsed.previousState = "search";
         context = this;
 
         String searched = null;

@@ -223,7 +223,13 @@ public class restaurantDetails extends AppCompatActivity {
     }
 
     private void backToSearch(Context context) {
-        if(VariablesUsed.previousState != null) {
+        if(VariablesUsed.previousState != null && VariablesUsed.previousState.equals("home")) {
+            VariablesUsed.previousState = null;
+            Intent mainMenuIntent = new Intent(context, customerView.class);
+            startActivity(mainMenuIntent);
+            finish();
+        }
+        else if(VariablesUsed.previousState != null && VariablesUsed.previousState.equals("search")) {
             VariablesUsed.previousState = null;
             Intent mainMenuIntent = new Intent(context, customerView.class);
             startActivity(mainMenuIntent);
