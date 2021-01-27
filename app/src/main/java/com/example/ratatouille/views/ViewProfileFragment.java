@@ -74,6 +74,9 @@ public class ViewProfileFragment extends Fragment {
     private RelativeLayout logoutArea;
     private Context context;
 
+    private Integer TAKE_IMAGE_CODE = 1001;
+    private static Handler handler = null;
+    private static Runnable runnable = null;
     private ArrayList<Vouchers> voucherList;
 
     private Utils.response opt_respond = new Utils.response() {
@@ -86,6 +89,7 @@ public class ViewProfileFragment extends Fragment {
             currentUser = null;
             currentRestoDetail = null;
             currentVoucher = null;
+            handler.removeCallbacks(runnable);
             Intent backIntent = new Intent(context, loginScreen.class);
             startActivity(backIntent);
         }
@@ -96,9 +100,6 @@ public class ViewProfileFragment extends Fragment {
         }
     };
 
-    private Integer TAKE_IMAGE_CODE = 1001;
-    private static Handler handler = null;
-    private static Runnable runnable = null;
 
     callbackHelper cb = new callbackHelper() {
         @Override
@@ -280,7 +281,7 @@ public class ViewProfileFragment extends Fragment {
             public void onClick(View view) {
                 vpTermsofService.generateTerms();
 
-                Utils.showDialogMessage(R.drawable.ic_warning, getView().getContext(), "Term of Service", vpTermsofService.getTerms());
+                Utils.showDialogMessage(R.drawable.ic_warning, getView().getContext(), "Term of Use", vpTermsofService.getTerms());
             }
         });
 

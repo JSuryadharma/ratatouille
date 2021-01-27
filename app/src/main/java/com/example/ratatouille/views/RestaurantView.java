@@ -57,6 +57,8 @@ public class RestaurantView extends AppCompatActivity {
     private TextView restaurantTitle;
     private RecyclerView reservation_RecyclerView;
     private Context context;
+    private Handler handler = null;
+    private Runnable run = null;
 
     private restaurantCB cb = new restaurantCB() {
         @Override
@@ -76,6 +78,7 @@ public class RestaurantView extends AppCompatActivity {
             currentUser = null;
             currentRestoDetail = null;
             currentVoucher = null;
+            handler.removeCallbacks(run);
             Intent backIntent = new Intent(RestaurantView.this, loginScreen.class);
             startActivity(backIntent);
         }
@@ -127,8 +130,8 @@ public class RestaurantView extends AppCompatActivity {
             }
         });
 
-        Handler handler = new Handler();
-        Runnable run = new Runnable() {
+        handler = new Handler();
+        run = new Runnable() {
             @Override
             public void run() {
                 reload();
