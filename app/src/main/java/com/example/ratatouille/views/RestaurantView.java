@@ -145,7 +145,7 @@ public class RestaurantView extends AppCompatActivity {
         // Setting the dataset to be showing "null" reply
         ArrayList<ReservationRequest> tempReservations = new ArrayList<>();
         for(ReservationRequest curReq : reservationData){
-            if(curReq.getReply() == null){
+            if(curReq.getAccepted() == null){
                 tempReservations.add(curReq);
             }
         }

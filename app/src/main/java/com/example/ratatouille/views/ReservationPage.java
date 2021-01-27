@@ -117,7 +117,7 @@ public class ReservationPage extends AppCompatActivity {
                 Timestamp reservation = new Timestamp(myCalendar.getTimeInMillis());
                 Timestamp now = new Timestamp(System.currentTimeMillis());
                 ReservationRequest rr = new ReservationRequest(UUID.randomUUID().toString(), VariablesUsed.loggedUser.getUid(), VariablesUsed.currentRestoDetail.getResto_id(),
-                        now.toString(), reservation.toString(), Integer.parseInt(numOfPerson.getText().toString()), descriptionReservation.getText().toString(), null);
+                        now.toString(), reservation.toString(), Integer.parseInt(numOfPerson.getText().toString()), descriptionReservation.getText().toString());
                 rr.save();
                 Utils.showDialogMessage(R.drawable.verified_logo, context, "Booking Success!", "Please wait till the Restaurant respond.");
             }

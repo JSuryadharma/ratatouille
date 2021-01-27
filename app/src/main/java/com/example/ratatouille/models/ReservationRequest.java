@@ -38,7 +38,7 @@ public class ReservationRequest {
 
     public ReservationRequest(String reservationRequestID, String userID, String restaurantID,
                               String requestDate, String reserveDate, Integer numberOfPerson,
-                              String description, Boolean isAccepted) {
+                              String description) {
         this.reservationRequestID = reservationRequestID;
         this.userID = userID;
         this.restaurantID = restaurantID;
@@ -47,7 +47,7 @@ public class ReservationRequest {
         this.numberOfPerson = numberOfPerson;
         this.reply = null;
         this.description = description;
-        this.isAccepted = isAccepted;
+        this.isAccepted = null;
     }
 
     public void save(){
@@ -72,7 +72,9 @@ public class ReservationRequest {
     }
 
     public void replyReservation(String message){
-        this.reply = message;
+        if(message != null){
+            this.reply = message;
+        }
         this.save();
     }
 
@@ -90,7 +92,6 @@ public class ReservationRequest {
 
     public void acceptRequest(){
         this.isAccepted = true;
-        this.reply = "";
         save();
     }
 
