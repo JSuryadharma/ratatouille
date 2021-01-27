@@ -24,6 +24,8 @@ import java.util.EventListener;
 import java.util.UUID;
 
 import static android.content.ContentValues.TAG;
+import static com.example.ratatouille.vars.VariablesUsed.currentUser;
+import static com.example.ratatouille.vars.VariablesUsed.currentVoucher;
 
 public class VoucherController {
 
@@ -50,6 +52,10 @@ public class VoucherController {
         return searchedVoucher;
     }
 
+    public static void useVoucher(Context context, callbackHelper callback) {
+        UserVoucher.useVoucher(context, callback, currentUser, currentVoucher);
+    }
+
     public static Vouchers makeVoucher(String voucherName, Integer voucherDisc, Integer voucherPrice){
         Vouchers currentVoucher = new Vouchers(UUID.randomUUID().toString(), voucherName, voucherDisc, voucherPrice);
         currentVoucher.save();
@@ -57,8 +63,8 @@ public class VoucherController {
     }
 
     public static void buyVoucher(Integer price){
-        VariablesUsed.currentUser.setPoints(VariablesUsed.currentUser.getPoints() - price);
-        VariablesUsed.currentUser.save();
+        currentUser.setPoints(currentUser.getPoints() - price);
+        currentUser.save();
     }
 
     public static void deleteVoucher(String voucherID){
@@ -80,7 +86,6 @@ public class VoucherController {
     public static void assignVoucher(Users user, Vouchers voucher){ // hanya berlaku untuk satu user tertentu, makanya pakai UserVoucher table..
         UserVoucher.save(user, voucher);
     }
-
 
     public static Vouchers getUserVoucher(String voucherId){ // hanya berlaku untuk satu user tertentu, makanya pakai UserVoucher table..
         Vouchers selectedVoucher = UserVoucher.getVoucherForAUser(voucherId);

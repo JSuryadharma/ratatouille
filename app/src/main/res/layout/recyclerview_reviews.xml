@@ -7,20 +7,21 @@
     android:paddingVertical="15dp">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="300dp"
-        android:layout_height="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         app:cardBackgroundColor="@android:color/transparent"
         app:cardElevation="0dp">
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="300dp"
+            android:layout_height="180dp"
             android:background="@drawable/reviewlist_background">
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:id="@+id/reviewlist_top">
+                android:id="@+id/reviewlist_top"
+                android:layout_alignParentTop="true">
                 <TextView
                     android:layout_height="20dp"
                     android:layout_width="wrap_content"
@@ -38,7 +39,8 @@
                     android:rating="5"
                     style="@style/Widget.AppCompat.RatingBar.Small"
                     android:layout_marginTop="15dp"
-                    android:layout_marginLeft="80dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_alignParentRight="true"
                     android:id="@+id/reviewlist_ratingBar"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -47,13 +49,14 @@
                     android:fontFamily="@font/roboto"
                     android:textSize="10dp"
                     android:textColor="@color/black"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="13dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_alignParentRight="true"
                     android:id="@+id/reviewlist_avg"/>
-            </LinearLayout>
+            </RelativeLayout>
             <TextView
                 android:layout_width="250dp"
-                android:layout_height="70dp"
+                android:layout_height="95dp"
                 android:text="Message: "
                 android:textSize="15dp"
                 android:textColor="@color/black"
@@ -63,18 +66,21 @@
                 android:layout_marginHorizontal="15dp"
                 android:layout_below="@id/reviewlist_top"
                 android:layout_marginTop="10dp"/>
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Submit Date: "
-                android:layout_below="@id/reviewlist_message"
-                android:fontFamily="@font/roboto"
-                android:textSize="10dp"
-                android:textStyle="italic"
                 android:id="@+id/reviewlist_date"
-                android:textColor="@color/black"
+                android:layout_width="260dp"
+                android:layout_height="10dp"
+                android:layout_below="@id/reviewlist_message"
+                android:layout_alignParentBottom="true"
                 android:layout_marginHorizontal="15dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/roboto"
+                android:text="Submit Date: "
+                android:textColor="@color/black"
+                android:textSize="10dp"
+                android:textStyle="italic" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 

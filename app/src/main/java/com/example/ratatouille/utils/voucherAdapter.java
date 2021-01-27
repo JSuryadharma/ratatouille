@@ -59,7 +59,7 @@ public class voucherAdapter extends PagerAdapter {
 
         voucher_name.setText(vouchers.get(position).getVoucherName());
         voucher_disc.setText("Discount:" + vouchers.get(position).getVoucherDisc().toString() + " %");
-        voucher_type.setText("Price: Rp" + vouchers.get(position).getPrice().toString());
+        voucher_type.setText("Price: " + vouchers.get(position).getPrice().toString() + " points.");
         voucher_mode.setText("Buy Voucher");
 
         voucher_button.setOnClickListener(new View.OnClickListener() {

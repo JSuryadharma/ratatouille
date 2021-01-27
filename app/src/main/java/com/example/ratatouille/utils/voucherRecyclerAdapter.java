@@ -1,9 +1,12 @@
 package com.example.ratatouille.utils;
 
 import android.content.Context;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ratatouille.R;
+import com.example.ratatouille.controllers.VoucherController;
 import com.example.ratatouille.models.UserVoucher;
 import com.example.ratatouille.models.Users;
 import com.example.ratatouille.models.Vouchers;
@@ -27,8 +31,9 @@ import static com.example.ratatouille.vars.VariablesUsed.currentVoucher;
 public class voucherRecyclerAdapter extends RecyclerView.Adapter<voucherRecyclerAdapter.MyViewHolder> {
     private Context context;
     private ArrayList<Vouchers> voucherList;
+
     public static Integer selectedItem = -1;
-    private static ArrayList<Boolean> touched = new ArrayList<>();
+    public static MyViewHolder currentHolder = null;
     public Integer voucherAmount = new Integer(0);
     private voucherAmountCallbackHelper cb = new voucherAmountCallbackHelper() {
         @Override
@@ -36,13 +41,29 @@ public class voucherRecyclerAdapter extends RecyclerView.Adapter<voucherRecycler
             setAmountOnHolder(holder);
         }
     };
+    private callbackHelper callback = new callbackHelper() {
+        @Override
+        public void onUserLoadCallback(Context context, Users u) {
+            Handler handler = new android.os.Handler();
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    currentVoucher = null;
+                    Animation anim = AnimationUtils.loadAnimation(context, R.anim.bottom_to_up);
+                    customerView.currentVoucher_name.setText("");
+                    customerView.currentVoucher_area.startAnimation(anim);
+                    customerView.currentVoucher_area.setVisibility(View.GONE);
+                    Toast.makeText(context, "Voucher is now able to be used again.", Toast.LENGTH_LONG).show();
+                }
+            };
+            handler.postDelayed(runnable, 30000);
+            Toast.makeText(context, "Voucher successfully used! Cooldown in 30 seconds.", Toast.LENGTH_LONG).show();
+        }
+    };
 
     public voucherRecyclerAdapter(Context context, ArrayList<Vouchers> voucherList) {
         this.context = context;
         this.voucherList = voucherList;
-        for(int i=0; i<voucherList.size(); i++){
-            touched.add(false);
-        }
     }
 
     @NonNull
@@ -52,14 +73,34 @@ public class voucherRecyclerAdapter extends RecyclerView.Adapter<voucherRecycler
         return new MyViewHolder(view);
     }
 
+    private Utils.response dialogRsp = new Utils.response() {
+        @Override
+        public void yesResponse() {
+            currentHolder.voucherButton.setBackgroundResource(R.drawable.voucherbutton_pressed_background);
+            currentVoucher = voucherList.get(selectedItem);
+            Animation anim = AnimationUtils.loadAnimation(context, R.anim.up_to_bottom);
+            customerView.currentVoucher_name.setText(currentVoucher.getVoucherName() + " " + currentVoucher.getVoucherDisc().toString() + "%");
+            customerView.currentVoucher_area.setVisibility(View.VISIBLE);
+            customerView.currentVoucher_area.startAnimation(anim);
+            VoucherController.useVoucher(context, callback);
+        }
+
+        @Override
+        public void noResponse() {
+            Toast.makeText(context, "Action cancelled.", Toast.LENGTH_LONG).show();
+        }
+    };
+
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Vouchers selectedVoucher = voucherList.get(position) ;
+        Vouchers selectedVoucher = voucherList.get(position);
         holder.voucherName.setText(selectedVoucher.getVoucherName());
         holder.voucherDisc.setText("Discount: " + selectedVoucher.getVoucherDisc().toString() + " %");
         holder.voucherType.setText("Type: Dine-in");
 
+        selectedItem = -1;
         voucherAmount = 0;
+        currentHolder = holder;
 
         holder.voucherAmount.setText("Amount : " + voucherAmount);
 
@@ -74,31 +115,12 @@ public class voucherRecyclerAdapter extends RecyclerView.Adapter<voucherRecycler
         holder.voucherButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Checking if there's a voucher selected..
-                for (int i = 0; i < voucherList.size(); i++) {
-                    if (touched.get(i) == true && position != i) {
-                        Toast.makeText(context, "You have selected a voucher!", Toast.LENGTH_LONG).show();
-                        Utils.showDialogMessage(R.drawable.ic_warning, context, "Cannot Select Item", "You already have selected an Item!\n Please unselect an item.");
-                        return;
-                    }
+                if(currentVoucher != null){
+                    Utils.showDialogMessage(R.drawable.ic_warning, context, "Action Rejected", "Please wait until the following (30) seconds cooldown.");
+                    return;
                 }
-
-                if (touched.get(position) == false) {
-                    selectedItem = position;
-                    holder.voucherButton.setBackgroundResource(R.drawable.voucherbutton_pressed_background);
-                    currentVoucher = voucherList.get(position);
-                    touched.set(position, true);
-                    customerView.currentVoucher_name.setText(currentVoucher.getVoucherName() + " " + currentVoucher.getVoucherDisc().toString() + "%");
-                    customerView.currentVoucher_area.setVisibility(View.VISIBLE);
-                    System.out.println("onpressed: " + position);
-                } else if (touched.get(position) == true) {
-                    selectedItem = -1;
-                    currentVoucher = null;
-                    touched.set(position, false);
-                    customerView.currentVoucher_name.setText("");
-                    customerView.currentVoucher_area.setVisibility(View.GONE);
-                    System.out.println("offpressed: " + position);
-                }
+                selectedItem = position;
+                Utils.showOptMessage(context, dialogRsp, "Confirmation", "Are you sure to use : " + selectedVoucher.getVoucherName() + " " + selectedVoucher.getVoucherDisc() + "\n Please be noted that this action can only be done by the Restaurant only!");
             }
         });
     }

@@ -40,7 +40,7 @@ public class reviewRecyclerAdapter extends RecyclerView.Adapter<reviewRecyclerAd
                 selectedItems.getMaskRate() + selectedItems.getPhysicalBarriersRate() + selectedItems.getSanitizeRate()
                 + selectedItems.getSocialDistancingRate() + selectedItems.getTemperatureRate();
         averageCalculation = averageCalculation / 5;
-        holder.avg.setText(averageCalculation.toString());
+        holder.avg.setText("(" + averageCalculation.toString() + ")");
         holder.ratingBar.setRating(averageCalculation.floatValue());
         holder.message.setText("Message: \n" + selectedItems.getDescription());
         holder.submitDate.setText("Submit Date : " + selectedItems.getSubmitDate());

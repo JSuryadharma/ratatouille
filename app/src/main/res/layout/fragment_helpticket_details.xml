@@ -103,7 +103,7 @@
                             android:layout_height="wrap_content"
                             android:text="Ticket Title"
                             android:layout_centerHorizontal="true"
-                            android:textSize="35dp"
+                            android:textSize="20dp"
                             android:id="@+id/helpticket_details_title"
                             android:textColor="@color/black"
                             android:elevation="15dp"

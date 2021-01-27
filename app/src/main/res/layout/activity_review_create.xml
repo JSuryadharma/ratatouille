@@ -96,52 +96,59 @@
                 android:layout_marginTop="10dp"
                 android:background="@android:color/darker_gray" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="80dp"
                     android:text="Mask Rate:"
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"/>
 
                 <ImageView
                     android:id="@+id/reviewcreate_maskrate_min"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="15dp"
-                    android:src="@drawable/ic_baseline_remove_circle_24" />
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_baseline_remove_circle_24"
+                    android:layout_marginRight="190dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"/>
 
                 <TextView
                     android:id="@+id/reviewcreate_maskrate_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:text="x / 5"
                     android:textColor="@android:color/black"
-                    android:textSize="40dp" />
+                    android:textSize="40dp"
+                    android:layout_marginRight="90dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"/>
 
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="3dp"
-                    android:src="@drawable/ic_baseline_star_24" />
+                    android:src="@drawable/ic_baseline_star_24"
+                    android:layout_marginRight="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"/>
 
                 <ImageView
                     android:id="@+id/reviewcreate_maskrate_add"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:src="@drawable/ic_baseline_add_circle_24" />
-            </LinearLayout>
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_baseline_add_circle_24"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -149,52 +156,59 @@
                 android:layout_marginTop="10dp"
                 android:background="@android:color/darker_gray" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="30dp"
                     android:text="Temperature Scan:"
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"/>
 
                 <ImageView
                     android:id="@+id/reviewcreate_tempscan_min"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="15dp"
-                    android:src="@drawable/ic_baseline_remove_circle_24" />
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_baseline_remove_circle_24"
+                    android:layout_marginRight="190dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"/>
 
                 <TextView
                     android:id="@+id/reviewcreate_tempscan_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:text="x / 5"
                     android:textColor="@android:color/black"
-                    android:textSize="40dp" />
+                    android:textSize="40dp"
+                    android:layout_marginRight="90dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"/>
 
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="3dp"
-                    android:src="@drawable/ic_baseline_star_24" />
+                    android:src="@drawable/ic_baseline_star_24"
+                    android:layout_marginRight="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"/>
 
                 <ImageView
                     android:id="@+id/reviewcreate_tempscan_add"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:src="@drawable/ic_baseline_add_circle_24" />
-            </LinearLayout>
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_baseline_add_circle_24"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -202,52 +216,59 @@
                 android:layout_marginTop="10dp"
                 android:background="@android:color/darker_gray" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="80dp"
                     android:text="Sanitation:"
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"/>
 
                 <ImageView
                     android:id="@+id/reviewcreate_sanitation_min"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="15dp"
-                    android:src="@drawable/ic_baseline_remove_circle_24" />
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_baseline_remove_circle_24"
+                    android:layout_marginRight="190dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"/>
 
                 <TextView
                     android:id="@+id/reviewcreate_sanitation_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:text="x / 5"
                     android:textColor="@android:color/black"
-                    android:textSize="40dp" />
+                    android:textSize="40dp"
+                    android:layout_marginRight="90dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"/>
 
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="3dp"
-                    android:src="@drawable/ic_baseline_star_24" />
+                    android:src="@drawable/ic_baseline_star_24"
+                    android:layout_marginRight="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"/>
 
                 <ImageView
                     android:id="@+id/reviewcreate_sanitation_add"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:src="@drawable/ic_baseline_add_circle_24" />
-            </LinearLayout>
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_baseline_add_circle_24"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -255,52 +276,59 @@
                 android:layout_marginTop="10dp"
                 android:background="@android:color/darker_gray" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="35dp"
                     android:text="Social Distancing:"
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"/>
 
                 <ImageView
                     android:id="@+id/reviewcreate_socialdistance_min"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="15dp"
-                    android:src="@drawable/ic_baseline_remove_circle_24" />
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_baseline_remove_circle_24"
+                    android:layout_marginRight="190dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"/>
 
                 <TextView
                     android:id="@+id/reviewcreate_socialdistance_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:text="x / 5"
                     android:textColor="@android:color/black"
-                    android:textSize="40dp" />
+                    android:textSize="40dp"
+                    android:layout_marginRight="90dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"/>
 
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="3dp"
-                    android:src="@drawable/ic_baseline_star_24" />
+                    android:src="@drawable/ic_baseline_star_24"
+                    android:layout_marginRight="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"/>
 
                 <ImageView
                     android:id="@+id/reviewcreate_socialdistance_add"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:src="@drawable/ic_baseline_add_circle_24" />
-            </LinearLayout>
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_baseline_add_circle_24"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -308,52 +336,59 @@
                 android:layout_marginTop="10dp"
                 android:background="@android:color/darker_gray" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="40dp"
                     android:text="Physical Barriers:"
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"/>
 
                 <ImageView
                     android:id="@+id/reviewcreate_physical_min"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="15dp"
-                    android:src="@drawable/ic_baseline_remove_circle_24" />
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_baseline_remove_circle_24"
+                    android:layout_marginRight="190dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"/>
 
                 <TextView
                     android:id="@+id/reviewcreate_physical_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:text="x / 5"
                     android:textColor="@android:color/black"
-                    android:textSize="40dp" />
+                    android:textSize="40dp"
+                    android:layout_marginRight="100dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"/>
 
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="3dp"
-                    android:src="@drawable/ic_baseline_star_24" />
+                    android:src="@drawable/ic_baseline_star_24"
+                    android:layout_marginRight="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"/>
 
                 <ImageView
                     android:id="@+id/reviewcreate_physical_add"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:src="@drawable/ic_baseline_add_circle_24" />
-            </LinearLayout>
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_baseline_add_circle_24"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"

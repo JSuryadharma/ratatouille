@@ -103,6 +103,7 @@ public class reviewPage extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 reload();
+                refresh.setRefreshing(false);
             }
         });
     }

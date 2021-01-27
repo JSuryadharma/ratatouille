@@ -47,7 +47,7 @@ public class UserVoucher {
         });
     }
 
-    public static void useVoucher(Users user, Vouchers voucher){ //assigning a user to a voucher.. (Header-to-Details Relation)
+    public static void useVoucher(Context context, callbackHelper callback, Users user, Vouchers voucher){ //assigning a user to a voucher.. (Header-to-Details Relation)
         DatabaseReference dbRef = DatabaseHelper.getDb().getReference(DatabaseVars.UserVoucherTable.USERVOUCHER_TABLE).child(VariablesUsed.loggedUser.getUid());
         dbRef.child(voucher.getVoucherID()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -57,6 +57,7 @@ public class UserVoucher {
                     if(snapshot.child("Quantity").getValue(Integer.class) == 0){
                         delete(VariablesUsed.loggedUser.getUid(), voucher.getVoucherID());
                     }
+                    callback.onUserLoadCallback(context, VariablesUsed.currentUser);
                 }
             }
 

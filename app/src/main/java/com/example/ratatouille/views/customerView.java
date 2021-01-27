@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -71,11 +73,15 @@ public class customerView extends AppCompatActivity {
         navbar_profile_i.setVisibility(View.INVISIBLE);
         navbar_favourite_i.setVisibility(View.INVISIBLE);
 
-        if(voucherRecyclerAdapter.selectedItem == -1) {
+        if(currentVoucher == null) {
+            Animation anim = AnimationUtils.loadAnimation(customerView.this, R.anim.bottom_to_up);
+            currentVoucher_area.startAnimation(anim);
             currentVoucher_area.setVisibility(View.GONE);
             currentVoucher_name.setText("");
         } else {
+            Animation anim = AnimationUtils.loadAnimation(customerView.this, R.anim.up_to_bottom);
             currentVoucher_area.setVisibility(View.VISIBLE);
+            currentVoucher_area.startAnimation(anim);
             currentVoucher_name.setText(currentVoucher.getVoucherName() + " " + currentVoucher.getVoucherDisc().toString() + "%");
         }
         menubar_layout.setVisibility(View.VISIBLE);

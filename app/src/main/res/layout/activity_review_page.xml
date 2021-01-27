@@ -75,93 +75,99 @@
                     android:textColor="@android:color/darker_gray"
                     android:textSize="15dp" />
 
-                <TextView
-                    android:id="@+id/textView5"
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/reviewpage_restaurant_name"
                     android:layout_marginTop="10dp"
                     android:layout_marginHorizontal="20dp"
-                    android:text="Zomato Score"
-                    android:textColor="@android:color/darker_gray"
-                    android:layout_alignParentLeft="true"
-                    android:textSize="20dp" />
+                    android:layout_alignParentLeft="true">
 
-                <LinearLayout
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Zomato Score"
+                        android:textColor="@android:color/darker_gray"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="20dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal"
+                        android:layout_centerHorizontal="true">
+
+                        <TextView
+                            android:id="@+id/reviewpage_zomato_score"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="x"
+                            android:textColor="@android:color/black"
+                            android:textSize="40dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" /5"
+                            android:textColor="@android:color/black"
+                            android:textSize="20dp" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="20dp"
+                            android:src="@drawable/ic_baseline_star_24" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/reviewpage_restaurant_name"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginHorizontal="20dp"
-                    android:paddingLeft="30dp"
-                    android:layout_alignParentLeft="true"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/reviewpage_zomato_score"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="x"
-                        android:textColor="@android:color/black"
-                        android:textSize="40dp" />
-
+                    android:layout_alignParentRight="true">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=" /5"
-                        android:textColor="@android:color/black"
+                        android:text="Overall Score"
+                        android:textColor="@android:color/darker_gray"
+                        android:layout_centerHorizontal="true"
                         android:textSize="20dp" />
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginTop="20dp"
-                        android:src="@drawable/ic_baseline_star_24" />
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginHorizontal="20dp"
-                    android:text="Overall Score"
-                    android:layout_alignParentRight="true"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="20dp" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/reviewpage_restaurant_name"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="25dp"
-                    android:paddingRight="15dp"
-                    android:layout_alignParentRight="true"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/reviewpage_overall_score"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="x"
-                        android:textColor="@android:color/black"
-                        android:textSize="40dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=" /5"
-                        android:textColor="@android:color/black"
-                        android:textSize="20dp" />
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:paddingRight="15dp"
                         android:layout_marginTop="20dp"
-                        android:src="@drawable/ic_baseline_star_24" />
-                </LinearLayout>
+                        android:layout_centerHorizontal="true"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/reviewpage_overall_score"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="x"
+                            android:textColor="@android:color/black"
+                            android:textSize="40dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" /5"
+                            android:textColor="@android:color/black"
+                            android:textSize="20dp" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="20dp"
+                            android:src="@drawable/ic_baseline_star_24" />
+                    </LinearLayout>
+                </RelativeLayout>
             </RelativeLayout>
 
             <LinearLayout

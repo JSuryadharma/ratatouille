@@ -228,7 +228,7 @@ public class reviewCreatePage extends AppCompatActivity {
                 MediaPlayer player = MediaPlayer.create(context, R.raw.open);
                 player.start();
                 ReviewController.addReview(currentRestaurantID, currentMaskRate.doubleValue(), currentTempRate.doubleValue(), currentSanitizeRate.doubleValue(), currentSocialDistRate.doubleValue(), currentPhysicalRate.doubleValue(), reviewMessage.getText().toString());
-                Utils.showActionMessage(R.drawable.verified_logo, rsp, context, "Thank You For Your Review!", "Here are your bonus +1000 points!");
+                Utils.showActionMessage(R.drawable.verified_logo, rsp, context, "Thank You For Your Review!", "Here are your bonus +500 points!");
             }
         });
     }

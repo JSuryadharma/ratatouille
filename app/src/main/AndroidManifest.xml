@@ -12,16 +12,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.NoActionBar">
-        <activity android:name=".views.ReservationPage"></activity>
-        <activity android:name=".views.RestaurantView" />
-        <activity android:name=".dialog_reservation" />
-        <activity android:name=".ReservationTable" />
-        <activity android:name=".views.ZoomImage" />
-        <activity android:name=".views.restaurantDetails" />
-        <activity android:name=".views.Search" />
-        <activity android:name=".views.reviewPage" />
-        <activity android:name=".views.ReviewCode" />
-        <activity android:name=".views.reviewCreatePage" />
+        <activity android:name=".views.ReservationPage"
+            android:screenOrientation="portrait" />
+        <activity android:name=".views.RestaurantView"
+            android:screenOrientation="portrait" />
+        <activity android:name=".dialog_reservation"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ReservationTable"
+            android:screenOrientation="portrait" />
+        <activity android:name=".views.ZoomImage"
+            android:screenOrientation="portrait" />
+        <activity android:name=".views.restaurantDetails"
+            android:screenOrientation="portrait" />
+        <activity android:name=".views.Search"
+            android:screenOrientation="portrait" />
+        <activity android:name=".views.reviewPage"
+            android:screenOrientation="portrait" />
+        <activity android:name=".views.ReviewCode"
+            android:screenOrientation="portrait" />
+        <activity android:name=".views.reviewCreatePage"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
@@ -49,6 +59,7 @@
         <activity
             android:name=".views.forgotPasswordActivity"
             android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>
