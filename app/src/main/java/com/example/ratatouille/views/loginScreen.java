@@ -205,10 +205,10 @@ public class loginScreen extends AppCompatActivity {
                             UserController.UserLogin(cb, loginScreen.this, emailInput, passwordInput);
                         }
                         else {
-                            if(!Utils.validateInput(emailInput) && !Utils.validateEmail(emailInput)) {
+                            if(!Utils.validateInput(emailInput) || !Utils.validateEmail(emailInput)) {
                                 userTextbox.setError("Invalid Input!");
                             }
-                            if(!Utils.validateInput(passwordInput) && !Utils.validatePassword(passwordInput)) {
+                            if(!Utils.validateInput(passwordInput) || !Utils.validatePassword(passwordInput)) {
                                 passTextbox.setError("Invalid Input!");
                             }
                         }
@@ -218,10 +218,10 @@ public class loginScreen extends AppCompatActivity {
                             RestaurantController.RestaurantLogin(loginScreen.this, emailInput, passwordInput);
                         }
                         else {
-                            if(!Utils.validateInput(emailInput) && !Utils.validateEmail(emailInput)) {
+                            if(!Utils.validateInput(emailInput) || !Utils.validateEmail(emailInput)) {
                                 userTextbox.setError("Invalid Input!");
                             }
-                            if(!Utils.validateInput(passwordInput) && !Utils.validatePassword(passwordInput)) {
+                            if(!Utils.validateInput(passwordInput) || !Utils.validatePassword(passwordInput)) {
                                 passTextbox.setError("Invalid Input!");
                             }
                         }
