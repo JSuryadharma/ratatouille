@@ -40,7 +40,7 @@
                         android:text="Back"
                         android:fontFamily="@font/roboto_bold"
                         android:textSize="20dp"
-                        android:textColor="@color/black"
+                        android:textColor="#666666"
                         android:layout_gravity="center_vertical"
                         android:id="@+id/voucher_backButton_text"/>
 

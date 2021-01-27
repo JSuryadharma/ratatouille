@@ -31,7 +31,7 @@
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/ic_backbutton" />
+                        android:src="@drawable/ic_backbutton"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -40,6 +40,7 @@
                         android:fontFamily="@font/roboto_bold"
                         android:text="Back"
                         android:textSize="20dp"
+                        android:textColor="#666666"
                         android:id="@+id/faq_backbutton_text"/>
 
                 </LinearLayout>

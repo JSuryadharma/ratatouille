@@ -35,7 +35,7 @@
                 android:layout_alignParentRight="true"
                 android:fontFamily="@font/roboto_bold"
                 android:text="Next"
-                android:textColor="@color/black"
+                android:textColor="#666666"
                 android:textSize="20dp" />
 
             <LinearLayout
@@ -56,7 +56,7 @@
                     android:layout_gravity="center_vertical"
                     android:fontFamily="@font/roboto_bold"
                     android:text="Back"
-                    android:textColor="@color/black"
+                    android:textColor="#666666"
                     android:textSize="20dp" />
             </LinearLayout>
         </RelativeLayout>

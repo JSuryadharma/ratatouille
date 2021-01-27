@@ -38,7 +38,7 @@
                     android:layout_gravity="center_vertical"
                     android:fontFamily="@font/roboto_bold"
                     android:text="Back"
-                    android:textColor="@android:color/white"
+                    android:textColor="#666666"
                     android:textSize="20dp" />
 
             </LinearLayout>

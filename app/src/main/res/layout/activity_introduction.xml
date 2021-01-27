@@ -53,6 +53,6 @@
             android:textColor="@android:color/holo_red_light"
             android:layout_marginHorizontal="25dp"
             android:layout_marginVertical="5dp"
-            android:fontFamily="@font/berlinsans" />
+            android:fontFamily="@font/heebo_bold" />
     </LinearLayout>
 </RelativeLayout>

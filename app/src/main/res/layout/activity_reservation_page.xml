@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_bold"
                 android:text="Back"
-                android:textColor="@color/black"
+                android:textColor="#666666"
                 android:textSize="20dp" />
         </LinearLayout>
 
