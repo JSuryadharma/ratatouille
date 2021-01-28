@@ -65,12 +65,8 @@ public class voucherFragment extends Fragment {
     callbackHelper cb = new callbackHelper() {
         @Override
         public void onUserLoadCallback(Context context, Users u) {
-            if(myVoucher.size() > 0) {
-                showMyVoucherResults();
-            }
-            if(voucherStore.size() > 0){
-                showVoucherStoreResults();
-            }
+            showMyVoucherResults();
+            showVoucherStoreResults();
         }
     };
 
@@ -232,6 +228,7 @@ public class voucherFragment extends Fragment {
     }
 
     public void showMyVoucherResults() {
+        System.out.println("uservoucher size: " + myVoucher.size());
         if(myVoucher.size() > 0){
             noVoucher.setVisibility(View.GONE);
             // Setting the Voucher Recycler View

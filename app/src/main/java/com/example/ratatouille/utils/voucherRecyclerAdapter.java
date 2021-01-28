@@ -53,6 +53,7 @@ public class voucherRecyclerAdapter extends RecyclerView.Adapter<voucherRecycler
                     customerView.currentVoucher_area.startAnimation(anim);
                     customerView.currentVoucher_area.setVisibility(View.GONE);
                     Toast.makeText(context, "Voucher is now able to be used again.", Toast.LENGTH_LONG).show();
+                    handler.removeCallbacks(this);
                 }
             };
             handler.postDelayed(runnable, 30000);
@@ -111,7 +112,6 @@ public class voucherRecyclerAdapter extends RecyclerView.Adapter<voucherRecycler
                     return;
                 }
                 selectedItem = position;
-                holder.voucherButton.setBackgroundResource(R.drawable.voucherbutton_pressed_background);
                 Utils.showOptMessage(context, dialogRsp, "Confirmation", "Are you sure to use : " + selectedVoucher.getVoucherName() + " " + selectedVoucher.getVoucherDisc() + "\n Please be noted that this action can only be done by the Restaurant only!");
             }
         });

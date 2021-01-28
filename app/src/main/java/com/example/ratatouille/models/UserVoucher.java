@@ -52,11 +52,15 @@ public class UserVoucher {
         dbRef.child(voucher.getVoucherID()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                System.out.println("TEST: " + snapshot);
                 if(snapshot.getValue() != null){
-                    if(snapshot.child("Quantity").getValue(Integer.class) == 1){
+                    Integer quantity = snapshot.child("Quantity").getValue(Integer.class);
+                    System.out.println("Quantity : " + quantity);
+                    if(quantity <= 1){
                         delete(VariablesUsed.loggedUser.getUid(), voucher.getVoucherID());
+                    } else {
+                        snapshot.getRef().child("Quantity").setValue(quantity - 1);
                     }
-                    snapshot.getRef().child("Quantity").setValue(snapshot.child("Quantity").getValue(Integer.class) - 1);
                     callback.onUserLoadCallback(context, VariablesUsed.currentUser);
                 }
             }
@@ -96,13 +100,13 @@ public class UserVoucher {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot != null){
                     snapshot.getRef().removeValue();
-                    Log.w(TAG, "OnSuccess: User data deleted!");
+                    Log.w(TAG, "OnSuccess: UserVoucher data deleted!");
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.w(TAG, "OnFailure: User data failed to be deleted!");
+                Log.w(TAG, "OnFailure: UserVoucher data failed to be deleted!");
             }
         });
     }
@@ -136,10 +140,13 @@ public class UserVoucher {
         dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                System.out.println("Test UserVoucher: " + snapshot);
                 for(DataSnapshot currentVoucher : snapshot.getChildren()){
                     Vouchers voucher = currentVoucher.getValue(Vouchers.class);
 
                     voucherList.add(voucher);
+
+                    System.out.println(voucher.getVoucherName());
                 }
                 Log.e(TAG, "onSuccess: Voucher Datas has been Retrieved!");
 
