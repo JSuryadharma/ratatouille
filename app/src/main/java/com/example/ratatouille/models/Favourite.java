@@ -88,7 +88,7 @@ public class Favourite {
     }
 
     public static void delete(String userID, String favouriteID){
-        DatabaseReference dbRef = DatabaseHelper.getDb().getReference("Users").child(userID).child("favourites");
+        DatabaseReference dbRef = DatabaseHelper.getDb().getReference("Favourites");
         dbRef.child(favouriteID).removeValue();
     }
 

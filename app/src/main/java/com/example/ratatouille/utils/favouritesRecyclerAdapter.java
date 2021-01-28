@@ -59,6 +59,14 @@ public class favouritesRecyclerAdapter extends RecyclerView.Adapter<favouritesRe
         holder.price.setText(selectedItems.getPrice());
         holder.ratingBar.setRating(selectedItems.getRating().floatValue());
         holder.angka.setText(String.valueOf(selectedItems.getRating().floatValue()));
+        String[] id = selectedItems.getFavouriteID().split("-");
+        holder.page.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, restaurantDetails.class);
+                restoDetailController.query(context, intent, id[1]);
+            }
+        });
         holder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,6 +84,7 @@ public class favouritesRecyclerAdapter extends RecyclerView.Adapter<favouritesRe
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView title, types, price, angka, deleteButton;
         RatingBar ratingBar;
+        CardView page;
         ImageView imageView;
 
         //Inisialisasi variabel, for view components
@@ -87,6 +96,7 @@ public class favouritesRecyclerAdapter extends RecyclerView.Adapter<favouritesRe
             price = itemView.findViewById(R.id.favourites_restoprice);
             ratingBar = itemView.findViewById(R.id.favourites_ratingbar);
             angka = itemView.findViewById(R.id.favourites_angka);
+            page = itemView.findViewById(R.id.recycler_cardview);
             imageView = itemView.findViewById(R.id.favourites_restoimage);
         }
     }
