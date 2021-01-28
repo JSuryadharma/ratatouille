@@ -127,8 +127,6 @@ public class ReservationRequest {
                         System.out.println("restoran");
                         ReservationRequest curRequest = eachData.getValue(ReservationRequest.class);
                         reservationRequestList.add(curRequest);
-                        cb.onRestaurantCB(context, VariablesUsed.currentRestaurant);
-                        break;
                     }
                     if(eachData.child("userID").getValue().equals(userID) && restaurantID == null){
                         System.out.println("user");
@@ -145,6 +143,9 @@ public class ReservationRequest {
                 Log.w(TAG, "onFailure: All ReservationRequest retrieval failed!");
             }
         });
+        if(userID == null) {
+            cb.onRestaurantCB(context, VariablesUsed.currentRestaurant);
+        }
         return reservationRequestList;
     }
 
